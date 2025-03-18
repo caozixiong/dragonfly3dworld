@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>List of Public Videos for Dragonfly (3D World)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1 {
+      color: #333;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+    #search-container {
+      margin-bottom: 20px;
+    }
+    #search-box {
+      width: 70%;
+      padding: 8px;
+      font-size: 1em;
+    }
+    #search-button {
+      padding: 8px 12px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    #search-results ul,
+    #file-list ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    #search-results li,
+    #file-list li {
+      margin: 10px 0;
+      padding: 8px 15px;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+    #search-results li:hover,
+    #file-list li:hover {
+      background-color: #e0e0e0;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+      display: block;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .current-file {
+      font-weight: bold;
+      color: #999;
+    }
+    #loading {
+      text-align: center;
+      margin: 20px 0;
+      font-style: italic;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>List of Public Videos for Dragonfly (3D World)</h1>
+
+  <!-- 搜索框 -->
+  <div id="search-container">
+    <input type="text" id="search-box" placeholder="请输入搜索关键词" />
+    <button id="search-button">搜索</button>
+  </div>
+  
+  <!-- 搜索结果显示区域 -->
+  <div id="search-results"></div>
+
+  <!-- 加载提示 -->
+  <div id="loading">正在加载文件列表...</div>
+
+  <!-- 文件列表（动态生成） -->
+  <ul id="file-list"></ul>
+
+  <script>
+    // 文件缓存
+    const fileCache = {};
+    // 文件元数据缓存
+    const fileMetadata = {};
+    
+    // 页面加载完成后执行初始化
+    document.addEventListener("DOMContentLoaded", async () => {
+      // 获取当前文件路径
+      const currentPath = window.location.pathname;
+      const currentFilename = currentPath.substring(currentPath.lastIndexOf("/") + 1) || "search.html";
+      
+      // 获取当前目录下的所有 HTML 文件
+      await fetchDirectoryListing();
+      
+      // 隐藏加载提示
+      document.getElementById("loading").style.display = "none";
+      
+      // 设置搜索事件监听
+      document.getElementById("search-button").addEventListener("click", searchFiles);
+      document.getElementById("search-box").addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+          searchFiles();
+        }
+      });
+    });
+
+    // 获取目录下的所有 HTML 文件并提取标题
+    async function fetchDirectoryListing() {
+      try {
+        // 使用 fetch API 模拟目录获取
+        // 由于浏览器安全限制，实际环境中可能需要服务器支持
+        // 这里我们假设已经知道有哪些文件，或通过服务器端生成文件列表
+        
+        // 获取当前文件路径
+        const currentPath = window.location.pathname;
+        const currentFilename = currentPath.substring(currentPath.lastIndexOf("/") + 1) || "search.html";
+        
+        // 这是一个示例文件列表
+        // 实际环境中，这部分可以由服务器生成或使用其他方式获取
+        const htmlFiles = [
+          "search.html",
+          "DeepLearningforImagingScientists2020.html",
+          "DenoisingwithDeepLearninginDragonfly2020.html"
+          // 此处可以动态获取目录中的所有 HTML 文件
+        ];
+        
+        const fileList = document.getElementById("file-list");
+        fileList.innerHTML = ""; // 清空列表
+        
+        // 遍历所有 HTML 文件，提取标题
+        for (const file of htmlFiles) {
+          try {
+            // 对于当前文件特殊处理
+            if (file === currentFilename) {
+              const li = document.createElement("li");
+              li.innerHTML = `<span class="current-file">${file} (current file)</span>`;
+              fileList.appendChild(li);
+              continue;
+            }
+            
+            // 获取文件内容
+            const response = await fetch(file);
+            const text = await response.text();
+            fileCache[file] = text;
+            
+            // 提取标题
+            const titleMatch = text.match(/<title>(.*?)<\/title>/i);
+            const fileTitle = titleMatch ? titleMatch[1] : file;
+            fileMetadata[file] = { title: fileTitle };
+            
+            // 创建列表项
+            const li = document.createElement("li");
+            li.innerHTML = `<a href="${file}" target="_blank">${fileTitle}</a>`;
+            fileList.appendChild(li);
+          } catch (error) {
+            console.error(`获取文件 ${file} 失败:`, error);
+            // 如果无法获取文件，仍然添加到列表但标记为未能加载
+            const li = document.createElement("li");
+            li.innerHTML = `<a href="${file}" target="_blank">${file} (无法加载标题)</a>`;
+            fileList.appendChild(li);
+          }
+        }
+      } catch (error) {
+        console.error("加载文件列表失败:", error);
+        document.getElementById("file-list").innerHTML = "<p>无法加载文件列表，请刷新页面重试。</p>";
+      }
+    }
+
+    // 搜索功能
+    async function searchFiles() {
+      const query = document.getElementById("search-box").value.trim().toLowerCase();
+      const resultsDiv = document.getElementById("search-results");
+      const fileList = document.getElementById("file-list");
+
+      // 当搜索框为空时，显示全部文件列表并清空搜索结果
+      if (!query) {
+        fileList.style.display = "block";
+        resultsDiv.innerHTML = "";
+        return;
+      }
+
+      // 搜索时隐藏原始文件列表，只显示匹配结果
+      fileList.style.display = "none";
+      resultsDiv.innerHTML = "<div id='loading'>正在搜索...</div>";
+
+      const results = [];
+
+      // 遍历所有缓存的文件
+      for (const fileUrl in fileCache) {
+        const fileContent = fileCache[fileUrl].toLowerCase();
+        // 若文件内容包含搜索关键词
+        if (fileContent.includes(query)) {
+          const fileTitle = fileMetadata[fileUrl]?.title || fileUrl;
+          results.push({ url: fileUrl, title: fileTitle });
+        }
+      }
+
+      // 显示搜索结果
+      if (results.length === 0) {
+        resultsDiv.innerHTML = "<p>未找到匹配的文件。</p>";
+      } else {
+        let html = "<ul>";
+        results.forEach(result => {
+          html += `<li><a href="${result.url}" target="_blank">${result.title}</a></li>`;
+        });
+        html += "</ul>";
+        resultsDiv.innerHTML = html;
+      }
+    }
+  </script>
+</body>
+</html>
