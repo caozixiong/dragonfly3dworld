@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Porosity Analysis in Archaeological Ceramics</title>
+ </head>
+ <body>
+  <h1>3D Porosity Analysis in Archaeological Ceramics: Reconstructing Production Methods and Performance</h1>
+ 
+
+  <h2>Summary</h2>
+  <p>
+  This presentation discusses the application of 3D image analysis, specifically using Dragonfly software, to study pore systems in archaeological ceramics. This method helps in reconstructing ancient pottery production methods and understanding the performance characteristics of ceramic vessels. The analysis of pore systems, which have been relatively neglected in archaeological ceramic studies, provides valuable insights into raw material selection, processing, fabrication methods, and firing regimes.
+  </p>
+ 
+
+  <h2>Technical Information and Tutorial</h2>
+  <ol>
+  <li>
+  <h3>Data Acquisition [00:03:53]</h3>
+  <ul>
+  <li>Micro-CT scanning is employed to capture 3D images of ceramic shards.</li>
+  <li>This technique allows for the analysis of isolated pores, which are crucial indicators of firing techniques and temperatures.</li>
+  </ul>
+  </li>
+  <li>
+  <h3>Sample Preparation [00:04:49]</h3>
+  <ul>
+  <li>Small shards from ceramic vessels are used for micro-CT scanning.</li>
+  <li>The same sample can be used for subsequent thin section analysis or other analytical methods.</li>
+  </ul>
+  </li>
+  <li>
+  <h3>Image Segmentation [00:05:27]</h3>
+  <ul>
+  <li>Dragonfly's segmentation wizard is utilized for pore segmentation.</li>
+  <li>Typically, about three slices are sufficient to train a segmentation model.</li>
+  <li>The image calibration tool aids in reusing the model for similar images. [00:05:44]</li>
+  </ul>
+  </li>
+  <li>
+  <h3>Scanning Parameters [00:06:01]</h3>
+  <ul>
+  <li>A 5x5 millimeter field of view is recommended, providing a 10-micron spatial resolution.</li>
+  <li>This scale balances the detection of small pores and the representation of larger pores.</li>
+  <li>Two to five replicates per shard are analyzed to account for material variation. [00:06:22]</li>
+  </ul>
+  </li>
+  <li>
+  <h3>Pore System Analysis [00:06:34]</h3>
+  <ul>
+  <li>Focus is placed on pore systems to gather information about firing temperatures and vessel functions.</li>
+  <li>Parameters such as pore volume percentage, surface accessibility, shape, and connectivity are analyzed. [00:09:46]</li>
+  </ul>
+  </li>
+  <li>
+  <h3>Firing Temperature Determination [00:07:24]</h3>
+  <ul>
+  <li>Total volume percentage porosity correlates with firing temperature. [00:09:55]</li>
+  <li>The ratio of surface-accessible to interior-only pores is strongly correlated with firing temperature. [00:10:23]</li>
+  <li>Pore shape, measured by sphericity and elongation, also relates to firing temperature. [00:12:28]</li>
+  </ul>
+  </li>
+  <li>
+  <h3>Thermal Conductivity Calculation [00:14:58]</h3>
+  <ul>
+  <li>The porous microstructure analysis (Puma) program within Dragonfly is used.</li>
+  <li>It measures effective thermal conductivity based on the thermal conductivity of individual components (e.g., quartz, feldspars, air).</li>
+  <li>Temperature fields are simulated, and the steady-state temperature is solved to determine thermal conductivity.</li>
+  </ul>
+  </li>
+  <li>
+  <h3>Connectivity Analysis [00:13:05]</h3>
+  <ul>
+  <li>Dragonfly allows for the visualization of segmented pore systems as graph models.</li>
+  <li>Spheres represent pores, and lines represent connections, quantifying pore connectivity.</li>
+  </ul>
+  </li>
+  </ol>
+ 
+
+  <h2>Conclusion</h2>
+  <p>
+  3D image analysis with Dragonfly offers a robust method for examining pore systems in archaeological ceramics, providing critical insights into ancient production techniques and functional properties.
+  </p>
+ 
+
+  <p><strong>Source:</strong> <a href="https://www.youtube.com/watch?v=GjY4phlGGhs">https://www.youtube.com/watch?v=GjY4phlGGhs</a></p>
+  
+  <div class="video-container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/GjY4phlGGhs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</body>
+ </html>
