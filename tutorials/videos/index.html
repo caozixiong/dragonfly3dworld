@@ -39,86 +39,51 @@
         a:hover {
             text-decoration: underline;
         }
-        .no-files {
-            color: #666;
-            font-style: italic;
-        }
         .current-file {
             font-weight: bold;
             color: #999;
+        }
+        .file-info {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 4px;
         }
     </style>
 </head>
 <body>
     <h1>HTML Files in Directory</h1>
-    <div id="file-list">Loading files...</div>
+    <ul id="file-list">
+        <!-- Current file -->
+        <li>
+            <span class="current-file">index.html (current file)</span>
+        </li>
+        
+        <!-- Other HTML files from your repository -->
+        <li>
+            <a href="DeepLearningforImagingScientists2020.html">DeepLearningforImagingScientists2020.html</a>
+        </li>
+        <li>
+            <a href="DenoisingwithDeepLearninginDragonfly2020.html">DenoisingwithDeepLearninginDragonfly2020.html</a>
+        </li>
+        
+        <!-- You can add more files here manually -->
+    </ul>
 
     <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            const fileListElement = document.getElementById('file-list');
+        // Get the current path and highlight the current file
+        document.addEventListener('DOMContentLoaded', () => {
             const currentPath = window.location.pathname;
-            const currentFilename = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+            const currentFilename = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
             
-            try {
-                // Fetch directory listing
-                const response = await fetch('.');
-                const text = await response.text();
-                
-                // Parse HTML response to find links
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(text, 'text/html');
-                const links = Array.from(doc.querySelectorAll('a'));
-                
-                // Filter for HTML files
-                const htmlFiles = links
-                    .map(link => link.getAttribute('href'))
-                    .filter(href => href && href.toLowerCase().endsWith('.html'));
-                
-                // Display the list
-                if (htmlFiles.length > 0) {
-                    const ul = document.createElement('ul');
-                    
-                    htmlFiles.forEach(file => {
-                        const li = document.createElement('li');
-                        
-                        if (file === currentFilename) {
-                            // Current file
-                            const span = document.createElement('span');
-                            span.textContent = file + ' (current file)';
-                            span.className = 'current-file';
-                            li.appendChild(span);
-                        } else {
-                            // Other HTML files
-                            const a = document.createElement('a');
-                            a.href = file;
-                            a.textContent = file;
-                            li.appendChild(a);
-                        }
-                        
-                        ul.appendChild(li);
-                    });
-                    
-                    fileListElement.innerHTML = '';
-                    fileListElement.appendChild(ul);
-                } else {
-                    fileListElement.innerHTML = '<p class="no-files">No HTML files found in this directory.</p>';
+            // Find all links and mark the current one
+            const links = document.querySelectorAll('#file-list a');
+            links.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentFilename) {
+                    const li = link.parentElement;
+                    li.innerHTML = `<span class="current-file">${href} (current file)</span>`;
                 }
-            } catch (error) {
-                fileListElement.innerHTML = `<p class="no-files">Error loading files: ${error.message}</p>`;
-                console.error('Error fetching directory listing:', error);
-                
-                // Fallback message with explanation
-                fileListElement.innerHTML += `
-                    <p>Note: This script requires viewing through a web server to work correctly.</p>
-                    <p>Due to security restrictions, browsers cannot access local directory listings 
-                    when opening HTML files directly (using the file:// protocol).</p>
-                    <p>To use this page:</p>
-                    <ol>
-                        <li>Host these files on a local server (using tools like Live Server, http-server, Python's http.server, etc.)</li>
-                        <li>Or upload to a web hosting service</li>
-                    </ol>
-                `;
-            }
+            });
         });
     </script>
 </body>
