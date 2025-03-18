@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,21 +30,21 @@
       font-size: 1em;
       cursor: pointer;
     }
-    #search-results {
-      margin-top: 20px;
-    }
-    ul {
+    #search-results ul,
+    #file-list ul {
       list-style-type: none;
       padding: 0;
     }
-    li {
+    #search-results li,
+    #file-list li {
       margin: 10px 0;
       padding: 8px 15px;
       background-color: #f5f5f5;
       border-radius: 4px;
       transition: background-color 0.2s;
     }
-    li:hover {
+    #search-results li:hover,
+    #file-list li:hover {
       background-color: #e0e0e0;
     }
     a {
@@ -59,30 +59,26 @@
       font-weight: bold;
       color: #999;
     }
-    .file-info {
-      font-size: 0.9em;
-      color: #666;
-      margin-top: 4px;
-    }
   </style>
 </head>
 <body>
-  <h1>HTML Files in Directory</h1>
+  <h1>List of Public Videos for Dragonfly (3D World)</h1>
 
   <!-- 搜索框 -->
   <div id="search-container">
     <input type="text" id="search-box" placeholder="请输入搜索关键词" />
     <button id="search-button">搜索</button>
   </div>
+  
   <!-- 搜索结果显示区域 -->
   <div id="search-results"></div>
 
+  <!-- 文件列表（初始显示全部） -->
   <ul id="file-list">
-    <!-- 当前文件 -->
+    <!-- 当前文件（如果需要也可搜索，目前为静态显示） -->
     <li>
       <span class="current-file">index.html (current file)</span>
     </li>
-
     <!-- 其他 HTML 文件 -->
     <li>
       <a href="DeepLearningforImagingScientists2020.html">DeepLearningforImagingScientists2020.html</a>
@@ -90,17 +86,14 @@
     <li>
       <a href="DenoisingwithDeepLearninginDragonfly2020.html">DenoisingwithDeepLearninginDragonfly2020.html</a>
     </li>
-
-    <!-- 可手动添加更多文件 -->
+    <!-- 可添加更多文件 -->
   </ul>
 
-  <!-- 用于高亮当前文件的脚本 -->
+  <!-- 高亮当前文件的脚本 -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const currentPath = window.location.pathname;
       const currentFilename = currentPath.substring(currentPath.lastIndexOf("/") + 1) || "index.html";
-
-      // 遍历所有链接，如果链接的 href 和当前文件名一致，则标记为当前文件
       const links = document.querySelectorAll("#file-list a");
       links.forEach(link => {
         const href = link.getAttribute("href");
@@ -114,29 +107,41 @@
 
   <!-- 搜索功能的脚本 -->
   <script>
-    // 用于缓存已获取的文件内容，避免重复请求
+    // 缓存已获取的文件内容，避免重复请求
     const fileCache = {};
 
-    // 绑定搜索按钮点击事件
+    // 当用户点击搜索按钮或按下回车时触发搜索
     document.getElementById("search-button").addEventListener("click", searchFiles);
+    document.getElementById("search-box").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        searchFiles();
+      }
+    });
 
     async function searchFiles() {
       const query = document.getElementById("search-box").value.trim().toLowerCase();
       const resultsDiv = document.getElementById("search-results");
-      resultsDiv.innerHTML = ""; // 清空之前的搜索结果
+      const fileList = document.getElementById("file-list");
 
+      // 当搜索框为空时，显示全部文件列表并清空搜索结果
       if (!query) {
-        resultsDiv.innerHTML = "<p>请输入搜索关键词。</p>";
+        fileList.style.display = "block";
+        resultsDiv.innerHTML = "";
         return;
       }
 
-      // 获取文件列表中所有链接
-      const links = document.querySelectorAll("#file-list a");
+      // 搜索时隐藏原始文件列表，只显示匹配结果
+      fileList.style.display = "none";
+      resultsDiv.innerHTML = "";
+
+      // 从文件列表中获取所有链接（不包括当前文件）
+      const links = fileList.querySelectorAll("a");
       const results = [];
 
-      // 遍历每个链接，获取对应文件的内容并搜索关键词
+      // 遍历每个文件链接
       for (let link of links) {
         const fileUrl = link.getAttribute("href");
+        // 若缓存中没有该文件内容，则请求获取
         if (!fileCache[fileUrl]) {
           try {
             const response = await fetch(fileUrl);
@@ -148,8 +153,11 @@
           }
         }
         const fileContent = fileCache[fileUrl].toLowerCase();
+        // 若文件内容包含搜索关键词，则提取 <title> 内容作为显示文本
         if (fileContent.includes(query)) {
-          results.push({ url: fileUrl, name: link.textContent });
+          const titleMatch = fileCache[fileUrl].match(/<title>(.*?)<\/title>/i);
+          const fileTitle = titleMatch ? titleMatch[1] : fileUrl;
+          results.push({ url: fileUrl, title: fileTitle });
         }
       }
 
@@ -159,7 +167,7 @@
       } else {
         let html = "<ul>";
         results.forEach(result => {
-          html += `<li><a href="${result.url}">${result.name}</a></li>`;
+          html += `<li><a href="${result.url}" target="_blank">${result.title}</a></li>`;
         });
         html += "</ul>";
         resultsDiv.innerHTML = html;
