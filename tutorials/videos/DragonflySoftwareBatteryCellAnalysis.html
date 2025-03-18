@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dragonfly Software Battery Cell Analysis Tutorial</title>
+  <style>
+  body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 20px;
+  }
+  
+  h1 {
+  color: #333;
+  }
+  
+  h2 {
+  color: #444;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  }
+  
+  p {
+  margin-bottom: 10px;
+  }
+  
+  ul {
+  list-style-type: square;
+  margin-left: 20px;
+  }
+  
+  .timestamp {
+  font-weight: bold;
+  color: #555;
+  }
+  
+  .video-container {
+  margin-top: 20px;
+  }
+  </style>
+ </head>
+ <body>
+  
+  <h1>Dragonfly Software for Battery Cell Analysis</h1>
+  
+  <p>This tutorial demonstrates how to analyze battery cells using Dragonfly software, covering manual measurements, defect inspection, and automated analysis with deep learning.</p>
+  
+  <h2>I. Initial Data Visualization and Orientation</h2>
+  <ul>
+  <li><b>Data Loading and Layout:</b> Load battery cell data in Dragonfly 2024.1. If the data isn't displayed in quad view, change the layout in the layout panel [00:00:37].</li>
+  <li><b>View Manipulation:</b> Maximize or minimize specific views by double-clicking. Use the flip tool to orient the cell upright [00:01:16].</li>
+  <li><b>Clipping Box:</b> Use the clipping box to virtually cut open the data and inspect internal structures like anodes, cathodes, and the metal casing [00:02:11].</li>
+  </ul>
+  
+  <h2>II. Manual Inspection and Annotation</h2>
+  <ul>
+  <li><b>Cross-sectional Views:</b> Double-click on 2D cross-sectional views to make measurements. Identify anodes, cathodes, and spacer materials [00:03:08].</li>
+  <li><b>Oblique Views:</b> Use the mouse near crosshairs to create an oblique view, allowing for circumferential inspection [00:04:36].</li>
+  <li><b>Annotation Points:</b> Use the "Points" tool (with Ctrl+click) to mark defects. Export these annotations with their XYZ locations to a CSV file [00:06:01].</li>
+  </ul>
+  
+  <h2>III. Manual Measurements</h2>
+  <ul>
+  <li><b>Ruler Tool:</b> Use the ruler tool in the annotation panel to measure overhang heights [00:09:54].</li>
+  <li><b>Adjustments and Visualization:</b> Adjust measurements by zooming in and using the nearest interpolation mode to see individual pixels [00:10:21].</li>
+  <li><b>Floating Captions:</b> Use floating captions to position measurements clearly. Export screenshots and ruler data (lengths, XYZ locations) to CSV files [00:11:11].</li>
+  </ul>
+  
+  <h2>IV. Automated Analysis with Deep Learning</h2>
+  <ul>
+  <li><b>Deep Learning Model Application:</b> Use a pre-trained deep learning model to segment overhang regions adjacent to cathodes [00:13:55].</li>
+  <li><b>Multi-ROI Analysis:</b> Export the segmentation as an ROI, then as a multi-ROI to compute measurements such as 2D major axis length [00:15:08].</li>
+  </ul>
+  
+  <h2>V. Training a Deep Learning Model</h2>
+  <ul>
+  <li><b>Segmentation Wizard:</b> Use the segmentation wizard to train a custom model. Define classes (e.g., cathode, background, anode overhang) [00:17:05].</li>
+  <li><b>Frame Definition:</b> Add multiple frames, marking different regions of the sample. Use a "mixed" frame for training and validation, and another for monitoring [00:17:41].</li>
+  <li><b>Training Process:</b> Start training, selecting a pre-trained model for faster results. Monitor the loss values and preview the segmentation [00:21:42].</li>
+  <li><b>Interactive Training:</b> Add more data or adjust existing annotations if the model doesn't converge as expected [00:25:35].</li>
+  <li><b>Saving the Model:</b> Save the trained model via the model tab or upon exiting the wizard, making it available for use in Dragonfly [00:36:31].</li>
+  </ul>
+  
+  <p>Source:</p>
+  
+  <div class="video-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/w66v-M09AJY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+  
+ </body>
+ </html>
