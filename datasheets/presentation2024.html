@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragonfly 3D World Release Notes 2024.1</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <header class="p-4 shadow-lg bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-semibold">Dragonfly 3D World Release Notes <span class="text-indigo-500">2024.1</span></h1>
+            <button onclick="toggleTheme()" class="p-2 rounded-md bg-gray-200 dark:bg-gray-700 hover:scale-105 transition-transform">
+                <span class="material-icons">brightness_6</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6">
+        <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- New Branding -->
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-shadow p-4">
+                <h2 class="text-lg font-semibold">New Branding</h2>
+                <p class="text-sm">Introduction of <strong>Dragonfly 3D World</strong>, part of Comet Technologies, offering enhanced logos and product icons.</p>
+            </div>
+
+            <!-- Dragonfly Social -->
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-shadow p-4">
+                <h2 class="text-lg font-semibold">Dragonfly Social</h2>
+                <p class="text-sm">A community platform for discussion, sharing extensions, deep models, and integrated chatbot.</p>
+            </div>
+
+            <!-- Deep Learning Enhancements -->
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-shadow p-4">
+                <h2 class="text-lg font-semibold">Deep Learning Tool Enhancements</h2>
+                <p class="text-sm">Includes sparse labeling, remote model libraries, accelerated inference, and new architectures.</p>
+            </div>
+
+            <!-- Open Fiber Segmentation -->
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-shadow p-4">
+                <h2 class="text-lg font-semibold">Open Fiber Segmentation</h2>
+                <p class="text-sm">Automatic extraction and analysis of individual fibers from composite datasets.</p>
+            </div>
+
+            <!-- NGSolve Integration -->
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-shadow p-4">
+                <h2 class="text-lg font-semibold">NGSolve Integration</h2>
+                <p class="text-sm">Advanced engineering simulations for fluid mechanics and heat dissipation.</p>
+            </div>
+
+            <!-- Radiomics -->
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-shadow p-4">
+                <h2 class="text-lg font-semibold">Radiomics Analysis</h2>
+                <p class="text-sm">Advanced image analysis using texture extraction and quantitative feature analysis.</p>
+            </div>
+
+        </section>
+
+        <section class="mt-8 p-4 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-inner">
+            <h2 class="text-xl font-semibold mb-4">Performance Improvements</h2>
+            <ul class="list-disc ml-5 space-y-2 text-sm">
+                <li>Improved inference speed with efficient patch blending.</li>
+                <li>TensorFlow-TensorRT compilation for faster inference on NVIDIA GPUs.</li>
+                <li>Automatic loading and unloading of deep models for optimized memory usage.</li>
+            </ul>
+        </section>
+
+        <section class="mt-8 p-4 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-inner">
+            <h2 class="text-xl font-semibold mb-4">More Resources</h2>
+            <p class="text-sm">Detailed release notes, tutorials, and community resources available on <a href="https://dragonflysocial.comet.tech" class="text-indigo-500 underline hover:text-indigo-300">Dragonfly Social</a>.</p>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-4 text-sm bg-gray-50 dark:bg-gray-800">
+        © 2024 Comet Technologies Canada Inc. All rights reserved.
+    </footer>
+</body>
+</html>
