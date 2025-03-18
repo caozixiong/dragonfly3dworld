@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Files Directory</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 8px 15px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        li:hover {
+            background-color: #e0e0e0;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+            display: block;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .no-files {
+            color: #666;
+            font-style: italic;
+        }
+        .current-file {
+            font-weight: bold;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML Files in Directory</h1>
+    <div id="file-list">Loading files...</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const fileListElement = document.getElementById('file-list');
+            const currentPath = window.location.pathname;
+            const currentFilename = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+            
+            try {
+                // Fetch directory listing
+                const response = await fetch('.');
+                const text = await response.text();
+                
+                // Parse HTML response to find links
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                const links = Array.from(doc.querySelectorAll('a'));
+                
+                // Filter for HTML files
+                const htmlFiles = links
+                    .map(link => link.getAttribute('href'))
+                    .filter(href => href && href.toLowerCase().endsWith('.html'));
+                
+                // Display the list
+                if (htmlFiles.length > 0) {
+                    const ul = document.createElement('ul');
+                    
+                    htmlFiles.forEach(file => {
+                        const li = document.createElement('li');
+                        
+                        if (file === currentFilename) {
+                            // Current file
+                            const span = document.createElement('span');
+                            span.textContent = file + ' (current file)';
+                            span.className = 'current-file';
+                            li.appendChild(span);
+                        } else {
+                            // Other HTML files
+                            const a = document.createElement('a');
+                            a.href = file;
+                            a.textContent = file;
+                            li.appendChild(a);
+                        }
+                        
+                        ul.appendChild(li);
+                    });
+                    
+                    fileListElement.innerHTML = '';
+                    fileListElement.appendChild(ul);
+                } else {
+                    fileListElement.innerHTML = '<p class="no-files">No HTML files found in this directory.</p>';
+                }
+            } catch (error) {
+                fileListElement.innerHTML = `<p class="no-files">Error loading files: ${error.message}</p>`;
+                console.error('Error fetching directory listing:', error);
+                
+                // Fallback message with explanation
+                fileListElement.innerHTML += `
+                    <p>Note: This script requires viewing through a web server to work correctly.</p>
+                    <p>Due to security restrictions, browsers cannot access local directory listings 
+                    when opening HTML files directly (using the file:// protocol).</p>
+                    <p>To use this page:</p>
+                    <ol>
+                        <li>Host these files on a local server (using tools like Live Server, http-server, Python's http.server, etc.)</li>
+                        <li>Or upload to a web hosting service</li>
+                    </ol>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
