@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragonfly 3D World - Advanced 3D Visualization & Analysis Software</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        /* Custom properties */
+        :root {
+            --color-primary: #0066cc;
+            --color-primary-dark: #004e9e;
+            --color-secondary: #f59e0b;
+            --bg-light: #ffffff;
+            --text-light: #1f2937;
+            --text-light-secondary: #4b5563;
+            --bg-dark: #111827;
+            --text-dark: #f3f4f6;
+            --text-dark-secondary: #d1d5db;
+        }
+
+        /* Base styles */
+        .light {
+            --bg-color: var(--bg-light);
+            --text-color: var(--text-light);
+            --text-color-secondary: var(--text-light-secondary);
+            --card-bg: #f9fafb;
+            --card-border: #e5e7eb;
+            --divider-color: #e5e7eb;
+        }
+        
+        .dark {
+            --bg-color: var(--bg-dark);
+            --text-color: var(--text-dark);
+            --text-color-secondary: var(--text-dark-secondary);
+            --card-bg: #1f2937;
+            --card-border: #374151;
+            --divider-color: #374151;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--color-primary-dark);
+            transform: translateY(-1px);
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: var(--divider-color);
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Utility classes */
+        .section {
+            padding: 5rem 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .section {
+                padding: 6rem 2rem;
+            }
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Specific component styles */
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(0, 102, 204, 0.1);
+            color: var(--color-primary);
+        }
+        
+        /* Toggle button styles */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 26px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--color-primary);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+<body class="light">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-opacity-90 backdrop-filter backdrop-blur-md border-b border-opacity-20" style="border-color: var(--divider-color); background-color: var(--bg-color);">
+        <div class="container mx-auto px-4 md:px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 5L5 15V30L20 40L35 30V15L20 5Z" fill="var(--color-primary)" fill-opacity="0.2" />
+                        <path d="M20 5L35 15L20 25L5 15L20 5Z" fill="var(--color-primary)" fill-opacity="0.6" />
+                        <path d="M20 25V40L35 30V15L20 25Z" fill="var(--color-primary)" fill-opacity="0.4" />
+                    </svg>
+                    <h1 class="text-2xl font-bold">Dragonfly 3D World</h1>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="hover:text-blue-500 transition">About</a>
+                    <a href="#features" class="hover:text-blue-500 transition">Features</a>
+                    <a href="#applications" class="hover:text-blue-500 transition">Applications</a>
+                    <a href="#analysis" class="hover:text-blue-500 transition">Analysis</a>
+                    <a href="#support" class="hover:text-blue-500 transition">Support</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <a href="#contact" class="btn-primary px-4 py-2 rounded-md hidden md:block">Get Started</a>
+                    <button class="md:hidden text-2xl" id="mobile-menu-button">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile menu -->
+            <div class="md:hidden hidden mt-4 pb-2" id="mobile-menu">
+                <div class="flex flex-col space-y-3">
+                    <a href="#about" class="py-2 hover:text-blue-500 transition">About</a>
+                    <a href="#features" class="py-2 hover:text-blue-500 transition">Features</a>
+                    <a href="#applications" class="py-2 hover:text-blue-500 transition">Applications</a>
+                    <a href="#analysis" class="py-2 hover:text-blue-500 transition">Analysis</a>
+                    <a href="#support" class="py-2 hover:text-blue-500 transition">Support</a>
+                    <a href="#contact" class="btn-primary text-center py-2 rounded-md">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden" style="background-color: var(--bg-color)">
+        <div class="container mx-auto px-4 pt-16 pb-24 md:pt-24 md:pb-32">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                        Powerful 3D Visualization & Analysis
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8" style="color: var(--text-color-secondary)">
+                        Extract meaningful insights from your 2D, 3D, and 4D images with advanced AI-powered segmentation and analysis.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="btn-primary px-6 py-3 rounded-md text-lg font-medium">
+                            Try It Free
+                        </a>
+                        <a href="#features" class="border border-gray-300 px-6 py-3 rounded-md text-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="relative h-64 md:h-auto fade-in">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl opacity-20 blur-3xl"></div>
+                    <div class="relative bg-opacity-70 backdrop-filter backdrop-blur-md bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700">
+                        <img src="/api/placeholder/600/400" alt="Dragonfly 3D visualization" class="w-full h-full object-cover" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section" style="background-color: var(--card-bg)">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">The Powerful Solution for 3D Visualization and Analysis</h2>
+                <p class="text-lg" style="color: var(--text-color-secondary)">
+                    As a proud supporter of innovators in science and industry, we develop advanced 3D visualization and analysis software for today's most demanding 2D, 3D, and 4D imaging tasks. Dragonfly is a brand of the Comet Group, a globally leading Swiss technology company with a focus on plasma control and X-ray technology.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card rounded-xl p-6 fade-in" style="animation-delay: 0.1s">
+                    <div class="feature-icon mb-4">
+                        <i class="fas fa-eye text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Effortless Visualization</h3>
+                    <p style="color: var(--text-color-secondary)">
+                        Import and visualize 2D/3D/4D images, volumetric data, and proprietary data types from multiple sources with an intuitive interface.
+                    </p>
+                </div>
+                <div class="card rounded-xl p-6 fade-in" style="animation-delay: 0.2s">
+                    <div class="feature-icon mb-4">
+                        <i class="fas fa-brain text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">AI-Based Segmentation</h3>
+                    <p style="color: var(--text-color-secondary)">
+                        Leverage deep-learning based image enhancement and segmentation to extract meaningful data quickly and accurately.
+                    </p>
+                </div>
+                <div class="card rounded-xl p-6 fade-in" style="animation-delay: 0.3s">
+                    <div class="feature-icon mb-4">
+                        <i class="fas fa-chart-bar text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Quantitative Analysis</h3>
+                    <p style="color: var(--text-color-secondary)">
+                        Get quantitative answers for your most demanding imaging studies, including data from correlative and hyperspectral imaging systems.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section" style="background-color: var(--bg-color)">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Smooth Workflows for Cutting-Edge Results</h2>
+                <p class="text-lg" style="color: var(--text-color-secondary)">
+                    Our intuitive, easy-to-learn interface guides users through their project, from flexible file import to advanced visualization and analysis.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
+                <div class="fade-in order-2 md:order-1">
+                    <div class="mb-8">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="feature-icon flex-shrink-0">
+                                <i class="fas fa-file-import text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">Flexible Image Import</h3>
+                        </div>
+                        <p class="text-lg ml-16" style="color: var(--text-color-secondary)">
+                            Start with file readers for an array of formats from TIFF, PNG, or BMP to microscopy and medical file formats like MRC or DICOM.
+                        </p>
+                    </div>
+                    <div class="mb-8">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="feature-icon flex-shrink-0">
+                                <i class="fas fa-image text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">Advanced Image Processing</h3>
+                        </div>
+                        <p class="text-lg ml-16" style="color: var(--text-color-secondary)">
+                            Overcome imaging artifacts with a rich tool chain spanning from traditional filtering algorithms to the latest AI models.
+                        </p>
+                    </div>
+                    <div class="mb-8">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="feature-icon flex-shrink-0">
+                                <i class="fas fa-object-group text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">Segmentation & Quantification</h3>
+                        </div>
+                        <p class="text-lg ml-16" style="color: var(--text-color-secondary)">
+                            Simplify labeling image features with pre-trained deep learning models and powerful measurement options.
+                        </p>
+                    </div>
+                </div>
+                <div class="relative h-96 order-1 md:order-2 fade-in">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl opacity-20 blur-3xl"></div>
+                    <div class="relative bg-opacity-70 backdrop-filter backdrop-blur-md bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700 h-full">
+                        <img src="/api/placeholder/600/500" alt="Dragonfly workflow" class="w-full h-full object-cover" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative h-96 fade-in">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl opacity-20 blur-3xl"></div>
+                    <div class="relative bg-opacity-70 backdrop-filter backdrop-blur-md bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700 h-full">
+                        <img src="/api/placeholder/600/500" alt="Dragonfly visualization" class="w-full h-full object-cover" />
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <div class="mb-8">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="feature-icon flex-shrink-0">
+                                <i class="fas fa-cube text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">Impactful Visualizations</h3>
+                        </div>
+                        <p class="text-lg ml-16" style="color: var(--text-color-secondary)">
+                            See every detail from every angle with powerful features like arbitrary clipping, focal spotlighting, or dewarped planes.
+                        </p>
+                    </div>
+                    <div class="mb-8">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="feature-icon flex-shrink-0">
+                                <i class="fas fa-file-export text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">Actionable Reporting</h3>
+                        </div>
+                        <p class="text-lg ml-16" style="color: var(--text-color-secondary)">
+                            Share findings with impressive presentations by exporting every measurement and image without effort.
+                        </p>
+                    </div>
+                    <div class="mb-8">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="feature-icon flex-shrink-0">
+                                <i class="fas fa-sliders-h text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold">Customization</h3>
+                        </div>
+                        <p class="text-lg ml-16" style="color: var(--text-color-secondary)">
+                            Tailor the software to your needs with workflow automation, macro recording, and Python console integration.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Power Section -->
+    <section class="section" style="background-color: var(--card-bg)">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">The New Era of Image Processing. Powered by AI.</h2>
+                    <p class="text-lg mb-8" style="color: var(--text-color-secondary)">
+                        Dragonfly 3D World combines the power of deep learning with intuitive workflows. Experience image processing on a completely new level with the world's leading commercially supported deep learning engine.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="feature-icon flex-shrink-0 mt-1">
+                                <i class="fas fa-code-branch text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Watch Models Learn</h3>
+                                <p style="color: var(--text-color-secondary)">
+                                    Pre-built and pre-trained neural networks make it easy and fast to apply, even for novices. Powered by Google's TensorFlow and Keras.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="feature-icon flex-shrink-0 mt-1">
+                                <i class="fas fa-magic text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Enhance Image Quality</h3>
+                                <p style="color: var(--text-color-secondary)">
+                                    Deep learning models vastly improve image quality, from denoising to super resolution, for clearer detail than ever before.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="feature-icon flex-shrink-0 mt-1">
+                                <i class="fas fa-robot text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Use Automated Segmentation</h3>
+                                <p style="color: var(--text-color-secondary)">
+                                    Well-trained AI models ensure efficient and reliable segmentations for complex materials without user bias.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative h-96 fade-in">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl opacity-20 blur-3xl"></div>
+                    <div class="relative bg-opacity-70 backdrop-filter backdrop-blur-md bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700 h-full">
+                        <img src="/api/placeholder/600/500" alt="AI segmentation example" class="w-full h-full object-cover" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="section" style="background-color: var(--bg-color)">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Driving Innovation For Every Application</h2>
+                <p class="text-lg" style="color: var(--text-color-secondary)">
+                    Led by experience and driven by curiosity, our team develops tailored software solutions in close collaboration with the academic community to drive innovation across various applications.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card rounded-xl overflow-hidden transition-all duration-300 fade-in" style="animation-delay: 0.1s">
+                    <div class="h-48 bg-gray-200 dark:bg-gray-700">
+                        <img src="/api/placeholder/400/200" alt="Geoscience application" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Geoscience</h3>
+                        <p class="mb-3" style="color: var(--text-color-secondary)">
+                            Advanced multi-scale, multi-modality segmentation and analysis tools for industrial mining, oil and gas industry, earth and planetary science.
+                        </p>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 transition flex items-center gap-2">
+                            Learn more
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card rounded-xl overflow-hidden transition-all duration-300 fade-in" style="animation-delay: 0.2s">
+                    <div class="h-48 bg-gray-200 dark:bg-gray-700">
+                        <img src="/api/placeholder/400/200" alt="Materials science application" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Materials Science</h3>
+                        <p class="mb-3" style="color: var(--text-color-secondary)">
+                            Quantitative measurements and descriptions of key microstructure features for composites, ceramics, foams, powders, metals, and batteries.
+                        </p>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 transition flex items-center gap-2">
+                            Learn more
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card rounded-xl overflow-hidden transition-all duration-300 fade-in" style="animation-delay: 0.3s">
+                    <div class="h-48 bg-gray-200 dark:bg-gray-700">
+                        <img src="/api/placeholder/400/200" alt="Life science application" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Life Science</h3>
+                        <p class="mb-3" style="color: var(--text-color-secondary)">
+                            Analysis from organelle to organism: cellular imaging, bone organization, plant and animal anatomy, paleontology, and pharma R&D.
+                        </p>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 transition flex items-center gap-2">
+                            Learn more
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card rounded-xl overflow-hidden transition-all duration-300 fade-in" style="animation-delay: 0.4s">
+                    <div class="h-48 bg-gray-200 dark:bg-gray-700">
+                        <img src="/api/placeholder/400/200" alt="Museum collections application" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Museum Collections</h3>
+                        <p class="mb-3" style="color: var(--text-color-secondary)">
+                            Non-contact/non-destructive examinations for paleontology, natural history, anthropology, and cultural heritage collections.
+                        </p>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 transition flex items-center gap-2">
+                            Learn more
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card rounded-xl overflow-hidden transition-all duration-300 fade-in" style="animation-delay: 0.5s">
+                    <div class="h-48 bg-gray-200 dark:bg-gray-700">
+                        <img src="/api/placeholder/400/200" alt="Food science application" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Food Science</h3>
+                        <p class="mb-3" style="color: var(--text-color-secondary)">
+                            Quantitative and analytical tools for manufactured foods, agriculture, and produce to link ingredient structures to performance indicators.
+                        </p>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 transition flex items-center gap-2">
+                            Learn more
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card rounded-xl overflow-hidden transition-all duration-300 fade-in" style="animation-delay: 0.6s">
+                    <div class="h-48 bg-gray-200 dark:bg-gray-700">
+                        <img src="/api/placeholder/400/200" alt="Quality assurance application" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Quality Assurance</h3>
+                        <p class="mb-3" style="color: var(--text-color-secondary)">
+                            Industrial inspection of electronics, castings, plastic injection and additive manufacturing parts with non-destructive testing.
+                        </p>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 transition flex items-center gap-2">
+                            Learn more
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analysis Section -->
+    <section id="analysis" class="section" style="background-color: var(--card-bg)">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Quantitative Analysis: Count, Measure, Excel</h2>
+                <p class="text-lg" style="color: var(--text-color-secondary)">
+                    Whether you are analyzing pores, fi
