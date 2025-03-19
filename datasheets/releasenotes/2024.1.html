@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dragonfly 3D World 2024.1 发布说明</title>
+  <title>Dragonfly 3D World 2024.1 发布说明 - 产品作品集</title>
   <!-- 引入 Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
-    /* 基本重置与全局样式 */
+    /* 重置与全局样式 */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; background: #f5f7fa; }
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
     
-    /* 头部及导航样式 */
+    /* 头部与导航 */
     header {
       background: #007BFF;
       color: #fff;
@@ -22,7 +22,7 @@
       top: 0;
       z-index: 1000;
     }
-    header h1 { font-size: 24px; }
+    header h1 { font-size: 26px; }
     nav { margin-top: 10px; }
     nav ul { display: flex; flex-wrap: wrap; }
     nav li { margin-right: 20px; font-size: 16px; cursor: pointer; }
@@ -34,11 +34,11 @@
     section h2 {
       font-size: 22px;
       margin-bottom: 10px;
-      border-bottom: 2px solid #007BFF;
       padding-bottom: 5px;
+      border-bottom: 2px solid #007BFF;
     }
     
-    /* 卡片风格 */
+    /* 卡片样式 */
     .card {
       background: #fff;
       border: 1px solid #eee;
@@ -56,7 +56,7 @@
       gap: 20px;
     }
     
-    /* 页脚样式 */
+    /* 页脚 */
     footer {
       text-align: center;
       padding: 20px;
@@ -80,11 +80,11 @@
     
     /* 响应式设计 */
     @media (max-width: 768px) {
-      header h1 { font-size: 20px; }
+      header h1 { font-size: 22px; }
       nav li { font-size: 14px; margin-right: 10px; }
     }
     
-    /* 按钮及微交互示例 */
+    /* 按钮样式 */
     .btn {
       display: inline-block;
       padding: 10px 20px;
@@ -93,10 +93,11 @@
       border-radius: 4px;
       transition: transform 0.3s, background 0.3s;
     }
-    .btn:hover {
-      background: #0056b3;
-      transform: scale(1.05);
-    }
+    .btn:hover { background: #0056b3; transform: scale(1.05); }
+    
+    /* 细节列表 */
+    .detail-list { margin: 10px 0 0 20px; }
+    .detail-list li { margin-bottom: 6px; }
   </style>
 </head>
 <body>
@@ -105,128 +106,203 @@
       <h1>Dragonfly 3D World 2024.1 发布说明</h1>
       <nav>
         <ul>
-          <li><a href="#overview">概述</a></li>
+          <li><a href="#overview">产品概述</a></li>
           <li><a href="#branding">新品牌</a></li>
-          <li><a href="#features">功能更新</a></li>
-          <li><a href="#social">社交平台</a></li>
-          <li><a href="#segmentation">分割工具</a></li>
+          <li><a href="#enhancements">功能增强</a></li>
+          <li><a href="#social">Dragonfly Social</a></li>
+          <li><a href="#segmentation">分割向导</a></li>
           <li><a href="#deeplearning">深度学习工具</a></li>
+          <li><a href="#models">预训练模型库</a></li>
+          <li><a href="#architectures">新架构与推理优化</a></li>
           <li><a href="#advanced">高级工具</a></li>
           <li><a href="#measurements">测量与分析</a></li>
           <li><a href="#meshes">网格与渲染</a></li>
           <li><a href="#ngsolve">NGSolve 集成</a></li>
+          <li><a href="#segmentation2">纤维与孔隙分割</a></li>
         </ul>
       </nav>
     </div>
   </header>
   <div class="container">
-    <!-- 概述 -->
+    <!-- 产品概述 -->
     <section id="overview" class="fade-in">
-      <h2>概述</h2>
-      <p>欢迎阅读 Dragonfly 3D World 2024.1 发布说明。本版本引入全新的品牌形象及众多功能更新，致力于提升用户体验和工作效率。全新设计的用户界面、深度学习工具和高效的推理引擎使其成为工业、科研和工程领域的理想选择。</p>
+      <h2>产品概述</h2>
+      <div class="card">
+        <p>Dragonfly 3D World 2024.1 是 Comet Technologies Canada Inc. 推出的最新版本软件。它针对工业、科研及工程领域进行了全方位的功能升级与性能优化，包括全新品牌形象、深度学习工具更新、自动模型管理以及高效的推理技术。</p>
+        <p>发布日期：2024年1月25日</p>
+      </div>
     </section>
+    
     <!-- 新品牌 -->
     <section id="branding" class="fade-in">
       <h2>新品牌</h2>
       <div class="card">
-        <h3>品牌更新</h3>
-        <p>本版本正式采用全新名称“Dragonfly 3D World”，并更新了 Logo 和图标。这是 Comet 全球品牌重塑战略的重要一环，彰显其在高端科技领域的领先地位。</p>
-        <p>了解更多：<a href="https://comet.tech/" target="_blank">Comet Technologies</a></p>
+        <h3>品牌更新详情</h3>
+        <p>本版本正式采用“Dragonfly 3D World”这一全新品牌名称，并更新了 Logo 和图标。这一改动是 Comet 全球品牌重塑战略的重要一环，彰显了其在半导体、航空航天、汽车以及安全检测领域的技术领先地位。</p>
+        <p>Comet Technologies 总部位于瑞士 Flamatt，全球拥有 1700 多名员工，其中约 600 人在瑞士工作。详情请访问：<a href="https://comet.tech/" target="_blank">Comet Technologies</a></p>
       </div>
     </section>
-    <!-- 功能更新 -->
-    <section id="features" class="fade-in">
-      <h2>功能更新</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>新增功能</h3>
-          <ul>
-            <li>推出 Dragonfly Social 社交平台，支持讨论与资源共享</li>
-            <li>支持稀疏标注，简化深度模型训练流程</li>
-            <li>扩展远程深度模型库，提供多种预训练模型下载</li>
-            <li>优化推理速度，实现高效并行处理</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>性能提升</h3>
-          <ul>
-            <li>集成 TensorRT 编译优化，加速低端 GPU 推理</li>
-            <li>并行处理模型预测和补丁融合</li>
-            <li>自动加载与卸载模型，确保内存高效管理</li>
-          </ul>
-        </div>
+    
+    <!-- 功能增强 -->
+    <section id="enhancements" class="fade-in">
+      <h2>功能增强</h2>
+      <div class="card">
+        <h3>主要更新亮点</h3>
+        <ul class="detail-list">
+          <li>推出 Dragonfly Social 平台，支持用户注册、登录、讨论、公告发布及资源共享。</li>
+          <li>引入稀疏标注技术，大幅减少语义分割任务中的标注工作量，采用 voxel-wise 补丁采样代替传统 patch-wise 方式。</li>
+          <li>扩展远程深度模型库，提供多种预训练模型（如 AMDefectModel、Generic-denoising、UniversalBoneSeg、UniversalJawSeg），用户可直接下载使用或微调训练。</li>
+          <li>优化推理流程，实现补丁融合的并行处理，加速大尺寸图像数据的推理运算。</li>
+          <li>集成 NGSolve，实现流体力学（Navier-Stokes 流动、稳态流动）和热传导仿真，支持有限元网格生成。</li>
+        </ul>
       </div>
     </section>
+    
     <!-- Dragonfly Social -->
     <section id="social" class="fade-in">
-      <h2>社交平台</h2>
+      <h2>Dragonfly Social</h2>
       <div class="card">
-        <h3>Dragonfly Social</h3>
-        <p>全新上线的 Dragonfly Social 平台为用户提供线上社区，支持注册、登录、讨论、资源分享及扩展上传。内嵌智能聊天机器人助您快速掌握使用技巧。</p>
-        <p>访问平台：<a href="https://dragonflysocial.comet.tech/" target="_blank">dragonflysocial.comet.tech</a></p>
+        <h3>平台功能与使用</h3>
+        <p>Dragonfly Social 是一个全新线上社区平台，旨在促进用户间的交流与资源共享。平台提供：</p>
+        <ul class="detail-list">
+          <li>账户注册：通过弹出的“注册新账户”对话框录入用户信息，并进行邮箱验证。</li>
+          <li>账户连接：用户可通过软件内帮助菜单或直接访问 <a href="https://dragonflysocial.comet.tech/" target="_blank">dragonflysocial.comet.tech</a> 登录平台。</li>
+          <li>资源共享：支持上传/下载扩展模块和深度模型，并内嵌智能聊天机器人提供操作指南。</li>
+        </ul>
       </div>
     </section>
-    <!-- 分割工具 -->
+    
+    <!-- 分割向导 -->
     <section id="segmentation" class="fade-in">
-      <h2>分割工具</h2>
+      <h2>分割向导</h2>
       <div class="card">
-        <h3>分割向导</h3>
-        <p>全新分割向导支持稀疏标注训练、预训练模型加载及多数据集处理，显著提升语义分割任务的效率和精度。</p>
+        <h3>工具功能简介</h3>
+        <p>分割向导集成了稀疏标注、预训练模型加载和多数据集支持等多项新功能，极大提升了语义分割任务的效率。用户可在启动分割会话时直接选择已训练模型，或从远程库下载所需模型。</p>
+        <ul class="detail-list">
+          <li>支持 voxel-wise 补丁采样，确保所有含有标注的区域均能参与训练。</li>
+          <li>可同时加载多个数据集，适用于二维图像标注不足的情况。</li>
+        </ul>
       </div>
     </section>
+    
     <!-- 深度学习工具 -->
     <section id="deeplearning" class="fade-in">
       <h2>深度学习工具</h2>
       <div class="card">
-        <h3>深度学习增强</h3>
-        <p>新版深度学习工具更新至 TensorFlow 2.11，支持多种预训练模型与新架构，用户可便捷导入/导出模型，并从远程库中快速下载所需资源。</p>
+        <h3>功能与技术更新</h3>
+        <p>新版深度学习工具更新至 TensorFlow 2.11，支持：</p>
+        <ul class="detail-list">
+          <li>模型的导入/导出（ZIP 文件格式），便于模型共享与交流。</li>
+          <li>自动加载与卸载功能，实现模型状态的无缝管理，避免内存泄露。</li>
+          <li>支持外部进程运行，释放内存后继续处理深度学习任务（仅适用于 Windows 系统）。</li>
+        </ul>
       </div>
     </section>
+    
+    <!-- 预训练模型库 -->
+    <section id="models" class="fade-in">
+      <h2>预训练模型库</h2>
+      <div class="card">
+        <h3>模型实例介绍</h3>
+        <p>远程库中提供的预训练模型均基于 U-Net 及其变体设计，适用于图像去噪、骨骼分割、牙釉质分割等任务：</p>
+        <ul class="detail-list">
+          <li><strong>AMDefectModelv-1.0：</strong>针对金属立方体的孔隙、材料与背景分割；架构：U-Net（深度5，初始滤波器64）。</li>
+          <li><strong>Generic-denoising_v-1.0：</strong>用于通用图像去噪，基于 U-Net 架构。</li>
+          <li><strong>UniversalBoneSeg：</strong>预训练后支持对人、鼠、兔等多种样本的骨骼分割。</li>
+          <li><strong>UniversalJawSeg：</strong>用于颌骨、牙本质和牙釉质分割，预训练于 ORS500Kv01 数据集。</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- 新架构与推理优化 -->
+    <section id="architectures" class="fade-in">
+      <h2>新架构与推理优化</h2>
+      <div class="card">
+        <h3>模型架构及优化策略</h3>
+        <p>本版本新增多种深度学习架构及推理优化方案：</p>
+        <ul class="detail-list">
+          <li><strong>新架构：</strong>包含 FreqNet、Multi-Level Wavelet U-Net、Multi-Stage Wavelet Denoise、Non-local Fourier U-Net、Swin UNETR、TransUNet 等，适用于图像超分辨率、降噪和语义分割任务。</li>
+          <li><strong>切片插值：</strong>采用自适应可分离卷积实现插值，提升稀疏采样扫描的分辨率（参见 Niklaus 等人 2017）。</li>
+          <li><strong>推理加速：</strong>通过优化补丁融合算法及并行处理，实现大尺寸图像数据的高效推理，并支持 TensorRT 编译以优化低端 GPU 性能。</li>
+        </ul>
+        <p>参考文献：<a href="https://arxiv.org/pdf/2111.10800.pdf" target="_blank">FreqNet</a>、<a href="https://arxiv.org/pdf/1907.03128.pdf" target="_blank">Multi-Level Wavelet U-Net</a>、<a href="https://arxiv.org/pdf/2102.04306.pdf" target="_blank">TransUNet</a> 等。</p>
+      </div>
+    </section>
+    
     <!-- 高级工具 -->
     <section id="advanced" class="fade-in">
       <h2>高级工具</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>补丁检查</h3>
-          <p>通过补丁检查工具，实时预览训练和验证过程中提取的图像补丁，确保数据质量。</p>
-        </div>
-        <div class="card">
-          <h3>增强训练集生成</h3>
-          <p>工具支持生成增强版训练集，扩充数据多样性，加速模型收敛。</p>
-        </div>
+      <div class="card">
+        <h3>工具功能简介</h3>
+        <ul class="detail-list">
+          <li><strong>补丁检查：</strong>实时预览训练与验证过程中提取的图像补丁，辅助选择最优补丁大小。</li>
+          <li><strong>增强训练集生成：</strong>自动生成包含训练、验证及遮罩数据的增强版训练集，提升训练速度与多样性。</li>
+          <li><strong>自动加载/卸载：</strong>无需手动管理，确保系统内存高效利用。</li>
+          <li><strong>外部进程支持：</strong>在独立进程中运行 TensorFlow 功能，解决内存占用问题（适用于 Windows 环境）。</li>
+        </ul>
       </div>
     </section>
+    
     <!-- 测量与分析 -->
     <section id="measurements" class="fade-in">
       <h2>测量与分析</h2>
       <div class="card">
-        <h3>多维度计算</h3>
-        <p>新版工具支持从多 ROI、网格、图表和向量场中提取标量数据，涵盖放射组学特征、最长长度计算以及 Phi 与 Theta 值的分析等功能。</p>
+        <h3>多维度数据计算</h3>
+        <p>新版测量模块支持从多 ROI、网格、图表及向量场中提取标量数据，并整合以下功能：</p>
+        <ul class="detail-list">
+          <li><strong>放射组学：</strong>支持 GLCM、GLDM、GLRLM、GLSZM 与 NGTDM 等纹理特征提取，帮助定量分析图像纹理。</li>
+          <li><strong>最长长度计算：</strong>用于纤维数据分析，基于 Dijkstra 算法计算多 ROI 中的最长路径。</li>
+          <li><strong>Phi 与 Theta 测算：</strong>在世界坐标及图像坐标下，计算主要特征向量的角度值，便于不同数据集间的对比。</li>
+          <li><strong>数据分析与分类：</strong>支持直方图分析、算术运算及交叉引用，便于对提取的特征进行统计和分类。</li>
+        </ul>
       </div>
     </section>
+    
     <!-- 网格与渲染 -->
     <section id="meshes" class="fade-in">
       <h2>网格与渲染</h2>
       <div class="card">
-        <h3>3D 网格处理</h3>
-        <p>全新 3D 网格画笔支持对网格进行平滑、填充和重构，并结合 Poisson 表面重建算法，实现高质量网格渲染与展示。</p>
+        <h3>3D 网格处理工具</h3>
+        <ul class="detail-list">
+          <li><strong>3D Mesh Painter：</strong>支持在网格顶点或面上绘制，设定新的标量数据，用于边界条件设置与数据修正。</li>
+          <li><strong>网格平滑与约束：</strong>结合 Laplacian 平滑与指定标量数据，实现局部区域平滑处理（平滑数值范围 0～2，1 为正常平滑）。</li>
+          <li><strong>Poisson 表面重建：</strong>采用全局算法重构三角网格，可从点云生成高质量网格。</li>
+        </ul>
       </div>
     </section>
+    
     <!-- NGSolve 集成 -->
     <section id="ngsolve" class="fade-in">
       <h2>NGSolve 集成</h2>
       <div class="card">
-        <h3>工程仿真</h3>
-        <p>通过集成 Netgen/NGSolve，Dragonfly 3D World 支持流体力学、热传导等工程仿真，用户可轻松设置边界条件并生成有限元网格。</p>
-        <p>详细信息：<a href="https://docu.ngsolve.org/latest/" target="_blank">NGSolve 文档</a></p>
+        <h3>工程仿真与有限元分析</h3>
+        <p>通过集成 Netgen/NGSolve，Dragonfly 3D World 支持：</p>
+        <ul class="detail-list">
+          <li>流体力学仿真（包括 Navier-Stokes 流动、稳态流动）及稳态热传导问题求解。</li>
+          <li>利用 3D Mesh Painter 设置边界条件，并生成适用于有限元分析的网格数据。</li>
+        </ul>
+        <p>详细文档：<a href="https://docu.ngsolve.org/latest/" target="_blank">NGSolve 文档</a></p>
       </div>
     </section>
+    
+    <!-- 纤维与孔隙分割 -->
+    <section id="segmentation2" class="fade-in">
+      <h2>纤维与孔隙分割</h2>
+      <div class="card">
+        <h3>分割工具扩展</h3>
+        <ul class="detail-list">
+          <li><strong>Open Fiber Segmentation：</strong>自动分割复合材料中的单根纤维，支持最小纤维长度、平滑直径和最大拼接距离等参数设置，便于纤维长度与方向分布分析。</li>
+          <li><strong>Automated Porosity Segmentation：</strong>采用 Basic Otsu、Advanced Otsu 以及 Sobel 阈值方法，实现单一材料样本中孔隙的自动分割，便于计算孔隙体积分数和尺寸分布。</li>
+        </ul>
+      </div>
+    </section>
+    
   </div>
   <footer>
     <p>&copy; 2024 Comet Technologies Canada Inc. 保留所有权利。</p>
   </footer>
   <script>
-    // 为所有带 .fade-in 类的元素设置动画延迟，实现分段淡入效果
+    // 动态设置淡入动画延迟，实现分段渐入效果
     document.addEventListener("DOMContentLoaded", function() {
       const fadeElements = document.querySelectorAll('.fade-in');
       fadeElements.forEach((el, index) => {
