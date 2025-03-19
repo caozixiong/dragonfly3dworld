@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dragonfly 3D World 2024.1 发布说明</title>
+  <!-- 引入 Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    /* 基本重置与全局样式 */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; background: #f5f7fa; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    
+    /* 头部及导航样式 */
+    header {
+      background: #007BFF;
+      color: #fff;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 { font-size: 24px; }
+    nav { margin-top: 10px; }
+    nav ul { display: flex; flex-wrap: wrap; }
+    nav li { margin-right: 20px; font-size: 16px; cursor: pointer; }
+    nav li:hover { color: #FFD700; }
+    
+    /* 主容器 */
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    section { margin-bottom: 60px; }
+    section h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #007BFF;
+      padding-bottom: 5px;
+    }
+    
+    /* 卡片风格 */
+    .card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover { transform: scale(1.02); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    
+    /* 栅格布局 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    
+    /* 页脚样式 */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f8f8f8;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    /* 平滑滚动 */
+    html { scroll-behavior: smooth; }
+    
+    /* 淡入动画 */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.8s forwards;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      header h1 { font-size: 20px; }
+      nav li { font-size: 14px; margin-right: 10px; }
+    }
+    
+    /* 按钮及微交互示例 */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #007BFF;
+      color: #fff;
+      border-radius: 4px;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .btn:hover {
+      background: #0056b3;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Dragonfly 3D World 2024.1 发布说明</h1>
+      <nav>
+        <ul>
+          <li><a href="#overview">概述</a></li>
+          <li><a href="#branding">新品牌</a></li>
+          <li><a href="#features">功能更新</a></li>
+          <li><a href="#social">社交平台</a></li>
+          <li><a href="#segmentation">分割工具</a></li>
+          <li><a href="#deeplearning">深度学习工具</a></li>
+          <li><a href="#advanced">高级工具</a></li>
+          <li><a href="#measurements">测量与分析</a></li>
+          <li><a href="#meshes">网格与渲染</a></li>
+          <li><a href="#ngsolve">NGSolve 集成</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <!-- 概述 -->
+    <section id="overview" class="fade-in">
+      <h2>概述</h2>
+      <p>欢迎阅读 Dragonfly 3D World 2024.1 发布说明。本版本引入全新的品牌形象及众多功能更新，致力于提升用户体验和工作效率。全新设计的用户界面、深度学习工具和高效的推理引擎使其成为工业、科研和工程领域的理想选择。</p>
+    </section>
+    <!-- 新品牌 -->
+    <section id="branding" class="fade-in">
+      <h2>新品牌</h2>
+      <div class="card">
+        <h3>品牌更新</h3>
+        <p>本版本正式采用全新名称“Dragonfly 3D World”，并更新了 Logo 和图标。这是 Comet 全球品牌重塑战略的重要一环，彰显其在高端科技领域的领先地位。</p>
+        <p>了解更多：<a href="https://comet.tech/" target="_blank">Comet Technologies</a></p>
+      </div>
+    </section>
+    <!-- 功能更新 -->
+    <section id="features" class="fade-in">
+      <h2>功能更新</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>新增功能</h3>
+          <ul>
+            <li>推出 Dragonfly Social 社交平台，支持讨论与资源共享</li>
+            <li>支持稀疏标注，简化深度模型训练流程</li>
+            <li>扩展远程深度模型库，提供多种预训练模型下载</li>
+            <li>优化推理速度，实现高效并行处理</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>性能提升</h3>
+          <ul>
+            <li>集成 TensorRT 编译优化，加速低端 GPU 推理</li>
+            <li>并行处理模型预测和补丁融合</li>
+            <li>自动加载与卸载模型，确保内存高效管理</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- Dragonfly Social -->
+    <section id="social" class="fade-in">
+      <h2>社交平台</h2>
+      <div class="card">
+        <h3>Dragonfly Social</h3>
+        <p>全新上线的 Dragonfly Social 平台为用户提供线上社区，支持注册、登录、讨论、资源分享及扩展上传。内嵌智能聊天机器人助您快速掌握使用技巧。</p>
+        <p>访问平台：<a href="https://dragonflysocial.comet.tech/" target="_blank">dragonflysocial.comet.tech</a></p>
+      </div>
+    </section>
+    <!-- 分割工具 -->
+    <section id="segmentation" class="fade-in">
+      <h2>分割工具</h2>
+      <div class="card">
+        <h3>分割向导</h3>
+        <p>全新分割向导支持稀疏标注训练、预训练模型加载及多数据集处理，显著提升语义分割任务的效率和精度。</p>
+      </div>
+    </section>
+    <!-- 深度学习工具 -->
+    <section id="deeplearning" class="fade-in">
+      <h2>深度学习工具</h2>
+      <div class="card">
+        <h3>深度学习增强</h3>
+        <p>新版深度学习工具更新至 TensorFlow 2.11，支持多种预训练模型与新架构，用户可便捷导入/导出模型，并从远程库中快速下载所需资源。</p>
+      </div>
+    </section>
+    <!-- 高级工具 -->
+    <section id="advanced" class="fade-in">
+      <h2>高级工具</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>补丁检查</h3>
+          <p>通过补丁检查工具，实时预览训练和验证过程中提取的图像补丁，确保数据质量。</p>
+        </div>
+        <div class="card">
+          <h3>增强训练集生成</h3>
+          <p>工具支持生成增强版训练集，扩充数据多样性，加速模型收敛。</p>
+        </div>
+      </div>
+    </section>
+    <!-- 测量与分析 -->
+    <section id="measurements" class="fade-in">
+      <h2>测量与分析</h2>
+      <div class="card">
+        <h3>多维度计算</h3>
+        <p>新版工具支持从多 ROI、网格、图表和向量场中提取标量数据，涵盖放射组学特征、最长长度计算以及 Phi 与 Theta 值的分析等功能。</p>
+      </div>
+    </section>
+    <!-- 网格与渲染 -->
+    <section id="meshes" class="fade-in">
+      <h2>网格与渲染</h2>
+      <div class="card">
+        <h3>3D 网格处理</h3>
+        <p>全新 3D 网格画笔支持对网格进行平滑、填充和重构，并结合 Poisson 表面重建算法，实现高质量网格渲染与展示。</p>
+      </div>
+    </section>
+    <!-- NGSolve 集成 -->
+    <section id="ngsolve" class="fade-in">
+      <h2>NGSolve 集成</h2>
+      <div class="card">
+        <h3>工程仿真</h3>
+        <p>通过集成 Netgen/NGSolve，Dragonfly 3D World 支持流体力学、热传导等工程仿真，用户可轻松设置边界条件并生成有限元网格。</p>
+        <p>详细信息：<a href="https://docu.ngsolve.org/latest/" target="_blank">NGSolve 文档</a></p>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <p>&copy; 2024 Comet Technologies Canada Inc. 保留所有权利。</p>
+  </footer>
+  <script>
+    // 为所有带 .fade-in 类的元素设置动画延迟，实现分段淡入效果
+    document.addEventListener("DOMContentLoaded", function() {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      fadeElements.forEach((el, index) => {
+        el.style.animationDelay = (index * 0.2) + 's';
+      });
+    });
+  </script>
+</body>
+</html>
