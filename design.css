@@ -1,0 +1,181 @@
+/* 通用样式 */
+body {
+    font-family: 'HarmonyOS Sans SC', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden; /* 防止水平滚动条 */
+}
+
+/* 深色/浅色模式变量 */
+:root {
+    --bg-color: #fff;
+    --text-color: #333;
+    --accent-color: #007bff;
+    --card-bg-color: #f8f9fa;
+    --card-border-color: #e0e0e0;
+    --card-shadow-color: rgba(0, 0, 0, 0.1);
+    --footer-bg-color: #e9ecef;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #121212;
+        --text-color: #eee;
+        --accent-color: #4db6ac;
+        --card-bg-color: #1e1e1e;
+        --card-border-color: #333;
+        --card-shadow-color: rgba(255, 255, 255, 0.1);
+        --footer-bg-color: #1e1e1e;
+    }
+}
+
+.dark-mode {
+    --bg-color: #121212;
+    --text-color: #eee;
+    --accent-color: #4db6ac;
+    --card-bg-color: #1e1e1e;
+    --card-border-color: #333;
+    --card-shadow-color: rgba(255, 255, 255, 0.1);
+    --footer-bg-color: #1e1e1e;
+
+}
+
+/* 容器 */
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 标题 */
+h1, h2, h3 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+
+/* 段落 */
+p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* 按钮 */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* 卡片 */
+.card {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px var(--card-shadow-color);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+    opacity: 0; /* 初始透明 */
+    animation: fadeIn 0.5s ease forwards; /* 淡入动画 */
+}
+
+.card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+/* 列表 */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding-left: 1.3em;
+    text-indent: -1.3em;
+    margin-bottom: 0.5rem;
+}
+
+ul li:before {
+    content: "• ";
+    color: var(--accent-color);
+    margin-right: 0.5em;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+    p { font-size: 1rem; }
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+/*页脚*/
+footer {
+    background-color: var(--footer-bg-color);
+    color: var(--text-color);
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid var(--card-border-color);
+    margin-top: 3rem;
+}
+
+footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.2s;
+}
+
+footer a:hover {
+    color: #0056b3; /* 或深色模式下的其他颜色 */
+    text-decoration: underline;
+}
+
+/* 淡入动画 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 深色/浅色 模式切换按钮*/
+#mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000; /* 确保在最上层 */
+}
