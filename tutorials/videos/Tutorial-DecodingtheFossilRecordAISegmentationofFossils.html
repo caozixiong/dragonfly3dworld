@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fossil Record Decoding: The Benefits of AI in the Segmentation of Fossils</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Fossil Record Decoding: The Benefits of AI in the Segmentation of Fossils</h1>
+        <p>Franklin from the Denver Museum of Nature and Science, discusses the application of AI, specifically within Dragonfly, for the segmentation of fossils. The presentation addresses the unique challenges posed by fossil data, which often includes inconsistent specimens, low contrast, and varied matrices [00:00:15]. The research aims to leverage AI to expedite the segmentation process, facilitating the analysis of a larger volume of scan data [00:00:48].</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction</h2>
+<p>Digital preparation of fossils involves scanning specimens, extracting bone structures, and creating detailed reconstructions - sometimes including endocasts for brain cavity analysis [00:01:56]. However, this process faces significant challenges.</p>
+<h2>Challenges in Fossil Segmentation [00:02:41]</h2>
+<ul>
+<li><strong>Inconsistency</strong>: Fossils vary widely in preservation quality</li>
+<li><strong>Low contrast</strong>: Difficult to distinguish between fossil and surrounding rock</li>
+<li><strong>Compression</strong>: Many specimens are flattened during fossilization</li>
+<li><strong>Disarticulation</strong>: Bones may be scattered or incomplete</li>
+</ul>
+<h2>Types of Fossils and Their Unique Challenges [00:04:13]</h2>
+<ul>
+<li><strong>Compression fossils</strong>: Flattened specimens with subtle details</li>
+<li><strong>Coprolites</strong>: Fossilized feces that may contain bone fragments</li>
+<li><strong>Concretions</strong>: Rock formations that encase fossils</li>
+</ul>
+<h2>Machine Learning Approaches [00:05:20]</h2>
+<ul>
+<li><strong>Classical machine learning</strong>: Best for specimens with clear material separation</li>
+<li><strong>Deep learning</strong>: More effective for complex structures with subtle differences</li>
+</ul>
+<h2>Technical Specifications [00:05:59]</h2>
+<p>The research utilized specific hardware configurations that significantly impact processing capabilities.</p>
+<h2>Model Architecture Details [00:06:15]</h2>
+<ul>
+<li><strong>Classical models</strong>: Random Forests</li>
+<li><strong>Deep learning models</strong>: U-Net architecture with 5-7 layers</li>
+</ul>
+<h2>Best Practices for Segmentation [00:06:31]</h2>
+<ol>
+<li>Use the segmentation wizard in Dragonfly software</li>
+<li>Prioritize quality in training datasets over quantity</li>
+<li>Utilize 2D models for greater time efficiency</li>
+</ol>
+<h2>Applications Across Fossil Types</h2>
+<h3>Zoological Specimens [00:08:05]</h3>
+<p>Classical machine learning excels here due to clear separation between bone, scales, and soft tissue.</p>
+<h3>Prepared Fossils [00:08:48]</h3>
+<p>Both classical and deep learning approaches are effective for mapping sutures and performing bone-by-bone segmentation.</p>
+<h3>Compression Fossils [00:10:16]</h3>
+<p>Deep learning captures subtle details, though artifacts remain challenging.</p>
+<h3>Coprolites [00:12:32]</h3>
+<p>Deep learning helps extract bone material and separate concreted masses.</p>
+<h3>Concretions [00:15:12]</h3>
+<p>Deep learning tags items within concretions, even with very low-quality data.</p>
+<h3>Plaster Jackets [00:16:41]</h3>
+<p>Classical machine learning effectively separates plaster jackets from matrix, improving workflow efficiency.</p>
+<h2>Conclusion [00:17:41]</h2>
+<p>The presentation emphasizes that creative and efficient use of AI tools in Dragonfly software can enhance fossil segmentation regardless of data quality. The key is selecting the appropriate approach based on the specific fossil type and preservation quality.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <p>Dragonfly YouTube Channel : <a href="https://www.youtube.com/@dragonfly_software" target="_blank">https://www.youtube.com/@dragonfly_software</a></p>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/_Jp1V-yE_HM" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

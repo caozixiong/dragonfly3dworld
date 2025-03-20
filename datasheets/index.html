@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dragonfly 3D World - videos</title>
+    <title>Dragonfly 3D World - datasheets</title>
     <link rel="stylesheet" href="D:\GithugPages\dragonfly3dworld\design.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Videos</h1>
+            <h1>Datasheets</h1>
             <div class="navigation">
                 <a href="/dragonfly3dworld/index.html" class="button">Home</a>
                 
-                <a href="/tutorials/index.html" class="button">Previous</a>
+                <a href="/./index.html" class="button">Previous</a>
                 
             </div>
             <button id="mode-toggle">Toggle Dark/Light Mode</button>
@@ -21,6 +21,13 @@
 
         <main>
             
+            <section>
+                <h2>Releasenotes</h2>
+                <div class="card">
+                    <ul>
+                        {% for item in section.items %}
+                        <li><a href="{{item.link}}">{{item.title}}</a></li>
+                        
                     </ul>
                     <a href="{{section.folder_path}}/index.html" class="button">View All</a>
                 </div>

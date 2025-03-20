@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragonfly Daily 16: Denoising with Deep Learning in Dragonfly (2020)</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Dragonfly Daily 16: Denoising with Deep Learning in Dragonfly (2020)</h1>
+        <p>This tutorial is part of a broader series (lessons 15-19) focused on deep learning applications for imaging scientists. Lesson 16 specifically addresses how to use deep learning for denoising images within the Dragonfly 4.1 software environment.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <p><strong>System Requirements:</strong></p>
+<ul>
+<li>Dragonfly 4.1</li>
+<li>CUDA-capable NVIDIA graphics card</li>
+<li>Hardware used in the demonstration:<ul>
+<li>Laptop: Windows 10, 16GB RAM, 6GB video memory</li>
+<li>Workstation: Windows 10, 32-core CPU, 64GB RAM, high-performance GeForce card</li>
+</ul>
+</li>
+</ul>
+<h2>Core Concepts of Deep Learning Denoising [00:02:55]</h2>
+<p>The fundamental principle of denoising with deep learning involves training a neural network to transform noisy images into low-noise images. The process requires establishing pairs of images for training the model.</p>
+<h3>Three Approaches to Denoising Models:</h3>
+<ol>
+<li><strong>High-noise to Low-noise Pairing</strong> [00:03:22]<ul>
+<li>Input: High-noise image</li>
+<li>Output: Low-noise image</li>
+<li>The most straightforward approach</li>
+</ul>
+</li>
+<li><strong>Autoencoder Method</strong> [00:04:31]<ul>
+<li>Input: High-noise image</li>
+<li>Output: High-noise image (same as input)</li>
+<li>The network architecture forces noise reduction despite identical input/output</li>
+</ul>
+</li>
+<li><strong>Noise-to-noise Training</strong> [00:04:49]<ul>
+<li>Input: Noisy image</li>
+<li>Output: Another noisy image of the same sample</li>
+<li>The model learns to extract consistent signals among variable noise</li>
+</ul>
+</li>
+</ol>
+<h3>Obtaining Low-noise Images [00:05:23]</h3>
+<ul>
+<li><strong>Empirical method</strong>: Longer exposure time during acquisition</li>
+<li><strong>Synthetic method</strong>: Applying denoising filters to noisy images</li>
+</ul>
+<p><strong>Note</strong>: Trained models can be shared or uploaded to the Infinite Toolbox for others to use [00:06:16]</p>
+<h2>Practical Demonstration in Dragonfly 4.1 [00:06:49]</h2>
+<h3>Dataset Introduction</h3>
+<ul>
+<li>HeLa cells dataset acquired on a Zeiss Gemini 7 [00:06:55]</li>
+<li>Original data is notably noisy</li>
+<li>A pre-processed, low-noise version created with image filters is also used [00:08:13]</li>
+</ul>
+<h3>Setting Up the Workspace</h3>
+<ol>
+<li>Loading both noisy and denoised datasets</li>
+<li>Viewing images side-by-side using synchronized scenes [00:08:46]</li>
+<li>Extracting specific slices from both datasets to create training pairs [00:10:11]</li>
+</ol>
+<h2>Creating and Training a Denoising Model [00:13:03]</h2>
+<h3>Model Setup</h3>
+<ol>
+<li>Access the Deep Learning Tool in Dragonfly</li>
+<li>Create a new model using U-Net architecture for regression (denoising) [00:14:15]</li>
+<li>Configure the model to process paired noisy and denoised image slices [00:15:53]</li>
+</ol>
+<h3>Training Parameters [00:17:08]</h3>
+<ul>
+<li>Patch size adjustment</li>
+<li>Epochs setting</li>
+<li>Loss function selection</li>
+<li>Validation data allocation [00:17:26]</li>
+</ul>
+<h3>Results Evaluation</h3>
+<ul>
+<li>Preview the trained model's performance on a slice outside the training data [00:20:13]</li>
+<li>Visual comparison between original and denoised images</li>
+</ul>
+<h2>Alternative Approach: Autoencoder Demonstration [00:21:05]</h2>
+<ol>
+<li>Creating an autoencoder model</li>
+<li>Training using high-noise images as both input and output</li>
+<li>Understanding how the architecture enables denoising despite identical input/output [00:23:10]</li>
+<li>Comparing autoencoder results with the original noisy image [00:26:52]</li>
+</ol>
+<h2>Key Q&amp;A Topics [00:27:43]</h2>
+<h3>Technical Questions:</h3>
+<ul>
+<li>Filters used for creating the low-noise reference image [00:28:59]</li>
+<li>Availability of literature on Dragonfly algorithms [00:29:37]</li>
+<li>Risks of over-interpreting data with denoising [00:30:12]</li>
+<li>Importance of geometric alignment in paired images [00:32:40]</li>
+<li>Comparison of validation and training error [00:33:43]</li>
+</ul>
+<h3>Advanced Topics:</h3>
+<ul>
+<li>Inputting a starting seed for randomization [00:35:39]</li>
+<li>Access to Python source code of deep learning models [00:36:12]</li>
+<li>Meaning of estimated memory ratio [00:36:43]</li>
+<li>Viewing the training history of the CNN [00:36:50]</li>
+<li>Tutorial for editing model architecture [00:38:21]</li>
+</ul>
+<h3>Practical Applications:</h3>
+<ul>
+<li>Comparing trained images to filtered images [00:39:05]</li>
+<li>Using data augmentation in high-high example [00:42:30]</li>
+<li>Tracking which slices were used for training [00:42:52]</li>
+<li>Comparing deep learning denoising to conventional filters [00:43:35]</li>
+<li>Using Intel Open Image Denoise [00:43:45]</li>
+<li>Handling image artifacts like beam hardening [00:46:21]</li>
+<li>Numerical comparison of denoised image with ground truth [00:47:22]</li>
+</ul>
+<h2>Conclusion</h2>
+<p>The tutorial demonstrates how Dragonfly 4.1's deep learning capabilities can be effectively used to denoise microscopy images, with different approaches offering flexibility based on available data and specific needs. The trained models can significantly improve image quality while preserving important structural details.</p>
+<p>Next lesson topic: Image segmentation using deep learning techniques.</p>
+<hr />
+<p><strong>Video Details:</strong></p>
+<ul>
+<li>Title: Dragonfly Daily 16 Denoising with Deep Learning in Dragonfly (2020)</li>
+<li>Channel: Dragonfly</li>
+<li>Length: 49 minutes, 30 seconds</li>
+<li>Published: April 21, 2020</li>
+</ul>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <p>Dragonfly YouTube Channel : <a href="https://www.youtube.com/@dragonfly_software" target="_blank">https://www.youtube.com/@dragonfly_software</a></p>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/aOk1Cs_Q8i4" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>
