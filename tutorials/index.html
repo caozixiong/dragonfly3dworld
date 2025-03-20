@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dragonfly 3D World - tutorials</title>
-    <link rel="stylesheet" href="\dragonfly3dworld\design.css">
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
 </head>
 <body>
     <div class="container">
@@ -26,10 +26,10 @@
                 <div class="card">
                     <ul>
                         {% for item in section.items %}
-                        <li><a href="{{item.link}}">{{item.title}}</a></li>
+                        <li><a href="{{ item.link }}">{{ item.title }}</a></li>
                         
                     </ul>
-                    <a href="{{section.folder_path}}/index.html" class="button">View All</a>
+                    
                 </div>
             </section>
             {% endfor %}
@@ -40,6 +40,6 @@
         </footer>
     </div>
 
-    <script src="\dragonfly3dworld\interactive.js"></script>
+    <script src="/dragonfly3dworld/interactive.js"></script>
 </body>
 </html>
