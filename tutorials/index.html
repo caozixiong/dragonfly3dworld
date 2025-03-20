@@ -3,43 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dragonfly 3D World - tutorials</title>
+    <title>tutorials</title>
     <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <script src="/dragonfly3dworld/interactive.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Tutorials</h1>
-            <div class="navigation">
-                <a href="/dragonfly3dworld/index.html" class="button">Home</a>
-                
-                <a href="/./index.html" class="button">Previous</a>
-                
-            </div>
-            <button id="mode-toggle">Toggle Dark/Light Mode</button>
-        </header>
+    <header>
+        <button onclick="goHome()">Home</button>
+        <button onclick="goBack()">Previous</button>
+        <h1>tutorials</h1>
+        <p>Welcome to the tutorials section of Dragonfly 3D World.</p>
+    </header>
 
-        <main>
-            
-            <section>
-                <h2>Videos</h2>
-                <div class="card">
-                    <ul>
-                        {% for item in section.items %}
-                        <li><a href="{{ item.link }}">{{ item.title }}</a></li>
-                        
-                    </ul>
-                    
-                </div>
-            </section>
-            {% endfor %}
-        </main>
+    <main>
+        <section class='card'><h2>videos</h2><ul><li><a href='/:\GithugPages\\tutorials/videos/Tutorial-WorkingwithMeshesinDragonfly2020.html'>Dragonfly Daily 02: Working with Meshes in Dragonfly (2020)</a></li><li><a href='/:\GithugPages\\tutorials/videos/Tutorial-WorkingwithImagesinDragonfly2020.html'>Dragonfly Daily 01 Working with images in Dragonfly (2020)</a></li><li><a href='/:\GithugPages\\tutorials/videos/Tutorial-Pre-trainedModelsinDragonflyACaseStudywithBoneMicroCTData.html'>Bone MicroCT Data - a Case Study with Pre-trained Models in Dragonfly</a></li><li><a href='/:\GithugPages\\tutorials/videos/Tutorial-InVivoandSpecimenImagingattheCenterforMolecularandGenomicImaging.html'>In Vivo and Specimen Imaging at the Center for Molecular and Genomic Imaging</a></li><li><a href='/:\GithugPages\\tutorials/videos/Tutorial-DragonflySoftwareBatteryCellAnalysis.html'>Battery Cell Analysis</a></li></ul></section>
+    </main>
 
-        <footer>
-            <p>&copy; 2025 Dragonfly 3D World. All rights reserved.</p>
-        </footer>
-    </div>
+    <footer>
+        <p>&copy; 2023 Dragonfly 3D World</p>
+    </footer>
 
-    <script src="/dragonfly3dworld/interactive.js"></script>
+    <script>
+        function goHome() {
+            window.location.href = "/dragonfly3dworld/";
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </body>
 </html>

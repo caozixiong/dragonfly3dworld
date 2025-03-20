@@ -3,50 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dragonfly 3D World - Home</title>
+    <title>dragonfly3dworld</title>
     <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <script src="/dragonfly3dworld/interactive.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Welcome to Dragonfly 3D World</h1>
-            <div class="navigation">
-                <a href="/dragonfly3dworld/index.html" class="button">Home</a>
-                
-                <a href="/../index.html" class="button">Previous</a>
-                
-            </div>
-            <button id="mode-toggle">Toggle Dark/Light Mode</button>
-        </header>
+    <header>
+        <button onclick="goHome()">Home</button>
+        <button onclick="goBack()">Previous</button>
+        <h1>dragonfly3dworld</h1>
+        <p>Welcome to the dragonfly3dworld section of Dragonfly 3D World.</p>
+    </header>
 
-        <main>
-            
-            <section>
-                <h2>Datasheets</h2>
-                <div class="card">
-                    <ul>
-                        {% for item in section.items %}
-                        <li><a href="{{ item.link }}">{{ item.title }}</a></li>
-                        
-            <section>
-                <h2>Tutorials</h2>
-                <div class="card">
-                    <ul>
-                        {% for item in section.items %}
-                        <li><a href="{{ item.link }}">{{ item.title }}</a></li>
-                        
-                    </ul>
-                    
-                </div>
-            </section>
-            {% endfor %}
-        </main>
+    <main>
+        <section class='card'><h2>datasheets</h2><ul><li><a href='/:\GithugPages\/datasheets/brochure2024.html'>Dragonfly 3D World - Advanced 3D Visualization & Analysis Software</a></li></ul></section><section class='card'><h2>tutorials</h2><ul><li><a href='/:\GithugPages\/tutorials/Tutorial-template.html'>蜻蜓（3D世界）软件教程</a></li></ul></section>
+    </main>
 
-        <footer>
-            <p>&copy; 2025 Dragonfly 3D World. All rights reserved.</p>
-        </footer>
-    </div>
+    <footer>
+        <p>&copy; 2023 Dragonfly 3D World</p>
+    </footer>
 
-    <script src="/dragonfly3dworld/interactive.js"></script>
+    <script>
+        function goHome() {
+            window.location.href = "/dragonfly3dworld/";
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </body>
 </html>

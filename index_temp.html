@@ -3,45 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page_title }}</title>
-    <link rel="stylesheet" href="{{ css_path }}">
+    <title>{page_title}</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <script src="/dragonfly3dworld/interactive.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>{{ header_title }}</h1>
-            <div class="navigation">
-                <a href="/dragonfly3dworld/index.html" class="button">Home</a>
-                {% if parent_dir != "/dragonfly3dworld" %}
-                <a href="{{ parent_dir }}/index.html" class="button">Previous</a>
-                {% endif %}
-            </div>
-            <button id="mode-toggle">Toggle Dark/Light Mode</button>
-        </header>
+    <header>
+        <button onclick="goHome()">Home</button>
+        <button onclick="goBack()">Previous</button>
+        <h1>{page_title}</h1>
+        <p>{page_description}</p>
+    </header>
 
-        <main>
-            {% for section in sections %}
-            <section>
-                <h2>{{ section.title }}</h2>
-                <div class="card">
-                    <ul>
-                        {% for item in section.items %}
-                        <li><a href="{{ item.link }}">{{ item.title }}</a></li>
-                        {% endfor %}
-                    </ul>
-                    {% if section.items %}
-                    <a href="{{ section.folder_path }}/index.html" class="button">View All</a>
-                    {% endif %}
-                </div>
-            </section>
-            {% endfor %}
-        </main>
+    <main>
+        {content_cards}
+    </main>
 
-        <footer>
-            <p>&copy; 2025 Dragonfly 3D World. All rights reserved.</p>
-        </footer>
-    </div>
+    <footer>
+        <p>&copy; 2023 Dragonfly 3D World</p>
+    </footer>
 
-    <script src="{{ js_path }}"></script>
+    <script>
+        function goHome() {{
+            window.location.href = "/dragonfly3dworld/";
+        }}
+
+        function goBack() {{
+            window.history.back();
+        }}
+    </script>
 </body>
 </html>

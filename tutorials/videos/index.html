@@ -3,31 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dragonfly 3D World - videos</title>
+    <title>videos</title>
     <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <script src="/dragonfly3dworld/interactive.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Videos</h1>
-            <div class="navigation">
-                <a href="/dragonfly3dworld/index.html" class="button">Home</a>
-                
-                <a href="/tutorials/index.html" class="button">Previous</a>
-                
-            </div>
-            <button id="mode-toggle">Toggle Dark/Light Mode</button>
-        </header>
+    <header>
+        <button onclick="goHome()">Home</button>
+        <button onclick="goBack()">Previous</button>
+        <h1>videos</h1>
+        <p>Welcome to the videos section of Dragonfly 3D World.</p>
+    </header>
 
-        <main>
-            
-        </main>
+    <main>
+        
+    </main>
 
-        <footer>
-            <p>&copy; 2025 Dragonfly 3D World. All rights reserved.</p>
-        </footer>
-    </div>
+    <footer>
+        <p>&copy; 2023 Dragonfly 3D World</p>
+    </footer>
 
-    <script src="/dragonfly3dworld/interactive.js"></script>
+    <script>
+        function goHome() {
+            window.location.href = "/dragonfly3dworld/";
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </body>
 </html>
