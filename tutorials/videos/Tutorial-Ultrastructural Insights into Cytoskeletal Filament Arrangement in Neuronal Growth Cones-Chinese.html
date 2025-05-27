@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>中文翻译</h1>
+<h2>神经元发育中的低温电子断层扫描技术介绍 [00:00:03]</h2>
+<p>本演讲探讨了低温电子断层扫描和深度学习在研究神经元生长锥中的应用。该研究专注于分析发育中神经元的细胞骨架丝状结构排列，特别是研究不同肌动蛋白结构如何促进神经元导向和发育。</p>
+<h2>理解神经元生长锥 [00:01:28]</h2>
+<p>生长锥是发育中神经元末端的高度专业化结构，作为导向机制。这些动态结构负责：</p>
+<ul>
+<li>感知细胞外化学信号</li>
+<li>对触觉刺激做出反应</li>
+<li>引导神经元到达其突触目标</li>
+</ul>
+<p>生长锥有不同的区域：<br />
+- 外部区域包含丝状伪足（束状肌动蛋白）和片状伪足（分支状肌动蛋白）<br />
+- 过渡区域具有混合的肌动蛋白和微管<br />
+- 中心区域包含细胞器、微管和翻译机制</p>
+<p>这些结构极其动态，丝状伪足在遇到细胞外信号时会迅速伸展和收缩。生长锥能够根据环境快速改变方向，使其成为引人入胜的研究对象。</p>
+<h2>低温电子断层扫描方法 [00:03:50]</h2>
+<p>低温电子断层扫描（cryo-ET）特别适合研究生长锥，因为：</p>
+<ul>
+<li>生长锥在最厚处约为100纳米</li>
+<li>Cryo-ET需要样本厚度小于300纳米</li>
+</ul>
+<p>Cryo-ET的原理包括：<br />
+1. 将样本嵌入玻璃态冰中（水被快速冷冻以至于无法形成晶体）<br />
+2. 将样本在大约+60°和-60°之间倾斜<br />
+3. 在不同角度收集2D投影图像<br />
+4. 将这些图像反投影以创建3D体积</p>
+<p>与CT扫描仪可以在样本周围旋转360°不同，在cryo-ET中，电子枪和探测器保持静止，而样本倾斜。这会产生数据的"缺失楔形"，给重建和分析带来挑战。</p>
+<p>成像比例极其精确：<br />
+- 每个电子网格直径约为3毫米<br />
+- 一个典型网格包含约150个细胞<br />
+- 每个断层图像捕获单个细胞的很小区域</p>
+<h2>发现不同类型的肌动蛋白丝 [00:05:26]</h2>
+<p>通过cryo-ET成像，研究团队在神经元生长锥中识别出两种不同类型的肌动蛋白丝：</p>
+<ol>
+<li>具有预期36纳米螺距的正常肌动蛋白丝</li>
+<li>一种螺距更短、更扭曲且更宽的不同类型丝状结构</li>
+</ol>
+<p>通过亚断层平均和广泛分析，团队确定第二种类型是被cofilin（一种肌动蛋白结合蛋白）装饰的肌动蛋白。这很令人惊讶，因为：</p>
+<ul>
+<li>Cofilin通常被认为是肌动蛋白切割蛋白</li>
+<li>团队观察到它完全装饰稳定的丝状结构</li>
+<li>这种现象通常在阿尔茨海默病病理中描述，但在正常发育的神经元中未见报道</li>
+</ul>
+<h2>Cofilin和Fasen分布分析 [00:07:25]</h2>
+<p>使用荧光标记的进一步研究显示：</p>
+<ul>
+<li>Fasen（一种肌动蛋白束化蛋白）和cofilin沿丝状伪足互斥结合</li>
+<li>在cofilin装饰的肌动蛋白和Fasen装饰的肌动蛋白之间有明显的过渡区</li>
+<li>这个过渡区的位置影响丝状伪足的运动：</li>
+<li>当位于片状伪足帷幕后面时，丝状结构的基部移动更多</li>
+<li>当位于帷幕前面时，丝状伪足的尖端移动更多</li>
+</ul>
+<p>团队的假设是，cofilin结合创造了"可调节的铰链点"，为丝状结构提供灵活性，促进它们在生长锥寻找突触目标时的搜索行为。</p>
+<h2>用于断层图像分割的深度学习 [00:09:31]</h2>
+<p>手动分割数百个断层图像中密集的肌动蛋白网格的挑战导致探索深度学习方法。初步尝试面临困难，因为：</p>
+<ul>
+<li>低温电子断层扫描固有的极度嘈杂数据</li>
+<li>来自数据缺失楔形的成像伪影</li>
+<li>信号和结构的各向异性</li>
+</ul>
+<p>手动分割对于有意义地分析大量数据集证明是不切实际的，而使用有限训练数据的初步深度学习尝试也不成功。</p>
+<h2>模拟数据以获得更好的训练 [00:11:54]</h2>
+<p>为了克服训练限制，团队开发了基于MATLAB的模拟程序来创建合成的低温断层图像数据：</p>
+<ol>
+<li>从蛋白质模型结构（高分辨率）开始</li>
+<li>生成密度图</li>
+<li>模拟真实的低温断层图像特征，包括：</li>
+<li>电子剂量</li>
+<li>辐射损伤</li>
+<li>探测器特性</li>
+<li>缺失楔形伪影</li>
+</ol>
+<p>这种方法允许生成具有完美基准真值的假数据用于训练。模拟产生：<br />
+- 逼真的断层图像<br />
+- 具有不同蛋白质类型不同强度的图谱<br />
+- 一键生成训练用基准真值</p>
+<h2>混合训练策略和结果 [00:14:24]</h2>
+<p>团队发现，虽然仅使用模拟数据进行训练在区分cofilin-肌动蛋白和普通肌动蛋白方面效果良好，但在分割包含多种蛋白质类型的整个细胞断层图像方面效果较差。</p>
+<p>混合方法证明最有效：<br />
+- 将少量真实数据与大量模拟数据结合<br />
+- 这产生了一个可以在约20分钟内分割整个细胞断层图像的网络<br />
+- 该模型在数百个生长锥断层图像中表现稳健</p>
+<p>训练好的模型能够：<br />
+- 快速分割包含微管、核糖体和肌动蛋白丝的密集断层图像<br />
+- 高分辨率量化蛋白质分布和关联<br />
+- 通过多个断层图像分析整个细胞</p>
+<h2>新的生物学见解和跨物种应用 [00:16:33]</h2>
+<p>深度学习方法已经揭示了新的生物学见解：</p>
+<ol>
+<li>
+<p>TRIC蛋白（一种微管蛋白和肌动蛋白单体的伴侣蛋白）似乎规律地聚集在一起，表明可能的自我关联或与其他蛋白质的相互作用</p>
+</li>
+<li>
+<p>在数据中识别微管蛋白环：</p>
+</li>
+<li>这些可能是分解产物或用于构建更多丝状结构的单体池</li>
+<li>
+<p>网络现在可以快速识别所有数据集中的这些结构</p>
+</li>
+<li>
+<p>跨物种适用性：</p>
+</li>
+<li>在大鼠海马神经元上训练的网络对小鼠神经元和人类RP1细胞有效</li>
+<li>这证明了跨物种的稳健推断能力</li>
+</ol>
+<h2>结论 [00:19:26]</h2>
+<p>低温电子断层扫描和深度学习的结合使神经元生长锥结构的前所未有的分析成为可能。通过克服嘈杂数据和手动分割的挑战，团队创建了允许在大型数据集中快速、准确识别细胞组件的工具。</p>
+<p>这种方法不仅加速了研究，还揭示了通过手动分析无法发现的神经元发育新见解。训练模型的跨物种适用性表明其对神经科学研究社区具有广泛的实用性。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=v1B7Fa6FYjs">Ultrastructural Insights into Cytoskeletal Filament Arrangement in Neuronal Growth Cones</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 09:10:51 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

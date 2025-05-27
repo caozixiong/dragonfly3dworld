@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragonfly Daily 39 Cylinder Coordinate Transform in Dragonfly (2020) - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Dragonfly Daily 39 Cylinder Coordinate Transform in Dragonfly (2020) - (English)</h1>
+        <p>This video demonstrates how to extract and analyze data from cylindrical samples using a cylinder coordinate transform in Dragonfly software, allowing users to unwrap cylindrical data at different radii to examine surface and subsurface features that might not be visible in traditional rectangular coordinate views.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Cylinder Coordinate Transforms in Dragonfly</h1>
+<h2>Introduction [00:00:32]</h2>
+<p>In this tutorial, we'll explore how to transform data from a rectangular coordinate system to a cylinder coordinate system in Dragonfly. This allows you to extract and visualize data in a different way, particularly useful for cylindrical samples.</p>
+<p>We'll be using Dragonfly 2020.1 Release Candidate 2 and a dry sand pack dataset for this demonstration.</p>
+<h2>Understanding Cylinder Coordinate Transforms [00:02:19]</h2>
+<p>The concept behind cylinder coordinate transforms can be thought of as a "soup can unwrapper." Imagine taking a cylindrical object like a soup can, cutting along the seam of the wrapper, and laying it flat on a table. This gives you a rectangular image representing the pixels around the edge of the sample.</p>
+<p>This transformation allows you to:<br />
+- Inspect the surface of your cylindrical object<br />
+- Examine the object at subsurface levels at various radii<br />
+- Transform data from cylinder coordinates to rectangular coordinates</p>
+<h2>Required Tools [00:03:04]</h2>
+<p>To perform this transformation, you'll need:<br />
+- An image dataset<br />
+- A cylinder object<br />
+- The "Extract Soup Can Wrapper" extension from the Infinite Toolbox</p>
+<p>Note that this functionality is not part of the standard Dragonfly installation but is available as a custom menu item that anyone can download from the Infinite Toolbox.</p>
+<h2>Basic Extraction Process [00:03:27]</h2>
+<ol>
+<li>Create a cylinder of any height and diameter, setting parameters interactively</li>
+<li>Select the image data</li>
+<li>Control-click to also select the cylinder</li>
+<li>Right-click and select "Execute Macro Extract Soup Can Wrapper"</li>
+</ol>
+<p>The extraction is performed in Python, so it may not be especially fast. A compiled version is planned for future releases.</p>
+<h2>Viewing the Results [00:04:27]</h2>
+<p>After running the extraction, you'll see two different images created. These images are positioned at the same origin in the world coordinate system, essentially superimposed on each other.</p>
+<p>To analyze data at multiple radii, you can use a macro that:<br />
+- Runs the extraction at one radius<br />
+- Changes the radius and runs again<br />
+- Applies displacements to separate the images visually</p>
+<h2>Using the Radius Range Macro [00:05:58]</h2>
+<ol>
+<li>Go to <code>Utilities</code> &gt; <code>Macro Player</code></li>
+<li>Select "Soup Can Wrapper Over Radius Range"</li>
+<li>Select both the image and cylinder</li>
+<li>Click "Play"</li>
+<li>Enter the starting radius (e.g., 1 millimeter)</li>
+<li>Enter the ending radius (e.g., 1.5 millimeters)</li>
+<li>Enter the step size (typically initialized to the pixel size)</li>
+</ol>
+<p>The macro will run extractions at increasing radii from your start point to your end point.</p>
+<h2>Visualizing Multiple Radius Extractions [00:07:34]</h2>
+<p>After the macro completes, you'll have multiple 2D images in your workspace. To view them effectively:</p>
+<ol>
+<li>Select all the images</li>
+<li>Create a box (which has spatial extent over all images)</li>
+<li>Select and lock the box</li>
+<li>Scroll through the slices to see data at different radii</li>
+</ol>
+<p>Alternatively, you can stitch these images into a 3D dataset:<br />
+1. Select all the images<br />
+2. Right-click and select "Stitch 3D"<br />
+3. Choose "Max" for intensity and "Nearest" or "Tri-cubic" for interpolation<br />
+4. Click "Stitch"</p>
+<p>This creates a single 3D image where you can visualize all the radius extractions together.</p>
+<h2>Accessing the Extension [00:10:43]</h2>
+<p>To get this functionality:<br />
+1. Go to <code>Utilities</code> &gt; <code>Infinite Toolbox</code><br />
+2. Navigate to "Macros"<br />
+3. Find "Extract Soup Can Wrapper" and "Soup Can Wrapper Over Radius Range"<br />
+4. Click "Install for all users"</p>
+<p>The source code will be available on your system in the menu items folder after installation.</p>
+<h2>Practical Applications [00:14:09]</h2>
+<p>This technique is particularly useful for:<br />
+- Inspecting cylindrical objects at different depths<br />
+- Detecting surface irregularities like divots or protrusions<br />
+- Analyzing the internal structure of cylindrical samples</p>
+<p>At different radii, you can see how the data changes from the center to the outer surface of your sample.</p>
+<h2>Conclusion</h2>
+<p>The cylinder coordinate transform provides a powerful way to visualize and analyze cylindrical data in Dragonfly. While the current implementation is somewhat of a workaround, it offers valuable insights for many scientific and industrial applications. Future improvements may include interactive radius adjustment and better visualization options.</p>
+<p>Remember that you can download both the basic extraction tool and the radius range macro from the Infinite Toolbox to enhance your Dragonfly workflow.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=sfHY9cLCqKc">Dragonfly Daily 39 Cylinder Coordinate Transform in Dragonfly (2020)</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-23 09:41:56 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/sfHY9cLCqKc"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

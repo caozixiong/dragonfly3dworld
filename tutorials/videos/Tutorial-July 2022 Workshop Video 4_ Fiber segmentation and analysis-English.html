@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 2022 Workshop Video 4: Fiber segmentation and analysis - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July 2022 Workshop Video 4: Fiber segmentation and analysis - (English)</h1>
+        <p>This video tutorial demonstrates advanced segmentation techniques for analyzing fiber datasets in 3D, focusing on watershed segmentation to separate touching fibers and showcasing tools for fiber orientation analysis.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to Fiber Dataset Analysis [00:00:03]</h2>
+<p>In this tutorial, we will load a fiber dataset to demonstrate various segmentation and shape tools, with a special focus on watershed segmentation - a powerful technique for separating touching objects like fibers. The dataset contains what appears to be glass fibers within some matrix material.</p>
+<p>Let's begin by importing and viewing the dataset to understand what we're working with.</p>
+<h2>Initial Data Exploration [00:01:10]</h2>
+<p>After importing the fiber dataset, we can view it in 3D to get a better understanding of what we're looking at:</p>
+<ol>
+<li>Import the fiber dataset</li>
+<li>View the data in 3D using a suitable preset</li>
+<li>Notice the different orientations of the fibers</li>
+</ol>
+<p>The fibers have different orientations, which we'll analyze later. For now, we'll focus on segmentation.</p>
+<h2>Basic Segmentation Tools [00:01:57]</h2>
+<p>Let's start with some basic segmentation tools to isolate the fibers from the background.</p>
+<h3>Using the Probe Tool</h3>
+<p>The probe tool allows us to examine pixel values:<br />
+- Outside pixels have a value of 1<br />
+- Matrix pixels have a value of approximately 25,000<br />
+- Fiber pixels have a value of approximately 37,000</p>
+<p>This is a 16-bit dataset with a range up to 65,535.</p>
+<h3>Threshold Segmentation</h3>
+<p>To segment the fibers:<br />
+1. Use the <code>Define Range</code> tool<br />
+2. You can manually set thresholds (e.g., 35,000)<br />
+3. Or use the upper OTSU threshold option<br />
+4. Add to a new region of interest<br />
+5. Use the split function to separate fibers from background</p>
+<p>This gives us a basic segmentation, but the fibers are still touching each other.</p>
+<h2>Advanced Segmentation Tools [00:04:02]</h2>
+<h3>Opening Function</h3>
+<p>To remove exterior pixels without affecting the main structures:<br />
+1. Apply the opening function (a combination of erode and dilate)<br />
+2. This removes small exterior elements while preserving the main fiber structures</p>
+<h3>Adjusting Visualization</h3>
+<p>You can:<br />
+- Toggle between different views<br />
+- Adjust brightness for better visibility<br />
+- Change the opacity of the region of interest</p>
+<h3>Segmenting Individual Fibers [00:05:07]</h3>
+<p>If you want to segment and follow a single fiber:</p>
+<h4>2D Brush Tool</h4>
+<ol>
+<li>Create a new empty region of interest (e.g., "single fiber")</li>
+<li>Select a distinctive color to make it stand out</li>
+<li>Use the 2D brush tool to paint the fiber</li>
+<li>Use Ctrl + left mouse button to remove painted material</li>
+<li>Use Shift + scroll to navigate through slices</li>
+<li>Adjust brush size with the mouse wheel</li>
+</ol>
+<h4>Define Range with Painting</h4>
+<p>For faster painting:<br />
+1. Use the <code>Define Range</code> tool to select fibers<br />
+2. Use the painting tool with range selection enabled<br />
+3. This limits painting to only the defined range</p>
+<h4>Local OTSU Brush [00:07:27]</h4>
+<p>This is a very useful tool:<br />
+1. Select the upper OTSU brush<br />
+2. Paint over areas containing both the fiber and background<br />
+3. The brush automatically selects the upper intensity values<br />
+4. The brush area must contain both materials you want to separate</p>
+<h4>Point and Click Tool [00:09:04]</h4>
+<p>To select all connected voxels:<br />
+1. Select the region of interest<br />
+2. Use the point and click tool on a fiber<br />
+3. It selects all voxels connected to that point<br />
+4. This shows which fibers are touching each other</p>
+<h2>Shape Tools and Cylinder Unwrapping [00:12:55]</h2>
+<p>Shapes can be used for various purposes including cropping data and selecting specific regions:</p>
+<h3>Creating and Aligning a Cylinder</h3>
+<ol>
+<li>Create a cylinder shape</li>
+<li>Align it with a fiber of interest</li>
+<li>Adjust the cylinder to follow the fiber's path</li>
+</ol>
+<h3>Unwrapping the Cylinder</h3>
+<ol>
+<li>Go to the main tab, under scenes view properties</li>
+<li>Enable the non-planar view</li>
+<li>This unwraps the cylindrical feature like a flattened soup can wrapper</li>
+<li>The same technique can be applied to spheres and other shapes</li>
+</ol>
+<h3>Taking Screenshots [00:16:09]</h3>
+<p>To capture your work:<br />
+1. Right-click and select "Export screenshot of view"<br />
+2. Adjust size as needed (e.g., 4000 pixels)<br />
+3. For multiple screenshots, use the multiple screenshots panel<br />
+4. Drag and drop images as you work<br />
+5. Export all to a folder with sequential numbering</p>
+<h2>Watershed Segmentation [00:18:06]</h2>
+<p>Watershed segmentation is essential for separating touching fibers. It works with seed points, like water filling up from low points in a landscape until boundaries meet.</p>
+<h3>Creating Seed Points [00:19:35]</h3>
+<ol>
+<li>Make a copy of the thresholded fibers</li>
+<li>Invert the copy</li>
+<li>Create a distance map (right-click → Create mapping → Distance map)</li>
+<li>This creates a map showing the distance from each point to the edge of a fiber</li>
+<li>The center of each fiber will have the highest value</li>
+</ol>
+<h3>Preparing the Landscape</h3>
+<ol>
+<li>Invert the distance map (Modify → Transform → Invert)</li>
+<li>This creates a landscape where the center of each fiber is the lowest point</li>
+<li>Adjust contrast to see that it's darker in the middle of fibers</li>
+</ol>
+<h3>Creating Multi-ROI Seeds [00:22:55]</h3>
+<ol>
+<li>Create a new multi-ROI using the seed points</li>
+<li>Use 26-connected to ensure seeds aren't connected</li>
+<li>Each seed will have a separate color/class</li>
+</ol>
+<h3>Applying Watershed Transform [00:23:24]</h3>
+<ol>
+<li>Right-click and select "Watershed transform"</li>
+<li>Use the inverted distance map as the landscape</li>
+<li>Use the original fiber threshold as the mask</li>
+<li>This separates touching fibers into individual objects</li>
+</ol>
+<h2>Fiber Analysis [00:26:47]</h2>
+<p>Once fibers are separated, you can analyze them:</p>
+<h3>Basic Measurements</h3>
+<ol>
+<li>Right-click and select "Scalar generator"</li>
+<li>Choose basic measurements like volume, phi, and theta (angles)</li>
+<li>Sort by volume to find the largest fibers</li>
+</ol>
+<h3>Orientation Analysis [00:27:54]</h3>
+<ol>
+<li>Analyze the phi angle (along the Z axis) and theta angle (around the Z axis)</li>
+<li>Change the color lookup table (e.g., temperature color map)</li>
+<li>Vertical fibers appear blue</li>
+<li>Horizontal fibers appear red</li>
+<li>Intermediate orientations appear green</li>
+<li>Use the histogram to analyze directional fiber orientation</li>
+<li>Export results to CSV for further analysis</li>
+</ol>
+<h2>Conclusion</h2>
+<p>In this tutorial, we've covered various segmentation techniques for fiber analysis, from basic thresholding to advanced watershed segmentation. We've also explored shape tools for unwrapping cylindrical structures and performed orientation analysis on the separated fibers. These techniques are valuable for quantitative analysis of fiber-reinforced materials and similar structures.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=kSRWO5r5QXU">July 2022 Workshop Video 4: Fiber segmentation and analysis</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 17:57:43 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/kSRWO5r5QXU"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

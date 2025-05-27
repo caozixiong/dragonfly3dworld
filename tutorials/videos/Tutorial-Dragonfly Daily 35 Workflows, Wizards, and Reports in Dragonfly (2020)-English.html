@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragonfly Daily 35 Workflows, Wizards, and Reports in Dragonfly (2020) - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Dragonfly Daily 35 Workflows, Wizards, and Reports in Dragonfly (2020) - (English)</h1>
+        <p>Mike Marsh introduces the Dragonfly 2020.1 reporting engine, which enables users to capture analysis results in standardized reports through XML data structures that can be transformed into PDFs, while also demonstrating how wizards guide users through workflows like bone analysis with step-by-step instructions.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Workflows, Wizards, and Reports in Dragonfly 2020.1</h1>
+<h2>Introduction [00:00:00]</h2>
+<p>Welcome to the Dragonfly Daily. This is Lesson 35, focusing on workflows, wizards, and reports in Dragonfly 2020.1. This tutorial will demonstrate how to use Dragonfly's reporting engine and how workflows are enabled through the wizards infrastructure.</p>
+<h2>The Reports Engine [00:01:04]</h2>
+<p>Dragonfly has developed a reporting engine to make it easy to capture information from your analysis in a standardized and user-friendly way. The reporting engine allows:</p>
+<ul>
+<li>Customizable report templates</li>
+<li>Capturing scalar values (e.g., trabecular thickness in bone analysis)</li>
+<li>Including tables of measurements</li>
+<li>Adding histograms, plots, and screenshots</li>
+<li>Flexible section organization based on analysis needs</li>
+</ul>
+<p>The reporting system is designed to be adaptable to different analysis scenarios. For example, when doing bone analysis, you might include an anisotropy section in one report but only trabecular thickness and spacing in another.</p>
+<h3>XML Data Structure</h3>
+<p>The reporting engine uses an XML data structure that is:<br />
+- Flexible and extensible<br />
+- Capable of encoding all report data<br />
+- Programmatically accessible</p>
+<p>The workflow is:<br />
+1. Dragonfly extensions and plugins produce an XML data structure containing report data<br />
+2. The XML data is transformed into a PDF using XSL (Extensible Style Sheet Language) Transforms</p>
+<p>This approach provides several advantages:<br />
+- You can generate many reports over time and store them as XML<br />
+- Report formatting can be changed later by modifying the style sheet without regenerating the data<br />
+- XML data can be repurposed for other uses (databases, HTML websites, etc.)</p>
+<h3>Report Generator Tool</h3>
+<p>In Dragonfly 2020.1, you can find the Report Generator under the Utilities menu. This simple tool allows you to:<br />
+- Specify an XML file<br />
+- Specify an XSLT transform<br />
+- Input key information about the report<br />
+- Set the output file name<br />
+- Generate the report</p>
+<h2>Bone Analysis Wizard Example [00:07:08]</h2>
+<p>Let's demonstrate the reporting system using the Bone Analysis Wizard:</p>
+<h3>Step 1: Segment the Bone Image [00:08:47]</h3>
+<ol>
+<li>Open the Bone Analysis Wizard by right-clicking on a bone sample and selecting "Bone Analysis Wizard"</li>
+<li>Create an initial segmentation using Define Range Upper O2</li>
+<li>Add the segmentation to the selected bone ROI</li>
+<li>Fill any gaps in the bone surface by specifying the maximum hole size (e.g., 150 microns)</li>
+<li>Click "Fill" to process the segmentation</li>
+</ol>
+<p>The wizard performs several operations including:<br />
+- Distance map operations<br />
+- Closing operations<br />
+- Hole filling operations</p>
+<h3>Step 2: Segment Cortical and Trabecular Bone [00:11:49]</h3>
+<ol>
+<li>Choose a segmentation method (Bowie or Kohler)</li>
+<li>Set the trabecular thickness parameter (e.g., 55 microns)</li>
+<li>Click "Segment" to separate the bone into cortical and trabecular regions</li>
+</ol>
+<p>The segmentation follows published algorithms that use mathematical morphology operations to identify which pixels should be labeled as cortical and which as trabecular.</p>
+<h3>Step 3: Global Measurements [00:15:57]</h3>
+<ol>
+<li>Select the measurements you want to compute (e.g., trabecular thickness, BVTV)</li>
+<li>Click "Compute Measurements"</li>
+<li>View the results in the table</li>
+</ol>
+<h3>Step 4: Compute Scalar and Vector Fields [00:17:17]</h3>
+<p>This step allows you to compute additional measurements like anisotropy and mapping measurements.</p>
+<h3>Step 5: Generate the Report [00:17:31]</h3>
+<ol>
+<li>Enter project information:</li>
+<li>Project title (e.g., "Drug X Study")</li>
+<li>Sample identifier (e.g., "Control Bone 33")</li>
+<li>
+<p>Description of the analysis</p>
+</li>
+<li>
+<p>Add screenshots to include in the report:</p>
+</li>
+<li>Drag views to the Multiple Screenshots panel</li>
+<li>
+<p>Add metadata and captions for each screenshot</p>
+</li>
+<li>
+<p>Click "Generate" to create the report</p>
+</li>
+</ol>
+<h2>Report Output [00:19:59]</h2>
+<p>The generated PDF report includes:<br />
+- Logo and header with project information<br />
+- Title, project name, job ID, date, and authorship<br />
+- Global measurements in a table format<br />
+- Screenshots with captions and descriptions</p>
+<p>The report format is customizable by modifying the XSLT transform. The underlying XML file contains all the data and references to screenshots, making it easily accessible for other programs or for aggregating data across multiple reports.</p>
+<h2>Extending the Reporting Framework [00:22:37]</h2>
+<p>The current implementation allows Dragonfly to generate XML files and transcode them to PDFs. Users can:<br />
+- Write their own code to process XML files<br />
+- Create custom reporting plugins<br />
+- Aggregate data from multiple reports<br />
+- Convert reports to other formats like HTML</p>
+<p>Currently, the reporting engine has built-in support for bone analysis and plug analysis, but the framework can be extended to other applications through custom extensions.</p>
+<h2>Conclusion</h2>
+<p>The Dragonfly reporting engine provides a flexible framework for capturing and presenting analysis results. Combined with wizards that guide users through workflows, it creates a powerful system for standardizing analysis procedures and documenting results. The XML-based approach ensures that reports can be easily customized and data can be repurposed for various needs.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=LXzewzFHq4A">Dragonfly Daily 35 Workflows, Wizards, and Reports in Dragonfly (2020)</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-23 13:43:02 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/LXzewzFHq4A"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

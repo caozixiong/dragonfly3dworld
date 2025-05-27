@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Dragonfly中的圆柱坐标变换</h1>
+<h2>介绍 [00:00:32]</h2>
+<p>在本教程中，我们将探索如何在Dragonfly中将数据从直角坐标系转换为圆柱坐标系。这允许您以不同的方式提取和可视化数据，特别适用于圆柱形样本。</p>
+<p>我们将使用Dragonfly 2020.1 Release Candidate 2和一个干砂包数据集进行演示。</p>
+<h2>理解圆柱坐标变换 [00:02:19]</h2>
+<p>圆柱坐标变换的概念可以被理解为"罐头展开器"。想象一下拿一个圆柱形物体，比如罐头，沿着包装的接缝切开，然后平铺在桌子上。这会给您一个矩形图像，代表样本边缘周围的像素。</p>
+<p>这种转换允许您：<br />
+- 检查圆柱形物体的表面<br />
+- 在不同半径的亚表面层次检查物体<br />
+- 将数据从圆柱坐标转换为直角坐标</p>
+<h2>所需工具 [00:03:04]</h2>
+<p>要执行此转换，您需要：<br />
+- 一个图像数据集<br />
+- 一个圆柱对象<br />
+- 来自Infinite Toolbox的"Extract Soup Can Wrapper"扩展</p>
+<p>请注意，此功能不是标准Dragonfly安装的一部分，但可作为自定义菜单项从Infinite Toolbox下载。</p>
+<h2>基本提取过程 [00:03:27]</h2>
+<ol>
+<li>创建任意高度和直径的圆柱体，交互式设置参数</li>
+<li>选择图像数据</li>
+<li>按住Control键点击以同时选择圆柱体</li>
+<li>右键单击并选择"Execute Macro Extract Soup Can Wrapper"</li>
+</ol>
+<p>提取是在Python中执行的，所以可能不会特别快。计划在未来版本中提供编译版本。</p>
+<h2>查看结果 [00:04:27]</h2>
+<p>运行提取后，您将看到创建了两个不同的图像。这些图像在世界坐标系中位于相同的原点，本质上是相互叠加的。</p>
+<p>要分析多个半径的数据，您可以使用宏来：<br />
+- 在一个半径运行提取<br />
+- 更改半径并再次运行<br />
+- 应用位移以在视觉上分离图像</p>
+<h2>使用半径范围宏 [00:05:58]</h2>
+<ol>
+<li>转到<code>Utilities</code> &gt; <code>Macro Player</code></li>
+<li>选择"Soup Can Wrapper Over Radius Range"</li>
+<li>同时选择图像和圆柱体</li>
+<li>点击"Play"</li>
+<li>输入起始半径（例如，1毫米）</li>
+<li>输入结束半径（例如，1.5毫米）</li>
+<li>输入步长（通常初始化为像素大小）</li>
+</ol>
+<p>宏将从起点到终点以递增的半径运行提取。</p>
+<h2>可视化多半径提取 [00:07:34]</h2>
+<p>宏完成后，您的工作区中将有多个2D图像。要有效地查看它们：</p>
+<ol>
+<li>选择所有图像</li>
+<li>创建一个盒子（在所有图像上具有空间范围）</li>
+<li>选择并锁定盒子</li>
+<li>滚动切片以查看不同半径的数据</li>
+</ol>
+<p>或者，您可以将这些图像拼接成3D数据集：<br />
+1. 选择所有图像<br />
+2. 右键单击并选择"Stitch 3D"<br />
+3. 选择"Max"作为强度，"Nearest"或"Tri-cubic"作为插值<br />
+4. 点击"Stitch"</p>
+<p>这将创建一个单一的3D图像，您可以在其中一起可视化所有半径提取。</p>
+<h2>访问扩展 [00:10:43]</h2>
+<p>要获取此功能：<br />
+1. 转到<code>Utilities</code> &gt; <code>Infinite Toolbox</code><br />
+2. 导航到"Macros"<br />
+3. 找到"Extract Soup Can Wrapper"和"Soup Can Wrapper Over Radius Range"<br />
+4. 点击"Install for all users"</p>
+<p>安装后，源代码将在您系统的菜单项文件夹中可用。</p>
+<h2>实际应用 [00:14:09]</h2>
+<p>这种技术特别适用于：<br />
+- 在不同深度检查圆柱形物体<br />
+- 检测表面不规则性，如凹痕或突起<br />
+- 分析圆柱形样本的内部结构</p>
+<p>在不同半径，您可以看到数据如何从样本中心到外表面发生变化。</p>
+<h2>结论</h2>
+<p>圆柱坐标变换提供了一种强大的方式来在Dragonfly中可视化和分析圆柱数据。虽然当前的实现有些变通，但它为许多科学和工业应用提供了宝贵的见解。未来的改进可能包括交互式半径调整和更好的可视化选项。</p>
+<p>请记住，您可以从Infinite Toolbox下载基本提取工具和半径范围宏，以增强您的Dragonfly工作流程。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=sfHY9cLCqKc">Dragonfly Daily 39 Cylinder Coordinate Transform in Dragonfly (2020)</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-23 09:41:56 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

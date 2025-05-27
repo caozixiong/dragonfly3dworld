@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Vivo and Specimen Imaging at the Center for Molecular and Genomic Imaging - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>In Vivo and Specimen Imaging at the Center for Molecular and Genomic Imaging - (English)</h1>
+        <p>This presentation explores research at UC Davis's Center for Molecular and Genomic Imaging, featuring two key projects: in vivo respiratory-gated micro CT imaging of COVID-infected mice to study long COVID effects, and high-resolution specimen imaging of orchid bee brains to examine sexual dimorphism in brain structures.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>In Vivo and Specimen Imaging at the Center for Molecular and Genomic Imaging [00:00:53]</h1>
+<h2>Introduction to the Center for Molecular and Genomic Imaging [00:01:55]</h2>
+<p>The Center for Molecular and Genomic Imaging at UC Davis is a campus research core facility that provides state-of-the-art instrumentation for various imaging needs. The center's mission is to make specialized equipment available to researchers who wouldn't otherwise have access to such technology. This allows scientists from different departments to conduct innovative research across multiple disciplines.</p>
+<p>The center works with a wide array of departments and also provides recharge services for academic institutions and industry partners. The facility houses multiple imaging technologies, including:</p>
+<ul>
+<li>PET/CT scanners</li>
+<li>MRI systems</li>
+<li>Micro CT scanners</li>
+<li>Biomedical cyclotron for radionuclide production</li>
+</ul>
+<h2>Micro CT Imaging Equipment [00:05:31]</h2>
+<p>The center utilizes two primary micro CT systems for different research applications:</p>
+<ul>
+<li><strong>X-radia micro XCT 200</strong>: The workhorse instrument for specimen imaging, providing high-resolution images for detailed analysis</li>
+<li><strong>BSL-3 Micro CT Scanner</strong>: A newer instrument (acquired in late 2021) specifically installed in a biosafety level 3 facility for COVID research</li>
+</ul>
+<p>The BSL-3 scanner is particularly unique as it's installed directly in an animal room within a high biosecurity facility. Researchers must wear full PPE including bunny suits, masks, and hairnets when working with this equipment due to the nature of COVID research.</p>
+<h2>COVID-19 Research Using Micro CT [00:07:08]</h2>
+<h3>Research Objectives</h3>
+<p>The COVID research project aims to establish an in vivo model for Post-Acute Sequelae of SARS-CoV-2 infection (PASC), commonly known as "long COVID." The study uses novel genetically humanized polygenic mice to:</p>
+<ol>
+<li>Understand the pathophysiology of PASC</li>
+<li>Evaluate potential therapeutics</li>
+<li>Develop sophisticated animal models that better replicate the human condition</li>
+</ol>
+<h3>Genetic Modifications in Mouse Models</h3>
+<p>Traditional mouse models insert human genes randomly, but the UC Davis approach uses CRISPR technology to introduce human genes in their corresponding mouse loci. The key genes involved are:</p>
+<ul>
+<li>ACE2</li>
+<li>TMPRSS</li>
+<li>Furin coding sequences</li>
+</ul>
+<p>This targeted approach creates more accurate models by replacing mouse genes with humanized versions in their natural locations.</p>
+<h3>Research Hypotheses</h3>
+<p>The study examines two key hypotheses:<br />
+- Female mice would develop mild to moderate COVID-like symptoms acutely and are more likely than male mice to exhibit PASC symptoms<br />
+- Mice exhibiting severe sublethal acute disease will develop PASC within six months</p>
+<h3>Micro CT Imaging Approach [00:11:23]</h3>
+<p>The research used respiratory-gated lung imaging to track changes over time. Animals were scanned at multiple time points:<br />
+- Baseline (pre-infection)<br />
+- Day 5 post-infection<br />
+- Day 17 post-infection<br />
+- Monthly scans for approximately six months<br />
+- Additional scans after reinfection in a subset of animals</p>
+<p>The imaging revealed hyperintensity in the lungs of infected animals at day 5, which typically resolved by day 17. This pattern was observed in 5 of 16 infected animals.</p>
+<h2>Deep Learning for Lung Segmentation [00:13:11]</h2>
+<h3>Computing Resources</h3>
+<p>A high-performance PC was built specifically for processing micro CT data, featuring:<br />
+- Substantial RAM<br />
+- Advanced graphics card optimized for deep learning</p>
+<h3>Deep Learning Model Parameters</h3>
+<p>The segmentation model used the following specifications:<br />
+- Sensor 3D model architecture<br />
+- Data augmentation techniques<br />
+- Image mask size smaller than high-resolution specimen scanner data<br />
+- Training with six sets of both end-expiration and end-inspiration images<br />
+- Monitored validation loss for early stopping (completed after 52 epochs)</p>
+<h3>Data Cleanup Process</h3>
+<p>The model performed well but required some cleanup:<br />
+- Occasional blobs outside the lung area needed removal<br />
+- Most cases achieved excellent lung segmentation<br />
+- False positive and false negative voxels primarily occurred at lung boundaries</p>
+<h3>Results Analysis [00:16:26]</h3>
+<p>Initial results from eight SARS-CoV-2 infected animals showed a trend toward decreased lung volume at day 5 in end-expiration images. The complete study includes 264 inspiration and expiration images, making manual segmentation (1-2 hours per image) impractical.</p>
+<h2>Neotropical Orchid Bee Brain Study [00:17:38]</h2>
+<h3>Research Background</h3>
+<p>This project examines ontogenic signals of sexual dimorphism in neotropical orchid bees. These bees exhibit fascinating behavioral diversity:<br />
+- Social and kleptoparasitic species<br />
+- Males collect scents from orchids and other flowers to attract females<br />
+- Females are semi-social while males are primarily solitary<br />
+- Males collect perfume while females do not</p>
+<p>The research question focuses on how the brain evolves to support this behavioral diversity, specifically looking for anatomical sexual dimorphism in bee brains.</p>
+<h3>Imaging Methodology [00:20:31]</h3>
+<p>The bee brains were imaged using micro CT with iodine and ethanol staining to achieve good contrast between different brain structures. Despite the bee brain being much smaller than a mouse lung, the matrix dimensions were 2.5-3 times larger, which has significant implications for deep learning applications.</p>
+<h3>Brain Segmentation [00:22:10]</h3>
+<p>The researcher manually segmented nine brain regions to analyze volume metrics and morphology. This process initially took about a day per brain but was eventually reduced to 2-4 hours. With plans to study up to 100 specimens, deep learning implementation is being explored to reduce the manual workload.</p>
+<h3>Preliminary Findings [00:23:22]</h3>
+<p>Initial results from manually segmented samples revealed:<br />
+- Enlarged lamina and medulla in male bees, which are important for visualization and finding flowers<br />
+- Enlarged mushroom bodies in female bees, which are crucial for associative learning and memory (important for social behaviors)</p>
+<p>These findings support the hypothesis that there are ontogenic signals in the anatomical dimorphism between male and female bee brains.</p>
+<h2>Conclusion [00:24:24]</h2>
+<p>The Center for Molecular and Genomic Imaging at UC Davis demonstrates the power of advanced imaging techniques in diverse research applications. From tracking COVID-19 progression in genetically modified mice to examining minute structural differences in bee brains, micro CT imaging combined with deep learning offers unprecedented insights into biological systems. These technologies enable researchers to answer complex questions about disease progression and evolutionary adaptations with remarkable detail and efficiency.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=XDeA8ijKih8">In Vivo and Specimen Imaging at the Center for Molecular and Genomic Imaging</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 02:14:09 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/XDeA8ijKih8"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

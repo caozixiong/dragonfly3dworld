@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragonfly Daily 37 Distance Mapping in Dragonfly (2020) - Chinese Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Dragonfly Daily 37 Distance Mapping in Dragonfly (2020) - (Chinese)</h1>
+        <p>这个视频呈现了蜻蜓日常系列的第37课，重点介绍蜻蜓软件中的距离映射技术，包括欧几里得距离变换和测地距离映射，用于编码物体之间的空间关系，以分析3D图像数据。</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>中文翻译</h1>
+<h2>蜻蜓软件中距离映射的介绍 [00:00:47]</h2>
+<p>欢迎来到这个关于蜻蜓软件中距离映射的教程。今天我们将探索编码空间距离的工具，特别关注欧几里得距离变换和测地距离变换。这些强大的技术允许您以能够揭示结构之间重要关系的方式对数据进行空间信息编码。</p>
+<p>在本教程中，我们将使用来自数字岩石门户网站的两个数据集：<br />
+- Tom Voltres及其合作者提供的碳酸盐样本<br />
+- 一个含水合物的砂岩样本</p>
+<h2>欧几里得距离变换 [00:02:43]</h2>
+<p>距离变换是一种计算图像中每个像素到参考对象或表面距离的工具。它本身很少是一个解决方案，而是用于计算其他内容的工具。</p>
+<h3>理解距离变换</h3>
+<p>距离变换的工作原理类似于形态学膨胀。当您膨胀一个对象时：<br />
+- 第一次膨胀中，接触对象的像素成为对象的一部分<br />
+- 第二次膨胀中，接触新扩展对象的像素成为其一部分<br />
+- 以此类推...</p>
+<p>距离变换本质上将此信息编码为强度值：<br />
+- 在第一次膨胀中捕获的像素距离为一个像素<br />
+- 在第二次膨胀中捕获的像素距离为两个像素</p>
+<p>重要的是，蜻蜓软件对像素大小敏感。如果您的像素在X和Y方向上为5微米，但在Z方向上为10微米，蜻蜓将以实际单位而非仅以像素计算距离。</p>
+<h3>从单个颗粒创建距离图</h3>
+<p>让我们通过一个例子来演示：</p>
+<ol>
+<li>从多ROI中选择一个单独的颗粒</li>
+<li>将该颗粒导出到新的ROI（我们称之为"感兴趣的颗粒"）</li>
+<li>右键点击ROI并选择<code>创建距离图映射</code></li>
+<li>选择<code>欧几里得距离图</code></li>
+</ol>
+<p>这将创建一个新图像，其中：<br />
+- 3D体积中的每个像素都编码了其到颗粒表面的距离<br />
+- 靠近颗粒的像素具有较低的强度值<br />
+- 远离颗粒的像素具有较高的强度值</p>
+<p>距离图告诉您任何像素距离ROI中最近像素的距离。</p>
+<h3>使用距离图分析颗粒关系</h3>
+<p>一旦有了距离图，您可以使用它来分析对象之间的关系：</p>
+<ol>
+<li>打开包含所有颗粒的多ROI的<code>分析</code>面板</li>
+<li>选择要计算的测量值，包括：</li>
+<li>体积</li>
+<li>纵横比</li>
+<li>平均强度（来自原始灰度图像）</li>
+<li>距离图的最小强度（到感兴趣颗粒的最短距离）</li>
+<li>距离图的平均强度（到感兴趣颗粒的平均距离）</li>
+</ol>
+<p>这允许您量化每个颗粒与您感兴趣颗粒的距离。您可以通过基于最小距离值为颗粒着色来可视化这一点。</p>
+<h2>径向距离编码 [00:12:25]</h2>
+<p>距离变换的另一个有用应用是创建径向编码，这对于具有光束硬化效应的圆柱形样本特别有帮助。</p>
+<h3>理解CT数据中的光束硬化</h3>
+<p>在实验室CT或任何使用多色光源的CT中，光束硬化可能导致强度变化：<br />
+- 圆柱形样本外部的像素显得更亮<br />
+- 中间的像素显得更暗<br />
+- 这在强度剖面中创建了"杯状"效应</p>
+<p>对于圆柱形样本，这种强度剖面通常与样本的半径相对应。</p>
+<h3>创建径向编码</h3>
+<p>要创建径向编码：</p>
+<ol>
+<li>创建与样本轴对齐的圆柱形ROI</li>
+<li>将圆柱体定位为与样本同心</li>
+<li>减小半径以创建沿轴的细圆柱体</li>
+<li>从此圆柱体创建ROI（称为"圆柱轴"）</li>
+<li>右键点击并选择<code>创建距离图映射</code></li>
+<li>选择<code>欧几里得距离图</code></li>
+</ol>
+<p>这将创建一个距离图，其中：<br />
+- 低半径（靠近中心）的像素具有低强度<br />
+- 高半径（靠近边缘）的像素具有高强度</p>
+<h3>使用径向编码进行分割</h3>
+<p>您可以将此径向编码与直方图分割一起使用，以补偿光束硬化：</p>
+<ol>
+<li>打开直方图分割</li>
+<li>将X轴设置为您的距离图（半径）</li>
+<li>将Y轴设置为您的CT扫描强度</li>
+<li>观察强度如何随半径变化</li>
+<li>在直方图域中绘制区域，以分割随半径变化强度的特征</li>
+</ol>
+<p>这种方法允许您分割由于光束硬化效应而难以直接阈值处理的特征。</p>
+<h2>测地距离图 [00:19:54]</h2>
+<p>虽然欧几里得距离图测量直线距离，但测地距离图测量ROI内连接路径的距离。</p>
+<h3>创建测地距离图</h3>
+<p>要创建测地距离图：</p>
+<ol>
+<li>分割感兴趣区域（如岩石样本中的孔隙空间）</li>
+<li>在特定位置创建种子ROI（如样本顶部的"入口"）</li>
+<li>右键点击主ROI并选择<code>创建测地距离图映射</code></li>
+<li>选择您的种子ROI作为源</li>
+</ol>
+<p>生成的图显示：<br />
+- 连接的像素具有非零值<br />
+- 靠近入口的像素具有低强度值<br />
+- 远离入口的像素具有更高的强度值</p>
+<p>这与欧几里得距离不同，因为它测量沿连接路径的距离。可以将其视为模拟从入口通过连接的孔隙空间的扩散。</p>
+<h2>基于灰度的距离图 [00:22:43]</h2>
+<p>蜻蜓软件还提供直接在灰度图像上操作的距离图：</p>
+<h3>快速行进速度图</h3>
+<p>此方法：<br />
+1. 从种子点或区域开始<br />
+2. 向外扩散通过灰度图像<br />
+3. 在相似强度的区域快速移动<br />
+4. 在穿越强度梯度（边缘）时缓慢移动</p>
+<p>要创建快速行进速度图：<br />
+1. 创建一个小的种子ROI<br />
+2. 右键点击灰度图像并选择<code>创建快速行进速度图映射</code><br />
+3. 选择您的种子ROI</p>
+<p>生成的图显示：<br />
+- 在灰度空间中靠近种子的区域具有低强度值<br />
+- 远离或需要穿越强度边界的区域具有更高的值</p>
+<p>这类似于2D中的自适应区域生长工具，但在3D中操作。</p>
+<h3>Dijkstra最短路径图</h3>
+<p>与快速行进速度图类似，Dijkstra最短路径图可用于在复杂结构中找到路径。它甚至可以通过创建源和目标来解决迷宫问题。</p>
+<h2>结论 [00:27:40]</h2>
+<p>距离映射提供了强大的工具来分析数据中的空间关系：</p>
+<ul>
+<li><strong>欧几里得距离图</strong>测量从对象的直线距离</li>
+<li><strong>有符号距离图</strong>（一种变体）在ROI外使用正值，在内部使用负值</li>
+<li><strong>测地距离图</strong>测量沿连接路径的距离</li>
+<li><strong>灰度距离图</strong>（快速行进和Dijkstra）测量强度空间中的距离</li>
+</ul>
+<p>这些工具可以与其他技术（如分水岭变换，我们将在下一课中介绍）结合使用，以执行高级分割和分析任务。</p>
+<p>请记住，距离变换本身很少是解决方案，但它们提供了宝贵的信息，可用于更复杂的工作流程，用于分割、对象分离和空间分析。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=DAjNPnW-qDQ">Dragonfly Daily 37 Distance Mapping in Dragonfly (2020)</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-23 11:52:03 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/DAjNPnW-qDQ"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

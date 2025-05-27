@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>解析化石记录：AI在化石分割中的优势 [00:00:50]</h2>
+<p>这个在丹佛自然科学博物馆的项目探索了AI如何帮助分割化石。与许多其他标本不同，化石通常是独一无二的，具有独特的挑战，每个标本都需要不同的分割策略。即使面对具有挑战性的数据，AI也能表现出惊人的效果。</p>
+<h2>化石分割的挑战 [00:02:41]</h2>
+<p>化石呈现出几个分割挑战：<br />
+- 外观高度不一致<br />
+- 低对比度（许多化石仍保留在原始岩石基质中）<br />
+- 来自世界各地的各种岩石类型<br />
+- 不同的厚度和压缩水平<br />
+- 常常解体，骨骼散落</p>
+<p>目标是利用AI加速分割过程，使研究人员能够更快地处理扫描数据，并使难以看见的结构更加可见。</p>
+<h2>标本类型及其挑战 [00:03:47]</h2>
+<h3>动物学标本</h3>
+<ul>
+<li>蜥蜴和蛇的同步加速器扫描</li>
+<li>最高质量的扫描数据</li>
+<li>材料之间有清晰的分离</li>
+</ul>
+<h3>已处理的化石</h3>
+<ul>
+<li>可以看到骨骼结构、缝合线和孔隙度</li>
+<li>部分可见</li>
+</ul>
+<h3>压缩化石</h3>
+<ul>
+<li>通常半处理，一面良好，一面困难</li>
+<li>扁平的标本，可视化具有挑战性</li>
+</ul>
+<h3>粪化石</h3>
+<ul>
+<li>本质上是内含破碎骨骼材料的岩石</li>
+<li>对饮食相关研究问题有价值</li>
+</ul>
+<h3>结核</h3>
+<ul>
+<li>围绕化石形成的球形岩石</li>
+<li>最差的扫描数据，有众多伪影</li>
+<li>极其难以分割</li>
+</ul>
+<h2>不同标本类型的AI方法 [00:05:26]</h2>
+<h3>经典机器学习</h3>
+<ul>
+<li>适用于动物学标本和清晰的双材料扫描</li>
+<li>对简单材料分离的训练更快更容易</li>
+<li>随机森林模型效果良好</li>
+</ul>
+<h3>深度学习</h3>
+<ul>
+<li>更适合于在低质量数据中的复杂结构，如解体的化石</li>
+<li>使用具有5-7层的U-Net架构变体</li>
+<li>计算密集度更高，但能处理困难案例</li>
+</ul>
+<h2>AI分割的最佳实践 [00:06:35]</h2>
+<ul>
+<li>如果不确定从哪里开始，使用分割向导</li>
+<li>创建训练数据集时优先考虑质量</li>
+<li>训练2-3个高质量的约10帧数据集比许多中等质量的数据集更有效</li>
+<li>用多个数据集训练的2D模型比3D模型在化石工作中更快更有效</li>
+<li>选择方法时考虑硬件限制</li>
+</ul>
+<h2>跨标本类型的应用 [00:08:10]</h2>
+<h3>动物学标本</h3>
+<ul>
+<li>经典机器学习提供优秀的分离</li>
+<li>快速的初步分割，只需最少的手动修正</li>
+</ul>
+<h3>已处理的化石</h3>
+<ul>
+<li>目标是逐骨分割</li>
+<li>识别骨骼融合的缝合线</li>
+<li>正在研究自动映射缝合线的方法</li>
+</ul>
+<h3>压缩化石</h3>
+<ul>
+<li>深度学习捕捉鱼类化石中的细微细节</li>
+<li>30分钟的输入加上过夜训练可节省数小时的手动工作</li>
+<li>在伪影中有一些细节损失，但提供有价值的"地形图"</li>
+<li>帮助识别复杂标本中的散落元素</li>
+</ul>
+<h3>粪化石</h3>
+<ul>
+<li>深度学习可以提取骨骼元素，尽管对比度较低</li>
+<li>多个类别可以分离不同材料</li>
+<li>示例：几乎完全通过AI从粪化石中提取出龙虾爪</li>
+</ul>
+<h3>结核</h3>
+<ul>
+<li>用于在物理准备前识别岩石内部的化石</li>
+<li>为准备工作创建路线图</li>
+<li>即使数据质量极差，深度学习也能标记出微弱的结构</li>
+<li>确保在大型扫描中不会遗漏任何内容</li>
+</ul>
+<h2>创新解决方案 [00:17:14]</h2>
+<p>对于在石膏外壳中的标本（看起来与骨骼相似）：<br />
+- 使用经典机器学习将外壳与基质分离<br />
+- 创建外壳ROI并使用布尔运算高效解决问题<br />
+- 结合不同方法以获得最佳结果</p>
+<h2>结论 [00:17:43]</h2>
+<p>无论您的数据看起来多么糟糕，都要创造性地使用AI工具。即使它们不能完美地分割您的整个项目，它们仍然可以提供显著价值：<br />
+- 在训练数据质量上要高效且严格<br />
+- 有时结合使用不同模型比单一方法产生更好的结果<br />
+- 超越完整分割的思考，考虑AI如何辅助您的工作流程</p>
+<p>关键要点是，即使对于最具挑战性的化石标本，AI分割也能提供价值，帮助研究人员更高效地工作并从困难数据中提取更多信息。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=_Jp1V-yE_HM">Decoding the Fossil Record: The Benefits of AI in the Segmentation of Fossils</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 04:29:07 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

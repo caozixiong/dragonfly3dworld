@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>通过3D成像理解骨骼结构和功能 [00:00:46]</h2>
+<p>本教程探讨了3D成像技术如何揭示骨骼的历史和功能适应性。通过分析骨微观结构，我们可以更好地理解骨骼如何适应不同的负荷模式和功能需求。</p>
+<h2>空心猪颌：骨骼适应的一课 [00:01:58]</h2>
+<p>在研究小梁骨特性时，猪颌骨的研究中发现了一个有趣的现象。与含有大量小梁骨的人类颌骨不同，猪颌骨被发现是空心的。这种结构差异存在是因为：</p>
+<ul>
+<li>猪使用颌骨的方式与人类不同</li>
+<li>猪从土壤中挖掘根茎，在下颌骨上产生巨大的弯曲力矩</li>
+<li>空心结构完美适应了这种特定的负荷模式</li>
+</ul>
+<p>这证明了骨骼结构遵循功能的原则 - 不同的负荷模式导致不同的骨骼结构。</p>
+<h2>小梁骨：结构与功能 [00:03:41]</h2>
+<p>小梁骨是一种蕾丝状、精细的结构，主要位于大型动物体内关节附近。主要特征包括：</p>
+<ul>
+<li>出现在运动发生的位置，表明适应多方向负荷</li>
+<li>质地从均匀精细到合并形成"哥特式拱门"或支撑结构不等</li>
+<li>结构提供关于功能和负荷历史的线索</li>
+</ul>
+<h2>分析骨骼结构的传统方法 [00:04:32]</h2>
+<p>二十多年来，经典方法通过计算各向异性系数来从结构推断骨骼功能：</p>
+<ul>
+<li>平均截距长度</li>
+<li>星体积或方向体积</li>
+<li>结构模型指数</li>
+<li>欧拉数</li>
+</ul>
+<p>这些经典方法需要：<br />
+- 将感兴趣的体积裁剪成或多或少的各向同性形状<br />
+- 足够的体积（至少5mm³）以获得统计上稳健数量的小梁和小梁间空间</p>
+<p>然而，在真实骨骼标本中，仅移动几毫米就可能显示完全不同的骨骼纹理，这为数字图像处理带来了挑战。</p>
+<h2>Dragonfly分析各向异性的方法 [00:06:02]</h2>
+<p>Dragonfly提供了一种解决方案，允许分析整个骨骼结构同时保留功能背景：</p>
+<ol>
+<li>将等值面分割成表面单元（三角形）</li>
+<li>从每个三角形投射基本向量</li>
+<li>计数并分析这些向量以确定方向</li>
+</ol>
+<p>这种方法适用于简单形状和复杂骨骼表面：<br />
+- 对于平行六面体，可以计数和比较不同方向发出的向量<br />
+- 不同方向向量的比率揭示结构是否各向异性及其方向</p>
+<h2>骨骼结构的向量映射 [00:07:25]</h2>
+<p>通过对骨骼表面应用向量操作：</p>
+<ul>
+<li>可以分析每个位置并将其归一化为单位分数</li>
+<li>这创建了由数百万向量组成的向量图</li>
+<li>从蓝色（低）到红色（高）的颜色编码揭示了肉眼不可见的模式</li>
+</ul>
+<p>例如，在绵羊股骨中：<br />
+- 股骨头（蓝色）没有显示优先方向 - 这对于接收多方向负荷的球窝关节是合理的<br />
+- 骨干显示越来越定向的结构（橙色到红色）<br />
+- 使用红、绿、蓝编码X、Y、Z轴揭示更详细的模式</p>
+<h2>验证各向异性作为有意义的描述符 [00:09:41]</h2>
+<p>为了验证各向异性是骨骼功能的有意义描述符，需要比较在不同情况下负荷的相同骨骼元素。Gordon病理博物馆提供了独特标本的访问权限：</p>
+<ol>
+<li>马蹄内翻标本（先天性疾病）- 从未用于正常行走</li>
+<li>强直标本（获得性疾病）- 由于慢性感染导致多块骨骼融合</li>
+<li>捐赠者正常行走至20岁，之后有二十年的行动困难</li>
+</ol>
+<p>这些标本代表了正常双足行走不可能的极端情况：<br />
+- 一种情况代表不使用（从未行走）<br />
+- 另一种代表异常使用（僵硬的脚造成不平稳的运动）</p>
+<h2>人类跟骨中的各向异性映射 [00:13:23]</h2>
+<p>映射算法的工作原理是：<br />
+1. 在骨骼各处放置探针<br />
+2. 对于球形孔隙，向量相互抵消（零测量）<br />
+3. 对于连续表面，向量相加（长合成向量）<br />
+4. 在整个骨骼中进行光栅扫描，创建数百万向量的彩色渲染</p>
+<p>当放在解剖学背景中，这揭示了各向异性轨迹的模式：<br />
+- 从距跟关节到跟腱的共线小梁带<br />
+- 平行于地面的足底带<br />
+- 宽方向上的垂直带</p>
+<p>这些带对应于生理功能和肌肉/肌腱附着：<br />
+- 从顶部施加的重量（压缩）<br />
+- 跟腱向上拉（张力）<br />
+- 足底筋膜向前拉（张力）<br />
+- 腓骨肌腱施加张力</p>
+<h2>比较多种指标 [00:15:54]</h2>
+<p>除了各向异性，体积分数（孔隙率的相反）可以使用相同的光栅方法测量。重要发现：</p>
+<ul>
+<li>各向异性和体积分数是独立的指标</li>
+<li>任何组合都是可能的（高/低各向异性与高/低体积分数）</li>
+<li>这些指标应该独立测量和分析</li>
+</ul>
+<h2>比较正常和病理标本 [00:16:39]</h2>
+<p>正常跟骨分析显示：<br />
+- 与双足行走相关的各向异性带的相似模式<br />
+- 可以与功能相关的一致轨迹</p>
+<p>病理标本显示明显差异：<br />
+- 马蹄内翻：几乎空心，结构非常精细、空洞，因为不使用<br />
+- 马蹄内翻：斑驳、不一致、杂乱的各向异性模式，没有一致的轨迹<br />
+- 强直：总骨组织比正常高，但斑驳粗糙（与慢性炎症一致）<br />
+- 强直：各向异性轨迹逐渐消失（背侧轨迹仍可见，但其他不确定）</p>
+<h2>结论：解读骨骼适应 [00:18:37]</h2>
+<p>各向异性向量的3D映射揭示：</p>
+<ul>
+<li>骨骼内部结构与肌肉和肌腱的方向和作用是连续的</li>
+<li>骨骼不应被视为独立结构，而应作为结缔组织系统的组成部分</li>
+<li>"正常骨骼都相似，而每个异常骨骼都以自己的方式异常"</li>
+<li>通过分析微观结构可以重建负荷历史</li>
+</ul>
+<p>理解骨骼适应需要考虑多个维度：<br />
+- 传统三维（X、Y、Z）用于大小、形状和外部形态<br />
+- 时间维度，因为功能适应随年龄累积<br />
+- 其他维度，如网络连接性</p>
+<p>真正揭示骨骼负荷历史将随着对功能适应的所有六、七或八个维度的控制而实现。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=tq7Tx7OZUmc">Mapping Trabecular Bone Anisotropy in 3D: A Tool to Decipher Loading History of Bones using MicroCT</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 10:08:54 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

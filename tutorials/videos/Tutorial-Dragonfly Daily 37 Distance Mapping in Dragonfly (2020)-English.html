@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragonfly Daily 37 Distance Mapping in Dragonfly (2020) - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Dragonfly Daily 37 Distance Mapping in Dragonfly (2020) - (English)</h1>
+        <p>This video presents Lesson 37 of the Dragonfly Daily series, focusing on distance mapping techniques in Dragonfly software, including Euclidean distance transforms and geodesic distance mapping to encode spatial relationships between objects for analysis of 3D image data.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to Distance Mapping in Dragonfly [00:00:47]</h2>
+<p>Welcome to this tutorial on distance mapping in Dragonfly. Today we'll explore tools for encoding spatial distance, specifically focusing on Euclidean distance transforms and geodesic distance transforms. These powerful techniques allow you to encode spatial information about your data in ways that can reveal important relationships between structures.</p>
+<p>For this tutorial, we'll be using two datasets from the Digital Rocks Portal:<br />
+- A carbonate sample from Tom Voltres and collaborators<br />
+- A hydrate-bearing sand pack sample</p>
+<h2>Euclidean Distance Transforms [00:02:43]</h2>
+<p>A distance transform is a tool that computes the distance from each pixel in an image to a reference object or surface. It's rarely a solution by itself, but rather a tool for computing something else.</p>
+<h3>Understanding Distance Transforms</h3>
+<p>Distance transforms work similar to morphological dilations. When you dilate an object:<br />
+- Pixels touching the object become part of the object in the first dilation<br />
+- Pixels touching the newly expanded object become part of it in the second dilation<br />
+- And so on...</p>
+<p>A distance transform essentially encodes this information as intensity values:<br />
+- Pixels captured in the first dilation are one pixel away<br />
+- Pixels captured in the second dilation are two pixels away</p>
+<p>Importantly, Dragonfly is sensitive to pixel sizes. If your pixels are 5 microns in X and Y, but 10 microns in Z, Dragonfly will compute distances in actual units rather than just pixels.</p>
+<h3>Creating a Distance Map from a Single Grain</h3>
+<p>Let's demonstrate with an example:</p>
+<ol>
+<li>Select an individual grain from a multi-ROI</li>
+<li>Export that grain to a new ROI (we'll call it "grain of interest")</li>
+<li>Right-click on the ROI and select <code>Create mapping of a distance map</code></li>
+<li>Choose <code>Euclidean distance map</code></li>
+</ol>
+<p>This creates a new image where:<br />
+- Every pixel in the 3D volume is encoded with its distance to the surface of the grain<br />
+- Pixels closer to the grain have lower intensity values<br />
+- Pixels farther from the grain have higher intensity values</p>
+<p>The distance map tells you how far any pixel is from the nearest pixel in your ROI.</p>
+<h3>Analyzing Grain Relationships with Distance Maps</h3>
+<p>Once you have a distance map, you can use it to analyze relationships between objects:</p>
+<ol>
+<li>Open the <code>Analysis</code> panel for your multi-ROI containing all grains</li>
+<li>Select measurements to compute, including:</li>
+<li>Volume</li>
+<li>Aspect ratio</li>
+<li>Mean intensity (from original grayscale image)</li>
+<li>Minimum intensity from distance map (shortest distance to grain of interest)</li>
+<li>Mean intensity from distance map (average distance to grain of interest)</li>
+</ol>
+<p>This allows you to quantify how far each grain is from your grain of interest. You can visualize this by coloring grains based on their minimum distance values.</p>
+<h2>Radial Distance Encoding [00:12:25]</h2>
+<p>Another useful application of distance transforms is creating radial encodings, which can be particularly helpful for cylindrical samples with beam hardening effects.</p>
+<h3>Understanding Beam Hardening in CT Data</h3>
+<p>In laboratory CT or any CT with a polychromatic light source, beam hardening can cause intensity variations:<br />
+- Pixels on the outside of a cylindrical sample appear brighter<br />
+- Pixels in the middle appear darker<br />
+- This creates a "cupping" effect in the intensity profile</p>
+<p>For cylindrical samples, this intensity profile often corresponds with the radius of the sample.</p>
+<h3>Creating a Radial Encoding</h3>
+<p>To create a radial encoding:</p>
+<ol>
+<li>Create a cylinder ROI aligned with your sample's axis</li>
+<li>Position the cylinder to be concentric with your sample</li>
+<li>Reduce the radius to create a thin cylinder along the axis</li>
+<li>Create an ROI from this cylinder (call it "cylinder axis")</li>
+<li>Right-click and select <code>Create mapping of a distance map</code></li>
+<li>Choose <code>Euclidean distance map</code></li>
+</ol>
+<p>This creates a distance map where:<br />
+- Pixels at low radius (near the center) have low intensity<br />
+- Pixels at high radius (near the edge) have high intensity</p>
+<h3>Using Radial Encoding for Segmentation</h3>
+<p>You can use this radial encoding with Histographic Segmentation to compensate for beam hardening:</p>
+<ol>
+<li>Open Histographic Segmentation</li>
+<li>Set the X-axis to your distance map (radius)</li>
+<li>Set the Y-axis to your CT scan intensities</li>
+<li>Observe how intensity varies with radius</li>
+<li>Paint regions in the histogram domain to segment features that change intensity with radius</li>
+</ol>
+<p>This approach allows you to segment features that would be difficult to threshold directly due to beam hardening effects.</p>
+<h2>Geodesic Distance Maps [00:19:54]</h2>
+<p>While Euclidean distance maps measure straight-line distances, geodesic distance maps measure distances along connected paths within an ROI.</p>
+<h3>Creating a Geodesic Distance Map</h3>
+<p>To create a geodesic distance map:</p>
+<ol>
+<li>Segment a region of interest (like pore space in a rock sample)</li>
+<li>Create a seed ROI at a specific location (like an "inlet" at the top of your sample)</li>
+<li>Right-click on your main ROI and select <code>Create mapping of a geodesic distance map</code></li>
+<li>Choose your seed ROI as the source</li>
+</ol>
+<p>The resulting map shows:<br />
+- Connected pixels have non-zero values<br />
+- Pixels close to the inlet have low intensity values<br />
+- Pixels farther from the inlet have higher intensity values</p>
+<p>This is different from Euclidean distance because it measures distance along connected pathways. Think of it as simulating diffusion from the inlet through the connected pore space.</p>
+<h2>Grayscale-Based Distance Maps [00:22:43]</h2>
+<p>Dragonfly also offers distance maps that operate directly on grayscale images:</p>
+<h3>Fast Marching Speed Map</h3>
+<p>This method:<br />
+1. Starts from a seed point or region<br />
+2. Diffuses outward through the grayscale image<br />
+3. Moves quickly through regions of similar intensity<br />
+4. Moves slowly when crossing intensity gradients (edges)</p>
+<p>To create a fast marching speed map:<br />
+1. Create a small seed ROI<br />
+2. Right-click on your grayscale image and select <code>Create mapping of a fast marching speed map</code><br />
+3. Choose your seed ROI</p>
+<p>The resulting map shows:<br />
+- Low intensity values for areas that are close to the seed in the grayscale space<br />
+- Higher values for areas that are farther away or require crossing intensity boundaries</p>
+<p>This is similar to the adaptive region growing tool in 2D, but operates in 3D.</p>
+<h3>Dijkstra Shortest Path Map</h3>
+<p>Similar to the fast marching speed map, the Dijkstra shortest path map can be used to find paths through complex structures. It can even be used to solve mazes by creating a source and target.</p>
+<h2>Conclusion [00:27:40]</h2>
+<p>Distance mapping provides powerful tools for analyzing spatial relationships in your data:</p>
+<ul>
+<li><strong>Euclidean distance maps</strong> measure straight-line distances from objects</li>
+<li><strong>Signed distance maps</strong> (a variant) use positive values outside the ROI and negative values inside</li>
+<li><strong>Geodesic distance maps</strong> measure distances along connected pathways</li>
+<li><strong>Grayscale distance maps</strong> (fast marching and Dijkstra) measure distances in the intensity space</li>
+</ul>
+<p>These tools can be combined with other techniques like watershed transforms (which we'll cover in the next lesson) to perform advanced segmentation and analysis tasks.</p>
+<p>Remember that distance transforms are rarely solutions by themselves, but they provide valuable information that can be used in more complex workflows for segmentation, object separation, and spatial analysis.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=DAjNPnW-qDQ">Dragonfly Daily 37 Distance Mapping in Dragonfly (2020)</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-23 11:52:03 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/DAjNPnW-qDQ"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

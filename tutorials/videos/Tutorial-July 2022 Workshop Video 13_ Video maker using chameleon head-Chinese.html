@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 2022 Workshop Video 13: Video maker using chameleon head - Chinese Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July 2022 Workshop Video 13: Video maker using chameleon head - (Chinese)</h1>
+        <p>This instructional video demonstrates how to create 3D visualization videos in Dragonfly software, showcasing techniques for clipping, segmentation, and animation using a three-horned chameleon specimen as an example.
+
+中文翻译:
+这个教学视频演示了如何使用Dragonfly软件创建3D可视化视频，以三角蜥蜴标本为例，展示了剪裁、分割和动画制作的技术。</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>在Dragonfly中创建视频</h1>
+<h2>介绍 [00:00:04]</h2>
+<p>本教程专注于在Dragonfly中创建视频，演示2D切片视频和3D可视化视频。演示使用的是三角变色龙数据集。</p>
+<h2>设置渲染参数 [00:00:31]</h2>
+<p>在创建视频之前，建立适当的渲染设置很重要：</p>
+<ul>
+<li>选择3D窗口使3D预设和设置在右侧面板上可见</li>
+<li>首先使用主控制选择渲染样式</li>
+<li>使用左侧的直方图进行细化</li>
+<li>选择实体渲染样式以获得更好的可视化效果</li>
+</ul>
+<h2>创建2D切片视频 [00:01:54]</h2>
+<p>2D切片视频允许浏览数据的切片：</p>
+<ol>
+<li>使用窗口调平选项卡和区域框正确对比感兴趣区域</li>
+<li>在感兴趣区域上拖动以设置对比度</li>
+<li>根据需要调整方向（水平/垂直）以获得更好的视图</li>
+<li>创建切片视频：</li>
+<li>转到场景视图属性并关闭文本注释和图例（如果需要）</li>
+<li>导航到2D动画选项卡</li>
+<li>设置起始和结束切片编号（例如，从切片200到300）</li>
+<li>点击播放以在Dragonfly窗口中预览动画</li>
+<li>录制视频：</li>
+<li>选择录制选项</li>
+<li>选择保存文件的位置</li>
+<li>选择所需格式（AVI或其他）</li>
+<li>根据需要调整影片质量设置</li>
+</ol>
+<p>生成的2D切片视频将重现查看器中可见的所有内容，包括缩放级别和对比度设置。</p>
+<h2>为3D视频准备数据 [00:04:09]</h2>
+<p>对于3D视频，您可以创建更复杂的可视化：</p>
+<h3>设置裁剪</h3>
+<ol>
+<li>转到主选项卡底部的形状工具</li>
+<li>创建用于裁剪的框</li>
+<li>通过点击手柄并用鼠标左键移动来调整3D中的框</li>
+<li>在2D窗口中，使用按钮将边缘拖到所需位置</li>
+<li>激活裁剪：</li>
+<li>点击框</li>
+<li>转到形状属性</li>
+<li>选择图像通道（变色龙头部）</li>
+<li>启用裁剪</li>
+<li>选择是裁剪内部还是外部</li>
+</ol>
+<h3>为骨骼创建分割</h3>
+<p>要将骨骼与主结构分开可视化：</p>
+<ol>
+<li>使用手动阈值方法创建手动分割</li>
+<li>命名分割（例如，"骨骼"）</li>
+<li>启用3D可视化</li>
+<li>为了更好地渲染骨骼：</li>
+<li>转到分段选项卡</li>
+<li>创建网格以获得更好的渲染效果</li>
+<li>根据需要调整平滑度</li>
+<li>自定义外观：</li>
+<li>使骨骼更白</li>
+<li>调整对比度设置以获得更好的可视化效果</li>
+</ol>
+<h3>设置背景</h3>
+<p>在开始视频之前，设置适当的背景：<br />
+- 选择从上到下渐变的深蓝色背景<br />
+- 这有助于为可视化提供3D上下文</p>
+<h2>使用电影制作工具创建3D视频 [00:11:54]</h2>
+<p>电影制作工具允许创建复杂的3D动画：</p>
+<ol>
+<li>右键点击3D窗口并选择"显示电影制作工具"</li>
+<li>
+<p>注意：在退出时，电影制作模式中所做的任何更改都将丢失，因此请事先准备好一切</p>
+</li>
+<li>
+<p>通过以下方式设置关键帧：</p>
+</li>
+<li>为第一帧定位模型</li>
+<li>通过点击"添加关键帧"按钮添加关键帧</li>
+<li>移动到新位置（旋转、缩放等）</li>
+<li>添加另一个关键帧</li>
+<li>
+<p>每个关键帧可以设置在特定时间发生</p>
+</li>
+<li>
+<p>变色龙可视化的示例序列：</p>
+</li>
+<li>第一个关键帧：侧视图，放大</li>
+<li>第二个关键帧：旋转至直立</li>
+<li>第三个关键帧：完成旋转</li>
+<li>第四个关键帧：开始裁剪以显示内部结构</li>
+<li>第五个关键帧：更改不透明度设置以更好地查看骨骼特征</li>
+<li>
+<p>最后一个关键帧：更改骨骼着色以获得戏剧性效果</p>
+</li>
+<li>
+<p>通过将关键帧拖得更远来调整时间，使过渡更慢</p>
+</li>
+<li>
+<p>通过点击播放按钮预览动画</p>
+</li>
+<li>
+<p>导出动画：</p>
+</li>
+<li>点击"导出动画"按钮</li>
+<li>设置视频尺寸（1920×1080为高清）</li>
+<li>指定持续时间</li>
+<li>
+<p>以适当的名称保存为视频文件</p>
+</li>
+<li>
+<p>要退出电影制作模式，右键点击3D窗口并选择"关闭电影制作工具"</p>
+</li>
+</ol>
+<h2>高级可视化技术 [00:22:24]</h2>
+<p>对于更复杂的可视化：</p>
+<ul>
+<li>使用多个裁剪框来显示特定的感兴趣区域</li>
+<li>对不同结构（骨骼与软组织）应用不同的裁剪设置</li>
+<li>将网格与体积渲染一起可视化</li>
+<li>更改颜色查找表以获得戏剧性效果</li>
+<li>调整透明度设置以显示内部结构</li>
+</ul>
+<p>请注意，当同时可视化许多ROI和图像时，渲染性能可能受到图形硬件的限制，因此尽量限制同时可视化的内容。</p>
+<h2>结论 [00:24:06]</h2>
+<p>在Dragonfly中创建视频是展示数据和发现的强大方式。无论是制作简单的2D切片视频还是具有多种结构和裁剪平面的复杂3D动画，该软件都提供了灵活的工具来创建专业的可视化效果。请记住在进入电影制作模式之前准备好数据和设置，并利用关键帧在不同视图和渲染样式之间创建平滑过渡。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=eHEuIIE-NQY">July 2022 Workshop Video 13: Video maker using chameleon head</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 20:20:30 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/eHEuIIE-NQY"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

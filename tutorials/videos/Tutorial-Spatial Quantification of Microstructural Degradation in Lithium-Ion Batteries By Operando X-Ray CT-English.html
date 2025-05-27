@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spatial Quantification of Microstructural Degradation in Lithium-Ion Batteries By Operando X-Ray CT - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Spatial Quantification of Microstructural Degradation in Lithium-Ion Batteries By Operando X-Ray CT - (English)</h1>
+        <p>Eva's research examines microstructural degradation in lithium-ion batteries using in-operando X-ray tomography, revealing how high-rate charging affects battery performance through void formation and electrode thickness changes that impact battery capacity and longevity.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to Lithium-Ion Batteries [00:02:04]</h2>
+<p>Climate change is primarily driven by CO2 emissions, which have risen approximately 600% since the Industrial Revolution and quadrupled between 1990 and 2019, reaching over 35 billion tons of emissions. When examining the sources of these emissions:</p>
+<ul>
+<li>73.2% come from the energy sector alone</li>
+<li>16.2% specifically from the transportation sector</li>
+</ul>
+<p>To reduce these emissions, we need to turn to renewable energy sources and expand the commercial electric vehicle market. This requires energy storage devices capable of undergoing reversible charge and discharge processes with long cycle life.</p>
+<p>Lithium-ion batteries offer several advantages over other rechargeable energy storage devices:<br />
+- Higher energy density<br />
+- Higher power density<br />
+- Longer cycle life</p>
+<p>While lithium-ion technology is approaching the capabilities of combustion engine vehicles, there is still significant progress needed to fully meet those metrics.</p>
+<h2>Internal Processes of Lithium-Ion Batteries [00:03:22]</h2>
+<p>The charge-discharge process in lithium-ion batteries is controlled by the movement of lithium ions within the cell. During discharge:</p>
+<ol>
+<li>Lithium ions deintercalate from the graphite anode structure</li>
+<li>Ions diffuse through the electrolyte (a salt solution that is ionically conductive but not electronically conductive)</li>
+<li>Ions flow through an ionically permeable membrane</li>
+<li>Ions intercalate into the cathode structure</li>
+</ol>
+<p>Since the electrolyte is electronically insulating, electrons must travel through an external circuit:<br />
+- From the anode through the copper current collector<br />
+- Through the device being powered<br />
+- To the aluminum current collector at the cathode where they recombine with lithium ions</p>
+<p>Battery performance is evaluated through galvanostatic cycling, applying a constant current while measuring voltage and capacity. The discharge process is spontaneous, governed by the Gibbs free energy equation. The C-rate defines the reaction rate - for example, a 2C rate means a two-hour charge and two-hour discharge cycle.</p>
+<h2>Microstructural Challenges in Lithium-Ion Batteries [00:05:11]</h2>
+<p>Lithium-ion batteries present interesting microscopy challenges across different scales. Focusing on the cathode structure:</p>
+<ul>
+<li>Cathode materials are spherical polycrystalline agglomerates</li>
+<li>Primary particles (approximately 500 nanometers) are agglomerated into dense secondary structures</li>
+<li>These are optimized to improve energy density</li>
+<li>Secondary particles are mixed with conductive carbon (to enhance electronic conductivity) and polymer binder (to hold everything together)</li>
+<li>This mixture is cast onto a current collecting foil and assembled into the battery stack</li>
+</ul>
+<p>The battery has two distinct pathways:<br />
+1. Electron flow through solid components (conductive binder matrix into the crystal structure)<br />
+2. Lithium ion flow through the pore network via the electrolyte</p>
+<p>These pathways must work in combination reversibly. At the electrode scale, the current collector serves as the main electron source, while the path and tortuosity of lithium ion flow is critical.</p>
+<p>The microstructures at these different length scales significantly influence:<br />
+- Cycling kinetics<br />
+- Rate capability<br />
+- Initial capacity<br />
+- Cycle life</p>
+<h2>Challenges for Electric Vehicle Adoption [00:07:16]</h2>
+<p>To achieve widespread electric vehicle adoption, we must overcome issues such as consumer range anxiety - how far can a vehicle travel on a single charge? One approach is reducing refueling times to be more comparable with combustion engines.</p>
+<p>The US Advanced Battery Consortium has established goals for 2023, including batteries capable of:<br />
+- 15-minute charge time<br />
+- 80% pack capacity retention</p>
+<p>However, faster charging rates (such as 3C, which is a 20-minute charge-discharge cycle) can be detrimental to the microstructures within batteries, causing:</p>
+<ol>
+<li>At the secondary particle scale:</li>
+<li>Particle fracture due to anisotropic volume changes</li>
+<li>Strain that propagates through the structure, cracking particles</li>
+<li>New interfaces with the electrolyte causing irreversible reactions</li>
+<li>
+<p>Reduced battery capacity due to lithium consumption</p>
+</li>
+<li>
+<p>At the electrode scale:</p>
+</li>
+<li>Void formation within the binder matrix</li>
+<li>Disconnection between active cathode material and conductive binder</li>
+<li>Electronic isolation of material, reducing capacity</li>
+<li>Potential delamination of the electrode coating from the current collector</li>
+</ol>
+<h2>Experimental Approach [00:09:35]</h2>
+<p>This study aims to pinpoint areas of void formation and microstructural degradation within an 18650 battery. The 18650 format consists of:<br />
+- Dual-coated cathodes on a current collector<br />
+- Porous separator<br />
+- Dual-coated anode structure<br />
+- Components wound in a spiral and placed in the cylindrical cell</p>
+<p>The research used micro-computed tomography conducted at the Advanced Photon Source at Argonne National Laboratory. The high-energy X-rays allowed imaging of a small portion of the intact battery during cycling, collecting multiple tomograms across charge-discharge cycles. The battery underwent a higher rate of charge and lower rate of discharge.</p>
+<h2>Data Analysis Methods [00:13:24]</h2>
+<p>Semantic segmentation was used to fully quantify the tomography data. The grayscale data from X-ray slices showed many overlapping intensity values, making manual segmentation impractical (approximately 20 minutes per slice for 20-30 segments per slice).</p>
+<p>The deep learning segmentation method identified:<br />
+- Cathode composite (secondary cathode materials, conductive binder matrix)<br />
+- Cathode voids (formed within the conductive binder matrix)<br />
+- Aluminum current collector<br />
+- Anode structure (graphite)<br />
+- Anode voids<br />
+- Copper current collector</p>
+<p>Only 17 slices of data across the operando dataset were needed to train the model, with automated application taking approximately one hour per new tomogram.</p>
+<p>After segmentation, Euclidean distance mapping was used to identify void locations within electrode layers. This technique:<br />
+- Uses a segmentation reference point (one component)<br />
+- Creates a 3D gradient map where increasing distance from the reference point corresponds to increasing pixel color<br />
+- Normalizes pixel color to pixel spacing for distance measurement</p>
+<p>This approach was used to identify voids within electrode layers and has also been applied to single particle research with nanotomography and elemental-specific tomography.</p>
+<h2>Model Evaluation [00:17:31]</h2>
+<p>The segmentation model was evaluated using:<br />
+- Intersection of Union score<br />
+- F1 scores<br />
+- Other common deep learning segmentation error metrics</p>
+<p>Error maps were created to show the position of false positives and false negatives compared to ground truth data. The model performed well with minor errors primarily at the boundaries of segmentation components, allowing for adjustment of measurements based on this information.</p>
+<p>The cathode voids class performed slightly worse due to having the least number of pixels associated with it.</p>
+<h2>Electrode Thickness Measurement [00:18:27]</h2>
+<p>An unexpected benefit of the analysis was the ability to measure electrode thickness, which provides an indirect observation of capacity retention and reversibility of charge-discharge processes. As lithium ions intercalate, expansion occurs; as they deintercalate, contraction follows.</p>
+<p>Traditional dilatometry uses externally measured setups with soft-walled pouch cells, allowing measurement of only one electrode component at a time. Using Euclidean distance mapping with micro-computed tomography enables:</p>
+<ul>
+<li>Measurement of both anode and cathode thickness simultaneously</li>
+<li>Deconvolution of their respective contributions</li>
+<li>Analysis of complex cell architectures like 18650 cells or hard-walled designs</li>
+</ul>
+<p>The current collectors, sandwiched between layers, serve as reference points for calculating the Euclidean distance transform gradient map. This approach follows the contour of the spirally wound cell, and using mean distance values helps negate errors around segmentation boundaries.</p>
+<h2>Results: Electrode Expansion and Contraction [00:20:14]</h2>
+<p>The dilatometry results clearly show anode and cathode expansion/contraction patterns:</p>
+<p>For the anode structure during early cycling (3rd-4th charge):<br />
+- Contraction of approximately 3.7% upon discharge<br />
+- Return to 99.95% of original thickness upon charge<br />
+- High reversibility even in later cycles (80th-82nd charge), despite capacity reduction to 80%</p>
+<p>Dilation plateaus were observed, confirming the resolution of this measurement technique. These plateaus correspond to different staging compounds in the graphite anode, defined by the amount of lithium in the structure.</p>
+<p>The cathode structure showed:<br />
+- More noise in the data<br />
+- Expansion/contraction in the reverse relationship to the anode<br />
+- Noise partially due to anisotropic volume changes (expansion in the C-axis but contraction in the B-axis)<br />
+- Less clear trends compared to the graphite structure's linear expansion</p>
+<h2>Void Formation Analysis [00:22:32]</h2>
+<p>Visual comparison showed clear texture differences between the as-received state and the 80-82nd charge state, with an increase in voids. Using Euclidean distance mapping revealed:</p>
+<p>For anode voids:<br />
+- Strong localization of higher volume voids within the first 5-10 microns from the current collector<br />
+- Growth of these localizations with further cycling, suggesting potential delamination<br />
+- Increase in voids along the body of the coating with continued cycling<br />
+- Expansion and contraction of the void network corresponding with electrode expansion/contraction</p>
+<p>For cathode voids:<br />
+- Decrease in initial voids from 0.97% to 0.4%, opposite to the anode relationship<br />
+- More even distribution of voids along the entire coating body<br />
+- The cathode structure is optimized to have initial porosity, and particle cracking appears to reorder the structure and fill initial voids<br />
+- This reordering could impede lithium ionic transport<br />
+- Overall increase in voids across the entire body with cycling<br />
+- Expansion and contraction of the void network with the electrode layers</p>
+<h2>Conclusion [00:24:23]</h2>
+<p>The study demonstrated several significant findings:</p>
+<ul>
+<li>The ability to track dilatometry trends in hard-wall cell architectures, providing more freedom than previous methods</li>
+<li>This will be particularly valuable for research on higher-density battery materials like silicon, which expands to a much greater extent than graphite</li>
+<li>Highly reversible expansion and contraction of anode layers</li>
+<li>Overall decrease in cathode voids with a corresponding increase in anode voids upon cycling</li>
+<li>Higher localization of voids within anode layers close to the current collector, suggesting potential delamination</li>
+<li>Dispersed distribution of cathode voids throughout cycling</li>
+</ul>
+<p>These findings provide valuable insights into the microstructural changes occurring during high-rate cycling of lithium-ion batteries, which can inform the development of more durable and efficient battery designs for electric vehicles.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=gxy0CWcJYM0">Spatial Quantification of Microstructural Degradation in Lithium-Ion Batteries By Operando X-Ray CT</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 08:30:24 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/gxy0CWcJYM0"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

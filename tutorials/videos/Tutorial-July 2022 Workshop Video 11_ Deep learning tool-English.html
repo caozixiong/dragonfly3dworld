@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 2022 Workshop Video 11: Deep learning tool - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July 2022 Workshop Video 11: Deep learning tool - (English)</h1>
+        <p>This video demonstrates how to use Dragonfly's deep learning tool for image segmentation, showing the process of creating a multi-ROI ground truth, training a U-Net model to identify fiber types in denim material, and applying the trained model to segment new data.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to Deep Learning Tool [00:00:03]</h2>
+<p>This tutorial covers the traditional deep learning tool in Dragonfly, which offers more control over parameters compared to the Segmentation Wizard. We'll use denim fibers as an example to train a segmentation model with three classes: background, small fibers, and large fibers.</p>
+<h2>Preparing Ground Truth Data [00:01:05]</h2>
+<p>Unlike the Segmentation Wizard, the deep learning tool requires pre-labeled data. To begin:</p>
+<ol>
+<li>Go to the segmentation tab and create a new multi-ROI</li>
+<li>Set up three classes: background, small fibers, and large fibers</li>
+<li>Name this multi-ROI "ground truth"</li>
+</ol>
+<p>You can customize the colors for better visualization:<br />
+- Make red represent large fibers<br />
+- Blue for background<br />
+- Yellow/orange for small fibers</p>
+<h2>Painting the Ground Truth [00:02:01]</h2>
+<p>Use the segmentation tools to paint your ground truth data:</p>
+<ul>
+<li>Use the Otsu brush to select fibers</li>
+<li>Hold the Control button while left-clicking and dragging to paint</li>
+<li>Use Shift to remove incorrectly painted areas</li>
+<li>Zoom in for more precise painting</li>
+<li>For background, use the "add all unlabeled voxels to class" option</li>
+</ul>
+<p>It's important to be careful and precise when creating your ground truth data. Take time to fix any mistakes in your segmentation.</p>
+<h2>Setting Up the Training Frame [00:06:18]</h2>
+<p>After painting your ground truth, you need to:</p>
+<ol>
+<li>Define which slice is painted (either by defining a range or using a brush)</li>
+<li>Select a monitoring frame in the main tab - this will be used to visualize progress during training</li>
+</ol>
+<p>While it's recommended to use multiple slices for training (typically three), this example uses just one slice for simplicity.</p>
+<h2>Creating a New Deep Learning Model [00:07:46]</h2>
+<p>To set up the deep learning model:</p>
+<ol>
+<li>Click on the data and go to the deep learning tool</li>
+<li>Select "Create a new deep learning tool" (not "Add to existing model")</li>
+<li>Choose the model architecture - we'll use U-Net, which is the most widely used segmentation model</li>
+<li>Select "2.5D" to use some 3D context (looking at slices before and after)</li>
+<li>Generate the model architecture</li>
+</ol>
+<h2>Configuring the Model [00:08:39]</h2>
+<p>After generating the model:</p>
+<ol>
+<li>Verify the class count matches your multi-ROI (three in this case)</li>
+<li>Make sure the class names and colors are consistent with your ground truth</li>
+<li>Configure the input (denim image channel) and output (ground truth)</li>
+<li>Set the mask to use for training</li>
+</ol>
+<h2>Setting Up Augmentation and Training [00:09:46]</h2>
+<p>Augmentation is crucial for improving model performance:</p>
+<ul>
+<li>Increase augmentation to generate additional training data</li>
+<li>The system will flip, stretch, and add noise to your data</li>
+<li>Set up validation parameters</li>
+<li>Select the visual feedback frame for monitoring progress</li>
+</ul>
+<h2>Training Process [00:10:29]</h2>
+<p>Once training begins, you can observe the model's progress:</p>
+<ul>
+<li>Even after the first epoch, the model begins separating air from fibers</li>
+<li>By the second epoch, it starts identifying small fibers</li>
+<li>The model continues to improve with each epoch</li>
+</ul>
+<p>It's recommended to train for longer periods, especially if your data varies across the object (e.g., brightness differences or fibers with different orientations). Even if results look good on the preview frame, continued training improves performance on other areas of the data.</p>
+<h2>Applying the Trained Model [00:13:56]</h2>
+<p>After training is complete:</p>
+<ol>
+<li>Save your model with a descriptive name</li>
+<li>To use the model, select "Segment with AI" from the artificial intelligence menu</li>
+<li>Choose your saved model</li>
+<li>You can preview the results on a single slice or apply to the entire dataset</li>
+</ol>
+<p>The model can effectively identify both large and small fibers throughout the dataset, even with minimal training data.</p>
+<h2>Conclusion [00:17:34]</h2>
+<p>The deep learning tool provides more freedom and control compared to the Segmentation Wizard, though both can achieve equally good results. The deep learning tool is particularly useful for:</p>
+<ul>
+<li>Expert users who need more parameter control</li>
+<li>Creating segmentations outside the Segmentation Wizard workflow</li>
+<li>Working with imported segmentations from other sources</li>
+</ul>
+<p>While this tutorial demonstrated a segmentation model, the next video will cover image-to-image regression models.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=k9VjbwJUGe8">July 2022 Workshop Video 11: Deep learning tool</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 18:42:50 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/k9VjbwJUGe8"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

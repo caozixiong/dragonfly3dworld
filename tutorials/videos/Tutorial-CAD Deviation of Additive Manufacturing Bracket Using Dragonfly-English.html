@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAD Deviation of Additive Manufacturing Bracket Using Dragonfly - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>CAD Deviation of Additive Manufacturing Bracket Using Dragonfly - (English)</h1>
+        <p>This tutorial demonstrates how to align a mesh to CT scan data and perform a CAD deviation analysis in Dragonfly software, showing the process of creating a contour mesh, aligning it with the design file, and generating a color-coded deviation map to visualize differences between the manufactured part and its design.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to Mesh Alignment and CAD Deviation Analysis [00:00:03]</h2>
+<p>This tutorial demonstrates how to align a mesh to a CT data set and perform a CAD deviation analysis (part-to-design comparison) in Dragonfly. We'll align a bracket with its design file to analyze how well the actual part compares with the design specifications.</p>
+<h2>Understanding the Initial Data [00:00:29]</h2>
+<p>The starting point includes:<br />
+- CT image data of a bracket (visible in quad view)<br />
+- A design file (STL mesh) that is not aligned with the CT data<br />
+- The design file is named "stub axle support"</p>
+<p>For deviation analysis, we need to work with meshes - both the design mesh and a mesh created from the CT scan.</p>
+<h2>Creating a Mesh from the CT Data [00:01:23]</h2>
+<p>To create a mesh from the CT scan:</p>
+<ol>
+<li>Go to the segmentation tab</li>
+<li>Select <code>Define Range Upper OTSU</code> for automatic thresholding</li>
+<li>This finds the optimal threshold value for defining the material (31473 in this example)</li>
+<li>Right-click on the image channel and select <code>Generate Contour Mesh</code></li>
+<li>Use a threshold value close to the OTSU value (31450)</li>
+<li>Optionally downsample to create a smaller mesh</li>
+</ol>
+<p>The result is a contour mesh representing the surface of the scanned bracket. The white line visible in the image view represents the sub-voxel determined surface.</p>
+<h2>Aligning the Meshes [00:03:13]</h2>
+<p>To align the contour mesh with the design mesh:</p>
+<ol>
+<li>First, perform a basic alignment:</li>
+<li>Select <code>Align Centroid</code> to bring the objects closer together</li>
+<li>
+<p>This aligns the centers of the objects as a first step</p>
+</li>
+<li>
+<p>Perform manual alignment:</p>
+</li>
+<li>Use the <code>Translate Rotate</code> tool on the contour mesh</li>
+<li>Manually adjust the position to get a rough alignment</li>
+<li>
+<p>Press the Escape key to exit this mode when finished</p>
+</li>
+<li>
+<p>Perform automatic registration:</p>
+</li>
+<li>Use the mesh registration tool to align the contour mesh to the design</li>
+<li>Apply the default parameters</li>
+<li>This completes the fine alignment automatically</li>
+</ol>
+<p>If needed, you can also align the original image data to match the aligned mesh:<br />
+- Right-click on the image<br />
+- Select <code>Modify</code> &gt; <code>Transform</code> &gt; <code>Apply Transformation From</code><br />
+- Choose the contour mesh transformation</p>
+<h2>Creating a Deviation Map [00:05:54]</h2>
+<p>Once the meshes are aligned, create a deviation map to visualize differences:</p>
+<ol>
+<li>Select the design mesh (stub axle support)</li>
+<li>Apply a mesh deviation map</li>
+<li>
+<p>This compares the two meshes to identify deviations</p>
+</li>
+<li>
+<p>Adjust the visualization:</p>
+</li>
+<li>In the 3D view, change the design mesh to wireframe display</li>
+<li>Adjust the color and thickness for better visibility</li>
+<li>This makes it easier to see where the actual part deviates from the design</li>
+</ol>
+<h2>Customizing the Deviation Display [00:07:04]</h2>
+<p>To improve the visualization of deviations:</p>
+<ol>
+<li>Click on the color mapping</li>
+<li>
+<p>Change to a temperature color map for better contrast</p>
+</li>
+<li>
+<p>Adjust the measurement range:</p>
+</li>
+<li>Right-click and select <code>Measurement Inspector</code></li>
+<li>Set a custom range (e.g., -0.5mm to 0.5mm)</li>
+<li>Ensure "Hide out of range measurements" is unchecked to see all deviations</li>
+</ol>
+<p>With these settings, you can easily identify:<br />
+- Blue areas: where the actual part extends beyond the design<br />
+- Red areas: where the actual part is smaller than the design</p>
+<p>You can also flip the colors if needed for better visualization.</p>
+<h2>Conclusion [00:08:14]</h2>
+<p>This tutorial has demonstrated how to:<br />
+- Create a mesh from CT scan data<br />
+- Align a scanned mesh with a design mesh<br />
+- Generate a color-coded deviation map<br />
+- Customize the visualization for better analysis</p>
+<p>This process allows for detailed comparison between manufactured parts and their design specifications, helping to identify manufacturing issues or deviations.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=PPvPB7cdyKE">CAD Deviation of Additive Manufacturing Bracket Using Dragonfly</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-23 00:45:54 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/PPvPB7cdyKE"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

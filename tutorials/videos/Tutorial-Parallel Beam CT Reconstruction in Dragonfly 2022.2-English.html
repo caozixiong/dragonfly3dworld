@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallel Beam CT Reconstruction in Dragonfly 2022.2 - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Parallel Beam CT Reconstruction in Dragonfly 2022.2 - (English)</h1>
+        <p>This tutorial demonstrates how to reconstruct parallel beam CT data using the city reconstruction plugin in Dragonfly, highlighting the key differences from cone beam reconstruction and walking through the essential parameters and algorithms required for successful parallel beam dataset processing.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Reconstructing Parallel Beam CT Data Using City Reconstruction Plugin in Dragonfly</h1>
+<h2>Introduction [00:00:05]</h2>
+<p>This tutorial demonstrates how to reconstruct parallel beam CT data using the City Reconstruction plugin in Dragonfly. While the process shares similarities with cone beam reconstruction, this guide focuses on the specific differences between the two methods.</p>
+<h2>Loading the Parallel Beam Dataset [00:00:42]</h2>
+<p>First, load your parallel beam dataset. In this example, we'll use a fiber-reinforced ceramic composites dataset shared by Ali Bejran from the University of Toronto. This dataset was acquired on a single-chrome parallel beam's macro-seated beamline.</p>
+<p>The example dataset has:<br />
+- 1025 projections<br />
+- 400 slices (cropped for this tutorial)</p>
+<p>When viewing the dataset, ensure that:<br />
+- The detector plane is on the XY plane<br />
+- The rotation axis is along the Y axis</p>
+<h2>Starting the City Reconstruction Plugin [00:02:06]</h2>
+<ol>
+<li>Navigate to the Workflows menu and start the City Reconstruction plugin</li>
+<li>Select your raw data as the projection dataset</li>
+</ol>
+<h2>Setting Geometry Parameters [00:02:29]</h2>
+<p>For parallel beam datasets, the geometry parameters differ from cone beam reconstruction:</p>
+<ol>
+<li>Select <code>Parallel Beam</code> as the beam type</li>
+<li>Set the minimum angle (typically 0)</li>
+<li>Set the angle step (for our dataset with 1025 projections over 180 degrees, the angle step is 0.1756)</li>
+<li>Set detector spacing along X and Y (typically 1)</li>
+</ol>
+<p><strong>Important note about rotation center offset:</strong><br />
+- The rotation center offset is typically given in pixels<br />
+- To calculate real values, multiply the pixel value by the detector spacing<br />
+- For our dataset, the rotation center offset is -107 mm with detector spacing of 1 mm</p>
+<h2>Choosing Reconstruction Algorithm [00:04:22]</h2>
+<p>There are several algorithm options available:</p>
+<h3>RTK Options</h3>
+<ul>
+<li>Select the RTK-FDK algorithm</li>
+<li>Set the mask ratio (default is 0.9)</li>
+<li>A mask ratio of 1 means no mask is applied</li>
+<li>Lower values crop the central cylinder region and remove edge background</li>
+</ul>
+<h3>ThermalPipe Reconstruction Engine</h3>
+<p>Two algorithm options are available:<br />
+1. <strong>Grade Rig</strong><br />
+   - Choose your preferred filter</p>
+<ol>
+<li><strong>ART (Iterative Algorithm)</strong></li>
+<li>Set the number of iterations</li>
+<li>Note: This method typically takes longer to process</li>
+</ol>
+<p>For most reconstructions, RTK-FDK or ThermalPipe Grade Rig are recommended for their efficiency.</p>
+<h2>Pre-processing Options [00:05:55]</h2>
+<p>Typically for parallel beam datasets, flat field correction is required. Pre-processing filters will be covered in a separate tutorial.</p>
+<h2>Computing Preview and Reconstruction [00:06:24]</h2>
+<ol>
+<li>Click <code>Compute Preview</code> to generate a preview of the reconstruction</li>
+<li>This process is very fast for parallel beam data</li>
+<li>
+<p>The preview will show the effect of the mask ratio, cropping out background edges</p>
+</li>
+<li>
+<p>To perform the full reconstruction:</p>
+</li>
+<li>If you closed the City Reconstruction plugin but want to use the same parameters, open the City Reconstruction beta version</li>
+<li>Use <code>Import Inputs from Preview</code> to restore your settings</li>
+<li>Click <code>Reconstruct</code> to process the full volume</li>
+</ol>
+<h2>Examining the Reconstruction Results [00:08:59]</h2>
+<p>After reconstruction is complete:<br />
+- All 400 slices will be reconstructed<br />
+- View the X-Z plane to see the fibers<br />
+- Examine the reconstruction quality</p>
+<p>Note that without pre-processing filters like flat field correction, the reconstruction may show artifacts. In the XY plane, you might observe ring artifacts that can be improved with appropriate pre-processing.</p>
+<h2>Conclusion [00:09:48]</h2>
+<p>This tutorial covered the basic process for reconstructing parallel beam CT data using the City Reconstruction plugin in Dragonfly. The key differences from cone beam reconstruction include:<br />
+- Simpler geometry parameters<br />
+- Different algorithm options<br />
+- Specific pre-processing requirements</p>
+<p>For optimal image quality, additional pre-processing filters should be applied to remove artifacts, which will be covered in a separate tutorial.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=o7AP2Q4Rhw4">Parallel Beam CT Reconstruction in Dragonfly 2022.2</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 13:26:17 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/o7AP2Q4Rhw4"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

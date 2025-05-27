@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bone MicroCT Data - a Case Study with Pre-trained Models in Dragonfly</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Bone MicroCT Data - a Case Study with Pre-trained Models in Dragonfly</h1>
+        <p>This case study examines how pre-trained models can be leveraged within the Dragonfly software to enhance bone microCT data segmentation. Presenter Huber demonstrates the practical benefits of transfer learning for improving segmentation tasks.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Key Benefits of Pre-trained Models</h2>
+<ul>
+<li><strong>Improved Performance</strong>: Pre-trained models consistently achieve higher Dice scores compared to untrained models [00:07:14]</li>
+<li><strong>Faster Convergence</strong>: These models reach optimal accuracy levels more rapidly during the training process [00:09:41]</li>
+<li><strong>Reduced Training Time</strong>: Utilizing pre-existing knowledge significantly accelerates training [00:04:32]</li>
+</ul>
+<h2>Step-by-Step Implementation Guide</h2>
+<ol>
+<li><strong>Access the Deep Learning Tool</strong> in Dragonfly's interface [00:15:40]</li>
+<li><strong>Create a New Model</strong> by initiating the deep learning model creation process [00:15:49]</li>
+<li><strong>Select a Pre-trained Model</strong> from the "Pre-trained by Dragonfly Team" section [00:16:09]<ul>
+<li>Available options include:<ul>
+<li>U-Net with various depths [00:16:09]</li>
+<li>Sensor3D [00:16:15]</li>
+<li>ORS 500k (trained on diverse scientific data) [00:05:04]</li>
+<li>Bone 500k (specialized for grayscale bone images) [00:05:11]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Data Calibration (Optional)</strong>: For multi-source datasets, use the "Calibrate Intensity Scale" tool to normalize intensity values [00:11:09]</li>
+<li><strong>Train the Model</strong> using your specific dataset for semantic segmentation [00:04:24]</li>
+</ol>
+<h2>Data Calibration Importance</h2>
+<ul>
+<li>The "Calibrate Intensity Scale" tool is essential when working with datasets from different sources [00:11:09]</li>
+<li>This approach allows training without requiring dataset normalization, preserving original image data [00:11:44]</li>
+<li>Users can define custom scales (e.g., "Centigrade" scale for bone density) or use universal scales [00:12:53]</li>
+</ul>
+<h2>Universal Bone Segmentation Model</h2>
+<ul>
+<li>A universal model for unsupervised bone segmentation across different species and voxel sizes is under development [00:16:47]</li>
+<li>This model aims to streamline workflows, allowing users to focus on scientific analysis rather than manual segmentation [00:17:09]</li>
+<li>Data calibration plays a crucial role in ensuring the model's scalability across diverse datasets [00:17:56]</li>
+</ul>
+<h2>Technical Details from Discussion</h2>
+<ul>
+<li><strong>Model Selection</strong>: The optimal pre-trained model depends on specific application requirements and dataset characteristics [00:42:47]</li>
+<li><strong>Patch Size</strong>: Experiments utilized a patch size of 128×128 [00:48:16]</li>
+<li><strong>Validation Approach</strong>: Consistent validation datasets were maintained across different training set sizes to ensure fair comparisons [00:47:07]</li>
+<li><strong>Calibration Differences</strong>: The Bone 500k model is calibrated, while the ORS 500k model is not [00:36:30]</li>
+</ul>
+<h2>Conclusion</h2>
+<p>Pre-trained models offer significant advantages for bone microCT data segmentation in Dragonfly. Users are encouraged to experiment with different models and provide feedback to enhance capabilities. The development of a universal bone segmentation model promises to simplify bone analysis workflows across varied research contexts. [00:19:11]</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <p>Dragonfly YouTube Channel : <a href="https://www.youtube.com/@dragonfly_software" target="_blank">https://www.youtube.com/@dragonfly_software</a></p>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/63li5pUElh4" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

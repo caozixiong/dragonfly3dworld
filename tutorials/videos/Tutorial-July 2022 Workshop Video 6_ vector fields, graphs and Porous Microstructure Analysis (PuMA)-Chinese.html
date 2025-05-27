@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>中文翻译</h1>
+<h2>矢量场和PUMA插件介绍 [00:00:03]</h2>
+<p>本教程演示了Dragonfly中的几个关键工具，包括矢量场和多孔网络微结构分析(PUMA)插件。我们将使用人类松质骨数据和人工生成的多孔材料来探索这些工具。</p>
+<h2>松质骨的局部厚度映射 [00:01:02]</h2>
+<p>局部厚度映射对骨骼分析特别有用。这建立在之前课程的概念基础上，但有更有趣的应用。</p>
+<ol>
+<li>导入人类股骨的预分割感兴趣区域</li>
+<li>创建松质骨的子采样和平滑的厚度图</li>
+<li>通过点击可视化按钮来可视化厚度图</li>
+</ol>
+<p>要在3D中正确查看厚度图：<br />
+- 转到布局视图 &gt; 四视图<br />
+- 点击3D窗口查看骨骼结构可视化</p>
+<h3>自定义厚度图显示</h3>
+<p>厚度图可以通过两种方式自定义：<br />
+- 直接点击查找表以更改配色方案<br />
+- 右键单击并选择测量检查器以修改范围</p>
+<p>在测量检查器中：<br />
+- 调整范围值以关注特定厚度值<br />
+- 尝试将范围从1×10⁻⁵调整到5×10⁻⁵，以更好地可视化分布</p>
+<p>为了更好的可视化：<br />
+- 尝试不同的查找表（例如，"温度"）<br />
+- 使用翻转按钮反转颜色表（使最薄部分为红色，最厚部分为蓝色）</p>
+<h2>矢量场计算和可视化 [00:04:56]</h2>
+<p>矢量场有助于可视化骨骼结构的方向性。</p>
+<p>从各向异性创建矢量场：<br />
+1. 选择感兴趣区域<br />
+2. 转到创建映射 &gt; 计算各向异性<br />
+3. 选择"创建各向异性矢量场"<br />
+4. 设置适当的间距（较小的间距可获得更多细节）</p>
+<p>计算完成后，矢量场以箭头形式显示方向性：<br />
+- 调整箭头大小以获得更好的可见性<br />
+- 使感兴趣区域网格更透明以清晰查看矢量<br />
+- 更改颜色映射以突出显示最强矢量（红色）和最弱矢量（蓝色）</p>
+<p>矢量场显示方向性如何在感兴趣区域平滑变化，最强的方向性出现在红色部分。</p>
+<h2>创建人工多孔材料 [00:07:34]</h2>
+<p>Poor Network Modeling插件可以生成用于测试和模拟的人工多孔材料。</p>
+<p>创建随机多孔材料：<br />
+1. 转到工作流 &gt; Poor Network Modeling &gt; 生成器<br />
+2. 设置尺寸（例如，30×30×30体素）<br />
+3. 设置孔隙率（例如，60%）<br />
+4. 点击生成</p>
+<h2>PUMA插件用于微结构分析 [00:08:45]</h2>
+<p>NASA的PUMA（多孔微结构分析）插件允许对多孔材料进行各种模拟：<br />
+- 渗透性<br />
+- 曲折度（计算通过物体的路径距离）<br />
+- 热导率<br />
+- 方向检测</p>
+<p>运行渗透性模拟：<br />
+1. 选择生成的多孔材料<br />
+2. 选择模拟方向（例如，Y轴从上到下）<br />
+3. 选择模拟速度矢量<br />
+4. 计算模拟<br />
+5. 点击"发布"使结果可用</p>
+<h3>从模拟结果创建矢量场</h3>
+<p>运行模拟后：<br />
+1. 突出显示所有通道（X、Y、Z和模量）<br />
+2. 右键单击并选择"从数据集生成矢量场"<br />
+3. 验证矢量组件是否正确分配<br />
+4. 创建矢量场</p>
+<p>可视化矢量场：<br />
+- 转到主选项卡并在3D中查看矢量场<br />
+- 调整箭头大小以获得更好的可见性<br />
+- 更改颜色映射以突出显示最大流速（黄色）和最小速度（蓝色）<br />
+- 可选择仅查看最大速度<br />
+- 使材料透明以查看最大流量发生的位置</p>
+<p><strong>注意：</strong> 这些计算需要大量内存。在转向大规模数据之前，先从小数据集开始。</p>
+<h2>创建孔隙空间的图形表示 [00:12:45]</h2>
+<p>图形表示对于可视化孔隙网络非常有用。</p>
+<p>创建图形表示：<br />
+1. 使用适当的阈值处理（例如，OTSU）分割孔隙空间<br />
+2. 转到3D建模<br />
+3. 在稀疏图和密集图之间选择：<br />
+   - 稀疏图：在最大孔隙空间中放置球体，由线段连接<br />
+   - 密集图：沿曲线路径连接许多球体</p>
+<p>这些图形表示对于可视化孔隙网络非常有用，模拟的标量值可以映射到它们上面。</p>
+<h2>结论</h2>
+<p>本教程涵盖了Dragonfly中的几种高级可视化和分析技术：<br />
+- 用于骨骼分析的局部厚度映射<br />
+- 矢量场计算和可视化<br />
+- 创建人工多孔材料<br />
+- 使用PUMA插件运行模拟<br />
+- 创建孔隙网络的图形表示</p>
+<p>这些工具提供了强大的方法来分析和可视化复杂的3D结构，特别是像松质骨这样的多孔材料。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=mMOiVxYBQUo">July 2022 Workshop Video 6: vector fields, graphs and Porous Microstructure Analysis (PuMA)</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 19:05:23 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

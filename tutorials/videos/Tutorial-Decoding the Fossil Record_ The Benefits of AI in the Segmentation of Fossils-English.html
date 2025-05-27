@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decoding the Fossil Record: The Benefits of AI in the Segmentation of Fossils - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Decoding the Fossil Record: The Benefits of AI in the Segmentation of Fossils - (English)</h1>
+        <p>This presentation explores how artificial intelligence tools are being used to enhance the segmentation of fossils at the Denver Museum of Nature and Science, demonstrating that even with challenging and inconsistent fossil specimens, AI can significantly improve efficiency in extracting valuable anatomical information from CT scan data.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Decoding the Fossil Record: Benefits of AI in Fossil Segmentation [00:00:50]</h2>
+<p>This project at the Denver Museum of Nature and Science explores how AI can help segment fossils. Unlike many other specimens, fossils are typically one-offs with unique challenges requiring different segmentation strategies for each specimen. Even with challenging data, AI can be surprisingly effective.</p>
+<h2>Challenges of Segmenting Fossils [00:02:41]</h2>
+<p>Fossils present several segmentation challenges:<br />
+- Highly inconsistent appearance<br />
+- Low contrast (many fossils remain in their original rock matrix)<br />
+- Various rock types from around the world<br />
+- Different thicknesses and compression levels<br />
+- Often disarticulated with bones scattered</p>
+<p>The goal is to use AI to speed up the segmentation process, allowing researchers to process scan data faster and make difficult-to-see structures more visible.</p>
+<h2>Types of Specimens and Their Challenges [00:03:47]</h2>
+<h3>Zoological Specimens</h3>
+<ul>
+<li>Synchrotron scans of lizards and snakes</li>
+<li>Highest quality scan data</li>
+<li>Clear separation between materials</li>
+</ul>
+<h3>Prepared Fossils</h3>
+<ul>
+<li>Can see bone structures, sutures, and porosity</li>
+<li>Partially visible</li>
+</ul>
+<h3>Compression Fossils</h3>
+<ul>
+<li>Usually half-prepared with one good side and one difficult side</li>
+<li>Flattened specimens with challenging visualization</li>
+</ul>
+<h3>Coprolites (Fossil Feces)</h3>
+<ul>
+<li>Essentially rocks with broken bone material inside</li>
+<li>Valuable for diet-related research questions</li>
+</ul>
+<h3>Concretions</h3>
+<ul>
+<li>Spherical rocks formed around fossils</li>
+<li>Worst scan data with numerous artifacts</li>
+<li>Extremely challenging to segment</li>
+</ul>
+<h2>AI Approaches for Different Specimen Types [00:05:26]</h2>
+<h3>Classical Machine Learning</h3>
+<ul>
+<li>Works well for zoological specimens and clear two-material scans</li>
+<li>Faster and easier to train for simple material separation</li>
+<li>Random forest models work effectively</li>
+</ul>
+<h3>Deep Learning</h3>
+<ul>
+<li>Better for complex structures like disarticulated fossils in poor-quality data</li>
+<li>Uses variations of U-Net architecture with 5-7 layers</li>
+<li>More computationally intensive but handles difficult cases</li>
+</ul>
+<h2>Best Practices for AI Segmentation [00:06:35]</h2>
+<ul>
+<li>If unsure where to start, use the segmentation wizard</li>
+<li>Prioritize quality when creating training datasets</li>
+<li>Training 2-3 high-quality sets of about 10 frames is more effective than many mediocre sets</li>
+<li>2D models trained with multiple datasets have been faster and more effective than 3D models for fossil work</li>
+<li>Consider hardware limitations when choosing approaches</li>
+</ul>
+<h2>Applications Across Specimen Types [00:08:10]</h2>
+<h3>Zoological Specimens</h3>
+<ul>
+<li>Classical machine learning provides excellent separation</li>
+<li>Quick first-pass segmentation with minimal manual correction</li>
+</ul>
+<h3>Prepared Fossils</h3>
+<ul>
+<li>Goal is bone-by-bone segmentation</li>
+<li>Identifying sutures where bones fuse</li>
+<li>Working on methods to map sutures automatically</li>
+</ul>
+<h3>Compression Fossils</h3>
+<ul>
+<li>Deep learning captures subtle details in fish fossils</li>
+<li>30 minutes of input plus overnight training saves hours of manual work</li>
+<li>Some detail loss in artifacts, but provides valuable "lay of the land"</li>
+<li>Helps identify scattered elements in complex specimens</li>
+</ul>
+<h3>Coprolites</h3>
+<ul>
+<li>Deep learning can extract bone elements despite poor contrast</li>
+<li>Multiple classes can separate different materials</li>
+<li>Example: extracted a lobster claw from a coprolite almost exclusively with AI</li>
+</ul>
+<h3>Concretions</h3>
+<ul>
+<li>Used to identify fossils inside rocks before physical preparation</li>
+<li>Creates roadmaps for preparation</li>
+<li>Even with terrible data quality, deep learning can tag faint structures</li>
+<li>Helps ensure nothing is missed in large scans</li>
+</ul>
+<h2>Creative Solutions [00:17:14]</h2>
+<p>For specimens in plaster jackets (which look similar to bone):<br />
+- Used classical machine learning to separate the jacket from the matrix<br />
+- Created jacket ROIs and used Boolean operations to solve problems efficiently<br />
+- Combined different approaches for optimal results</p>
+<h2>Conclusion [00:17:43]</h2>
+<p>No matter how poor your data looks, get creative with AI tools. Even if they can't segment your entire project perfectly, they can still provide significant value:<br />
+- Be efficient and ruthless in training data quality<br />
+- Sometimes using different models in combination yields better results than a single approach<br />
+- Think beyond complete segmentation to how AI can assist your workflow</p>
+<p>The key takeaway is that AI segmentation can be valuable even for the most challenging fossil specimens, helping researchers work more efficiently and extract more information from difficult data.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=_Jp1V-yE_HM">Decoding the Fossil Record: The Benefits of AI in the Segmentation of Fossils</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 04:29:06 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/_Jp1V-yE_HM"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

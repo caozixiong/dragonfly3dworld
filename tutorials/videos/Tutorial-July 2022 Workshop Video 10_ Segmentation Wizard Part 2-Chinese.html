@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>中文翻译</h1>
+<h2>深度学习分割向导介绍 [00:00:04]</h2>
+<p>这是第二个分割向导视频，重点介绍如何使用深度学习对Rigaku微CT扫描的牛仔布样本进行分割。这个例子展示了深度学习在传统方法无法有效处理的分割任务中的强大能力。</p>
+<p>该样本包含大小不同的纤维，它们在视觉上可以区分，但无法使用传统的阈值或分割方法分离。这使其成为通过分割向导使用UNET模型进行深度学习分割的完美候选对象。</p>
+<h2>启动分割向导 [00:01:05]</h2>
+<p>开始流程：</p>
+<ol>
+<li>导航至<code>人工智能</code> &gt; <code>分割向导</code></li>
+<li>这将启动一个专用于分割向导的新上下文窗口</li>
+</ol>
+<h2>创建训练数据 [00:01:28]</h2>
+<p>为了训练神经网络，我们需要绘制一个或多个切片来创建基准真值数据：</p>
+<ol>
+<li>创建一个用于绘制的框架</li>
+<li>定义分割所需的类别：</li>
+<li>背景</li>
+<li>小纤维</li>
+<li>大纤维</li>
+</ol>
+<p>为了有效训练，切片中的所有像素都必须标记其适当的类别。</p>
+<h3>可用的绘制工具：</h3>
+<ul>
+<li><strong>2D绘画工具</strong>：基本绘制</li>
+<li><strong>全覆盖绘画工具</strong>：完全覆盖</li>
+<li><strong>局部OTSU下限</strong>：选择刷子半径内较低值的像素</li>
+<li><strong>局部OTSU上限</strong>：选择刷子半径内较高值的像素</li>
+<li><strong>排他性刷子</strong>：允许在选定类别之间切换</li>
+</ul>
+<h3>绘制技巧：</h3>
+<ol>
+<li><strong>背景绘制</strong>：</li>
+<li>使用局部OTSU下限刷子处理黑色背景区域</li>
+<li>
+<p>为提高效率，最后可以使用右键选项<code>将所有未标记体素添加到类别</code></p>
+</li>
+<li>
+<p><strong>纤维绘制</strong>：</p>
+</li>
+<li>使用局部OTSU上限处理大纤维</li>
+<li>仔细绘制小纤维以区分它们与大纤维</li>
+<li>
+<p>如需纠正错误，可使用撤销按钮</p>
+</li>
+<li>
+<p><strong>微调</strong>：</p>
+</li>
+<li>通过按住Ctrl并点击多个类别来使用排他性刷子</li>
+<li>Shift键添加当前类别并移除其他类别</li>
+<li>
+<p>Ctrl键执行相反操作</p>
+</li>
+<li>
+<p><strong>可视化技巧</strong>：</p>
+</li>
+<li>调整不透明度以在绘制时查看底层数据</li>
+<li>较高的不透明度有助于识别错误标记的像素</li>
+</ol>
+<h2>训练模型 [00:08:24]</h2>
+<p>一旦训练框架被正确标记：</p>
+<ol>
+<li>选择该框架作为训练框架</li>
+<li>添加另一个框架作为监控框架以跟踪进度</li>
+<li>转到<code>训练</code></li>
+<li>选择<code>直接转到UNET</code>而不是快速启动</li>
+<li>选择模型类型（单模型1用于演示更快，但单模型2通常是更好的选择）</li>
+</ol>
+<p>UNET训练窗口将显示：<br />
+- 训练参数<br />
+- 模型描述<br />
+- 训练详情<br />
+- 预览框架<br />
+- 监控框架（如果已选择）</p>
+<p>随着训练进行：<br />
+- 预览框架将显示当前分割结果<br />
+- 随着模型改进，损失值将减少<br />
+- 您可以调整推理和输入不透明度滑块以更好地可视化结果</p>
+<h2>改进模型 [00:12:04]</h2>
+<p>初始训练后，您可以：</p>
+<ol>
+<li>使用可见性按钮使模型预测可见</li>
+<li>评估监控框架上的结果</li>
+<li>使用绘制工具修复任何错误分类的区域</li>
+<li>将修正后的框架提升为训练框架</li>
+<li>从数据集的不同区域添加更多训练框架</li>
+<li>继续训练以改进模型</li>
+</ol>
+<p>这个迭代过程允许您：<br />
+- 逐步提高模型的准确性<br />
+- 添加更多样化的训练数据<br />
+- 专注于问题区域</p>
+<h2>应用训练好的模型 [00:22:18]</h2>
+<p>一旦您对训练满意：</p>
+<ol>
+<li>停止训练（手动或让其自动停止）</li>
+<li>使用描述性名称保存模型</li>
+<li>通过分割选项卡应用模型：</li>
+<li>转到<code>使用AI分割</code></li>
+<li>选择您保存的模型</li>
+<li>对切片应用预览或分割所有切片</li>
+</ol>
+<h2>最佳实践和技巧 [00:20:57]</h2>
+<ul>
+<li><strong>训练时长</strong>：让模型至少训练10个周期，最好直到性能稳定</li>
+<li><strong>早停</strong>：如果未检测到改进，系统将实施早停（可配置）</li>
+<li><strong>基准真值质量</strong>：更好的基准真值会导致更快更好的模型训练</li>
+<li><strong>多个训练框架</strong>：使用来自数据集不同部分的框架以获得更稳健的模型</li>
+<li><strong>迭代改进</strong>：根据需要继续添加训练数据并完善模型</li>
+</ul>
+<h2>结论 [00:23:12]</h2>
+<p>分割向导提供了一种强大的方式来训练深度学习模型，用于传统方法无法处理的分割任务。通过绘制基准真值数据并迭代训练模型，即使对于具有挑战性的数据集，您也可以获得高质量的分割结果。</p>
+<p>这个演示展示了一个将图像转换为多ROI分割的分割模型。下一个视频将介绍回归模型，它将图像转换为其他图像。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=ItzKszpHxCQ">July 2022 Workshop Video 10: Segmentation Wizard Part 2</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 21:19:01 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

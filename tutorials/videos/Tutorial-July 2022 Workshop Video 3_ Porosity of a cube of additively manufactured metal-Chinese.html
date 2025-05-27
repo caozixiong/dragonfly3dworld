@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>中文翻译</h1>
+<h2>增材制造中的孔隙率分析简介 [00:00:03]</h2>
+<p>本教程演示如何使用Dragonfly软件分析增材制造金属中的孔隙率。我们将介绍金属样品中孔隙的分割、可视化和分析过程。</p>
+<h2>设置会话 [00:00:29]</h2>
+<p>首先，创建一个新会话并加载准备好的数据集：</p>
+<ol>
+<li>加载一个预先保存的降采样数据会话（在本例中为"small cube session"）</li>
+<li>数据已经完成配准，Z轴与样品底部对齐</li>
+</ol>
+<h2>改善可视化效果 [00:01:20]</h2>
+<p>在开始分析之前：</p>
+<ol>
+<li>点击对象进行选择</li>
+<li>选择可视化预设以获得更好的视图</li>
+<li>调整光照设置，使样品更加可见</li>
+<li>如需更好的对比度，可调整背景</li>
+</ol>
+<h2>孔隙率分析的基本分割 [00:01:52]</h2>
+<p>导航至<code>Segment</code>标签开始分割：</p>
+<ol>
+<li>主要阈值函数位于<code>Segment</code>标签中</li>
+<li>点击<code>Define Range</code>访问阈值选项</li>
+<li>系统显示下限或上限OTSU阈值的预览</li>
+<li>OTSU是一种类似于ISO 50的高级阈值方法</li>
+<li>它在直方图中两个主峰之间找到中点</li>
+</ol>
+<p>您还可以：<br />
+- 查看并导出直方图<br />
+- 找到峰值的精确值<br />
+- 选择自定义阈值<br />
+- 手动拖动阈值水平</p>
+<h2>分割金属样品 [00:03:37]</h2>
+<p>在本演示中，我们将使用简单的阈值方法：</p>
+<ol>
+<li>选择上限OTSU阈值</li>
+<li>将其添加到新的感兴趣区域</li>
+<li>关闭预览按钮</li>
+<li>金属体素现已分割（显示为绿色）</li>
+</ol>
+<h2>创建完整样品体积 [00:04:23]</h2>
+<p>要计算孔隙率，我们需要金属和孔隙的体积：</p>
+<ol>
+<li>金属分割完成后，使用<code>Fill Inner Areas 3D</code>操作</li>
+<li>这将填充金属内部的所有封闭空腔</li>
+<li>结果是包括孔隙在内的总立方体体积</li>
+</ol>
+<h2>清理分割结果 [00:05:32]</h2>
+<p>要移除任何外部颗粒：</p>
+<ol>
+<li>右键点击感兴趣区域</li>
+<li>选择<code>Refine Region of Interest</code> → <code>Process Islands</code></li>
+<li>选择<code>Keep by Largest</code></li>
+<li>"6"选项表示体素仅通过面连接</li>
+<li>"26"选项表示体素通过面、边和角连接</li>
+<li>这将移除主样品外部的任何断开的颗粒</li>
+<li>为后续使用复制这个干净的总体积</li>
+</ol>
+<h2>分离孔隙 [00:06:56]</h2>
+<p>要将孔隙与金属分离：</p>
+<ol>
+<li>将感兴趣区域扩张两次，在样品周围创建一个壳</li>
+<li>使用<code>Split at OTSU</code>功能将前景（金属）与背景（孔隙和空气）分开</li>
+<li>关闭总立方体可视化</li>
+<li>对于背景区域，使用<code>Refine Region of Interest</code> → <code>Process Islands</code> → <code>Remove by Largest</code></li>
+<li>这将移除外部空气壳，只留下内部孔隙</li>
+</ol>
+<h2>孔隙分割的替代方法 [00:09:45]</h2>
+<p>分割孔隙的另一种方法：</p>
+<ol>
+<li>从总立方体体积开始</li>
+<li>转到<code>Segment</code>标签</li>
+<li>使用<code>Define Range Lower</code>并添加到新区域</li>
+<li>这将捕获孔隙和外部空气</li>
+<li>使用<code>Refine Region of Interest</code> → <code>Process Islands</code> → <code>Remove by Largest</code>消除外部空气</li>
+<li>比较此方法与前一种方法，看哪种方法捕获更多孔隙</li>
+</ol>
+<h2>去除噪声 [00:10:46]</h2>
+<p>要消除可能是噪声的小特征：</p>
+<ol>
+<li>使用<code>Refine Region of Interest</code> → <code>Process Islands</code> → <code>Remove by Voxel Count</code></li>
+<li>设置最小尺寸阈值（例如，9个体素，相当于2×2×2立方体）</li>
+<li>这将移除可能是噪声而非实际孔隙的小特征</li>
+<li>这也加快了后续处理速度</li>
+</ol>
+<h2>使用连通组件进行孔隙分析 [00:12:04]</h2>
+<p>要分析单个孔隙：</p>
+<ol>
+<li>转到<code>Connected Components</code> → <code>Multi ROI Analysis</code></li>
+<li>这将每个断开的孔隙分离为自己的类别</li>
+<li>计算每个孔隙的体积等值</li>
+<li>对于更详细的分析，使用<code>Scalar Calculator</code></li>
+<li>仅选择您需要的测量（选择全部可能会很慢）</li>
+<li>体积计算相对较快</li>
+</ol>
+<h2>可视化孔隙尺寸分布 [00:13:15]</h2>
+<p>要按尺寸可视化孔隙：</p>
+<ol>
+<li>选中Multi ROI后，查看标量信息</li>
+<li>按体积对孔隙进行分类</li>
+<li>如果需要，更改颜色映射（例如，从紫-绿-黄到温度刻度）</li>
+<li>按大小排序孔隙</li>
+<li>右键点击单个孔隙，在2D平面上查看其质心</li>
+</ol>
+<p>注意：如果孔隙开放到表面，某些孔隙可能不会被包括在内。</p>
+<h2>3D可视化技术 [00:15:33]</h2>
+<p>为了更好地可视化样品内的孔隙：</p>
+<ol>
+<li>调整透明度设置以透视金属</li>
+<li>创建总立方体的网格：</li>
+<li>转到<code>Segment</code>标签</li>
+<li>选择总立方体感兴趣区域</li>
+<li>选择<code>Create and Export to a Mesh</code></li>
+<li>对网格进行采样以减少可视化的细节</li>
+<li>使网格呈白色并可见</li>
+<li>关闭原始数据</li>
+</ol>
+<p>这将创建一个透明视图，您可以在样品轮廓内看到孔隙。</p>
+<h2>高级分析选项 [00:17:52]</h2>
+<p>其他分析功能：</p>
+<ol>
+<li>查看体积或孔隙尺寸分布直方图</li>
+<li>更改直方图的箱数</li>
+<li>按不同特征排序</li>
+<li>保存图像或将数据导出为CSV文件</li>
+<li>使用<code>Scalar Generator</code>进行额外测量：</li>
+<li>基本测量包括体积、表面积</li>
+<li>高级测量包括纵横比</li>
+<li>最大Ferret直径（卡尺宽度）</li>
+<li>表面积计算（基于体素或亚体素精度）</li>
+</ol>
+<h2>结论 [00:20:39]</h2>
+<p>本教程演示了如何：<br />
+- 在增材制造金属样品中分割孔隙<br />
+- 清理分割结果以去除噪声<br />
+- 分析孔隙特征，如体积和尺寸<br />
+- 在3D中可视化孔隙<br />
+- 生成尺寸分布直方图</p>
+<p>这些技术为增材制造中的孔隙率分析提供了强大的工具，允许对内部缺陷进行详细表征。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=TcLSWcfpo5M">July 2022 Workshop Video 3: Porosity of a cube of additively manufactured metal</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 21:52:39 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

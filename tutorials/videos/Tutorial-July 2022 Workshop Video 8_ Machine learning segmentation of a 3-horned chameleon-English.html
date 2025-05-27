@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 2022 Workshop Video 8: Machine learning segmentation of a 3-horned chameleon - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July 2022 Workshop Video 8: Machine learning segmentation of a 3-horned chameleon - (English)</h1>
+        <p>This video demonstrates traditional machine learning segmentation techniques for a chameleon head dataset, showcasing how these methods can identify bone structures that are missed by conventional thresholding approaches despite not being as widely used as newer deep learning methods.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to Classical Machine Learning Segmentation [00:00:02]</h2>
+<p>This tutorial demonstrates classical machine learning segmentation techniques in Dragonfly. Unlike deep learning methods covered later in the series, this approach represents the traditional segmentation tool that was first developed. While not as widely used today, it remains quite impressive for certain applications.</p>
+<h2>Dataset Overview [00:00:35]</h2>
+<p>For this demonstration, we'll use a three-horned chameleon head dataset. The goal is to segment bone structures inside the chameleon head, which presents challenges for normal thresholding techniques:</p>
+<ul>
+<li>When using manual thresholding, some dense parts appear acceptable</li>
+<li>However, many thin bone structures are missed entirely</li>
+<li>Some areas are over-segmented</li>
+</ul>
+<p>This is precisely where machine learning can improve segmentation results by being trained to identify these challenging structures.</p>
+<h2>Creating Training Data [00:01:55]</h2>
+<p>For machine learning segmentation in Dragonfly, we need to provide ground truth labeling of pixels:</p>
+<ol>
+<li>Go to the <code>Segment</code> tab</li>
+<li>Create a new Multi-ROI with three classes:</li>
+<li>Name it "sparse data for training"</li>
+<li>Set up three classes: bone, air, and flesh</li>
+<li>Assign colors to each class:</li>
+<li>Purple for air</li>
+<li>Red for flesh</li>
+<li>Green for bone</li>
+</ol>
+<p>Unlike deep learning tools that require labeling all pixels, this traditional machine learning approach only needs sparse labeling of some representative pixels.</p>
+<h2>Labeling Pixels [00:03:22]</h2>
+<ol>
+<li>Use the <code>Brush</code> tool to label representative pixels for each class</li>
+<li>Label some bone pixels in various locations</li>
+<li>Label some flesh pixels</li>
+<li>Label air pixels on the outside of the specimen</li>
+</ol>
+<p>The more variety of labeled pixels provided, the better the model will work. However, you don't need to be exhaustive for this approach.</p>
+<h2>Setting Up the Machine Learning Model [00:04:32]</h2>
+<ol>
+<li>Navigate to <code>AI</code> &gt; <code>Machine Learning Segmentation</code></li>
+<li>Create a new model:</li>
+<li>Name it "Demo on chameleon"</li>
+<li>Set the input dataset (the chameleon scan)</li>
+<li>Set the sparse data as output</li>
+<li>
+<p>No mask is needed for this particular tool</p>
+</li>
+<li>
+<p>Select an algorithm:</p>
+</li>
+<li>
+<p><code>Extra Trees</code> is recommended as a good option</p>
+</li>
+<li>
+<p>Choose features to use:</p>
+</li>
+<li><code>Activation map</code> is particularly effective</li>
+<li>You can select multiple features, but for this demo we'll only use one</li>
+</ol>
+<h2>Training the Model [00:05:37]</h2>
+<p>Once all parameters are set, start the training process. Training time will vary depending on your data and computer specifications. This is a good time to take a break while the model trains.</p>
+<h2>Reviewing Results [00:07:53]</h2>
+<p>After training completes:</p>
+<ol>
+<li>The model automatically applies to the dataset</li>
+<li>Review the segmentation results</li>
+<li>Even with minimal labeling, the model produces reasonable results</li>
+<li>Some excess material may be segmented as bone in this quick demo</li>
+</ol>
+<p>If you're satisfied with the results, you can apply the model to the entire dataset to create a complete multi-ROI result across all slices.</p>
+<h2>Conclusion [00:08:52]</h2>
+<p>This traditional machine learning segmentation approach offers a fast and simple method for segmentation tasks. While not perfect, it can produce good results with minimal manual labeling. For more advanced segmentation, the Segmentation Wizard tool provides an alternative approach using sparse data labeling, which will be covered in a subsequent tutorial.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=XWafhfUhK5g">July 2022 Workshop Video 8: Machine learning segmentation of a 3-horned chameleon</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 20:34:30 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/XWafhfUhK5g"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

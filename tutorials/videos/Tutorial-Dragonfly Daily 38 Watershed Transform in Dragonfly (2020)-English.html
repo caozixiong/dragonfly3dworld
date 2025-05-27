@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragonfly Daily 38 Watershed Transform in Dragonfly (2020) - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Dragonfly Daily 38 Watershed Transform in Dragonfly (2020) - (English)</h1>
+        <p>In this Dragonfly Daily lesson, host Mike Marsh demonstrates watershed transform techniques for image segmentation, showing two key applications: separating foreground (grains) from background (air) using edge detection, and separating individual grains using distance maps, while highlighting how seed selection affects segmentation quality.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Watershed Transforms in Dragonfly</h1>
+<h2>Introduction [00:00:00]</h2>
+<p>Welcome to lesson 38 in the Dragonfly Daily series focusing on Watershed Transforms. This tutorial demonstrates how to use watershed transforms for image segmentation in Dragonfly 2020.1 RC2. The watershed transform is a mathematical morphology tool that helps perform segmentation in a more objective way than some other tools.</p>
+<p>The tutorial uses the dry sandpack data from the Digital Rocks Portal, specifically the hydrate-bearing sand dataset by Xiang Yu Chen and collaborators. This dataset contains multiple image channels, including the dry sandpack saturated with air.</p>
+<h2>Understanding Watershed Transforms [00:03:03]</h2>
+<p>The watershed transform is a mathematical morphology tool that helps perform segmentation tasks. It requires:</p>
+<ol>
+<li><strong>Markers or seeds</strong> - Starting points for the segmentation</li>
+<li><strong>Landscape function</strong> - A topological map that guides how the segmentation grows</li>
+</ol>
+<p>The watershed transform can be visualized as a flooding process:</p>
+<ul>
+<li>Imagine the image intensity as a topographical landscape with valleys and peaks</li>
+<li>Markers are placed in the valleys (catchment basins)</li>
+<li>Water rises from these markers at the same rate</li>
+<li>When water from different markers meets, a boundary is formed</li>
+<li>These boundaries (watershed lines) become the segmentation boundaries</li>
+</ul>
+<p>The markers grow and converge based on the topology of the landscape, making watershed transform essentially a region growing tool that converges based on the landscape topology.</p>
+<h2>Example 1: Foreground-Background Segmentation [00:03:37]</h2>
+<h3>Creating Markers</h3>
+<ol>
+<li>Go to <code>ROI tools</code> and click on <code>Define Range</code></li>
+<li>Click on <code>Upper OTSU</code> to label high-intensity pixels in the center of grains</li>
+<li>Adjust to select mostly high-intensity pixels and click <code>Add to New</code></li>
+<li>Reset and choose <code>Lower OTSU</code> to label air pixels</li>
+<li>Adjust to select mostly air pixels and click <code>Add to New</code></li>
+<li>Label the first ROI as "background" (blue) and the second as "grains" (orange)</li>
+<li>Select both ROIs and choose <code>Create Multi-ROI from ROIs</code></li>
+</ol>
+<h3>Creating the Landscape Function</h3>
+<ol>
+<li>Select the gray image (dry sand pack)</li>
+<li>Go to <code>Workflows</code> &gt; <code>Image Filtering</code></li>
+<li>Create a 3D Sobel filter and apply</li>
+<li>This creates an edge map where boundaries have elevated intensity values</li>
+</ol>
+<h3>Applying the Watershed Transform</h3>
+<ol>
+<li>Right-click on the multi-ROI</li>
+<li>Select <code>Watershed Transform</code> at the bottom of the menu</li>
+<li>Choose the Sobel-filtered image as the landscape function</li>
+<li>Set the mask parameter to "none"</li>
+<li>The watershed transform will expand the markers and converge at the boundaries</li>
+</ol>
+<p>The result shows grains labeled orange and air labeled blue. The watershed transform doesn't perfectly separate touching grains in this example because the resolution wasn't high enough to have air pixels between all grains.</p>
+<h2>Example 2: Grain Separation Using Distance Transform [00:12:02]</h2>
+<h3>Creating the Distance Map</h3>
+<ol>
+<li>Extract the background from the multi-ROI (right-click and select <code>Extract as an ROI</code>)</li>
+<li>Create a distance map from this background ROI</li>
+<li>This creates an image where every non-background pixel takes on a value representing its distance from the nearest background pixel</li>
+<li>Invert the distance map (right-click &gt; <code>Modify and Transform</code> &gt; <code>Invert</code>)</li>
+</ol>
+<h3>Creating Seed Regions</h3>
+<ol>
+<li>Threshold the distance map to identify the centers of grains</li>
+<li>Add the thresholded regions as a new ROI</li>
+<li>Apply connected components analysis (select <code>26 Connected Multi-ROI</code>)</li>
+<li>This labels each separate grain center with a unique color</li>
+</ol>
+<h3>Applying the Watershed Transform</h3>
+<ol>
+<li>Right-click on the multi-ROI containing the seed regions</li>
+<li>Select <code>Watershed Transform</code></li>
+<li>Use the inverted distance map as the landscape function</li>
+<li>Use the grains from the first watershed as a mask</li>
+<li>The watershed transform will expand each seed until it reaches another seed or the mask boundary</li>
+</ol>
+<p>The result shows each grain labeled with a different color. The quality of the segmentation depends on the seed regions:<br />
+- Too small seeds can cause over-segmentation (one grain split into multiple regions)<br />
+- Too large or connected seeds can cause under-segmentation (multiple grains labeled as one)</p>
+<h2>Conclusion [00:20:11]</h2>
+<p>The watershed transform is a powerful tool for image segmentation with two main applications demonstrated in this tutorial:</p>
+<ol>
+<li><strong>Foreground-Background Separation</strong>:</li>
+<li>Two seeds (foreground and background)</li>
+<li>
+<p>Edge-enhanced image (Sobel) as the landscape function</p>
+</li>
+<li>
+<p><strong>Object Separation</strong>:</p>
+</li>
+<li>Seeds at the center of each object</li>
+<li>Inverted distance transform as the landscape function</li>
+<li>Optional mask to constrain the expansion</li>
+</ol>
+<p>Both applications use the same approach: creating a landscape function that provides separation barriers, and seeds that expand according to this landscape. The watershed transform is particularly useful for segmenting touching objects and can be more objective than simple thresholding methods.</p>
+<p>When using watershed transforms, carefully consider your seed regions and landscape function to avoid over-segmentation or under-segmentation issues.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=q1SLewV_T3w">Dragonfly Daily 38 Watershed Transform in Dragonfly (2020)</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-23 10:39:58 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/q1SLewV_T3w"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

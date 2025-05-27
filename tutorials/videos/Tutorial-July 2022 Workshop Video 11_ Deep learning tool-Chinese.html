@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 2022 Workshop Video 11: Deep learning tool - Chinese Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July 2022 Workshop Video 11: Deep learning tool - (Chinese)</h1>
+        <p>这个视频演示了如何使用Dragonfly的深度学习工具进行图像分割，展示了创建多ROI真实标注、训练U-Net模型以识别牛仔布材料中的纤维类型，以及应用训练好的模型对新数据进行分割的过程。</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>中文翻译</h1>
+<h2>深度学习工具介绍 [00:00:03]</h2>
+<p>本教程介绍Dragonfly中的传统深度学习工具，与分割向导相比，它提供了更多对参数的控制。我们将使用牛仔布纤维作为示例，训练一个具有三个类别的分割模型：背景、小纤维和大纤维。</p>
+<h2>准备真实标注数据 [00:01:05]</h2>
+<p>与分割向导不同，深度学习工具需要预先标注的数据。开始步骤：</p>
+<ol>
+<li>转到分割选项卡并创建一个新的多ROI</li>
+<li>设置三个类别：背景、小纤维和大纤维</li>
+<li>将这个多ROI命名为"ground truth"</li>
+</ol>
+<p>您可以自定义颜色以获得更好的可视化效果：<br />
+- 使用红色代表大纤维<br />
+- 蓝色代表背景<br />
+- 黄色/橙色代表小纤维</p>
+<h2>绘制真实标注 [00:02:01]</h2>
+<p>使用分割工具绘制您的真实标注数据：</p>
+<ul>
+<li>使用Otsu笔刷选择纤维</li>
+<li>按住Control键的同时左键单击并拖动进行绘制</li>
+<li>使用Shift键删除错误绘制的区域</li>
+<li>放大以获得更精确的绘制</li>
+<li>对于背景，使用"将所有未标记体素添加到类别"选项</li>
+</ul>
+<p>创建真实标注数据时，精确性非常重要。花时间修复分割中的任何错误。</p>
+<h2>设置训练帧 [00:06:18]</h2>
+<p>绘制完真实标注后，您需要：</p>
+<ol>
+<li>定义哪个切片被绘制（通过定义范围或使用笔刷）</li>
+<li>在主选项卡中选择监控帧 - 这将用于在训练期间可视化进度</li>
+</ol>
+<p>虽然建议使用多个切片进行训练（通常是三个），但为简单起见，本示例仅使用一个切片。</p>
+<h2>创建新的深度学习模型 [00:07:46]</h2>
+<p>设置深度学习模型：</p>
+<ol>
+<li>点击数据并转到深度学习工具</li>
+<li>选择"创建新的深度学习工具"（不是"添加到现有模型"）</li>
+<li>选择模型架构 - 我们将使用U-Net，这是最广泛使用的分割模型</li>
+<li>选择"2.5D"以使用一些3D上下文（查看前后切片）</li>
+<li>生成模型架构</li>
+</ol>
+<h2>配置模型 [00:08:39]</h2>
+<p>生成模型后：</p>
+<ol>
+<li>验证类别数量与您的多ROI匹配（本例中为三个）</li>
+<li>确保类别名称和颜色与您的真实标注一致</li>
+<li>配置输入（牛仔布图像通道）和输出（真实标注）</li>
+<li>设置用于训练的掩码</li>
+</ol>
+<h2>设置数据增强和训练 [00:09:46]</h2>
+<p>数据增强对于提高模型性能至关重要：</p>
+<ul>
+<li>增加增强以生成额外的训练数据</li>
+<li>系统将翻转、拉伸并向数据添加噪声</li>
+<li>设置验证参数</li>
+<li>选择视觉反馈帧以监控进度</li>
+</ul>
+<h2>训练过程 [00:10:29]</h2>
+<p>一旦训练开始，您可以观察模型的进度：</p>
+<ul>
+<li>即使在第一个周期之后，模型就开始区分空气和纤维</li>
+<li>到第二个周期，它开始识别小纤维</li>
+<li>模型随着每个周期继续改进</li>
+</ul>
+<p>建议进行更长时间的训练，特别是如果您的数据在整个对象中变化（例如，亮度差异或具有不同方向的纤维）。即使预览帧上的结果看起来不错，继续训练也会提高数据其他区域的性能。</p>
+<h2>应用训练好的模型 [00:13:56]</h2>
+<p>训练完成后：</p>
+<ol>
+<li>使用描述性名称保存模型</li>
+<li>要使用模型，从人工智能菜单中选择"使用AI分割"</li>
+<li>选择您保存的模型</li>
+<li>您可以在单个切片上预览结果或应用于整个数据集</li>
+</ol>
+<p>即使使用最少的训练数据，该模型也能有效地识别整个数据集中的大纤维和小纤维。</p>
+<h2>结论 [00:17:34]</h2>
+<p>与分割向导相比，深度学习工具提供了更多的自由度和控制，尽管两者都可以达到同样好的结果。深度学习工具特别适用于：</p>
+<ul>
+<li>需要更多参数控制的专业用户</li>
+<li>在分割向导工作流程之外创建分割</li>
+<li>处理从其他来源导入的分割</li>
+</ul>
+<p>虽然本教程演示了一个分割模型，下一个视频将介绍图像到图像的回归模型。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=k9VjbwJUGe8">July 2022 Workshop Video 11: Deep learning tool</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 18:42:50 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/k9VjbwJUGe8"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在Dragonfly 2022.2软件中重建锥束CT图像 - Chinese Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>在Dragonfly 2022.2软件中重建锥束CT图像 - (Chinese)</h1>
+        <p>这个教程演示了如何在Dragonfly中使用CT Reboot软件重建跟踪数字数据，涵盖了完整的工作流程，包括导入CT图像、设置采集参数、选择重建引擎，以及通过各种优化技术处理大型数据集。</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>CT Reboot软件教程：在Dragonfly中重建跟踪号数据</h1>
+<h2>介绍 [00:00:03]</h2>
+<p>本教程演示如何在Dragonfly中使用CT Reboot软件重建跟踪号数据。该过程包括导入CT图像、设置适当的参数以及执行重建以生成可用数据。</p>
+<h2>导入CT图像 [00:00:25]</h2>
+<ol>
+<li>将CT图像导入Dragonfly软件：</li>
+<li>选择文件并导入图像文件</li>
+<li>点击<code>添加或打开文件夹</code></li>
+<li>
+<p>选择<code>添加</code></p>
+</li>
+<li>
+<p>选择所有跟踪号图像：</p>
+</li>
+<li>数据通常从TIF 001开始并按顺序继续</li>
+<li>在本例中，我们有从001到2635的图像</li>
+<li>
+<p>选择所有文件并点击<code>打开</code></p>
+</li>
+<li>
+<p>配置导入设置：</p>
+</li>
+<li>查看图像名称、样本、时间步长和关键信息</li>
+<li>检查尺寸（在本例中为1677 × 2000像素）</li>
+<li>确认图像总数（本例中为2635）</li>
+<li>点击<code>完成</code>将所有图像作为OS对象导入</li>
+</ol>
+<h2>验证图像方向 [00:04:06]</h2>
+<p>导入投影时，确保正确的方向至关重要：</p>
+<ul>
+<li>XY平面必须是您的投影或探测器平面</li>
+<li>旋转轴必须沿Y方向</li>
+</ul>
+<p>如果您的图像在导入时不遵循此规则，您可以修改它：<br />
+1. 右键点击图像<br />
+2. 选择<code>修改</code> → <code>数据反转</code><br />
+3. 选择适当的选项：<br />
+   - 反转旋转X轴<br />
+   - 反转旋转Y轴<br />
+   - 反转旋转Z轴<br />
+   - 或更改轴顺序（例如，X，Z，Y）</p>
+<h2>打开CT Reboot软件 [00:05:32]</h2>
+<ol>
+<li>打开CT Reboot软件：</li>
+<li>导航至<code>工作流程</code> → <code>CT Reboot测试板</code></li>
+<li>
+<p>点击启动软件</p>
+</li>
+<li>
+<p>选择输入图像投影数据集：</p>
+</li>
+<li>选择您刚刚导入的图像</li>
+</ol>
+<h2>配置采集参数 [00:05:58]</h2>
+<p>有两种输入采集参数的方法：</p>
+<h3>方法1：手动输入</h3>
+<p>如果您知道参数，直接输入：<br />
+- X射线类型（为跟踪号选择"Empty"）<br />
+- 最小角度和角度误差<br />
+- 探测器到样本的距离（X和Y）<br />
+- 探测器的X射线角度<br />
+- 原始位置角度（X和Y）<br />
+- 探测器的旋转角度<br />
+- 平面内角度和平面外角度<br />
+- 旋转类型（垂直轴或反轴）<br />
+- 高级参数：能量、电流和曝光时间（可选）</p>
+<h3>方法2：使用元数据文件</h3>
+<p>如果您的数据来自CT设备制造商：<br />
+1. 从下拉菜单中选择制造商（例如，Nikon、Skyscan、KaImaging）<br />
+2. 点击输入按钮浏览元数据文件：<br />
+   - Nikon：XTEKCT格式<br />
+   - Skyscan：LOG格式<br />
+   - KaImaging：JSON格式<br />
+   - NorthStarImaging：需要两个文件（RTF技术表和几何报告）<br />
+   - Exelon：XML格式（支持不同设备类型如FF35、MU2000）<br />
+   - GE：PCA格式</p>
+<p>此方法无需手动输入即可自动填充所有参数。</p>
+<h2>选择重建引擎 [00:10:46]</h2>
+<p>选择重建算法：<br />
+- 默认推荐：通用RTK/FTK（最快，使用GPU加速）<br />
+- 替代选项：<br />
+  - 折叠算法（需要折叠数和前向投影方法）<br />
+  - RTK SART算法（同时代数重建技术）</p>
+<p>高级设置包括可根据特定需求调整的滤波器、频率、阶段和填充参数。</p>
+<h2>预览计算 [00:12:38]</h2>
+<p>在重建整个数据集之前：<br />
+1. 点击<code>计算预览</code>仅重建中间切片<br />
+2. 这允许您在不等待完整重建的情况下验证参数是否正确<br />
+3. 预览有助于确定是否需要调整</p>
+<p>您可以保存多个预览以比较不同的参数设置：<br />
+- 每个预览可以命名（例如，"预览1"，"预览2"）<br />
+- 使用<code>从预览下载输入</code>重新加载已保存预览的参数</p>
+<h2>完整重建 [00:15:04]</h2>
+<p>完整重建有两个选项：</p>
+<h3>选项1：重建并上传到当前项目</h3>
+<p>这会将重建直接加载到Dragonfly中，但由于内存限制，可能不适用于大型数据集。</p>
+<p>如果您的数据集太大：<br />
+1. 减小数据集大小：<br />
+   - 使用<code>图像</code> → <code>编辑和转换</code> → <code>剪切</code><br />
+   - 沿Y轴剪切以保留较小部分（确保对称采集）<br />
+   - 应用更改以创建新对象或修改当前对象</p>
+<h3>选项2：将重建保存到硬盘</h3>
+<p>对于非常大的投影：<br />
+1. 选择<code>将重建保存到硬盘</code><br />
+2. 选择临时文件夹位置<br />
+3. 软件将：<br />
+   - 将投影分成更小的部分<br />
+   - 按顺序重建每个部分<br />
+   - 将结果保存为TIFF文件到指定位置<br />
+4. 完成后，导入重建的图像：<br />
+   - 文件 → 导入图像文件<br />
+   - 选择所有重建的TIFF文件<br />
+   - 打开并配置导入设置</p>
+<h2>查看重建结果 [00:22:57]</h2>
+<ol>
+<li>使用角视图检查重建的不同平面</li>
+<li>调整窗口级别以改善可视化</li>
+<li>切换到3D视图以查看完整重建</li>
+</ol>
+<p>最终结果应显示跟踪号数据的完整、高质量重建。</p>
+<h2>结论 [00:24:11]</h2>
+<p>本教程涵盖了在Dragonfly中使用CT Reboot软件重建跟踪号数据的基本工作流程。该过程包括导入CT图像、配置适当的参数、执行预览计算和完成完整重建。对于大型数据集，软件提供了通过数据集缩减或顺序分段重建来管理内存限制的选项。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=lZAmC4QeDLI">在Dragonfly 2022.2软件中重建锥束CT图像</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 12:32:22 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/lZAmC4QeDLI"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

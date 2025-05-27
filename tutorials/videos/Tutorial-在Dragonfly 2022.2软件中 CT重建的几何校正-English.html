@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在Dragonfly 2022.2软件中 CT重建的几何校正 - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>在Dragonfly 2022.2软件中 CT重建的几何校正 - (English)</h1>
+        <p>This video demonstrates the set-t remodeling algorithm in CT remodeling, covering two key aspects: calculation of the rotation center and rotation axis. Various methods for determining optimal rotation center values are explained, including manual range selection, image metrics, and sum of projection methods, with examples showing significant image quality improvement after proper corrections.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to Set-T Remodeling Algorithm [00:00:02]</h2>
+<p>This tutorial demonstrates the set-t remodeling algorithm available in the current version of CT remodeling. The set-t remodeling consists of two main parts:</p>
+<ol>
+<li>Calculation of the rotation center</li>
+<li>Calculation of the rotation axis</li>
+</ol>
+<p>In the existing version, there are six different calculation methods in the CT remodeling center, and one calculation method for the rotation axis.</p>
+<h2>Setting Up the Initial Parameters [00:00:37]</h2>
+<p>First, we need to select a parallel beam dataset. For this demonstration, we'll use a Ceramic Composites dataset, which is a composite material with slightly increased strength. This data is shared by Ali from the University of Colorado.</p>
+<p>Before performing the collection correction:<br />
+1. Select the projection part<br />
+2. Select the Ceramic Composites dataset<br />
+3. Choose parallel beam<br />
+4. Input the required parameters:<br />
+   - Smallest angle<br />
+   - Angle length<br />
+   - Detector size</p>
+<p>If you're unsure about the parallel number, you can set it to the default value of 1.</p>
+<p>Next, choose the re-hub engine. For this tutorial, we'll select the RTK FTK algorithm.</p>
+<h2>Rotation Center Calculation Methods [00:02:15]</h2>
+<p>When opening the calculation center window for parallel beams, you'll see five different calculation methods for determining the rotation center:</p>
+<h3>Methods from Tomopi (For Parallel Beams Only)</h3>
+<ol>
+<li><strong>Tomopi's Hiabo Method</strong> - Only applicable to parallel beams</li>
+<li><strong>Tomopi's Image Entropy Array</strong> - Uses the sound of the image as the degree of error, then uses an optimization algorithm to determine the rotation center</li>
+<li><strong>Tomopi's Phase Correlation in Fourier Space</strong> - References the relationship of the phase of Fourier transition</li>
+</ol>
+<blockquote>
+<p><strong>Important Note</strong>: The Phase Correlation in Fourier Space method assumes your projection data ranges from 0 to 180 degrees, with the last projection being exactly at 180 degrees. If your projection data differs (e.g., 0 to 270 degrees), this method will not work properly and may give incorrect results.</p>
+</blockquote>
+<h3>Using the Rotation Center Calculation Tools [00:04:01]</h3>
+<p>You can choose any method to calculate the rotation center. To select a method:</p>
+<ol>
+<li>Check the checkbox next to the desired method</li>
+<li>The system will show one of the projections and a preview cutoff</li>
+<li>The system uses your chosen method to predict the center of rotation</li>
+<li>It then calculates a cutoff (e.g., slice 200, which is in the middle of the projection)</li>
+<li>A preview is displayed on the right for reference</li>
+</ol>
+<p>You can adjust the position of the blue line or directly change the value to observe different cutoffs. For example, to view the middle slice, set the value to 200.</p>
+<p>After selecting a calculation method, click "Update Preview" to generate the preview. A working clock will appear during calculation.</p>
+<h2>Evaluating Preview Results [00:05:57]</h2>
+<p>Once the preview is generated, it will show the calculated offset value. In our example with the Hiabo method, we got a negative 39.75 pixels offset.</p>
+<p>If the preview image is too small, you can use the three tools above the image:<br />
+- Zoom to rectangle (third button): Draw a square to enlarge a specific area<br />
+- Pan (second button): Move the image around<br />
+- Reset (first button): Restore the image to its original size</p>
+<p>When comparing the results from different methods, you can select different radio buttons to view each preview. The rotation center value will change accordingly.</p>
+<p>To determine which method gives the best result:<br />
+1. Zoom in to examine details<br />
+2. Look for clarity in features (like fibers in our example)<br />
+3. The method that produces the clearest image with the least artifacts is typically the best choice</p>
+<p>In our example, the Phase Correlation method gave the best result, showing the fiber in the middle most clearly.</p>
+<h2>Additional Evaluation Tools [00:08:59]</h2>
+<p>If the differences between methods are subtle, two additional tools can help:</p>
+<ol>
+<li>
+<p><strong>Comparison Histogram</strong>: Clicking this button will draw histograms of the three previews, allowing you to compare their distributions. You can adjust the bin count or change the Y-axis to log scale for better visualization.</p>
+</li>
+<li>
+<p><strong>Export to Main Program</strong>: This allows you to export the preview images to the main program for further analysis. You can select all or specific previews to export, then use tools like rulers to mark and observe gray value changes.</p>
+</li>
+</ol>
+<p>After evaluating all methods, select the one that gives the best result and click "Confirm" to set the rotation center shift value.</p>
+<h2>Fan Beam Rotation Center Calculation [00:11:49]</h2>
+<p>For fan beam (tracking beam) data, the process is different. Let's switch to an engine part dataset shared by Denis Kormir from the Routest Institute of Technology.</p>
+<p>For fan beam data:<br />
+1. Modify the X-ray type to "tracking number"<br />
+2. If you don't have fixed metadata for the CT device manufacturer, use the preview to load values<br />
+3. Set the probe to 0 and the probe angle to 0<br />
+4. Input all other required data:<br />
+   - Smallest angle<br />
+   - Angle length<br />
+   - Distance from probe to sample<br />
+   - Probe pixel size</p>
+<p>Keep using the RTK FTK re-booking engine.</p>
+<h2>Fan Beam Calculation Methods [00:13:49]</h2>
+<p>When opening the rotation center calculation window for fan beams, you'll notice the three Tomopi algorithms are no longer available (as they only work for parallel beams). Instead, two methods are available:</p>
+<ol>
+<li><strong>Manual Range</strong>: Allows manual selection of an area to determine the rotation center</li>
+<li><strong>Image Metric</strong>: Uses image quality metrics to find the optimal rotation center</li>
+</ol>
+<h3>Using Manual Range Method [00:18:21]</h3>
+<p>The Manual Range method works as follows:<br />
+1. Check the "Manual Range" box<br />
+2. Set the range parameters:<br />
+   - Offset initial (e.g., -20)<br />
+   - Offset step (e.g., 10)<br />
+   - Offset final (e.g., 20)<br />
+3. Click "Update Preview"</p>
+<p>The system will calculate previews for all offsets in the range (-20, -10, 0, 10, 20) and display them. You can then visually compare the results and narrow down the range for further refinement.</p>
+<p>After several iterations, you can narrow down the range to find the optimal rotation center. In our example, we narrowed it down to between -18 and -9 pixels.</p>
+<h3>Using Image Metric Method [00:21:13]</h3>
+<p>When the range is sufficiently narrowed, switch to the Image Metric method:<br />
+1. Uncheck Manual Range<br />
+2. Check Image Metric<br />
+3. Set the range (e.g., -18 to -9)<br />
+4. Choose the angle of the solar system (e.g., 2)</p>
+<p>The Image Metric method provides a curve showing the relationship between the offset and the entropy value. The minimum point on this curve represents the optimal rotation center.</p>
+<p>You can:<br />
+1. Calculate the curve to verify the range is reasonable<br />
+2. Adjust the yellow line to set optimization parameters<br />
+3. Set the number of optimization runs (usually 3 for insurance)<br />
+4. Start the optimization process</p>
+<p>After optimization, the system will find the optimal rotation center value. In our example, it was -13.852 pixels.</p>
+<h2>Rotation Axis Calculation [00:27:05]</h2>
+<p>The sixth method for rotation center calculation is actually found in the "Calculate Axis Tilt Angle" window. This method is called "Sum of Projection Method."</p>
+<p>The Sum of Projection method:<br />
+- Requires projection data from 0 to 360 degrees (full rotation)<br />
+- Compares the symmetry of projections<br />
+- Optimizes both the rotation center offset and the tilt angle</p>
+<p>To use this method:<br />
+1. Set the tilt angle range (minimum and maximum) and precision<br />
+2. Set the rotation center range and precision<br />
+3. Choose whether to find only the tilt angle, only the rotation center, or both<br />
+4. Set the maximum number of iterations (when finding both)<br />
+5. Enable "Apply Interpolation" for more accurate results<br />
+6. Use the curve function to verify the parameter ranges</p>
+<p>After optimization, the system will display the optimal tilt angle and rotation center offset. In our example, we got a tilt angle of 0.588 degrees and a rotation center offset of -14.39 pixels.</p>
+<p>Click "Apply" to set these values in the main program.</p>
+<h2>Comparing Results [00:34:41]</h2>
+<p>To evaluate the effectiveness of the correction:<br />
+1. Generate a preview using the calculated parameters<br />
+2. Compare with a preview using zero offset (before correction)<br />
+3. Look for improvements in image clarity and reduction of artifacts</p>
+<p>In our example, the image before correction showed ghosting and unclear boundaries. After correction using the Sum of Projection method with tilt angle correction, the boundaries became clearer and shadows were reduced, demonstrating a significant improvement.</p>
+<h2>Conclusion [00:36:01]</h2>
+<p>This tutorial covered the set-t remodeling algorithm in CT remodeling, focusing on:<br />
+- Different methods for calculating the rotation center for both parallel and fan beam data<br />
+- How to evaluate and compare results from different methods<br />
+- How to calculate and correct for rotation axis tilt<br />
+- The importance of proper rotation center and axis calculation for image quality</p>
+<p>By understanding and applying these methods, you can significantly improve the quality of your CT reconstructions.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=xVjv2QqikcY">在Dragonfly 2022.2软件中 CT重建的几何校正</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 11:48:01 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/xVjv2QqikcY"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

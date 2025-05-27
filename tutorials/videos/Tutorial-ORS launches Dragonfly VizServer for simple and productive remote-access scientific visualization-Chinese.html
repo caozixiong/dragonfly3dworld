@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>介绍蜻蜓可视化服务器：自由选择工作地点</h1>
+<h2>介绍 [00:00:02]</h2>
+<p>蜻蜓可视化服务器是运行Dragonfly的一种新方式，它为用户创建了一种模式，使Dragonfly能够满足用户在任何需要的地方工作的需求，让科学图像处理拥有在任何地点和时间工作的自由。</p>
+<h2>传统科学成像资源的问题 [00:01:08]</h2>
+<p>传统的科学成像资源分配方式存在局限性：</p>
+<ol>
+<li>最初，组织投资单一工作站和软件许可证</li>
+<li>这个工作站被放置在实验室或指定的计算机房</li>
+<li>随着需求增长，多位科学家需要访问但必须共享有限资源</li>
+<li>组织增加更多工作站，创建"可视化实验室"或数据分析套件</li>
+<li>这些可视化实验室通常被安置在地下室或走廊，远离科学家们喜欢的工作空间</li>
+</ol>
+<p>这种传统模式造成了几个痛点：<br />
+- 当计算机被其他用户预订时，可用性受限<br />
+- 当您的数据在无法使用的工作站上时，数据访问问题<br />
+- 工作站之间的软件版本不一致<br />
+- 位置不便，远离科学家的办公室或首选工作区域</p>
+<h2>介绍蜻蜓可视化服务器 [00:05:33]</h2>
+<p>蜻蜓可视化服务器提供了使用Dragonfly的新模式，让您可以自由选择工作地点。解决方案：</p>
+<ul>
+<li>Dragonfly安装和维护在集中位置（本地或基于云）</li>
+<li>用户可以从任何地方远程访问和运行Dragonfly</li>
+<li>兼容各种设备（笔记本电脑、工作站，甚至MacBook或Chromebook）</li>
+<li>集中化的资源管理和维护</li>
+</ul>
+<h3>蜻蜓可视化服务器的工作原理 [00:06:48]</h3>
+<ol>
+<li>用户从其计算机启动Dragonfly</li>
+<li>可视化服务器服务自动查找可用计算机</li>
+<li>在几秒钟内建立连接</li>
+<li>Dragonfly启动画面出现，用户可以开始工作</li>
+<li>多个用户可以同时连接到不同的服务器实例</li>
+<li>会话连续性允许用户从不同位置重新连接到现有会话</li>
+</ol>
+<h2>对科学家和工程师的好处 [00:09:39]</h2>
+<h3>更好的用户体验</h3>
+<ul>
+<li>远程访问数据，无需担心本地计算能力</li>
+<li>无论从哪里连接，图形用户界面都保持一致</li>
+<li>统一访问偏好设置和产品版本</li>
+<li>支持自带设备</li>
+<li>会话连续性提高生产力</li>
+</ul>
+<h3>成本节约</h3>
+<ul>
+<li>减少硬件预算需求</li>
+<li>无需为每个用户配备昂贵的工作站</li>
+<li>集中维护和升级</li>
+<li>资源池可以根据性能需求分割（高内存、高GPU、仅可视化）</li>
+</ul>
+<h3>降低IT维护成本</h3>
+<ul>
+<li>简化用户管理</li>
+<li>软件更新的单一接入点</li>
+<li>集中化硬件管理</li>
+<li>通过向服务器池添加更多节点实现可扩展性</li>
+</ul>
+<h2>使用案例 [00:14:58]</h2>
+<ul>
+<li>拥有多个PI、学生和博士后的协作研究小组</li>
+<li>大学和行业多用户核心设施</li>
+<li>需要为客户提供数据访问的服务实验室和演示实验室</li>
+</ul>
+<h2>灵活性和可扩展性 [00:16:43]</h2>
+<ul>
+<li>适用于同构或异构服务器池</li>
+<li>动态添加和移除计算资源</li>
+<li>兼容裸机部署或虚拟化</li>
+<li>各种虚拟机管理程序选项</li>
+</ul>
+<h2>常见问题 [00:18:13]</h2>
+<h3>概述问题</h3>
+<p><strong>这会改变Dragonfly工作站的任何内容吗？</strong><br />
+不会。Dragonfly工作站和可视化服务器将继续按照相同的时间表接收定期更新。</p>
+<p><strong>可视化服务器是否具有与工作站相同的功能？</strong><br />
+是的，所有用于图像分割、可视化、动画和分析的相同功能都可用。</p>
+<p><strong>可视化服务器的价格是多少？</strong><br />
+请联系销售部门获取根据您的团队规模和机构类型定制的价格方案。</p>
+<p><strong>我的非商业许可证是否包括可视化服务器？</strong><br />
+不，可视化服务器需要单独的许可证，尽管大学和非商业研究机构可以获得价格方案。</p>
+<p><strong>我可以将现有的工作站许可证升级为运行可视化服务器吗？</strong><br />
+是的，请联系销售部门确定迁移计划。</p>
+<p><strong>可视化服务器硬件可以用于其他软件吗？</strong><br />
+是的，但不推荐，因为这可能导致硬件配置不足。</p>
+<h3>客户端配置和行为</h3>
+<p><strong>访问可视化服务器的计算机要求是什么？</strong><br />
+任何带有键盘、鼠标、显示器和网络连接的计算机都可以工作。推荐：带滚轮的鼠标和分辨率为1920×1080或更高的显示器。兼容Windows、Linux、macOS和Chrome OS。</p>
+<p><strong>我必须与可视化服务器在同一位置吗？</strong><br />
+不，您只需要低延迟的网络连接。用户可以从不同的城市甚至大陆连接。</p>
+<p><strong>可视化服务器会让我从本地计算机加载或保存数据吗？</strong><br />
+是的，尽管与Project Organizer一起使用时体验更好。直接加载和保存文件取决于网络带宽。</p>
+<p><strong>当所有可视化服务器节点都在使用中时会发生什么？</strong><br />
+用户将收到一条消息，指示所有资源都在使用中，可以稍后再试。</p>
+<h3>服务器配置和性能</h3>
+<p><strong>可视化服务器托管在哪里？</strong><br />
+可视化服务器设计为由客户托管和管理，可以是本地或云端。</p>
+<p><strong>可视化服务器与Dragonfly云有何不同？</strong><br />
+可视化服务器引入了会话连续性和自动负载平衡，整合并改进了之前的Dragonfly云产品。</p>
+<p><strong>可视化服务器的硬件要求是什么？</strong><br />
+要求取决于您的分析需求。RAM可以从32GB到512GB不等。每个服务器节点需要工作站级或数据中心级的NVIDIA GPU。</p>
+<p><strong>ORS会为可视化服务器销售硬件吗？</strong><br />
+ORS提供规格指导，但客户应从其信任的供应商购买硬件。</p>
+<p><strong>我可以将当前的Dragonfly硬件重新用于可视化服务器吗？</strong><br />
+是的，尽管您可能需要将操作系统升级到Windows Server。</p>
+<p><strong>我可以只使用一个服务器节点的可视化服务器吗？</strong><br />
+是的，即使只有一个节点，您也可以获得远程访问硬件的灵活性。</p>
+<p><strong>我可以将大学的HPC集群用于可视化服务器吗？</strong><br />
+可能，取决于您大学的HPC资源管理。这需要您的IT部门与ORS可视化服务器支持团队之间的讨论。</p>
+<p><strong>可视化服务器是否依赖虚拟化？</strong><br />
+不，但它可以与虚拟化系统、裸机系统或两者的组合一起工作。</p>
+<p><strong>我需要专门的系统管理员吗？</strong><br />
+可视化服务器支持团队将帮助配置和部署，但有具备IT经验的同事会有所帮助。</p>
+<h2>结论 [00:27:50]</h2>
+<p>蜻蜓可视化服务器通过允许用户从任何地方工作，为科学图像处理提供了自由和灵活性。这种企业解决方案与其他ORS产品（如Project Organizer和Dragonfly计算框架）相辅相成，创建了一个全面的科学成像生态系统。欲了解更多信息或讨论在您的站点实施，请访问vizserver.com并联系销售部门。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=ulPHoZj7No0">ORS launches Dragonfly VizServer for simple and productive remote-access scientific visualization</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-23 02:34:03 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

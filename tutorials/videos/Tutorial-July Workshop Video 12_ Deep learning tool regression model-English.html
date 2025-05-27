@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July Workshop Video 12: Deep learning tool regression model - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July Workshop Video 12: Deep learning tool regression model - (English)</h1>
+        <p>This video demonstrates how to use deep learning as a regression model to replicate traditional image filtering, specifically training a U-Net model to function as a median filter for noise reduction in image data.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Using Deep Learning for Image Filtering in Dragonfly</h1>
+<h2>Introduction [00:00:03]</h2>
+<p>This tutorial demonstrates how to use the Deep Learning tool as a regression learning model to replicate traditional image processing filters. Specifically, we'll train a U-Net model to replicate the effect of a median filter on a noisy image dataset.</p>
+<h2>Preparing the Data [00:00:28]</h2>
+<p>We'll start with the denim dataset, which contains some noise that we want to filter out.</p>
+<ol>
+<li>First, let's apply a traditional median filter to create our training target:</li>
+<li>Navigate to the <code>Workflows</code> menu and select <code>Image Filtering</code></li>
+<li>In the dropdown box, type "median" to select the median filter</li>
+<li>Set the kernel size to 5</li>
+<li>Apply the filter to all slices</li>
+</ol>
+<p>Now we have two image channels:<br />
+- The original noisy data (input)<br />
+- The median-filtered data (target output)</p>
+<h2>Creating a Regression Model [00:02:05]</h2>
+<p>To create a deep learning model that replicates the median filter:</p>
+<ol>
+<li>Select the original data</li>
+<li>Go to the <code>Deep Learning</code> tool</li>
+<li>Create a new model with these settings:</li>
+<li>Model type: U-Net</li>
+<li>Task type: Regression (not semantic segmentation)</li>
+<li>Input count: 1</li>
+<li>Dimension: 2.5D</li>
+<li>Name: "median filter"</li>
+<li>Click <code>Generate</code> to create the model</li>
+</ol>
+<h2>Creating a Mask for Training [00:02:58]</h2>
+<p>The training process requires a mask to define the region for training:</p>
+<ol>
+<li>Go to the <code>Segmentation</code> tab</li>
+<li>Create a new ROI called "mask"</li>
+<li>Select a slice</li>
+<li>Use the brush tool (make it larger by scrolling while holding Control)</li>
+<li>Paint the entire slice to create a mask</li>
+</ol>
+<h2>Setting Up Training [00:03:34]</h2>
+<p>To train the model:</p>
+<ol>
+<li>Set up the training inputs:</li>
+<li>Input: denim input (original data)</li>
+<li>Output: denim median filtered image channel</li>
+<li>Mask: the mask we just created</li>
+<li>Adjust the augmentation settings as needed</li>
+<li>Create a preview frame to monitor training progress:</li>
+<li>Go to the main context</li>
+<li>Select a rectangle annotation to define a preview region</li>
+<li>Set this region as the visual feedback frame</li>
+</ol>
+<h2>Training the Model [00:04:09]</h2>
+<ol>
+<li>Click on <code>Train</code> to start the training process</li>
+<li>The model will learn to transform the input image to match the median-filtered output</li>
+<li>Monitor the training progress in the preview window</li>
+<li>The training may reach a steady state quickly and perform early stopping</li>
+</ol>
+<p>This demonstrates image-to-image regression. If you have a specific filter and examples of before/after images, you could incorporate that filter into Dragonfly indirectly using a deep learning model.</p>
+<p>You can save a 15-second video of the training progression for presentation purposes by using the export option.</p>
+<h2>Applying the Trained Model [00:05:52]</h2>
+<p>After training is complete:</p>
+<ol>
+<li>Save the model</li>
+<li>Return to the original data</li>
+<li>Select <code>Filter with AI</code> </li>
+<li>Choose the trained "unit median filter" model</li>
+<li>You can preview the results on a single slice or apply it to all slices</li>
+</ol>
+<h2>Comparing Results [00:06:20]</h2>
+<p>To compare the original, traditionally filtered, and AI-filtered results:</p>
+<ol>
+<li>Create a ruler annotation across an area of interest</li>
+<li>Use the intensity profile tool to visualize the differences between:</li>
+<li>Original data</li>
+<li>Median filtered data</li>
+<li>U-Net median filtered data</li>
+</ol>
+<p>The AI-filtered results should be very similar to the traditional median filter, demonstrating successful training of the regression model.</p>
+<h2>Conclusion [00:08:22]</h2>
+<p>This tutorial has demonstrated how to use deep learning for image-to-image regression in Dragonfly. This approach allows you to replicate traditional image filters or even create custom filters based on training examples. The technique can be extended to other image processing tasks where you have paired input and output examples.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=qB41ufi5IOw">July Workshop Video 12: Deep learning tool regression model</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-21 23:07:58 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/qB41ufi5IOw"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

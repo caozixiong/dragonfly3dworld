@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three-Dimensional Visualization of Bone Tissue Vascular and Cellular Spaces - Chinese Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Three-Dimensional Visualization of Bone Tissue Vascular and Cellular Spaces - (Chinese)</h1>
+        <p>Translated Text (Chinese):
+Mary，俄亥俄州立大学伤害生物力学研究中心的博士后研究员，讨论了骨组织血管和细胞空间的三维可视化，以了解骨微结构如何随机械负荷和老化而变化，从而提供关于骨健康和脆性的见解。</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>中文翻译</h1>
+<p>--- START ---</p>
+<h2>骨组织三维可视化介绍 [00:01:01]</h2>
+<p>本教程探讨了可视化骨组织内部空间的方法以及它们能告诉我们关于骨骼健康的信息。骨骼健康的研究是在人类变异的背景下进行的，不仅关注生物学和遗传学，还关注环境和行为在生命周期中的交叉影响。</p>
+<p>重点是骨骼生物学，将更精细的骨结构视为以下因素的组合：<br />
+- 生理学<br />
+- 机械适应<br />
+- 骨组织水平的功能解剖学</p>
+<p>这种方法与理解以下内容相关：<br />
+- 骨质流失和骨脆性<br />
+- 针对可能因年龄或病理而更容易骨质流失的脆弱人群<br />
+- 识别高风险组织部位<br />
+- 确定干预的最佳时机</p>
+<h2>理解骨质量和适应性 [00:03:39]</h2>
+<p>骨骼受两个主要因素影响：<br />
+- 机械适应<br />
+- 生理修饰</p>
+<p>嵌入骨组织中的细胞能感知机械需求（应变变化和损伤）。这些骨细胞触发：<br />
+- 通过破骨细胞去除骨质<br />
+- 通过成骨细胞形成骨质</p>
+<p>这个过程以两种方式发生：</p>
+<ol>
+<li><strong>塑形</strong>：</li>
+<li>在高应变下，骨骼会在外部添加物质（沉积），直到恢复到其习惯性变形水平</li>
+<li>在低应变下，骨骼会被移除（吸收），主要是在骨髓腔内部</li>
+<li>
+<p>可能涉及骨骼的漂移或移动</p>
+</li>
+<li>
+<p><strong>重塑</strong>：</p>
+</li>
+<li>发生在皮质骨本身内部</li>
+<li>替换旧的或受损的骨骼</li>
+<li>通过"切割锥"形成，破骨细胞隧道并移除骨质</li>
+<li>成骨细胞跟随并填充新骨</li>
+<li>需要血管运输营养物质给骨细胞</li>
+<li>可能由以下因素触发：<ul>
+<li>骨骼损伤（高应变下的靶向重塑）</li>
+<li>"废用模式重塑"发生在低应变下</li>
+</ul>
+</li>
+</ol>
+<h2>与年龄相关的骨质流失 [00:06:41]</h2>
+<p>骨质流失开始的时间比大多数人意识到的要早：<br />
+- 对于松质骨，骨吸收开始超过骨形成的时间早在20多岁<br />
+- 对于皮质骨，则在30多岁</p>
+<p>在美国，骨质疏松症非常普遍：<br />
+- 50岁以上成人被临床诊断为低骨量（骨量减少）或骨质疏松症的比率很高<br />
+- 女性发病率较高，因为围绝经期雌激素（一种保护骨骼的性类固醇）减少</p>
+<p>目前的临床评估使用DEXA扫描，但这些方法对骨折风险的预测不足：<br />
+- 60-80岁之间ABMD（面积骨矿物质密度）下降仅占整体骨折风险增加13倍中的2倍<br />
+- 约54%的髋部骨折患者未被诊断为骨质疏松症</p>
+<h2>骨组织微结构和质量 [00:09:11]</h2>
+<p>骨组织微结构在分层系统中协同工作以支持骨强度。量化骨组织质量的不同方法包括：</p>
+<ol>
+<li>
+<p><strong>横截面几何形状</strong>：骨壳的面积和分布</p>
+</li>
+<li>
+<p><strong>皮质孔隙</strong>：营养物质运输所必需的，在2D和3D中都可见</p>
+</li>
+<li>
+<p><strong>次级骨单位</strong>：围绕皮质孔隙</p>
+</li>
+<li>
+<p><strong>骨细胞陷窝-管状网络</strong>：机械感应骨细胞及其自身的孔隙网络</p>
+</li>
+<li>
+<p><strong>微损伤</strong>：允许损伤扩散和修复而不完全骨折的微观裂缝</p>
+</li>
+<li>
+<p><strong>小梁架构</strong>：骨髓腔内松质骨的变化</p>
+</li>
+</ol>
+<p>随年龄增长导致脆性增加的骨质量变化包括：<br />
+- 皮质厚度减少<br />
+- 小梁架构退化<br />
+- 骨细胞陷窝-管状网络下降<br />
+- 皮质孔隙度增加<br />
+- 更多微损伤<br />
+- 胶原和矿物质脆性增加</p>
+<h2>骨骼可视化的3D成像方法 [00:10:59]</h2>
+<p>可以使用几种成像方法来可视化骨结构：</p>
+<ol>
+<li><strong>CT和微CT</strong>：</li>
+<li>传统CT扫描用于伤害</li>
+<li>微CT提供更高分辨率</li>
+<li>
+<p>视野和分辨率之间存在权衡</p>
+</li>
+<li>
+<p><strong>同步辐射微CT</strong>：</p>
+</li>
+<li>加速电子产生高强度X射线</li>
+<li>提供比常规微CT更高的分辨率</li>
+<li>
+<p>允许可视化更小的结构</p>
+</li>
+<li>
+<p><strong>共焦激光扫描显微镜</strong>：</p>
+</li>
+<li>一种荧光技术，阻挡焦点外光线</li>
+<li>在x、y和z平面提供精确分辨率</li>
+<li>在骨骼中的深度穿透有限（约100微米）</li>
+</ol>
+<h2>股骨颈分割项目 [00:13:17]</h2>
+<p>该项目研究了机械负荷历史如何影响骨微结构，使用Dragonfly进行可视化和处理。</p>
+<h3>为什么机械负荷历史很重要：</h3>
+<ul>
+<li>微结构是组织如何被加载及其如何响应的记录</li>
+<li>骨骼在生命周期中适应机械需求</li>
+<li>老化和病理可能会使这种适应失调</li>
+</ul>
+<h3>皮质孔隙度：</h3>
+<ul>
+<li>对骨修复必要（允许血管运输营养物质和细胞）</li>
+<li>在正常数量下，对骨骼无害</li>
+<li>随着年龄相关的失调，血管孔隙的积累会创造应力集中点</li>
+<li>即使孔隙度小幅增加也会显著影响骨折风险：</li>
+<li>孔隙度增加4%导致裂纹传播增加84%</li>
+<li>股骨年龄相关强度损失的76%是由于皮质孔隙度造成的</li>
+</ul>
+<h3>方法学挑战：</h3>
+<ul>
+<li>重塑既由低应变又由高应变触发</li>
+<li>难以区分靶向重塑和废用模式重塑</li>
+<li>几项研究发现不同负荷机制的骨骼之间的孔隙度百分比没有显著差异</li>
+<li>老化引起的生理失调高度个体特异性</li>
+</ul>
+<h3>研究设计：</h3>
+<ul>
+<li>比较右股骨颈（承重，动态加载）与右第四肋骨中段（相对未加载）</li>
+<li>股骨颈具有可预测的应变梯度（从上到下压缩增加）</li>
+<li>肋骨负荷更复杂，随胸廓水平而变化</li>
+</ul>
+<h3>使用Dragonfly的技术过程：</h3>
+<ol>
+<li>由于预算限制，股骨颈被物理切割成三块进行扫描</li>
+<li>Dragonfly用于：</li>
+<li>加载和可视化灰度数据（约60GB）</li>
+<li>定向片段以正确对齐</li>
+<li>在3D和多轴中可视化以确保正确的堆栈对齐</li>
+<li>应用自适应阈值以隔离小孔结构</li>
+<li>创建掩码以分离皮质骨和松质骨</li>
+<li>基于与骨髓腔的距离区分皮质和松质孔隙</li>
+<li>创建区域掩码以分析股骨颈的不同象限</li>
+</ol>
+<h2>结果和发现 [00:23:08]</h2>
+<p>股骨颈区域证实了一个结构-应变模型，其中：<br />
+- 在较低应变下：废用模式重塑导致大型、相互连接、斜向排列的孔隙<br />
+- 在高应变下：靶向、短暂、精确的重塑创造小型、孤立、纵向排列的孔隙</p>
+<p>通过以下方面观察到与年龄相关的失调：<br />
+- 孔隙密度增加<br />
+- 孔隙分离减少（暗示孔隙融合）<br />
+- 孔隙厚度集中在上前八分区</p>
+<p>这很重要，因为上前八分区在侧向跌倒时特别容易受到挤压，使具有这种与年龄相关沉积的个体更容易发生脆性骨折。</p>
+<p>肋骨区域在胸膜皮质中匹配高应变形态类型，但显示：<br />
+- 区域模式较不一致<br />
+- 对年龄和皮质厚度更敏感</p>
+<h2>结论 [00:24:28]</h2>
+<p>这项研究展示了骨组织的3D可视化如何揭示关于以下方面的重要信息：<br />
+- 机械负荷历史<br />
+- 骨微结构的年龄相关变化<br />
+- 潜在骨折风险因素</p>
+<p>使用类似方法的其他研究表明，某些条件，如阿片类药物使用，可能使骨骼对不同骨骼之间的机械负荷差异不敏感，导致形态测量相似而非适当适应不同的生物力学目的。</p>
+<p>先进的成像技术结合适当的可视化软件（如Dragonfly）允许对骨微结构进行详细分析，超越传统骨密度测量所能揭示的内容，可能导致更好地理解和治疗与年龄相关的骨脆性。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=5SqTLBag_Uw">Three-Dimensional Visualization of Bone Tissue Vascular and Cellular Spaces</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 03:01:15 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/5SqTLBag_Uw"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

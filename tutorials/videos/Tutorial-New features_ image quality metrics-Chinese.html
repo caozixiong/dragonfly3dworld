@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New features: image quality metrics - Chinese Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>New features: image quality metrics - (Chinese)</h1>
+        <p>这个视频展示了蜻蜓(Dragonfly)2022.2版本的三个新功能：边缘对比度可视化工具，用于更好地查看内部结构；等效球形直径计算，用于更快地分析孔隙或特征；以及图像质量度量，用于量化原始图像切片和处理后图像切片之间的差异。</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Dragonfly 2022.2版本的新功能</h1>
+<h2>介绍 [00:00:02]</h2>
+<p>本教程演示了Dragonfly 2022.2版本中的三个新功能，使用一个经过微CT扫描的混凝土样本。该样本在之前的教程中已被用于分割和分析孔隙空间。</p>
+<h2>1. 边缘对比度可视化 [00:00:38]</h2>
+<p>第一个新功能增强了3D可视化能力：</p>
+<ol>
+<li>在3D窗口中点击一个对象</li>
+<li>在3D设置中，找到新的边缘对比度复选框和滑块</li>
+<li>激活复选框并将滑块调整到左侧</li>
+</ol>
+<p>这提供了一种透明度方法，仍然显示对象另一侧的边缘和内部特征的边缘。这种可视化技术特别适用于：</p>
+<ul>
+<li>查看内部结构</li>
+<li>使用透明度的同时保持边缘的可见性</li>
+<li>使用颜色编码可视化孔隙率</li>
+</ul>
+<p>当图像通道被激活时，可能不会显示孔隙信息颜色编码图例。点击孔隙多ROI可以看到颜色编码是根据球形度进行的。</p>
+<h2>2. 等效球形直径计算 [00:02:17]</h2>
+<p>增加了一个强大的新计算功能：</p>
+<ol>
+<li>右键点击多ROI</li>
+<li>进入标量生成器</li>
+<li>在基本测量下，在体积正下方，找到新的"等效球形直径"选项</li>
+</ol>
+<p>此计算确定具有与您的孔隙或特征相同体积的完美球体的直径。好处包括：</p>
+<ul>
+<li>与更复杂的测量相比，计算速度非常快</li>
+<li>适用于常规快速分析</li>
+<li>分析数千个特征时效率高</li>
+</ul>
+<p>对于超过10,000个特征的复杂分析，计算最大费雷特直径或其他复杂测量可能非常耗时。使用等效球形直径可以最小化处理时间，同时提供有价值的数据。</p>
+<h2>3. 图像质量指标 [00:03:11]</h2>
+<p>第三个新功能允许对数据集之间的图像质量进行定量比较：</p>
+<h3>准备图像切片进行比较</h3>
+<ol>
+<li>右键点击图像并选择"显示标记切片指示器"</li>
+<li>点击特定切片进行标记</li>
+<li>右键点击图像并选择"从标记切片创建新图像"</li>
+<li>对第二个数据集重复此过程，使用相同的切片编号</li>
+</ol>
+<h3>比较图像质量</h3>
+<ol>
+<li>右键点击任一单切片图像</li>
+<li>选择"打开图像质量指标"</li>
+<li>选择两个单切片图像进行比较</li>
+<li>计算不同的图像质量指标</li>
+</ol>
+<p>指标包括：<br />
+- 锐度值（在模糊/降噪图像中显著降低）<br />
+- 香农熵<br />
+- 常规信噪比<br />
+- Q因子计算</p>
+<p>在所示示例中，原始数据的锐度值为782，而降噪版本仅为137，清楚地展示了图像质量的差异。</p>
+<h2>结论 [00:06:08]</h2>
+<p>Dragonfly 2022.2中的这三个新功能增强了可视化能力，为大型数据集提供了高效的计算，并实现了定量图像质量比较。每个功能都解决了分析工作流程中的特定需求，使软件在微CT分析中更加多功能和强大。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=7ivecHk7Yq8">New features: image quality metrics</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 14:26:06 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/7ivecHk7Yq8"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 2022 Workshop Video 3: Porosity of a cube of additively manufactured metal - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July 2022 Workshop Video 3: Porosity of a cube of additively manufactured metal - (English)</h1>
+        <p>This video demonstrates porosity analysis of additively manufactured metal using Dragonfly software, showcasing segmentation techniques to identify, visualize, and quantify pores within a metal sample through volume measurements and size distribution analysis.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to Porosity Analysis in Additive Manufacturing [00:00:03]</h2>
+<p>This tutorial demonstrates porosity analysis of additively manufactured metal using Dragonfly software. We'll walk through the process of segmenting, visualizing, and analyzing pores in a metal sample.</p>
+<h2>Setting Up the Session [00:00:29]</h2>
+<p>To begin, create a new session and load a prepared dataset:</p>
+<ol>
+<li>Load a pre-saved session with downsampled data (in this case, "small cube session")</li>
+<li>The data has already been registered with the Z-axis aligned to the bottom of the sample</li>
+</ol>
+<h2>Improving Visualization [00:01:20]</h2>
+<p>Before starting the analysis:</p>
+<ol>
+<li>Click on the object to select it</li>
+<li>Choose a visualization preset for better viewing</li>
+<li>Adjust lighting settings to make the sample more visible</li>
+<li>Adjust background if needed for better contrast</li>
+</ol>
+<h2>Basic Segmentation for Porosity Analysis [00:01:52]</h2>
+<p>Navigate to the <code>Segment</code> tab to begin segmentation:</p>
+<ol>
+<li>The main thresholding functions are found in the <code>Segment</code> tab</li>
+<li>Click on <code>Define Range</code> to access thresholding options</li>
+<li>The system shows a preview of Lower or Upper OTSU thresholding</li>
+<li>OTSU is an advanced thresholding method similar to ISO 50</li>
+<li>It finds the midway point between the two main peaks in the histogram</li>
+</ol>
+<p>You can also:<br />
+- View and export the histogram<br />
+- Find exact values of peaks<br />
+- Select custom threshold values<br />
+- Manually drag threshold levels</p>
+<h2>Segmenting the Metal Sample [00:03:37]</h2>
+<p>For this demonstration, we'll use a simple thresholding method:</p>
+<ol>
+<li>Choose Upper OTSU threshold</li>
+<li>Add this to a new region of interest</li>
+<li>Turn off the preview button</li>
+<li>The metal voxels are now segmented (shown in green)</li>
+</ol>
+<h2>Creating a Complete Sample Volume [00:04:23]</h2>
+<p>To calculate porosity, we need both the metal and pore volumes:</p>
+<ol>
+<li>With the metal segmented, use <code>Fill Inner Areas 3D</code> operation</li>
+<li>This fills all enclosed cavities within the metal</li>
+<li>The result is the total cube volume including pores</li>
+</ol>
+<h2>Cleaning the Segmentation [00:05:32]</h2>
+<p>To remove any external particles:</p>
+<ol>
+<li>Right-click on the region of interest</li>
+<li>Select <code>Refine Region of Interest</code> → <code>Process Islands</code></li>
+<li>Choose <code>Keep by Largest</code></li>
+<li>The "6" option means voxels are connected only by faces</li>
+<li>The "26" option means voxels are connected by faces, edges, and corners</li>
+<li>This removes any disconnected particles outside the main sample</li>
+<li>Make a copy of this clean total volume for later use</li>
+</ol>
+<h2>Isolating the Pores [00:06:56]</h2>
+<p>To separate the pores from the metal:</p>
+<ol>
+<li>Dilate the region of interest twice to create a shell around the sample</li>
+<li>Use the <code>Split at OTSU</code> function to separate foreground (metal) from background (pores and air)</li>
+<li>Turn off the total cube visualization</li>
+<li>For the background region, use <code>Refine Region of Interest</code> → <code>Process Islands</code> → <code>Remove by Largest</code></li>
+<li>This removes the external air shell, leaving only the internal pores</li>
+</ol>
+<h2>Alternative Method for Pore Segmentation [00:09:45]</h2>
+<p>Another approach to segment pores:</p>
+<ol>
+<li>Start with the total cube volume</li>
+<li>Go to the <code>Segment</code> tab</li>
+<li>Use <code>Define Range Lower</code> and add to a new region</li>
+<li>This captures both porosity and outside air</li>
+<li>Use <code>Refine Region of Interest</code> → <code>Process Islands</code> → <code>Remove by Largest</code> to eliminate the outside air</li>
+<li>Compare this method with the previous approach to see which captures more pores</li>
+</ol>
+<h2>Removing Noise [00:10:46]</h2>
+<p>To eliminate small features that might be noise:</p>
+<ol>
+<li>Use <code>Refine Region of Interest</code> → <code>Process Islands</code> → <code>Remove by Voxel Count</code></li>
+<li>Set a minimum size threshold (e.g., 9 voxels, which is a 2×2×2 cube)</li>
+<li>This removes small features that are likely noise rather than actual pores</li>
+<li>This also speeds up subsequent processing</li>
+</ol>
+<h2>Pore Analysis with Connected Components [00:12:04]</h2>
+<p>To analyze individual pores:</p>
+<ol>
+<li>Go to <code>Connected Components</code> → <code>Multi ROI Analysis</code></li>
+<li>This separates each disconnected pore into its own class</li>
+<li>Calculate values like volume for each pore</li>
+<li>For more detailed analysis, use the <code>Scalar Calculator</code></li>
+<li>Select only the measurements you need (selecting all can be slow)</li>
+<li>Volume calculation is relatively fast</li>
+</ol>
+<h2>Visualizing Pore Size Distribution [00:13:15]</h2>
+<p>To visualize the pores by size:</p>
+<ol>
+<li>With the Multi ROI highlighted, go to scalar information</li>
+<li>Classify pores by volume</li>
+<li>Change the color map if desired (e.g., from purple-green-yellow to temperature scale)</li>
+<li>Sort pores by size</li>
+<li>Right-click on individual pores to view their center of mass in 2D planes</li>
+</ol>
+<p>Note: Some pores may not be included if they're open to the surface.</p>
+<h2>3D Visualization Techniques [00:15:33]</h2>
+<p>For better visualization of pores within the sample:</p>
+<ol>
+<li>Adjust transparency settings to see through the metal</li>
+<li>Create a mesh of the total cube:</li>
+<li>Go to the <code>Segment</code> tab</li>
+<li>Select the total cube region of interest</li>
+<li>Choose <code>Create and Export to a Mesh</code></li>
+<li>Sample the mesh to reduce detail for visualization purposes</li>
+<li>Make the mesh white and visible</li>
+<li>Turn off the original data</li>
+</ol>
+<p>This creates a transparent view where you can see the pores inside the sample outline.</p>
+<h2>Advanced Analysis Options [00:17:52]</h2>
+<p>Additional analysis capabilities:</p>
+<ol>
+<li>View volume or pore size distribution histograms</li>
+<li>Change bin numbers for histograms</li>
+<li>Sort features by different characteristics</li>
+<li>Save images or export data to CSV files</li>
+<li>Use the <code>Scalar Generator</code> for additional measurements:</li>
+<li>Basic measurements include volume, surface area</li>
+<li>Advanced measurements include aspect ratio</li>
+<li>Maximum Ferret diameter (caliper width)</li>
+<li>Surface area calculations (voxel-wise or with sub-voxel precision)</li>
+</ol>
+<h2>Conclusion [00:20:39]</h2>
+<p>This tutorial demonstrated how to:<br />
+- Segment pores in an additively manufactured metal sample<br />
+- Clean up segmentation to remove noise<br />
+- Analyze pore characteristics like volume and size<br />
+- Visualize pores in 3D<br />
+- Generate size distribution histograms</p>
+<p>These techniques provide powerful tools for porosity analysis in additive manufacturing, allowing for detailed characterization of internal defects.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=TcLSWcfpo5M">July 2022 Workshop Video 3: Porosity of a cube of additively manufactured metal</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 21:52:39 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/TcLSWcfpo5M"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

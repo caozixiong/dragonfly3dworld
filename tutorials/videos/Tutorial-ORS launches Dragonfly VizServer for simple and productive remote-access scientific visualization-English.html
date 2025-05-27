@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORS launches Dragonfly VizServer for simple and productive remote-access scientific visualization - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>ORS launches Dragonfly VizServer for simple and productive remote-access scientific visualization - (English)</h1>
+        <p>Dragonfly Viz Server is a new solution that allows users to access and run Dragonfly scientific imaging software remotely from any device, freeing researchers from being tied to specific workstations while providing centralized management of resources, session continuity, and the flexibility to work from any location.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Introducing Dragonfly Viz Server: Freedom to Work Where You Want</h1>
+<h2>Introduction [00:00:02]</h2>
+<p>Dragonfly Viz Server is a new way to run Dragonfly that creates a pattern for users allowing Dragonfly to meet them where they need to be, enabling scientific image processing with the freedom to work where and when you want.</p>
+<h2>The Problem with Traditional Scientific Imaging Resources [00:01:08]</h2>
+<p>Scientific imaging resources are traditionally allocated in a restrictive way:</p>
+<ol>
+<li>Initially, organizations invest in a single workstation and software license</li>
+<li>This workstation is placed in a lab or designated computer room</li>
+<li>As demand grows, multiple scientists need access but must share limited resources</li>
+<li>Organizations add more workstations, creating a "Viz Lab" or data analysis suite</li>
+<li>These Viz Labs are often tucked away in basements or hallways, far from scientists' preferred workspaces</li>
+</ol>
+<p>This traditional model creates several pain points:<br />
+- Limited availability when computers are booked by other users<br />
+- Data accessibility issues when your data is on an unavailable workstation<br />
+- Software version inconsistencies across workstations<br />
+- Inconvenient locations away from scientists' offices or preferred work areas</p>
+<h2>Introducing Dragonfly Viz Server [00:05:33]</h2>
+<p>Dragonfly Viz Server offers a new pattern for using Dragonfly that provides freedom to work where you want. The solution:</p>
+<ul>
+<li>Dragonfly installed and maintained in a centralized location (on-premises or cloud-based)</li>
+<li>Users access and run Dragonfly remotely from anywhere</li>
+<li>Compatible with various devices (laptops, workstations, even MacBooks or Chromebooks)</li>
+<li>Centralized resource management and maintenance</li>
+</ul>
+<h3>How Dragonfly Viz Server Works [00:06:48]</h3>
+<ol>
+<li>A user launches Dragonfly from their computer</li>
+<li>The Viz Server service automatically finds an available computer</li>
+<li>A connection is established within seconds</li>
+<li>The Dragonfly splash screen appears and the user can begin working</li>
+<li>Multiple users can connect simultaneously to different server instances</li>
+<li>Session continuation allows users to reconnect to their existing session from different locations</li>
+</ol>
+<h2>Benefits for Scientists and Engineers [00:09:39]</h2>
+<h3>Better User Experience</h3>
+<ul>
+<li>Remote access to data without worrying about local compute power</li>
+<li>Consistent graphical user interface regardless of connection point</li>
+<li>Uniform access to preferences and product versions</li>
+<li>Bring-your-own-device friendly</li>
+<li>Session continuation for improved productivity</li>
+</ul>
+<h3>Cost Savings</h3>
+<ul>
+<li>Reduced hardware budget requirements</li>
+<li>No need for expensive workstations for every user</li>
+<li>Centralized maintenance and upgrades</li>
+<li>Resource pools can be split based on performance needs (high memory, high GPU, visualization-only)</li>
+</ul>
+<h3>Lower IT Maintenance</h3>
+<ul>
+<li>Easy user management</li>
+<li>Single point for software updates</li>
+<li>Centralized hardware management</li>
+<li>Scalable by adding more nodes to the server pool</li>
+</ul>
+<h2>Use Cases [00:14:58]</h2>
+<ul>
+<li>Collaborative research groups with multiple PIs, students, and postdocs</li>
+<li>University and industry multi-user core facilities</li>
+<li>Services labs and demo labs that need to provide client access to data</li>
+</ul>
+<h2>Flexibility and Scalability [00:16:43]</h2>
+<ul>
+<li>Works with homogeneous or heterogeneous server pools</li>
+<li>Dynamic addition and removal of compute resources</li>
+<li>Compatible with bare metal deployments or virtualization</li>
+<li>Various hypervisor options</li>
+</ul>
+<h2>Frequently Asked Questions [00:18:13]</h2>
+<h3>Overview Questions</h3>
+<p><strong>Does this change anything with Dragonfly Workstation?</strong><br />
+No. Both Dragonfly Workstation and Viz Server will continue to receive regular updates on the same schedule.</p>
+<p><strong>Does Viz Server have the same features as Workstation?</strong><br />
+Yes, all the same features for image segmentation, visualization, animation, and analysis are available.</p>
+<p><strong>How much does Viz Server cost?</strong><br />
+Contact sales for pricing plans tailored to your group size and institution type.</p>
+<p><strong>Does my non-commercial license include Viz Server?</strong><br />
+No, Viz Server requires a separate license, though pricing plans are available for universities and non-commercial research institutes.</p>
+<p><strong>Can I upgrade my existing workstation license to run Viz Server?</strong><br />
+Yes, contact sales to identify a migration plan.</p>
+<p><strong>Can Viz Server hardware be used for other software?</strong><br />
+Yes, though it's not recommended as it may lead to under-provisioned hardware.</p>
+<h3>Client Configuration and Behavior</h3>
+<p><strong>What are the computer requirements to access Viz Server?</strong><br />
+Any computer with a keyboard, mouse, monitor, and network connection will work. Recommended: mouse with scroll wheel and monitor with 1920×1080 resolution or higher. Compatible with Windows, Linux, macOS, and Chrome OS.</p>
+<p><strong>Do I have to be in the same location as the Viz Server?</strong><br />
+No, you only need a low-latency network connection. Users can connect from different cities or even continents.</p>
+<p><strong>Will Viz Server let me load or save data from my local computer?</strong><br />
+Yes, though the experience is better when used with Project Organizer. Loading and saving files directly depends on network bandwidth.</p>
+<p><strong>What happens when all Viz Server nodes are in use?</strong><br />
+Users will receive a message indicating all resources are in use and can try again later.</p>
+<h3>Server Configuration and Performance</h3>
+<p><strong>Where is Viz Server hosted?</strong><br />
+Viz Server is designed to be hosted and administered by the customer, either on-premises or in the cloud.</p>
+<p><strong>How is Viz Server different from Dragonfly Cloud?</strong><br />
+Viz Server introduces session continuation and automatic load balancing, integrating and improving upon the former Dragonfly Cloud product.</p>
+<p><strong>What are the hardware requirements for Viz Server?</strong><br />
+Requirements depend on your analysis needs. RAM can range from 32GB to 512GB. Each server node requires a workstation-class or data center-class NVIDIA GPU.</p>
+<p><strong>Will ORS sell me hardware for Viz Server?</strong><br />
+ORS provides guidance on specifications, but customers should purchase hardware from their trusted vendors.</p>
+<p><strong>Can I repurpose my current Dragonfly hardware for Viz Server?</strong><br />
+Yes, though you may need to upgrade your operating system to Windows Server.</p>
+<p><strong>Can I use Viz Server with only one server node?</strong><br />
+Yes, even with a single node, you gain the flexibility to access your hardware remotely.</p>
+<p><strong>Can I use my university's HPC cluster for Viz Server?</strong><br />
+Possibly, depending on your university's HPC resource management. This requires discussion between your IT department and the ORS Viz Server support team.</p>
+<p><strong>Does Viz Server rely on virtualization?</strong><br />
+No, but it can work with virtualized systems, bare metal systems, or a combination.</p>
+<p><strong>Do I need a dedicated system administrator?</strong><br />
+The Viz Server support team will help with configuration and deployment, but having colleagues with IT experience is beneficial.</p>
+<h2>Conclusion [00:27:50]</h2>
+<p>Dragonfly Viz Server offers freedom and flexibility for scientific image processing by allowing users to work from anywhere. This enterprise solution complements other ORS products like Project Organizer and the Dragonfly Compute Framework to create a comprehensive scientific imaging ecosystem. For more information or to discuss implementation at your site, visit vizserver.com and contact sales.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=ulPHoZj7No0">ORS launches Dragonfly VizServer for simple and productive remote-access scientific visualization</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-23 02:34:03 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/ulPHoZj7No0"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 2022 Workshop Video 2: correlative imaging of a mite - Chinese Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July 2022 Workshop Video 2: correlative imaging of a mite - (Chinese)</h1>
+        <p>这个视频展示了Dragonfly软件中的相关成像功能，展示了如何导入、对齐和可视化以不同分辨率扫描的螨虫的多个图像通道，同时探索各种可视化工具和测量功能。</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Dragonfly中的关联成像：处理多个数据集 [00:00:02]</h1>
+<p>本教程演示了Dragonfly中的关联成像功能，展示如何将来自不同成像模式和仪器的数据导入到同一工作空间中，然后进行配准和对齐。</p>
+<h2>加载多个数据集 [00:00:52]</h2>
+<p>首先，我们将加载一个包含同一螨虫在不同分辨率下扫描的两个图像通道的样本：</p>
+<ul>
+<li>通过选择"multimite.ORS"对象导入</li>
+<li>这包含两次扫描：一次身体扫描和一次头部扫描</li>
+<li>身体扫描尺寸为13 × 16 × 8毫米</li>
+<li>头部扫描尺寸为4 × 4 × 3毫米</li>
+</ul>
+<h2>对齐多个数据集 [00:01:41]</h2>
+<p>处理多个扫描时，它们可能无法完美对齐：</p>
+<ol>
+<li>右键点击头部扫描并选择"与当前视图对齐"</li>
+<li>要微调对齐，请使用平移/旋转工具</li>
+<li>点击移动工具并使用键盘箭头按钮进行微小调整</li>
+<li>对齐完成后按Escape退出平移/旋转模式</li>
+</ol>
+<h2>3D可视化技术 [00:03:33]</h2>
+<p>要在3D中查看两个数据集：</p>
+<ol>
+<li>转到布局面板并选择四视图</li>
+<li>双击获取全视图</li>
+<li>调整3D渲染设置：</li>
+<li>尝试"骨骼"渲染预设以获得更好的可见性</li>
+<li>启用漫反射照明和镜面照明</li>
+<li>调整色调映射以获得更好的对比度</li>
+</ol>
+<h3>调整窗口级别 [00:05:25]</h3>
+<p>为了更好的可视化：<br />
+- 使用对数刻度缩小查看范围<br />
+- 调整伽马值以获得更好的纹理可见性<br />
+- 将黑点移近左侧以获得更好的表面细节</p>
+<h3>背景和照明选项 [00:06:19]</h3>
+<p>使用这些设置增强可视化效果：<br />
+- 更改背景颜色（白色到黑色渐变效果很好）<br />
+- 启用边缘检测以显示对象周围的轮廓<br />
+- 调整阴影选项（加深阴影以显示更多纹理）<br />
+- 修改照明方向以突出不同特征</p>
+<h2>创建虚拟地板效果 [00:08:48]</h2>
+<p>添加反射表面以创建艺术化可视化：</p>
+<ol>
+<li>启用虚拟地板选项</li>
+<li>在所需轴上设置地板（z轴作为"玻璃地板"效果很好）</li>
+<li>调整反射表面属性：</li>
+<li>更改反射表面的颜色</li>
+<li>调整表面的距离</li>
+<li>使用左侧的滑块微调平面</li>
+</ol>
+<h2>导出高质量图像 [00:12:23]</h2>
+<p>要导出可视化效果：</p>
+<ol>
+<li>通过场景视图属性移除文本注释</li>
+<li>右键点击并选择"导出视图截图"</li>
+<li>调整宽度（最高4000像素），高度会自动调整</li>
+<li>如果只想要对象而不要背景，请启用alpha背景</li>
+<li>保存为TIFF文件以获得高质量结果</li>
+</ol>
+<h2>同时可视化多个数据集 [00:14:40]</h2>
+<p>要同时显示身体和头部扫描：</p>
+<ol>
+<li>通过降低固体度和不透明度使身体透明</li>
+<li>应用不同的配色方案以区分数据集：</li>
+<li>在渐变中更改控制点以创建自定义颜色</li>
+<li>使头部扫描呈现更多橙色/红色，与身体形成对比</li>
+<li>调整照明以增强可见性</li>
+</ol>
+<h2>使用裁剪盒 [00:20:32]</h2>
+<p>要查看对象内部：</p>
+<ol>
+<li>从视觉效果中启用裁剪盒</li>
+<li>拖动盒子以裁剪打开对象</li>
+<li>根据需要选择内部或外部裁剪</li>
+<li>将相同的裁剪盒应用于两个数据集或单独应用</li>
+<li>调整裁剪部分的不透明度设置</li>
+</ol>
+<p>此技术可用于：<br />
+- 创建横截面视图<br />
+- 制作显示渐进裁剪的视频<br />
+- 从感兴趣区域创建较小的数据集</p>
+<h2>测量和注释工具 [00:23:20]</h2>
+<h3>点和测量</h3>
+<ol>
+<li>使用注释面板放置感兴趣点</li>
+<li>命名并保存点集合（例如，"头部表面位置"）</li>
+<li>将点坐标导出到CSV文件</li>
+</ol>
+<h3>尺子工具 [00:24:50]</h3>
+<p>尺子工具允许精确测量：<br />
+- 测量特征之间的距离<br />
+- 测量精度为亚体素（不限于体素边缘）<br />
+- 查看测量线上的强度剖面</p>
+<h3>其他注释工具 [00:31:18]</h3>
+<ul>
+<li>角度测量：测量特征之间的角度</li>
+<li>路径工具：沿复杂特征创建和测量路径</li>
+<li>箭头工具：添加可自定义箭头头部、颜色和粗细的箭头</li>
+<li>矩形注释：定义分析区域</li>
+</ul>
+<h2>强度分析 [00:34:34]</h2>
+<p>使用矩形选择，您可以：<br />
+- 生成灰度分布直方图<br />
+- 将数据复制到剪贴板或保存为CSV<br />
+- 定义区域进行进一步分析</p>
+<h2>高级可视化：强度投影 [00:35:38]</h2>
+<p>为增强可视化效果：</p>
+<ol>
+<li>使用最大强度投影查看跨多个切片的特征</li>
+<li>使用其他视图中的虚线调整投影厚度</li>
+<li>此技术突出显示跨越多个切片的特征，如毛发</li>
+<li>最小强度投影对于可视化孔隙度很有用</li>
+</ol>
+<p>最大强度投影特别适用于在单个2D视图中查看跨越多个切片的结构，使识别模式和连接变得更容易。</p>
+<h2>结论</h2>
+<p>Dragonfly为关联成像提供了强大的工具，允许您处理不同分辨率的多个数据集。该软件提供了广泛的可视化选项、测量工具和分析功能，以从数据中提取有意义的信息。通过组合数据集并使用各种渲染和注释功能，您可以创建全面的可视化效果，突出显示与您研究最相关的特征。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=KaxZVXAkr9k">July 2022 Workshop Video 2: correlative imaging of a mite</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-23 00:15:27 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/KaxZVXAkr9k"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

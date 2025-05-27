@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New features: Intensity calibration / bone mineral density calibration - Chinese Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>New features: Intensity calibration / bone mineral density calibration - (Chinese)</h1>
+        <p>本教程演示如何在Dragonfly软件中进行强度校准以测量骨矿物质密度，展示如何使用已知密度的参考模体将标准灰度值转换为校准后的密度值。</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Dragonfly中的强度校准</h1>
+<h2>介绍 [00:00:03]</h2>
+<p>本教程演示如何在Dragonfly中执行强度校准。这种技术特别适用于CT数据中灰度的骨矿物质密度校准，但也可应用于其他目的。演示使用了蜥蜴骨质鳞片、蜥蜴骨骼和骨矿物质密度校准模体的CT数据。</p>
+<p>这些数据来自《解剖学杂志》上发表的一项研究，该研究调查了骨质鳞片密度，以确定蜥蜴体内这些骨板是否可以作为钙储存库。</p>
+<h2>理解校准需求 [00:00:57]</h2>
+<p>在16位CT数据中，灰度值通常范围从0到65,535。强度校准的目标是将这些任意灰度值转换为有意义的密度测量值。在本例中，我们知道骨矿物质密度校准模体的密度为1200毫克/立方厘米，这将作为我们的参考点。</p>
+<h2>创建感兴趣区域 [00:01:43]</h2>
+<p>要校准强度刻度，首先创建校准模体的分割：</p>
+<ol>
+<li>使用局部Otsu刷工具和3D球形画笔选择模体内的高密度像素</li>
+<li>确保选择足够的像素（本例中约1000万体素），同时不包括其他结构</li>
+<li>检查直方图以确定模体的平均灰度值</li>
+<li>在本例中，值集中在约45,292（大约45,000）</li>
+</ol>
+<h2>校准强度刻度 [00:02:57]</h2>
+<p>一旦确定了参考材料的灰度值：</p>
+<ol>
+<li>右键点击图像通道</li>
+<li>在上下文菜单底部选择"校准强度刻度"</li>
+<li>选择适当的校准单位（骨矿物质密度预装在Dragonfly中）</li>
+<li>设置参考点：</li>
+<li>双击1200值（代表1200 mg/cm³）</li>
+<li>输入您测量的灰度值（本例中为45,000）</li>
+<li>点击"校准"并关闭对话框</li>
+</ol>
+<h2>调整显示 [00:04:37]</h2>
+<p>校准后，图像最初可能显示为空白，因为：</p>
+<ol>
+<li>显示仍设置为显示原始范围（最高65,000）</li>
+<li>校准后的值现在集中在1,000左右</li>
+</ol>
+<p>要解决此问题：<br />
+1. 转到窗位调整工具<br />
+2. 点击"重置"<br />
+3. 显示将调整为显示约-400到1,900的值</p>
+<h2>验证校准 [00:04:55]</h2>
+<p>要验证校准是否正确：</p>
+<ol>
+<li>在骨质鳞片和校准模体上绘制标尺注释</li>
+<li>检查剖面强度</li>
+<li>确认校准模体显示预期的平均值1,200</li>
+<li>观察骨质鳞片的值高于1,200，并在其宽度上逐渐下降</li>
+</ol>
+<h2>结论 [00:05:27]</h2>
+<p>Dragonfly中的强度校准允许您将任意灰度值转换为有意义的密度测量值，这对骨矿物质密度研究特别有用。这种技术通过提供标准化的密度值而非相对灰度强度，实现了CT数据的定量分析。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=ersyaPwkx00">New features: Intensity calibration / bone mineral density calibration</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 14:14:02 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/ersyaPwkx00"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

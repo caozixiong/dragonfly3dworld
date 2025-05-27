@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Non-Planar View for Dewarping tutorial - Chinese Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Non-Planar View for Dewarping tutorial - (Chinese)</h1>
+        <p>这个视频演示了如何使用可视化RBF矩形来校正X射线层析成像中电子设备的扭曲或变形平面，从而实现更清晰的可视化效果和更准确地分割PC板上铜线等特征。</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>X射线层析成像可视化介绍 [00:00:05]</h2>
+<p>本教程演示如何处理带有电子封装的小型PC板的X射线层析成像图像。在旋转和检查此类样品的平面切片时，常见的问题是图像在平面的整个宽度上并不清晰。这是因为虽然虚拟平面是完全平坦的，但实际样品可能会发生变形、扭曲或弯曲。</p>
+<h2>使用可视化RBF矩形创建非平面视图 [00:00:36]</h2>
+<p>要解决扭曲问题，可以通过以下步骤实现非平面视图解决方案：</p>
+<ol>
+<li>选择样品的任何二维视图</li>
+<li>选择标注矩形工具</li>
+<li>在2D平面上定义初始矩形</li>
+<li>右键单击并选择"修饰"</li>
+</ol>
+<p>矩形将转换为径向基面函数(RBF)，创建一个非平面的、可变形的平面，以获得更好的可视化效果。</p>
+<h2>调整非平面视图 [00:01:17]</h2>
+<p>要优化非平面视图：</p>
+<ol>
+<li>选择所需的视图（如左下角视图）</li>
+<li>进入视图模式并选择"非平面视图"</li>
+<li>如有需要，应用水平翻转以同步方向</li>
+</ol>
+<p>完成这些步骤后，视图将显示可调整的控制点，以提高图像质量：</p>
+<ul>
+<li>屏幕上最初显示九个控制点</li>
+<li>按住控制键并上下拖动鼠标来定位任何点</li>
+<li>这就像调整蹦床一样 - 推拉以增加被检查平面的清晰度</li>
+<li>在图像不清晰的区域进行调整</li>
+<li>继续调整直到获得比原始视图更清晰的效果</li>
+</ul>
+<h2>添加更多控制点 [00:02:27]</h2>
+<p>要对非平面调整获得更精细的控制：</p>
+<ol>
+<li>右键单击可视化RBF矩形</li>
+<li>选择"重新采样"或"重新分配控制点"</li>
+<li>选择更大的网格（例如，五乘五）以添加额外的控制点</li>
+<li>使用这些额外的点进行推拉，以更高的精度校正变形</li>
+</ol>
+<p>调整后，微调亮度和对比度，以优化由于成像对象中的扭曲或弯曲而可能略微偏离平面的特征的可视化效果。</p>
+<h2>移动可视化RBF矩形 [00:03:06]</h2>
+<p>可以重新定位可视化RBF矩形以处理不同的平面：</p>
+<ol>
+<li>选择移动工具</li>
+<li>上下拖动矩形以在数据集中移动</li>
+<li>将其定位在可能具有不同扭曲特性的不同平面上</li>
+<li>调整控制点以优化新平面上的去扭曲效果</li>
+<li>如需更精细的控制，可添加更多控制点</li>
+</ol>
+<h2>导出和处理非平面视图 [00:03:58]</h2>
+<p>创建优化的非平面视图后，您可以：</p>
+<ol>
+<li>将重采样的平面导出为单独的2D图像</li>
+<li>右键单击可视化RBF并选择"提取结构化网格的投影"</li>
+<li>选择导出图像或其分割结果</li>
+</ol>
+<h2>非平面空间中的分割 [00:04:22]</h2>
+<p>您可以直接在非平面视图中执行分割：</p>
+<ol>
+<li>在CT扫描中创建感兴趣区域(ROI)</li>
+<li>命名ROI（例如，"铜走线"）并分配颜色</li>
+<li>使用ROI绘制工具</li>
+<li>选择适当的分割方法（例如，多切片局部OTSU）</li>
+<li>开始在非平面视图中绘制</li>
+</ol>
+<p>在非平面视图中绘制时，绘制内容将显示在横截面上，因为它映射回原始的三维笛卡尔坐标系。这提供了灵活性，可以先扭曲视图，然后在该扭曲平面中绘制或编辑。</p>
+<h2>结论 [00:05:05]</h2>
+<p>可视化RBF矩形功能提供了一种强大的方法来校正X射线层析成像中的扭曲和变形。通过创建非平面视图并使用控制点调整它们，用户可以获得更清晰的可视化效果，显示那些原本难以清晰看到的特征。这种技术对于需要精确检查或分割扭曲样品的应用特别有价值。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=BSSETR_0fQU">Non-Planar View for Dewarping tutorial</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-23 03:29:45 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/BSSETR_0fQU"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

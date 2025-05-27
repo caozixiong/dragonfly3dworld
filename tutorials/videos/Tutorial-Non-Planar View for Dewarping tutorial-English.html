@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Non-Planar View for Dewarping tutorial - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Non-Planar View for Dewarping tutorial - (English)</h1>
+        <p>This video demonstrates how to use visual RBF rectangles to correct warped or distorted planes in X-ray laminography images of electronics, allowing for sharper visualization and more accurate segmentation of features like copper traces on PC boards.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to X-ray Laminography Visualization [00:00:05]</h2>
+<p>This tutorial demonstrates how to work with X-ray laminography images of a small PC board with electronics packaging. When rotating and examining planar slices of such samples, it's common to encounter issues where the image isn't sharp across the full width of the plane. This occurs because while the virtual plane is perfectly planar, the actual sample may be distorted, warped, or bent.</p>
+<h2>Creating Non-Planar Views with Visual RBF Rectangles [00:00:36]</h2>
+<p>To address warping issues, a non-planar view solution can be implemented using the following steps:</p>
+<ol>
+<li>Choose any two-dimensional view of your sample</li>
+<li>Select the annotate rectangle tool</li>
+<li>Define an initial rectangle on a 2D plane</li>
+<li>Right-click and select "retouch"</li>
+</ol>
+<p>The rectangle will convert to a radial basis surface function (RBF), which creates a non-planar, distortable plane for better visualization.</p>
+<h2>Adjusting the Non-Planar View [00:01:17]</h2>
+<p>To optimize the non-planar view:</p>
+<ol>
+<li>Select the desired view (such as the lower left-hand view)</li>
+<li>Go to view mode and select "non-planar view"</li>
+<li>If needed, apply a horizontal flip to synchronize the orientation</li>
+</ol>
+<p>After these steps, the view will display with control points that can be adjusted to improve image quality:</p>
+<ul>
+<li>Nine control points appear on the screen initially</li>
+<li>Hold down the control key and drag the mouse up or down to position any point</li>
+<li>This works like adjusting a trampoline - pushing or pulling to increase the sharpness of the plane being inspected</li>
+<li>Make adjustments in areas where the image isn't sharp</li>
+<li>Continue adjusting until you achieve a much sharper view than the original</li>
+</ul>
+<h2>Adding More Control Points [00:02:27]</h2>
+<p>To gain finer control over the non-planar adjustments:</p>
+<ol>
+<li>Right-click on the visual RBF rectangle</li>
+<li>Select "resample" or "redistribute the control points"</li>
+<li>Choose a larger grid (e.g., five by five) to add additional control points</li>
+<li>Use these additional points to push or pull and correct distortions with greater precision</li>
+</ol>
+<p>After making adjustments, fine-tune the brightness and contrast to optimize visualization of features that may be slightly out of plane due to warping or bending in the imaged object.</p>
+<h2>Moving the Visual RBF Rectangle [00:03:06]</h2>
+<p>The visual RBF rectangle can be repositioned to work with different planes:</p>
+<ol>
+<li>Select the move tool</li>
+<li>Drag the rectangle up or down to move through the dataset</li>
+<li>Position it on a different plane that may have different warping characteristics</li>
+<li>Adjust the control points to optimize the dewarping on the new plane</li>
+<li>Add more control points if needed for finer control</li>
+</ol>
+<h2>Exporting and Working with Non-Planar Views [00:03:58]</h2>
+<p>After creating an optimized non-planar view, you can:</p>
+<ol>
+<li>Export the resampled plane as a separate 2D image</li>
+<li>Right-click on the visual RBF and select "extract projection of a structured grid"</li>
+<li>Choose to export either the image or its segmentation</li>
+</ol>
+<h2>Segmentation in Non-Planar Space [00:04:22]</h2>
+<p>You can perform segmentation directly in the non-planar view:</p>
+<ol>
+<li>Create a region of interest (ROI) in your CT scan</li>
+<li>Name the ROI (e.g., "copper trace") and assign a color</li>
+<li>Use the ROI painter tool</li>
+<li>Select an appropriate segmentation method (e.g., multi-slice local OTSU)</li>
+<li>Begin painting in the non-planar view</li>
+</ol>
+<p>When painting in the non-planar view, the paint will appear on the cross-section because it maps back to the original three-dimensional Cartesian coordinate system. This provides the flexibility to distort the view and then paint or edit in that distorted plane.</p>
+<h2>Conclusion [00:05:05]</h2>
+<p>The visual RBF rectangle feature provides a powerful way to correct for warping and distortion in X-ray laminography images. By creating non-planar views and adjusting them with control points, users can achieve sharper visualizations of features that would otherwise be difficult to see clearly. This technique is particularly valuable for applications requiring precise inspection or segmentation of warped samples.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=BSSETR_0fQU">Non-Planar View for Dewarping tutorial</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-23 03:29:45 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/BSSETR_0fQU"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

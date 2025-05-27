@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cone Beam CT Reconstruction in Dragonfly 2022.2 - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Cone Beam CT Reconstruction in Dragonfly 2022.2 - (English)</h1>
+        <p>This tutorial demonstrates how to reconstruct cone beam CT images using the CT Reconstruction plugin in Dragonfly 2022.2, covering the complete workflow from loading projection images to setting acquisition parameters and using different reconstruction algorithms to produce 3D visualizations of a steering arm sample.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to CT Reconstruction in Dragonfly [00:00:05]</h2>
+<p>This tutorial demonstrates how to reconstruct a cone beam CT image using the CT Reconstruction plugin in Dragonfly version 2022.2. The process involves loading projection images, configuring geometry parameters, and running the reconstruction algorithm.</p>
+<h2>1. Loading Projection Images [00:00:21]</h2>
+<p>To begin the reconstruction process:</p>
+<ol>
+<li>In Dragonfly, select <code>File</code> &gt; <code>Import image files</code></li>
+<li>Click <code>Add</code> to navigate to your projection images directory</li>
+<li>Select all the TIFF files (each representing one projection at a specific rotation angle)</li>
+<li>Click <code>Open</code> to load all images</li>
+<li>The images will appear in the image loader, where you can select individual files to preview</li>
+</ol>
+<h2>2. Setting Up the X-ray Plane [00:02:57]</h2>
+<p>For this tutorial, we're using a steering arm dataset acquired on a Nikon Micron CT imaging system.</p>
+<p>When loaded correctly:<br />
+- The image detector should appear on the X-ray plane<br />
+- The rotation axis should be aligned along the Y-axis</p>
+<p>If your image isn't properly oriented:<br />
+1. Select your object on the right<br />
+2. Right-click and go to <code>Modify and Transform</code> &gt; <code>Invert</code><br />
+3. Choose to invert X, Y, or Z-axis as needed to achieve the correct orientation</p>
+<h2>3. Starting the CT Reconstruction Plugin [00:04:21]</h2>
+<ol>
+<li>Go to <code>Workflows</code></li>
+<li>Select <code>CT Reconstruction Beta Version</code></li>
+<li>In the dialog that appears, your projection dataset should be automatically selected</li>
+</ol>
+<h2>4. Configuring Geometry Acquisition Parameters [00:04:54]</h2>
+<p>The geometry acquisition section requires several parameters:</p>
+<ul>
+<li><strong>Beam Type</strong>: Select Cone Beam for this dataset</li>
+<li><strong>Acquisition Parameters</strong>:</li>
+<li>Minimum angle (typically zero)</li>
+<li>Angle step</li>
+<li>Source to detector distance</li>
+<li>Source to object distance</li>
+<li>Detector spacing (X and Y)</li>
+<li>Detector offset (X and Y)</li>
+<li>Source offset (X and Y)</li>
+<li>Detector angles (in-plane and out-of-plane)</li>
+<li>
+<p>Rotation direction (check "Clockwise steps" if rotation is clockwise)</p>
+</li>
+<li>
+<p><strong>Advanced Parameters</strong> (optional):</p>
+</li>
+<li>Beam energy</li>
+<li>Beam current</li>
+<li>Exposure time</li>
+</ul>
+<h3>Importing Parameters from Vendor Files</h3>
+<p>Instead of manually entering parameters, you can import them from vendor-specific files:</p>
+<ol>
+<li>Select your vendor from the dropdown (in this case, Nikon)</li>
+<li>Click <code>Import from files</code></li>
+<li>Navigate to the appropriate metadata file:</li>
+<li>Nikon: XTekCT file</li>
+<li>SkyScan: LOG file</li>
+<li>KA Imaging: JSON file</li>
+<li>North Star Imaging: requires two RTF files (CT acquisition technical sheet and geometry/calibration summary)</li>
+<li>Zeiss/Xradia: XML format</li>
+<li>GE: PCA format</li>
+</ol>
+<p>If your vendor isn't listed, you can contact the Dragonfly team to request support for your specific metadata format.</p>
+<h2>5. Choosing a Reconstruction Engine [00:09:09]</h2>
+<p>Select your preferred reconstruction algorithm:</p>
+<ul>
+<li><strong>RTK FDK GPU</strong> (recommended for speed):</li>
+<li>A filtered back projection algorithm</li>
+<li>
+<p>Advanced parameters include filter selection, frequency cut, and truncation padding</p>
+</li>
+<li>
+<p><strong>Iterative Methods</strong> (slower but may provide better results):</p>
+</li>
+<li>SART (Simultaneous Algebraic Reconstruction Technique)</li>
+<li>Options for back projection method, forward projection method, and number of projections</li>
+</ul>
+<h2>6. Geometry Calibration [00:10:28]</h2>
+<p>The plugin offers two calibration tools:<br />
+- Find rotation center<br />
+- Find tilt angle</p>
+<p>These tools help identify detection points for more accurate reconstruction. For detailed information about geometry calibration, refer to a separate tutorial video.</p>
+<h2>7. Computing a Preview [00:12:03]</h2>
+<p>Before running a full reconstruction:</p>
+<ol>
+<li>Click <code>Compute Preview</code></li>
+<li>This will reconstruct the middle slice (slice 1000 in this example)</li>
+<li>The preview allows you to:</li>
+<li>Verify parameter accuracy</li>
+<li>Compare different parameter sets</li>
+<li>Test different reconstruction algorithms</li>
+</ol>
+<p>If you create multiple previews with different settings, you can compare them and then import the parameters from your preferred preview using the <code>Import inputs from preview</code> option.</p>
+<h2>8. Running the Reconstruction [00:14:08]</h2>
+<p>There are two reconstruction options:</p>
+<h3>Option 1: Reconstruct and Load</h3>
+<p>This option reconstructs the volume and loads it directly into Dragonfly. However, for large datasets, memory limitations may prevent this approach.</p>
+<p>If your dataset is too large, you can:<br />
+1. Crop your original dataset (ensure you crop the same number of slices from top and bottom to maintain proper alignment)<br />
+2. Change your projection dataset to the cropped one<br />
+3. Use <code>Reconstruct and Load</code></p>
+<h3>Option 2: Reconstruct and Save</h3>
+<p>For full datasets:<br />
+1. Click <code>Reconstruct and Save</code><br />
+2. Create a folder to store the results<br />
+3. The plugin will:<br />
+   - Split your dataset into manageable slabs based on memory limits<br />
+   - Reconstruct each slab<br />
+   - Save the reconstructed volume as multiple TIFF files (one per slice)<br />
+4. Once complete, you can import these reconstructed images using <code>File</code> &gt; <code>Import image files</code></p>
+<h2>Reviewing the Reconstruction [00:16:54]</h2>
+<p>After reconstruction:</p>
+<ol>
+<li>The dataset will appear in your workspace</li>
+<li>View the reconstruction from different planes (XZ, XY)</li>
+<li>View in 3D for a complete visualization</li>
+<li>Adjust window leveling to rescale or remove background areas</li>
+<li>For edge slices, note that reconstruction quality may be lower due to incomplete information at extreme angles</li>
+</ol>
+<h2>Conclusion [00:22:33]</h2>
+<p>The CT Reconstruction plugin in Dragonfly provides a comprehensive workflow for reconstructing cone beam CT images. By following these steps, you can effectively load projection images, configure geometry parameters, and run reconstructions to visualize your 3D data.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=NqLixqyxc_I">Cone Beam CT Reconstruction in Dragonfly 2022.2</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 14:03:27 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/NqLixqyxc_I"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's New in Dragonfly 2021.3 webinar - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>What's New in Dragonfly 2021.3 webinar - (English)</h1>
+        <p>This webinar introduces the new features of Dragonfly 21.3, highlighting significant improvements in data organization, visualization, and deep learning capabilities, including a completely rebuilt project organizer interface, customizable intensity scales for consistent data processing, non-planar views for cylindrical and spherical surfaces, and enhanced deep learning tools with visual feedback during model training.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>What's New in Dragonfly 21.3</h1>
+<h2>Introduction [00:00:00]</h2>
+<p>Welcome to today's webinar on What's New in Dragonfly 21.3. This presentation will cover several new features in the latest release, focusing primarily on three categories: data organization, visualization, and deep learning. The release notes are available online, but there are so many new features that this webinar will spotlight only the most significant updates.</p>
+<h2>Why Dragonfly 21.3? [00:01:21]</h2>
+<p>Dragonfly follows a new naming convention where the first release of each calendar year has a .1 appendix. The current release, 21.3, follows the maintenance update 21.2. The release is packed with bug fixes, new features, performance optimizations, and code refactoring that make the software perform better and easier to maintain.</p>
+<p>For those interested in exploring all new features, visit objects.com/dragonfly/new, where all release notes are archived. Each release offers something valuable for almost every Dragonfly user.</p>
+<h2>Data Organization [00:04:15]</h2>
+<h3>Dragonfly Organizer - Redesigned User Interface [00:04:23]</h3>
+<p>The Dragonfly organizer (or project organizer) has been completely rebuilt with a more functional and user-friendly interface. This tool helps users organize their data and results for more productive Dragonfly sessions.</p>
+<p>Key features include:<br />
+- Ability to create folders/projects and search through them<br />
+- Tagging capabilities to mark projects (e.g., "sandstone", "clastic rock")<br />
+- Starred projects list for quick access<br />
+- Recent projects list<br />
+- Push-pin feature to keep projects visible even after clearing search results<br />
+- Storage for ORS objects (images, multi-rois, meshes) and associated files (PDFs, spreadsheets, Word docs)</p>
+<p>The organizer is now included for free with every Dragonfly license, whereas it was previously a premium extension. Importantly, project data is not locked in an encrypted database - projects are simply folders that can be copied, browsed with File Explorer, and archived with normal backup utilities.</p>
+<h3>Intensity Scale Calibration [00:07:54]</h3>
+<p>CT reconstruction engines often fail to reconstruct the same material at the same grayscale values, making data processing inconsistent. Dragonfly now lets users define their own units (similar to the Hounsfield scale in clinical CT) to calibrate data from different sources.</p>
+<p>Benefits of intensity scale calibration:<br />
+- Define custom scales for different materials (e.g., setting air to 0 and quartz to 100)<br />
+- Create consistent visualization across datasets<br />
+- Make image segmentation and data processing more robust<br />
+- Improve deep learning model consistency<br />
+- Share calibration settings with colleagues</p>
+<p>The calibration updates the readout intensity while preserving the raw data values, ensuring data integrity while providing consistent processing.</p>
+<h2>Visualization [00:12:58]</h2>
+<h3>Transient Planar Views [00:13:09]</h3>
+<p>When enabled, this feature shows exactly where a view is in 3D space whenever you move a plane or crosshairs. You can also enable a 3D cursor to see precisely where crosshairs would be in 3D. This provides clear visual cues about the position of 2D views within the 3D volume.</p>
+<h3>Non-Planar Views [00:14:11]</h3>
+<p>Dragonfly now supports non-planar views for different geometric shapes:</p>
+<ol>
+<li><strong>Cylinders</strong>: Create a "soup can wrapper" view that unwraps the surface of a cylinder. You can adjust:</li>
+<li>Theta offset (which seam appears on the left)</li>
+<li>
+<p>Radius</p>
+</li>
+<li>
+<p><strong>Spheres</strong>: For spherical surfaces (like a ball-and-socket joint), you can:</p>
+</li>
+<li>Fit a sphere to a point set</li>
+<li>View the sphere in equirectangular projection</li>
+<li>
+<p>Adjust phi and theta parameters</p>
+</li>
+<li>
+<p><strong>Planes</strong>: For warped or curved planes, you can project them onto a flat plane</p>
+</li>
+</ol>
+<p>All non-planar views maintain correspondence with standard views, allowing you to trace the 3D cursor and perform segmentation directly in these views.</p>
+<h3>Window Leveling and Lookup Tables [00:17:40]</h3>
+<p>The window leveling interface has been completely redesigned with:<br />
+- Ability to move color nodes and create split colors<br />
+- Customizable alpha function curves with control points<br />
+- Option to pin window leveling plugin to desktop for working with multiple datasets simultaneously<br />
+- Enhanced control over color rendering in both 2D and 3D</p>
+<p>The interface now includes:<br />
+- Traditional linear ramp<br />
+- Left-gated ramp<br />
+- Bi-gated ramp<br />
+- Bandpass ramp<br />
+- New piecewise option for full customization of alpha curves</p>
+<h3>Enhanced Annotations [00:20:57]</h3>
+<p>Improvements to on-screen annotations include:<br />
+- Rulers with pullout capability in 3D views<br />
+- Arrows with drop shadows for better clarity<br />
+- Text annotations with customizable background colors and opacity<br />
+- Updated scale bar behavior with more varieties to match style needs</p>
+<h3>Virtual Floor with Reflection [00:22:18]</h3>
+<p>The virtual floor feature now supports reflection, creating artistic renderings suitable for presentations, publications, or desktop wallpapers.</p>
+<h2>Deep Learning Enhancements [00:22:51]</h2>
+<h3>Segmentation Wizard Updates [00:23:04]</h3>
+<p>The Segmentation Wizard has been enhanced with:<br />
+- A histogram button to view statistics in each frame (class balance)<br />
+- Improved model management with new recommended models<br />
+- More accessible and user-friendly data augmentation controls<br />
+- Expert controls for fine-tuning models (patch size, stride ratio, loss function)</p>
+<h3>Visual Feedback [00:25:10]</h3>
+<p>This powerful new feature in both Segmentation Wizard and the deep learning tool provides visual updates during model training:</p>
+<ul>
+<li>After each epoch, you see the model's current performance on a preview frame</li>
+<li>Ability to track progress visually rather than just through loss function numbers</li>
+<li>Option to scroll through training history to compare earlier states</li>
+<li>Checkpoints to save the best models (configurable by count or disk space)</li>
+<li>Ability to restore previous model states if desired</li>
+</ul>
+<h3>Technical Improvements [00:30:20]</h3>
+<ul>
+<li>Migration from TensorFlow 1.14 to TensorFlow 2.4</li>
+<li>Support for more custom layers and loss functions</li>
+<li>Accelerated data augmentation to better utilize GPU processing power</li>
+<li>Three types of models available:</li>
+<li>2D models (single slice)</li>
+<li>Multi-slice 2D models (2.5D)</li>
+<li>True 3D models (like UNet3D)</li>
+</ul>
+<h2>Early Access Opportunities [00:31:05]</h2>
+<p>For users interested in collaborating with the ORS team, early access is available for:</p>
+<ol>
+<li><strong>Feature Analysis</strong>:</li>
+<li>Refactoring of objects analysis that works for multi-rois, meshes, and graphs</li>
+<li>Ability to aggregate data tables from multiple experiments</li>
+<li>
+<p>Design classifiers that learn different measurement signatures</p>
+</li>
+<li>
+<p><strong>Distributed Deep Learning</strong>:</p>
+</li>
+<li>Train multiple deep learning models simultaneously on a GPU cluster</li>
+<li>Queue inference tasks for processing when resources become available</li>
+<li>Split deep learning inference among multiple GPU nodes for faster processing</li>
+</ol>
+<h2>Conclusion [00:33:14]</h2>
+<p>Dragonfly 21.3 includes many additional features not covered in this presentation, including:<br />
+- Spatial scale calibration tools<br />
+- Scalar Generator for multi-rois, meshes, and graphs<br />
+- Updates to SEM simulator and MCX X-ray<br />
+- ROI Painter enhancements<br />
+- Improvements to shapes, Movie Maker, and screen recorder</p>
+<p>Most features shown (except deep learning capabilities) are available to all Dragonfly users without requiring premium extensions. The deep learning features are restricted to users with the deep learning extension.</p>
+<p>For more information and to download Dragonfly 21.3, watch for the email announcement with download links.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=KZJ7vD4OBwk">What's New in Dragonfly 2021.3 webinar</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-23 05:34:16 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/KZJ7vD4OBwk"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

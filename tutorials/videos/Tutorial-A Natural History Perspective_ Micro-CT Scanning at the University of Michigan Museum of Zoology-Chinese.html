@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>自然历史博物馆和CT扫描简介 [00:01:08]</h2>
+<p>自然历史博物馆是记录地球生物多样性及其历史的科学机构。它们通过创建和管理来自世界各地的标本科学收藏来实现这一目标。这些经过认证的标本被用于研究和公众参与。</p>
+<p>博物馆具有几个重要用途：<br />
+- 作为生物多样性的时间胶囊，允许比较不同时期从同一地点收集的标本<br />
+- 为分类学、系统发育和生物力学研究提供形态和分子数据资源<br />
+- 帮助识别世界各地的生物多样性热点和冷点<br />
+- 作为许多人与自然世界的首次接触，创造敬畏和启发的时刻</p>
+<p>自然历史博物馆的主要目标是：<br />
+- 长期保存经过认证的标本<br />
+- 确保收藏品可用于研究和教育</p>
+<h2>自然历史博物馆中的CT扫描 [00:04:20]</h2>
+<p>CT扫描完美契合自然历史博物馆的总体目标，原因如下：</p>
+<ul>
+<li><strong>非破坏性特点</strong>：CT扫描允许收集形态数据而无需切割、解剖或骨骼化标本</li>
+<li><strong>数据丰富的资源</strong>：提供关于标本的全面信息</li>
+<li><strong>贡献于"超级标本"</strong>：当与地理、行为和分子数据结合时，CT扫描有助于创建完整的标本记录</li>
+<li><strong>公众推广</strong>：CT数据可转化为引人入胜的教育材料，如3D打印</li>
+<li><strong>面向未来的数据收集</strong>：为未来无法预测的研究应用保存标本信息</li>
+</ul>
+<h2>密歇根大学动物学博物馆(UMMZ) [00:07:20]</h2>
+<p>UMMZ是地球上最大的收藏机构之一：<br />
+- 全球最大的大学爬行两栖动物收藏<br />
+- 收藏了跨分类群的数百万标本</p>
+<p>UMMZ的一个独特优势是微CT扫描仪距离收藏品不到50英尺，使标本扫描非常便捷。自2018年以来，该设施已：<br />
+- 进行了超过7,000次标本扫描<br />
+- 扫描了约5,500个物种的收藏品<br />
+- 累积了约100太字节的数据<br />
+- 平均每天进行12-15次标本扫描</p>
+<p>值得注意的扫描成就包括：<br />
+- 最大标本：一只赤狐<br />
+- 最小标本：海螺的一根刺<br />
+- 使用虚拟地板技术对黄蜂进行的专业扫描</p>
+<h2>扫描过程和资源 [00:09:50]</h2>
+<p>在扫描标本时，遵循谨慎的协议来保护它们：<br />
+- 液体保存的标本被包装在热封袋中以防止干燥<br />
+- 大多数扫描时间约为15分钟</p>
+<p>UMMZ为学生提供资源，包括：<br />
+- 扫描仪操作培训<br />
+- Dragonfly和其他分割软件的指导<br />
+- 使用Blender等程序制作3D打印的机会<br />
+- 支持可能导致发表论文的研究项目</p>
+<p>该设施还专门研究DICE CT（可扩散碘对比增强CT）：<br />
+- 染色标本以增加软组织结构的密度<br />
+- 可视化肌肉和神经解剖结构<br />
+- 开发最小化对标本影响的协议<br />
+- 与科学界分享改进的流程</p>
+<h2>数据管理和共享 [00:12:37]</h2>
+<p>UMMZ致力于透明的数据共享：<br />
+- 数据可在MorphoSource（杜克大学运营的存储库）上获取<br />
+- 正在开发自己的存储库Deep Blue Data<br />
+- 将CT数据集链接回标本目录</p>
+<p>该博物馆参与了Overt项目，这是一个由NSF资助的多机构扫描工作：<br />
+- 旨在对所有现存脊椎动物类群的代表性物种进行CT扫描<br />
+- 完成了约22,000个物种<br />
+- 所有数据在MorphoSource上可用</p>
+<h2>研究应用 [00:15:21]</h2>
+<p>UMMZ的CT扫描支持众多研究项目：</p>
+<ul>
+<li><strong>蛇类神经解剖学</strong>：研究神经系统如何在蛇类进化树中发生变化</li>
+<li><strong>毒液输送系统</strong>：研究毒腺的形态并与蛋白质序列相关联</li>
+<li><strong>蝙蝠心肺系统</strong>：分析不同蝙蝠物种的心脏和肺部结构</li>
+<li><strong>生态学见解</strong>：无需解剖即可发现标本中的猎物（如在蛇体内发现青蛙）</li>
+<li><strong>生殖生物学</strong>：检查胎生物种中发育中的幼体</li>
+<li><strong>鱼类解剖学</strong>：研究神经解剖学、鱼鳔结构和颌部形态</li>
+</ul>
+<h2>核心设施服务 [00:18:14]</h2>
+<p>UMMZ现在作为一个核心设施运营，为研究人员提供CT扫描服务。当扫描UMMZ标本时：<br />
+- CT数据被视为实际标本的复制品<br />
+- 用户必须同意在Deep Blue Data或其他存储库上提供数据<br />
+- 数据可以在发表前保留<br />
+- 该设施提供免费的数据存储和DOI分配用于出版物</p>
+<h2>结论 [00:19:19]</h2>
+<p>CT数据和自然历史博物馆完美互补：<br />
+- CT扫描提供丰富的形态和解剖信息而不破坏标本<br />
+- 创建包含多种数据类型的综合"超级标本"记录<br />
+- 通过存储库促进数据共享<br />
+- 作为学生学习比较解剖学的优秀培训工具<br />
+- 为公众推广和教育提供引人入胜的资源</p>
+<p>CT扫描与博物馆实践的整合增强了保存和研究能力，同时使收藏品对科学家和公众更加accessible。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=sqOWj3tWcjI">A Natural History Perspective: Micro-CT Scanning at the University of Michigan Museum of Zoology</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 05:02:12 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

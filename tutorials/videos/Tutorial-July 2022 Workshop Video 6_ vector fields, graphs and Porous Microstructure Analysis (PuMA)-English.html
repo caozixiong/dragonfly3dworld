@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 2022 Workshop Video 6: vector fields, graphs and Porous Microstructure Analysis (PuMA) - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July 2022 Workshop Video 6: vector fields, graphs and Porous Microstructure Analysis (PuMA) - (English)</h1>
+        <p>This video demonstrates advanced visualization techniques in Dragonfly software, focusing on vector fields for analyzing bone structure directionality and the PUMA (Porous Microstructure Analysis) plugin for simulating fluid flow and generating visual representations of porous materials.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to Vector Fields and PUMA Plugin [00:00:03]</h2>
+<p>This tutorial demonstrates several key tools in Dragonfly, including vector fields and the Porous Net Microstructure Analysis (PUMA) plugin. We'll explore these tools using human trabecular bone data and artificially generated porous materials.</p>
+<h2>Local Thickness Mapping on Trabecular Bone [00:01:02]</h2>
+<p>Local thickness mapping is particularly useful for bone analysis. This builds on concepts from previous lessons but with a more interesting application.</p>
+<ol>
+<li>Import a pre-segmented region of interest from human femur bone</li>
+<li>Create a sub-sampled and smoothed thickness map of the trabecular bone</li>
+<li>Visualize the thickness map by clicking the visualization button</li>
+</ol>
+<p>To properly view the thickness map in 3D:<br />
+- Go to Layout Views &gt; Quad View<br />
+- Click on the 3D window to see the bone structure visualization</p>
+<h3>Customizing the Thickness Map Display</h3>
+<p>The thickness map can be customized in two ways:<br />
+- Click directly on the lookup table to change the color scheme<br />
+- Right-click and select Measurement Inspector to modify the range</p>
+<p>In the Measurement Inspector:<br />
+- Adjust the range values to focus on specific thickness values<br />
+- Try changing from 1×10⁻⁵ up to 5×10⁻⁵ to better visualize the distribution</p>
+<p>For better visualization:<br />
+- Try different lookup tables (e.g., "Temperature")<br />
+- Use the flip button to reverse the color table (making thinnest parts red and thickest parts blue)</p>
+<h2>Vector Field Calculation and Visualization [00:04:56]</h2>
+<p>Vector fields help visualize the directionality of bone structures.</p>
+<p>To create a vector field from anisotropy:<br />
+1. Select the region of interest<br />
+2. Go to Create Mapping &gt; Compute Anisotropy<br />
+3. Select "Create an anisotropy vector field"<br />
+4. Set appropriate spacing (smaller spacing for more detail)</p>
+<p>Once calculated, the vector field appears as arrows showing directionality:<br />
+- Adjust arrow size for better visibility<br />
+- Make the region of interest mesh more transparent to see vectors clearly<br />
+- Change color mapping to highlight strongest vectors (red) and weakest vectors (blue)</p>
+<p>The vector field shows how directionality changes smoothly across the region of interest, with the strongest directionality appearing in red sections.</p>
+<h2>Creating Artificial Porous Materials [00:07:34]</h2>
+<p>The Poor Network Modeling plugin can generate artificial porous materials for testing and simulation.</p>
+<p>To create a random porous material:<br />
+1. Go to Workflows &gt; Poor Network Modeling &gt; Generators<br />
+2. Set dimensions (e.g., 30×30×30 voxels)<br />
+3. Set porosity (e.g., 60%)<br />
+4. Click Generate</p>
+<h2>PUMA Plugin for Microstructure Analysis [00:08:45]</h2>
+<p>The PUMA (Porous Microstructure Analysis) plugin from NASA allows for various simulations on porous materials:<br />
+- Permeability<br />
+- Tortuosity (calculation of path distance through an object)<br />
+- Thermal conductivity<br />
+- Orientation detection</p>
+<p>To run a permeability simulation:<br />
+1. Select the generated porous material<br />
+2. Choose simulation direction (e.g., Y-axis for top to bottom)<br />
+3. Select to simulate velocity vectors<br />
+4. Compute the simulation<br />
+5. Click "Publish" to make results available</p>
+<h3>Creating Vector Fields from Simulation Results</h3>
+<p>After running the simulation:<br />
+1. Highlight all channels (X, Y, Z, and modulus)<br />
+2. Right-click and select "Generate vector field from data sets"<br />
+3. Verify the vector components are correctly assigned<br />
+4. Create the vector field</p>
+<p>To visualize the vector field:<br />
+- Go to the main tab and view the vector field in 3D<br />
+- Adjust arrow size for better visibility<br />
+- Change the color map to highlight maximum flow velocity (yellow) and minimum velocity (blue)<br />
+- Optionally select to view only the largest velocities<br />
+- Make the material transparent to see where maximum flow occurs</p>
+<p><strong>Note:</strong> These calculations are memory-intensive. Start with small datasets before moving to large-scale data.</p>
+<h2>Creating Graph Representations of Pore Space [00:12:45]</h2>
+<p>Graph representations can be useful for visualizing pore networks.</p>
+<p>To create a graph representation:<br />
+1. Segment the pore space using appropriate thresholding (e.g., OTSU)<br />
+2. Go to 3D Modeling<br />
+3. Choose between sparse graph or dense graph:<br />
+   - Sparse graph: Places balls in the biggest pore spaces connected by segments<br />
+   - Dense graph: Connects many balls along curved paths</p>
+<p>These graph representations can be useful for visualizing pore networks, and scalar values from simulations can be mapped onto them.</p>
+<h2>Conclusion</h2>
+<p>This tutorial covered several advanced visualization and analysis techniques in Dragonfly:<br />
+- Local thickness mapping for bone analysis<br />
+- Vector field calculation and visualization<br />
+- Creating artificial porous materials<br />
+- Running simulations with the PUMA plugin<br />
+- Creating graph representations of pore networks</p>
+<p>These tools provide powerful ways to analyze and visualize complex 3D structures, particularly for porous materials like trabecular bone.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=mMOiVxYBQUo">July 2022 Workshop Video 6: vector fields, graphs and Porous Microstructure Analysis (PuMA)</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 19:05:23 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/mMOiVxYBQUo"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

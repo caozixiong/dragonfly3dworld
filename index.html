@@ -3,32 +3,345 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dragonfly3dworld</title>
-    <link rel="stylesheet" href="https://caozixiong.github.io/dragonfly3dworld/design.css">
-    <script src="https://caozixiong.github.io/dragonfly3dworld/interactive.js" defer></script>
+    <title>Dragonfly 3D World Resource Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fff;
+            --text-color: #333;
+            --link-color: #007bff;
+            --card-bg: #f8f9fa;
+            --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --accent-color: #007bff; /* Linear style theme color */
+            --header-bg: #e9ecef; /* Header background color */
+            --transition: all 0.2s ease;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #eee;
+                --link-color: #90caf9;
+                --card-bg: #1e1e1e;
+                --card-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+                --accent-color: #90caf9;
+                --header-bg: #282828;
+            }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden; /* Avoid horizontal scrollbar */
+
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1; /* Let container take up remaining space */
+        }
+        .header {
+          background-color: var(--header-bg);
+          padding: 1rem 0;
+          border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .header-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-color);
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 2.5em; }
+        h2 { font-size: 2em; }
+        h3 { font-size: 1.6em;}
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        a:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+        }
+        ul li, ol li {
+            margin-bottom: 0.4em;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+            overflow: hidden; /* Ensure content doesn't overflow rounded corners */
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+        .main-card {
+            /* Main card style */
+            margin-right: 20px;
+        }
+
+        .main-cards-container{
+            display: flex; /* Use Flexbox for horizontal arrangement */
+            flex-wrap: wrap; /* Allow cards to wrap */
+            justify-content: space-between;
+        }
+
+        .subcard {
+            /* Subcard style (if any) */
+            margin-bottom: 10px;
+        }
+        .subcard ul{
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding-left: 20px;
+            list-style: disc;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: inline-block;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #ddd;
+            margin-top: auto; /* Push footer to the bottom */
+            color: #777;
+        }
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+            .main-cards-container {
+                flex-direction: column; /* Vertical arrangement on small screens */
+            }
+            .main-card {
+                margin-right: 0;
+            }
+
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.6em; }
+            h3 { font-size: 1.4em; }
+            .card {
+                padding: 15px;
+            }
+        }
+        /* Animation */
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Apply fade-in effect to different types of cards */
+        .card, .main-card, .subcard {
+            animation: fadeIn 0.6s ease forwards;
+            opacity: 0; /* Initial state is transparent */
+        }
+
+        /* Set different delays for different elements */
+        .main-card:nth-child(1) { animation-delay: 0.1s; }
+        .main-card:nth-child(2) { animation-delay: 0.2s; }
+        .main-card:nth-child(3) { animation-delay: 0.3s; }
+        /* You can add delays for more elements */
+
+        /* Smooth scrolling */
+        html {
+          scroll-behavior: smooth;
+        }
+
+        /* Hide scrollbar */
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000; /* Ensure it's on top */
+            display: flex;
+            align-items: center;
+        }
+
+        .dark-mode-toggle .btn {
+            margin-left: 10px;
+        }
+    </style>
+    <script>
+        // Dark/light mode toggle
+        function toggleDarkMode() {
+            const currentScheme = localStorage.getItem('color-scheme');
+            const newScheme = currentScheme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('color-scheme', newScheme);
+            setTheme(newScheme);
+        }
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        }
+        // Set theme on page load
+        document.addEventListener('DOMContentLoaded', () => {
+             // Prioritize settings in localStorage
+            const savedScheme = localStorage.getItem('color-scheme');
+            if (savedScheme) {
+                setTheme(savedScheme);
+            } else {
+                // If there is no localStorage setting, follow the system
+                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                setTheme(systemPrefersDark ? 'dark' : 'light');
+            }
+        });
+    </script>
 </head>
 <body>
-    <header>
-        <button onclick="goHome()">Home</button>
-        <button onclick="goBack()">Previous</button>
-        <h1>dragonfly3dworld</h1>
-        <p>Welcome to the dragonfly3dworld section of Dragonfly 3D World.</p>
+    <header class="header">
+      <div class="header-content">
+        <h1>Dragonfly 3D World Resources</h1>
+        <div class="dark-mode-toggle">
+          <span>Toggle Theme</span>
+          <button class="btn" onclick="toggleDarkMode()">Toggle</button>
+        </div>
+      </div>
     </header>
 
-
-
-    <footer>
-        <p>&copy; 2023 Dragonfly 3D World</p>
+    <div class="container">
+        <h1 id="dragonfly-3d-world-resource-center">Dragonfly 3D World Resource Center</h1>
+<p>Welcome to the Dragonfly 3D World Resource Center! This site compiles various learning materials for Dragonfly software, aiming to help you quickly get started and master this powerful 3D data processing and visualization software.</p>
+<hr />
+<h2 id="main-sections">Main Sections</h2>
+<h3 id="datasheets">Datasheets</h3>
+<blockquote>
+<p>Product datasheets for Dragonfly software, including brochures, release notes, etc.</p>
+</blockquote>
+<ul>
+<li><strong>Brochures</strong></li>
+<li><a href="./datasheets/brochures/dragonfly_brochure.pdf">Dragonfly Brochure (Latest Version)</a>  <em>Comprehensively understand Dragonfly's features and capabilities.</em></li>
+<li>
+<p><a href="./datasheets/brochures/dragonfly_quickstart.pdf">Dragonfly Quick Start Guide</a>  <em>Quickly grasp the basic operations of Dragonfly.</em></p>
+</li>
+<li>
+<p><strong>Release Notes</strong></p>
+</li>
+<li><a href="./datasheets/release_notes/dragonfly_2024_1_release_notes.html">Dragonfly 2024.1 Release Notes</a> <em>Learn about the updates in the latest version.</em></li>
+<li><a href="./datasheets/release_notes/dragonfly_release_history.html">Dragonfly Release History</a>  <em>View the version evolution of Dragonfly software.</em></li>
+</ul>
+<h3 id="applications">Applications</h3>
+<blockquote>
+<p>Application cases and solutions of Dragonfly software in different fields.</p>
+</blockquote>
+<ul>
+<li><strong>Industries</strong></li>
+<li><a href="./applications/industries/semiconductor.html">Dragonfly in the Semiconductor Industry</a> <em>Learn how Dragonfly helps with semiconductor defect analysis.</em></li>
+<li>
+<p><a href="./applications/industries/automotive.html">Dragonfly in the Automotive Industry</a> <em>Explore the application of Dragonfly in automotive materials research.</em></p>
+</li>
+<li>
+<p><strong>Materials Research</strong></p>
+<ul>
+<li><a href="./applications/materials_research/materials_solution.html">Dragonfly Materials Research Solutions</a> <em>Gain in-depth understanding of Dragonfly's applications in materials science.</em></li>
+<li><a href="./applications/materials_research/multiscale_characterization.html">Dragonfly Multiscale Material Characterization</a> <em>Learn how to use Dragonfly for multiscale material analysis.</em></li>
+</ul>
+</li>
+<li>
+<p><strong>Life Sciences</strong></p>
+<ul>
+<li><a href="./applications/life_sciences/bioimaging.html">Dragonfly in Bioimaging</a> <em>Explore how Dragonfly processes and analyzes biomedical images.</em></li>
+<li><a href="./applications/life_sciences/neuroscience.html">Dragonfly Neuroscience Research Solutions</a> <em>Learn about Dragonfly's applications in neuroscience.</em></li>
+</ul>
+</li>
+</ul>
+<h3 id="tutorials">Tutorials</h3>
+<blockquote>
+<p>Learning tutorials for Dragonfly software, including video tutorials, operation guides, etc.</p>
+</blockquote>
+<ul>
+<li><strong>Videos</strong></li>
+<li><a href="./tutorials/videos/basic_operations.html">Dragonfly Basic Operations Tutorial Series</a> <em>Learn the basic operations of Dragonfly from scratch.</em></li>
+<li>
+<p><a href="./tutorials/videos/advanced_features.html">Dragonfly Advanced Features Tutorial</a> <em>Master the advanced features and techniques of Dragonfly.</em></p>
+</li>
+<li>
+<p><strong>Guides</strong></p>
+</li>
+<li><a href="./tutorials/guides/user_manual.html">Dragonfly Official User Manual</a> <em>Systematically learn the various functions and operations of Dragonfly.</em></li>
+<li><a href="./tutorials/guides/faq.html">Dragonfly Frequently Asked Questions (FAQ)</a> <em>Quickly solve problems encountered while using Dragonfly.</em></li>
+</ul>
+<hr />
+<h2 id="about-this-site">About This Site</h2>
+<p>This site was created by Dragonfly enthusiasts and aims to provide a convenient and comprehensive Dragonfly learning resource platform. All materials are from publicly available information on the Internet or user contributions. If there is any infringement, please contact us to remove</p>
+        <div class="main-cards-container">
+          
+        <div class="card main-card">
+            <h2>Datasheets</h2>
+            <ul><li>Brochures</li><li>Release Notes</li></ul>
+        </div>
+        
+        <div class="card main-card">
+            <h2>Applications</h2>
+            <ul><li>Industries</li><li>Materials Research</li><li>Life Sciences</li></ul>
+        </div>
+        
+        <div class="card main-card">
+            <h2>Tutorials</h2>
+            <ul><li>Videos</li><li>Guides</li></ul>
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+      <p>&copy; 2024 Dragonfly Resource Center. All rights reserved.</p>
     </footer>
-
-    <script>
-        function goHome() {{
-            window.location.href = "/dragonfly3dworld/";
-        }}
-
-        function goBack() {{
-            window.history.back();
-        }}
-    </script>
 </body>
 </html>

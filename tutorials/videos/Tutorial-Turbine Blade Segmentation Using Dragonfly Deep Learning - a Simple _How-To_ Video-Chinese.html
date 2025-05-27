@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>使用Dragonfly对涡轮叶片进行深度学习分割</h1>
+<h2>介绍 [00:00:03]</h2>
+<p>本教程演示如何使用Dragonfly软件对涡轮叶片进行深度学习分割。在处理涡轮叶片的3D CT扫描时，手动检查切片可以帮助识别缺陷和几何偏差。然而，对于定量工作，分割是比较几何形状或导出网格所必需的。</p>
+<p>由于光束硬化和图像伪影，传统的阈值方法通常在涡轮叶片上失效 - 在顶部附近选择的材料太少，而在曲线内部选择的材料太多。深度学习方法提供了一个更有效的解决方案。</p>
+<h2>加载和检查数据 [00:00:14]</h2>
+<p>本教程使用了一个涡轮叶片的3D CT扫描，可在界面左上角看到。可以手动检查横截面，但定量分析需要适当的分割。</p>
+<h2>创建训练数据 [00:01:41]</h2>
+<p>深度学习方法需要经过仔细分割的真实切片。这些将用于训练模型。</p>
+<ol>
+<li>导航到切片1000</li>
+<li>创建一个名为"blade"的感兴趣区域（蓝色）</li>
+<li>使用智能网格工具（超像素），它在2D中使用分水岭算法</li>
+<li>这对于这种特定数据能很好地拟合曲线</li>
+<li>也可以使用手动方法和平滑来细化分割</li>
+</ol>
+<h3>创建掩码 [00:02:38]</h3>
+<p>首先，创建一个掩码来帮助深度学习模型识别训练区域：</p>
+<ol>
+<li>将整个切片涂色作为掩码</li>
+<li>导航到切片500</li>
+<li>使用超像素工具突出显示叶片</li>
+<li>也为此切片创建掩码</li>
+<li>导航到切片1500以保持对称</li>
+<li>重复创建掩码和分割叶片的过程</li>
+</ol>
+<p>注意：虽然本演示仅使用三个切片进行训练，但提供更多数据将提高模型性能。对于生产模型，花更多时间创建精确的边缘并使用额外的切片进行训练。</p>
+<h2>训练深度学习模型 [00:04:52]</h2>
+<ol>
+<li>打开人工智能深度学习工具</li>
+<li>选择"创建新模型"</li>
+<li>配置模型：</li>
+<li>两个类别：材料和背景</li>
+<li>2.5D，输入三个切片</li>
+<li>命名为"turbine blade"加上日期</li>
+<li>设置训练参数：</li>
+<li>图像通道作为输入</li>
+<li>多ROI作为输出</li>
+<li>定义掩码</li>
+<li>根据需要增加增强</li>
+<li>启用视觉反馈进行监控</li>
+</ol>
+<p>配置完成后，开始训练过程。模型将随着每个周期而改进：<br />
+- 第一个周期：初始结果（不太好）<br />
+- 第二个周期：明显改进<br />
+- 第三个周期：进一步改进<br />
+- 继续多个周期，直到达到满意的结果</p>
+<h2>应用模型 [00:07:11]</h2>
+<p>训练完成后：</p>
+<ol>
+<li>获取涡轮叶片输入</li>
+<li>将训练好的模型应用于所有切片</li>
+</ol>
+<p>这个过程需要更长时间，但不依赖用户，因此可以在自动化工作流程中隔夜运行。</p>
+<h2>检查和细化结果 [00:07:52]</h2>
+<p>分割结果在3D渲染上显示为蓝紫色覆盖层：</p>
+<ol>
+<li>点击分割输出以检查叶片或其补集</li>
+<li>将类别提取为感兴趣区域</li>
+<li>通过关闭渲染在3D中查看分割</li>
+</ol>
+<p>整体分割看起来不错，但在叶片底部可能有一些松散的部分需要细化：</p>
+<ol>
+<li>通过选择"保留最大"来细化感兴趣区域</li>
+<li>这将删除所有小的断开部分</li>
+</ol>
+<h2>创建网格以导出 [00:08:54]</h2>
+<p>要完成分割：</p>
+<ol>
+<li>生成轮廓网格</li>
+<li>可以将其导出为STL文件</li>
+<li>网格提供了分割结果的更好可视化</li>
+</ol>
+<p>最终结果是涡轮叶片的干净、准确的分割，可用于进一步分析或制造。</p>
+<h2>结论 [00:09:42]</h2>
+<p>本教程演示了在Dragonfly中进行涡轮叶片深度学习分割的完整工作流程：<br />
+1. 在选定切片上创建训练数据<br />
+2. 训练深度学习模型<br />
+3. 将模型应用于整个体积<br />
+4. 细化结果并导出为网格</p>
+<p>即使使用最少的训练数据（仅三个切片），深度学习方法也能提供克服传统阈值方法局限性的出色结果。对于生产用途，更多的训练数据和细化将产生更好的结果。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=81bDOI8Np_8">Turbine Blade Segmentation Using Dragonfly Deep Learning - a Simple "How-To" Video</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-23 02:52:00 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

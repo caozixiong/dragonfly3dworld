@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 2022 Workshop Video 9: Segmentation Wizard part 1 - Chinese Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July 2022 Workshop Video 9: Segmentation Wizard part 1 - (Chinese)</h1>
+        <p>这个教程演示了如何在Dragonfly中使用分割向导工具，通过稀疏训练数据和随机森林等机器学习算法快速创建分割，然后进一步训练U-Net模型以在乐高人偶示例上获得更好的结果。</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>使用分割向导进行稀疏训练</h1>
+<h2>介绍 [00:00:03]</h2>
+<p>本教程演示如何在训练数据有限的情况下使用分割向导进行稀疏训练。分割向导提供了一种使用随机森林等机器学习算法快速分割数据的方法，而无需进行大量深度学习训练。</p>
+<h2>加载示例数据 [00:00:15]</h2>
+<p>在本演示中，我们将使用乐高小人仔的扫描图像。分割向导使模型训练变得更简单、更容易，允许您添加和比较不同的模型，并逐步增加训练数据。</p>
+<h2>启动分割向导 [00:00:49]</h2>
+<ol>
+<li>在菜单中导航至<code>人工智能</code></li>
+<li>选择<code>分割向导</code></li>
+<li>选择标记为"original"的数据</li>
+</ol>
+<p>一个新窗口将会打开，创建第二个Dragonfly上下文。这个界面旨在简化模型训练过程。</p>
+<h2>创建初始训练帧 [00:01:36]</h2>
+<ol>
+<li>点击<code>+</code>按钮添加新的训练帧</li>
+<li>定义您的类别：</li>
+<li>将第一个类别重命名为"background"（背景）</li>
+<li>将第二个类别重命名为"plastic"（塑料）</li>
+<li>使用2D画笔工具标记一些像素：</li>
+<li>将一些区域标记为背景</li>
+<li>将一些区域标记为塑料（乐高人偶）</li>
+</ol>
+<p>这种稀疏数据方法意味着我们只标记一小部分像素，而不是整个图像。</p>
+<h2>训练初始模型 [00:02:52]</h2>
+<ol>
+<li>点击<code>Train</code>开始训练过程</li>
+<li>选择"Quick Start"（快速启动）策略</li>
+<li>这将训练三个模型：两个随机森林模型和一个U-Net模型</li>
+<li>注意：U-Net模型需要完全分割的帧，因此不会使用稀疏数据进行训练</li>
+</ol>
+<p>系统将训练随机森林模型并显示它们的预测结果。两个模型都应该提供对乐高人偶相当好的分割效果。</p>
+<h2>审查和选择模型 [00:04:36]</h2>
+<p>训练后，您将在屏幕底部看到来自随机森林模型的两种不同预测：</p>
+<ol>
+<li>比较两个模型的结果</li>
+<li>通过点击提升按钮选择更好的模型</li>
+<li>这会将分割结果提升到当前帧</li>
+<li>现在您可以对分割结果进行微小修正（如果需要）</li>
+</ol>
+<h2>迭代改进过程 [00:05:58]</h2>
+<p>分割向导的关键工作流程是迭代改进：</p>
+<ol>
+<li>您的第一帧现在已完全分割（所有像素都被分类）</li>
+<li>滚动到不同的切片并将其添加为新帧</li>
+<li>现有模型将自动对这个新帧进行预测</li>
+<li>选择更好的预测并提升它</li>
+<li>进行任何必要的修正以改进分割</li>
+<li>使用额外的帧重复此过程以增强您的模型</li>
+</ol>
+<h2>训练U-Net模型 [00:08:30]</h2>
+<p>一旦您有了多个完全分割的帧：</p>
+<ol>
+<li>添加一个新帧作为监控帧</li>
+<li>禁用随机森林模型</li>
+<li>启用U-Net模型</li>
+<li>点击<code>Train</code>使用您完全分割的帧训练神经网络</li>
+</ol>
+<p>U-Net模型通常比随机森林模型提供更准确的结果，特别是对于复杂的分割任务。</p>
+<h2>监控训练进度 [00:10:17]</h2>
+<p>在训练期间：</p>
+<ol>
+<li>监控损失值，它应该减少并接近零</li>
+<li>损失可能会出现小幅增加，但最终应该再次减少</li>
+<li>损失减少表示模型改进</li>
+<li>当模型性能令人满意时，您可以停止训练</li>
+</ol>
+<h2>导出和使用模型 [00:11:34]</h2>
+<p>当您对模型满意时：</p>
+<ol>
+<li>退出分割向导</li>
+<li>当提示时，选择"Publish selected models"（发布选定的模型）</li>
+<li>模型将以您提供的名称保存</li>
+</ol>
+<p>要将模型应用于您的数据：</p>
+<ol>
+<li>转到<code>Segmentation</code>（分割）选项卡</li>
+<li>选择<code>Segment with AI</code>（使用AI分割）</li>
+<li>选择您训练的模型</li>
+<li>点击<code>Preview</code>（预览）在当前切片上测试或<code>Segment all slices</code>（分割所有切片）处理整个体积</li>
+<li>分割后，您可以将"plastic"类提取为感兴趣区域（ROI）</li>
+<li>从这个ROI，您可以创建网格、3D可视化或执行其他操作</li>
+</ol>
+<h2>结论 [00:13:03]</h2>
+<p>分割向导为在有限训练数据的情况下创建分割模型提供了一个流线型工作流程。从稀疏注释和随机森林模型开始，您可以迭代改进您的分割，并最终训练一个更强大的U-Net模型以获得更好的结果。</p>
+<p>本教程演示了一个简单的两类示例。对于具有多个类别的更复杂分割任务，相同的原则适用，但可能需要更多的训练数据和迭代。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=4fiatoh-I48">July 2022 Workshop Video 9: Segmentation Wizard part 1</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 22:56:26 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/4fiatoh-I48"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

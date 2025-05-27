@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 2022 Workshop Video 8: Machine learning segmentation of a 3-horned chameleon - Chinese Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July 2022 Workshop Video 8: Machine learning segmentation of a 3-horned chameleon - (Chinese)</h1>
+        <p>这个视频展示了用于变色龙头部数据集的传统机器学习分割技术，展示了这些方法如何识别常规阈值处理方法无法捕捉到的骨骼结构，尽管它们不像较新的深度学习方法那样被广泛使用。</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>经典机器学习分割介绍 [00:00:02]</h2>
+<p>本教程演示了Dragonfly中的经典机器学习分割技术。与本系列后面将介绍的深度学习方法不同，这种方法代表了最初开发的传统分割工具。虽然现在不像以前那样广泛使用，但对于某些应用来说，它仍然相当令人印象深刻。</p>
+<h2>数据集概述 [00:00:35]</h2>
+<p>在这个演示中，我们将使用一个三角变色龙头部数据集。目标是分割变色龙头部内部的骨骼结构，这对于普通的阈值分割技术来说具有挑战性：</p>
+<ul>
+<li>使用手动阈值分割时，一些密集部分看起来可以接受</li>
+<li>然而，许多细小的骨骼结构完全被忽略</li>
+<li>某些区域被过度分割</li>
+</ul>
+<p>这正是机器学习可以通过训练来识别这些具有挑战性的结构，从而改善分割结果的地方。</p>
+<h2>创建训练数据 [00:01:55]</h2>
+<p>对于Dragonfly中的机器学习分割，我们需要提供像素的地面真实标记：</p>
+<ol>
+<li>转到<code>Segment</code>标签页</li>
+<li>创建一个包含三个类别的新Multi-ROI：</li>
+<li>将其命名为"sparse data for training"</li>
+<li>设置三个类别：骨骼、空气和肉</li>
+<li>为每个类别分配颜色：</li>
+<li>紫色代表空气</li>
+<li>红色代表肉</li>
+<li>绿色代表骨骼</li>
+</ol>
+<p>与需要标记所有像素的深度学习工具不同，这种传统的机器学习方法只需要对一些代表性像素进行稀疏标记。</p>
+<h2>标记像素 [00:03:22]</h2>
+<ol>
+<li>使用<code>Brush</code>工具标记每个类别的代表性像素</li>
+<li>在不同位置标记一些骨骼像素</li>
+<li>标记一些肉的像素</li>
+<li>在标本外部标记空气像素</li>
+</ol>
+<p>提供的标记像素种类越多样，模型工作效果越好。然而，对于这种方法，您不需要进行详尽的标记。</p>
+<h2>设置机器学习模型 [00:04:32]</h2>
+<ol>
+<li>导航至<code>AI</code> &gt; <code>Machine Learning Segmentation</code></li>
+<li>创建新模型：</li>
+<li>命名为"Demo on chameleon"</li>
+<li>设置输入数据集（变色龙扫描）</li>
+<li>设置稀疏数据作为输出</li>
+<li>
+<p>这个特定工具不需要掩码</p>
+</li>
+<li>
+<p>选择算法：</p>
+</li>
+<li>
+<p>推荐使用<code>Extra Trees</code>作为一个不错的选择</p>
+</li>
+<li>
+<p>选择要使用的特征：</p>
+</li>
+<li><code>Activation map</code>特别有效</li>
+<li>您可以选择多个特征，但在本演示中我们只使用一个</li>
+</ol>
+<h2>训练模型 [00:05:37]</h2>
+<p>设置好所有参数后，开始训练过程。训练时间将根据您的数据和计算机规格而有所不同。这是在模型训练时休息一下的好时机。</p>
+<h2>查看结果 [00:07:53]</h2>
+<p>训练完成后：</p>
+<ol>
+<li>模型自动应用于数据集</li>
+<li>查看分割结果</li>
+<li>即使只有最少的标记，模型也能产生合理的结果</li>
+<li>在这个快速演示中，一些多余的材料可能被分割为骨骼</li>
+</ol>
+<p>如果您对结果满意，可以将模型应用于整个数据集，以在所有切片上创建完整的多ROI结果。</p>
+<h2>结论 [00:08:52]</h2>
+<p>这种传统的机器学习分割方法为分割任务提供了一种快速简单的方法。虽然不完美，但它可以通过最少的手动标记产生良好的结果。对于更高级的分割，Segmentation Wizard工具提供了一种使用稀疏数据标记的替代方法，这将在后续教程中介绍。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=XWafhfUhK5g">July 2022 Workshop Video 8: Machine learning segmentation of a 3-horned chameleon</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 20:34:30 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/XWafhfUhK5g"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Vivo and Specimen Imaging at the Center for Molecular and Genomic Imaging</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>In Vivo and Specimen Imaging at the Center for Molecular and Genomic Imaging</h1>
+        <p>This summary organizes key information from Doug's presentation on micro-CT imaging applications at the UC Davis Center for Molecular and Genomic Imaging. The content is structured to help viewers easily navigate to specific sections of interest in the original video.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>I. In Vivo Imaging of COVID-19 in Mice [00:08:45-00:18:00]</h2>
+<h3>Research Objective</h3>
+<p>The study aims to establish an in vivo model for Post-Acute Sequelae of SARS-CoV-2 infection (PASC), commonly known as long COVID, using genetically modified mice.</p>
+<h3>Key Components</h3>
+<ul>
+<li><strong>Animal Model</strong> [00:08:45]<ul>
+<li>Novel genetically modified mice with humanized ACE2, TMPRSS2, and furin genes</li>
+<li>These modifications make the mice susceptible to SARS-CoV-2 infection</li>
+</ul>
+</li>
+<li><strong>Imaging Methodology</strong> [00:11:19]<ul>
+<li>Respiratory-gated micro-CT for lung imaging</li>
+<li>Allows for precise imaging synchronized with the mice's breathing cycle</li>
+</ul>
+</li>
+<li><strong>Image Analysis Approach</strong> [00:13:46]<ul>
+<li>Deep learning model using 3D Unet architecture for automated lung segmentation</li>
+<li>Data augmentation techniques implemented to improve model performance</li>
+<li>Image mask size carefully specified for optimal results [00:13:53]</li>
+<li>Six training sets used at both end-expiration and inspiration phases [00:14:11]</li>
+</ul>
+</li>
+</ul>
+<h3>Research Findings [00:16:28]</h3>
+<ul>
+<li>Initial results show decreased lung volume in infected animals at day five post-infection</li>
+<li>This approach enables non-invasive monitoring of disease progression</li>
+</ul>
+<h2>II. Specimen Imaging of Orchid Bee Brains [00:19:13-00:24:00]</h2>
+<h3>Research Objective</h3>
+<p>The study investigates sexual dimorphism in neotropical orchid bee brains to understand behavioral differences between males and females.</p>
+<h3>Key Components</h3>
+<ul>
+<li><strong>Research Focus</strong> [00:19:13]<ul>
+<li>Examining anatomical differences in bee brains</li>
+<li>Understanding how brain structure relates to behavioral diversity between sexes</li>
+</ul>
+</li>
+<li><strong>Imaging Techniques</strong> [00:20:41]<ul>
+<li>Micro-CT imaging with iodine and ethanol staining</li>
+<li>Special contrast enhancement methods to visualize soft tissue</li>
+</ul>
+</li>
+<li><strong>Analysis Method</strong> [00:20:57]<ul>
+<li>Manual segmentation of nine distinct brain regions</li>
+<li>Detailed volumetric comparison between male and female specimens</li>
+</ul>
+</li>
+</ul>
+<h3>Research Findings</h3>
+<ul>
+<li><strong>Male Bees</strong> [00:23:21]<ul>
+<li>Show enlargement in brain regions related to visual processing</li>
+<li>These adaptations likely support their mate-seeking behaviors</li>
+</ul>
+</li>
+<li><strong>Female Bees</strong> [00:23:37]<ul>
+<li>Exhibit enlargement in brain regions associated with learning and memory</li>
+<li>These adaptations support their foraging and nesting activities</li>
+</ul>
+</li>
+</ul>
+<p>The presentation demonstrates how advanced micro-CT imaging techniques, combined with sophisticated analysis methods, enable researchers to investigate both disease models and fundamental biological questions about brain structure and function.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <p>Dragonfly YouTube Channel : <a href="https://www.youtube.com/@dragonfly_software" target="_blank">https://www.youtube.com/@dragonfly_software</a></p>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/XDeA8ijKih8" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

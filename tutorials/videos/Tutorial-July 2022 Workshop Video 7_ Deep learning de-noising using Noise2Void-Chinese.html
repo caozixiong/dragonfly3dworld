@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Dragonfly软件中的深度学习：噪声到空洞</h1>
+<h2>介绍 [00:00:03]</h2>
+<p>本教程演示了在Dragonfly软件中使用深度学习的方法，重点关注噪声到空洞功能。深度学习是Dragonfly软件的强项，本教程将展示使用人工智能和深度学习帮助新手和专家用户更有效地分割数据的不同方法。</p>
+<h2>噪声到空洞去噪 [00:00:59]</h2>
+<p>第一个演示是噪声到空洞功能，它使用深度学习对图像进行去噪。虽然Dragonfly在图像过滤工具箱中包含了许多传统的图像过滤工具，但本教程重点关注深度学习方法。</p>
+<h3>设置数据</h3>
+<p>在本演示中，我们使用的是增材制造金属粉末扫描的噪声数据集。数据显示：<br />
+- 斑点噪声<br />
+- 环形伪影<br />
+- 内部有孔隙的金属粉末</p>
+<h3>创建训练数据</h3>
+<p>要使用深度学习工具，我们需要：</p>
+<ol>
+<li>作为输入的数据集</li>
+<li>用于视觉反馈的框架</li>
+<li>用于训练的掩码</li>
+</ol>
+<p>创建这些的步骤：</p>
+<ol>
+<li>选择<code>注释</code>并创建一个图层</li>
+<li>使用矩形工具创建一个用于视觉反馈的区域</li>
+<li>使用分割工具画笔在特定切片上绘制掩码</li>
+<li>在本例中，我们使用两个切片进行训练</li>
+</ol>
+<h3>训练模型</h3>
+<ol>
+<li>点击图像通道</li>
+<li>进入<code>人工智能</code></li>
+<li>选择<code>自定义深度模型架构</code> &gt; <code>噪声到空洞</code></li>
+<li>选择训练新模型</li>
+<li>命名模型（例如，"演示粉末模型"）</li>
+<li>将输入设置为金属粉末数据集</li>
+<li>将掩码设置为先前创建的掩码</li>
+<li>设置增强级别</li>
+<li>更高的增强需要更长时间但产生更好的结果</li>
+<li>增强通过翻转、共享、缩放和添加噪声来创建更多训练数据</li>
+<li>设置视觉反馈框架</li>
+<li>点击训练</li>
+</ol>
+<p>在训练过程中，您将看到：<br />
+- 进度条<br />
+- 右侧的视觉反馈<br />
+- 左侧显示模型的初始损失和损失值<br />
+   - 随着模型改进，这些值应该减少<br />
+   - 最佳结果在接近零处趋于平稳</p>
+<h3>应用模型 [00:07:04]</h3>
+<p>一旦模型训练完成，您可以将其应用于数据集：</p>
+<ol>
+<li>选择输入数据集</li>
+<li>应用训练好的模型</li>
+<li>模型将处理数据集中的所有切片，创建一个新的去噪数据集</li>
+</ol>
+<h3>比较结果</h3>
+<p>要比较原始和去噪数据：</p>
+<ol>
+<li>使用标尺工具在感兴趣的特征上创建剖面</li>
+<li>调整颜色以区分原始和去噪数据</li>
+<li>观察噪声的平滑化，同时保留重要特征</li>
+</ol>
+<p>去噪结果显示噪声显著减少，同时保持了粉末颗粒的重要结构细节。</p>
+<h3>重复使用模型</h3>
+<p>这种方法的一个重要优势是您不需要每次都训练模型。对于后续的粉末扫描：</p>
+<ol>
+<li>进入图像通道</li>
+<li>选择<code>人工智能</code> &gt; <code>应用</code></li>
+<li>选择您之前训练的模型</li>
+<li>选择输入数据集</li>
+<li>应用模型</li>
+</ol>
+<p>这使您可以快速对类似的数据集进行去噪，而无需重复训练过程。</p>
+<h2>结论 [00:11:11]</h2>
+<p>Dragonfly中的噪声到空洞功能提供了一种有效的深度学习方法来对图像数据进行去噪。通过在数据的一小部分上训练模型，您可以创建一个强大的去噪滤镜，可以应用于整个数据集，并在未来用于类似的数据集。这种方法保留了重要的结构细节，同时显著减少了噪声，使后续分析和分割更加准确。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=gGOhveZS_xQ">July 2022 Workshop Video 7: Deep learning de-noising using Noise2Void</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 19:30:34 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

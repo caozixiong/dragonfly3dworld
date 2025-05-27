@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapping Trabecular Bone Anisotropy in 3D: A Tool to Decipher Loading History of Bones using MicroCT - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Mapping Trabecular Bone Anisotropy in 3D: A Tool to Decipher Loading History of Bones using MicroCT - (English)</h1>
+        <p>Dr. Natalie Reznikoff, an assistant professor at McGill University, presents research on using 3D imaging to analyze bone microarchitecture, demonstrating how anisotropy mapping can reveal functional adaptations in bone structure and provide insights into normal versus pathological bone development.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Understanding Bone Structure and Function Through 3D Imaging [00:00:46]</h2>
+<p>This tutorial explores how 3D imaging techniques can unlock the history and functional adaptations of bones. By analyzing bone microarchitecture, we can better understand how bones adapt to different loading patterns and functional demands.</p>
+<h2>The Hollow Pig Jaw: A Lesson in Bone Adaptation [00:01:58]</h2>
+<p>When studying trabecular bone properties, an interesting discovery was made with pig jaws. Unlike human jaws that contain significant trabecular bone, pig jaws were found to be hollow. This structural difference exists because:</p>
+<ul>
+<li>Pigs use their jaws differently than humans</li>
+<li>Pigs dig roots out of soil, creating a tremendous bending momentum on the mandible</li>
+<li>The hollow structure is perfectly adapted for this specific loading pattern</li>
+</ul>
+<p>This demonstrates the principle that bone structure follows function - different loading patterns result in different bone architectures.</p>
+<h2>Trabecular Bone: Structure and Function [00:03:41]</h2>
+<p>Trabecular bone is a lacy, delicate structure primarily located near joints throughout the body of large animals. Key characteristics include:</p>
+<ul>
+<li>Found where movement occurs, suggesting adaptation for multi-directional loading</li>
+<li>Varies in texture from uniform and delicate to merged structures forming "gothic arches" or buttresses</li>
+<li>Structure provides clues about function and loading history</li>
+</ul>
+<h2>Traditional Methods of Analyzing Bone Structure [00:04:32]</h2>
+<p>For over two decades, canonical methods have been used to infer bone function from structure by calculating anisotropic coefficients:</p>
+<ul>
+<li>Mean intercept length</li>
+<li>Star volume or orientation volume</li>
+<li>Structure model index</li>
+<li>Euler number</li>
+</ul>
+<p>These classic methods require:<br />
+- Cropping of the volume of interest to a more or less isotropic shape<br />
+- Sufficient volume (at least 5mm³) to have a statistically robust number of trabecular and intertrabecular spaces</p>
+<p>However, in real bone specimens, moving just a few millimeters can reveal totally different bone textures, creating a challenge for digital image processing.</p>
+<h2>Dragonfly's Approach to Analyzing Anisotropy [00:06:02]</h2>
+<p>Dragonfly offers a solution by allowing analysis of the entire bone structure while preserving functional context:</p>
+<ol>
+<li>Split the isosurface into units of surface (triangles)</li>
+<li>Project elementary vectors from each triangle</li>
+<li>Count and analyze these vectors to determine orientation</li>
+</ol>
+<p>This approach works for both simple shapes and complex bone surfaces:<br />
+- For a parallelepiped, vectors emanating in different directions can be counted and compared<br />
+- The ratio of vectors in different directions reveals whether the structure is anisotropic and its orientation</p>
+<h2>Vector Mapping of Bone Structure [00:07:25]</h2>
+<p>By applying vector operations to bone surfaces:</p>
+<ul>
+<li>Every position can be analyzed and normalized into a fraction of unity</li>
+<li>This creates a vector map consisting of millions of vectors</li>
+<li>Color coding from blue (low) to red (high) reveals patterns not visible to the naked eye</li>
+</ul>
+<p>For example, in a sheep femur:<br />
+- The head of the femur (blue) shows no preferred orientation - logical for a ball-and-socket joint receiving loads from multiple directions<br />
+- The shaft shows increasingly oriented structure (orange to red)<br />
+- Using red, green, and blue to code X, Y, and Z axes reveals even more detailed patterns</p>
+<h2>Validating Anisotropy as a Meaningful Descriptor [00:09:41]</h2>
+<p>To validate that anisotropy is a meaningful descriptor of bone function, comparison of same skeletal elements loaded in different scenarios is necessary. The Gordon Pathology Museum provided access to unique specimens:</p>
+<ol>
+<li>A clubfoot specimen (congenital condition) - never used for normal walking</li>
+<li>An ankylosis specimen (acquired condition) - fusion of several bones due to chronic infection</li>
+<li>The donor walked normally until age 20, then had difficult mobility for two decades</li>
+</ol>
+<p>These specimens represent extreme scenarios where normal bipedal locomotion was impossible:<br />
+- One case represents disuse (never walked)<br />
+- The other represents abnormal use (rigid foot creating jerky movement)</p>
+<h2>Mapping Anisotropy in Human Calcaneus [00:13:23]</h2>
+<p>The mapping algorithm works by:<br />
+1. Placing a probe at various positions throughout the bone<br />
+2. For spherical pores, vectors cancel out (zero measurement)<br />
+3. For continuous surfaces, vectors add up (long resultant vector)<br />
+4. Rastering throughout the entire bone creates a color-coded rendering of millions of vectors</p>
+<p>When placed in anatomical context, this reveals patterns of anisotropic trajectories:<br />
+- A band of co-aligned trabeculae from the talocalcaneal joint to the Achilles tendon<br />
+- A plantar band parallel to the ground<br />
+- A perpendicular band oriented in the wide direction</p>
+<p>These bands correspond to physiologic function and muscle/tendon attachments:<br />
+- Weight applied from the top (compression)<br />
+- Achilles tendon pulling upwards (tension)<br />
+- Plantar fascia pulling forward (tension)<br />
+- Peroneal tendon applying tensile force</p>
+<h2>Comparing Multiple Metrics [00:15:54]</h2>
+<p>Beyond anisotropy, volume fraction (opposite of porosity) can be measured using the same rastering method. Important findings:</p>
+<ul>
+<li>Anisotropy and volume fraction are independent metrics</li>
+<li>Any combination is possible (high/low anisotropy with high/low volume fraction)</li>
+<li>These metrics should be measured and analyzed independently</li>
+</ul>
+<h2>Comparing Normal and Pathological Specimens [00:16:39]</h2>
+<p>Analysis of normal calcaneus bones shows:<br />
+- Similar patterns of anisotropic bands related to bipedal locomotion<br />
+- Consistent trajectories that can be related to function</p>
+<p>Pathological specimens show distinct differences:<br />
+- Clubfoot: Almost hollow with very delicate, empty structure due to disuse<br />
+- Clubfoot: Patchy, inconsistent, haphazard anisotropy pattern with no consistent trajectories<br />
+- Ankylosis: Higher total bone tissue than normal, but patchy and coarse (consistent with chronic inflammation)<br />
+- Ankylosis: Fading anisotropy trajectories (dorsal trajectory still visible, but others inconclusive)</p>
+<h2>Conclusion: Reading Bone Adaptation [00:18:37]</h2>
+<p>The 3D mapping of anisotropy vectors reveals that:</p>
+<ul>
+<li>Inner structure of bones is continuous with the orientation and role of muscles and tendons</li>
+<li>Skeletons should not be viewed as standalone structures but as integral parts of the connective tissue system</li>
+<li>"Normal bones are all alike, and every abnormal bone is abnormal in its own way"</li>
+<li>Loading history can be reconstructed by analyzing microarchitecture</li>
+</ul>
+<p>Understanding bone adaptation requires considering multiple dimensions:<br />
+- Conventional three dimensions (X, Y, Z) for size, shape, and outer morphology<br />
+- Time dimension as functional adaptations accrue with age<br />
+- Additional dimensions like network connectedness</p>
+<p>True unraveling of bone loading history will come with control of all six, seven, or eight dimensions of functional adaptation.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=tq7Tx7OZUmc">Mapping Trabecular Bone Anisotropy in 3D: A Tool to Decipher Loading History of Bones using MicroCT</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 10:08:54 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/tq7Tx7OZUmc"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

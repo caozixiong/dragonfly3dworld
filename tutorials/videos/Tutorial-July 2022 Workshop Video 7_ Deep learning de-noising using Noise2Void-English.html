@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 2022 Workshop Video 7: Deep learning de-noising using Noise2Void - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July 2022 Workshop Video 7: Deep learning de-noising using Noise2Void - (English)</h1>
+        <p>This video demonstrates the Noise to Void deep learning denoising feature in Dragonfly software, showing how to train and apply an AI model to effectively remove speckle noise from metal powder CT scan data for additive manufacturing applications.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Deep Learning in Dragonfly Software: Noise to Void</h1>
+<h2>Introduction [00:00:03]</h2>
+<p>This tutorial demonstrates the use of deep learning in Dragonfly software, focusing on the noise to void feature. Deep learning is the strength of Dragonfly software, and this tutorial will show different ways of using artificial intelligence and deep learning to help both new and expert users segment their data more effectively.</p>
+<h2>Noise to Void Denoising [00:00:59]</h2>
+<p>The first demonstration is the noise to void feature, which uses deep learning for denoising images. While Dragonfly includes many traditional image filtering tools in the image filtering toolbox, this tutorial focuses on the deep learning approach.</p>
+<h3>Setting Up the Data</h3>
+<p>For this demonstration, we're using a noisy dataset of metal powder scans for additive manufacturing. The data shows:<br />
+- Speckle noise<br />
+- Ring artifacts<br />
+- Metal powders with pores inside</p>
+<h3>Creating Training Data</h3>
+<p>To use deep learning tools, we need:</p>
+<ol>
+<li>A dataset as input</li>
+<li>A frame for visual feedback</li>
+<li>A mask for training</li>
+</ol>
+<p>To create these:</p>
+<ol>
+<li>Select <code>Annotate</code> and create a layer</li>
+<li>Use the rectangle tool to create a region for visual feedback</li>
+<li>Use the segmentation tool paintbrush to paint a mask on specific slices</li>
+<li>For this example, we're using two slices for training</li>
+</ol>
+<h3>Training the Model</h3>
+<ol>
+<li>Click on the image channel</li>
+<li>Go to <code>Artificial Intelligence</code></li>
+<li>Select <code>Custom deep model architecture</code> &gt; <code>Noise to void</code></li>
+<li>Choose to train a new model</li>
+<li>Name the model (e.g., "demo powder model")</li>
+<li>Set the input as the metal powders dataset</li>
+<li>Set the mask as the previously created mask</li>
+<li>Set augmentation level</li>
+<li>Higher augmentation takes longer but produces better results</li>
+<li>Augmentation creates more training data by flipping, sharing, scaling, and adding noise</li>
+<li>Set the visual feedback frame</li>
+<li>Click Train</li>
+</ol>
+<p>During training, you'll see:<br />
+- Progress bars<br />
+- Visual feedback on the right<br />
+- The model's initial loss and loss value on the left<br />
+   - These values should decrease as the model improves<br />
+   - The best result plateaus near zero</p>
+<h3>Applying the Model [00:07:04]</h3>
+<p>Once the model is trained, you can apply it to the dataset:</p>
+<ol>
+<li>Select the input dataset</li>
+<li>Apply the trained model</li>
+<li>The model will process all slices in the dataset, creating a new denoised dataset</li>
+</ol>
+<h3>Comparing Results</h3>
+<p>To compare the original and denoised data:</p>
+<ol>
+<li>Use the ruler tool to create a profile across features of interest</li>
+<li>Adjust colors to distinguish between original and denoised data</li>
+<li>Observe the smoothing of noise while preserving important features</li>
+</ol>
+<p>The denoised result shows significantly reduced noise while maintaining the important structural details of the powder particles.</p>
+<h3>Reusing the Model</h3>
+<p>An important advantage of this approach is that you don't need to train the model every time. For subsequent powder scans:</p>
+<ol>
+<li>Go to the image channel</li>
+<li>Select <code>Artificial Intelligence</code> &gt; <code>Apply</code> </li>
+<li>Select your previously trained model</li>
+<li>Choose the input dataset</li>
+<li>Apply the model</li>
+</ol>
+<p>This allows you to quickly denoise similar datasets without repeating the training process.</p>
+<h2>Conclusion [00:11:11]</h2>
+<p>The noise to void feature in Dragonfly provides an effective deep learning approach to denoise image data. By training a model on a small portion of your data, you can create a powerful denoising filter that can be applied to the entire dataset and reused for similar datasets in the future. This approach preserves important structural details while significantly reducing noise, making subsequent analysis and segmentation more accurate.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=gGOhveZS_xQ">July 2022 Workshop Video 7: Deep learning de-noising using Noise2Void</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 19:30:34 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/gGOhveZS_xQ"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>分子与基因组成像中心的体内和标本成像 [00:00:53]</h1>
+<h2>分子与基因组成像中心介绍 [00:01:55]</h2>
+<p>加州大学戴维斯分校的分子与基因组成像中心是一个校园研究核心设施，提供各种成像需求的最先进仪器。该中心的使命是为那些原本无法获得此类技术的研究人员提供专业设备。这使来自不同部门的科学家能够在多个学科领域开展创新研究。</p>
+<p>该中心与众多部门合作，并为学术机构和行业合作伙伴提供收费服务。该设施拥有多种成像技术，包括：</p>
+<ul>
+<li>PET/CT扫描仪</li>
+<li>MRI系统</li>
+<li>微CT扫描仪</li>
+<li>用于放射性核素生产的生物医学回旋加速器</li>
+</ul>
+<h2>微CT成像设备 [00:05:31]</h2>
+<p>该中心使用两种主要的微CT系统用于不同的研究应用：</p>
+<ul>
+<li><strong>X-radia micro XCT 200</strong>：标本成像的主力仪器，提供高分辨率图像用于详细分析</li>
+<li><strong>BSL-3微CT扫描仪</strong>：较新的仪器（2021年底获得），专门安装在生物安全3级设施中用于COVID研究</li>
+</ul>
+<p>BSL-3扫描仪特别独特，因为它直接安装在高生物安全设施内的动物房间中。由于COVID研究的性质，研究人员在使用此设备时必须穿戴全套个人防护装备，包括连体防护服、口罩和发网。</p>
+<h2>使用微CT进行COVID-19研究 [00:07:08]</h2>
+<h3>研究目标</h3>
+<p>COVID研究项目旨在建立SARS-CoV-2感染后急性后遗症（PASC，俗称"长期COVID"）的体内模型。该研究使用新型基因人源化多基因小鼠来：</p>
+<ol>
+<li>了解PASC的病理生理学</li>
+<li>评估潜在的治疗方法</li>
+<li>开发更能复制人类状况的复杂动物模型</li>
+</ol>
+<h3>小鼠模型的基因修饰</h3>
+<p>传统的小鼠模型随机插入人类基因，但加州大学戴维斯分校的方法使用CRISPR技术将人类基因引入其相应的小鼠基因位点。涉及的关键基因包括：</p>
+<ul>
+<li>ACE2</li>
+<li>TMPRSS</li>
+<li>Furin编码序列</li>
+</ul>
+<p>这种有针对性的方法通过在自然位置用人源化版本替换小鼠基因，创建了更准确的模型。</p>
+<h3>研究假设</h3>
+<p>该研究检验了两个关键假设：<br />
+- 雌性小鼠会出现轻度至中度的类COVID急性症状，并且比雄性小鼠更可能表现出PASC症状<br />
+- 表现出严重亚致死性急性疾病的小鼠将在六个月内发展为PASC</p>
+<h3>微CT成像方法 [00:11:23]</h3>
+<p>研究使用呼吸门控肺部成像来追踪随时间变化的情况。动物在多个时间点进行扫描：<br />
+- 基线（感染前）<br />
+- 感染后第5天<br />
+- 感染后第17天<br />
+- 大约六个月的每月扫描<br />
+- 部分动物再次感染后的额外扫描</p>
+<p>成像显示，在第5天，受感染动物的肺部出现高信号，通常在第17天得到缓解。在16只受感染动物中有5只观察到这种模式。</p>
+<h2>用于肺部分割的深度学习 [00:13:11]</h2>
+<h3>计算资源</h3>
+<p>专门为处理微CT数据构建了一台高性能PC，特点包括：<br />
+- 大容量RAM<br />
+- 针对深度学习优化的先进显卡</p>
+<h3>深度学习模型参数</h3>
+<p>分割模型使用以下规格：<br />
+- Sensor 3D模型架构<br />
+- 数据增强技术<br />
+- 图像掩码尺寸小于高分辨率标本扫描仪数据<br />
+- 使用六组呼气末和吸气末图像进行训练<br />
+- 监控验证损失以便提前停止（52个周期后完成）</p>
+<h3>数据清理过程</h3>
+<p>模型表现良好但需要一些清理：<br />
+- 肺部区域外的偶尔斑点需要移除<br />
+- 大多数情况下实现了出色的肺部分割<br />
+- 假阳性和假阴性体素主要出现在肺部边界</p>
+<h3>结果分析 [00:16:26]</h3>
+<p>八只SARS-CoV-2感染动物的初步结果显示，在呼气末图像中，第5天肺容量有减少的趋势。完整研究包括264张吸气和呼气图像，使手动分割（每张图像1-2小时）变得不切实际。</p>
+<h2>新热带兰花蜂脑研究 [00:17:38]</h2>
+<h3>研究背景</h3>
+<p>该项目研究新热带兰花蜂性二态性的发生信号。这些蜜蜂表现出迷人的行为多样性：<br />
+- 社会性和盗寄生物种<br />
+- 雄蜂从兰花和其他花朵收集气味以吸引雌蜂<br />
+- 雌蜂是半社会性的，而雄蜂主要是独居的<br />
+- 雄蜂收集香水，而雌蜂不收集</p>
+<p>研究问题集中在蜜蜂大脑如何进化以支持这种行为多样性，特别是寻找蜜蜂大脑中的解剖学性别二态性。</p>
+<h3>成像方法 [00:20:31]</h3>
+<p>蜜蜂大脑使用微CT与碘和乙醇染色进行成像，以在不同脑结构之间获得良好的对比度。尽管蜜蜂大脑比小鼠肺部小得多，但矩阵尺寸大2.5-3倍，这对深度学习应用有重要影响。</p>
+<h3>大脑分割 [00:22:10]</h3>
+<p>研究人员手动分割了九个脑区，以分析体积指标和形态。这个过程最初每个大脑需要约一天时间，但最终减少到2-4小时。计划研究多达100个标本，正在探索深度学习实施以减少手动工作量。</p>
+<h3>初步发现 [00:23:22]</h3>
+<p>手动分割样本的初步结果显示：<br />
+- 雄蜂的视叶和髓质增大，这对可视化和寻找花朵很重要<br />
+- 雌蜂的蘑菇体增大，这对联想学习和记忆至关重要（对社会行为很重要）</p>
+<p>这些发现支持在雄蜂和雌蜂大脑之间的解剖学二态性中存在发生信号的假设。</p>
+<h2>结论 [00:24:24]</h2>
+<p>加州大学戴维斯分校的分子与基因组成像中心展示了先进成像技术在多样化研究应用中的强大力量。从追踪基因修饰小鼠中的COVID-19进展到检查蜜蜂大脑中的微小结构差异，结合深度学习的微CT成像提供了对生物系统前所未有的洞察。这些技术使研究人员能够以非凡的细节和效率回答关于疾病进展和进化适应的复杂问题。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=XDeA8ijKih8">In Vivo and Specimen Imaging at the Center for Molecular and Genomic Imaging</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 02:14:09 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragonfly Daily 36 CT Reconstruction in Dragonfly (2020) - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Dragonfly Daily 36 CT Reconstruction in Dragonfly (2020) - (English)</h1>
+        <p>The Dragonfly Daily presentation introduces CT Reconstruction capabilities in Dragonfly 2020.1, demonstrating how users can process projection images from various X-ray and neutron imaging systems into 3D reconstructions using both parallel beam and cone beam geometry options.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to CT Reconstruction in Dragonfly [00:00:25]</h2>
+<p>Welcome to this tutorial on CT Reconstruction using Dragonfly 2020.1. This lesson will focus on how to use Dragonfly's CT reconstruction capabilities to transform projection images into 3D reconstructions. This is not a lesson on CT reconstruction mathematics or CT imaging physics, but rather a practical guide for using the tools available in Dragonfly.</p>
+<h2>Understanding Projection Data [00:01:05]</h2>
+<p>When working with CT systems (whether laboratory micro CT, neutron CT, or synchrotron X-ray CT), you collect a set of projection images that must be mathematically reconstructed into a 3D volume. These projections are essentially shadow images or mathematical projections of your sample.</p>
+<p>In the example dataset, scrolling through the slices shows the sample rotating, as it was rotated between a source and a detector while images were recorded. These are the raw projections, not the reconstructed images.</p>
+<p>There are two important CT geometry types to understand:<br />
+- <strong>Parallel beam</strong>: Where the photons or particles come at the sample in parallel rays<br />
+- <strong>Cone beam</strong>: Where the rays diverge from a point source, generating a cone beam geometry</p>
+<p>The new CT reconstruction engine in Dragonfly 2020.1 supports both of these geometries.</p>
+<h2>Accessing the CT Reconstruction Workflow [00:03:29]</h2>
+<p>To begin CT reconstruction in Dragonfly:</p>
+<ol>
+<li>Load your projection data into Dragonfly</li>
+<li>Navigate to the Workflows menu</li>
+<li>Select "CT Reconstruction (beta version)"</li>
+</ol>
+<p>This will open the CT reconstruction dialogue with several key sections:<br />
+- Input image selection<br />
+- Reconstruction engine selection<br />
+- Pre-processing parameters<br />
+- Output dimensions<br />
+- Preview and reconstruction controls</p>
+<h2>Choosing a Reconstruction Engine [00:04:54]</h2>
+<p>Dragonfly offers two reconstruction engines:</p>
+<ol>
+<li><strong>RTK (Reconstruction Toolkit)</strong> - For cone beam reconstruction</li>
+<li><strong>TomoPy</strong> - For parallel beam reconstruction, offering two algorithms:</li>
+<li>Grid rec (from Argonne Laboratory)</li>
+<li>ART (Algebraic Reconstruction Technique)</li>
+</ol>
+<h3>Parallel Beam Parameters</h3>
+<p>When working with parallel beam reconstruction, you'll need to specify:<br />
+- The reconstruction algorithm (grid rec or ART)<br />
+- Geometry parameters (starting angle, last angle)<br />
+- Center of rotation<br />
+- For ART, you can set the number of iterations</p>
+<h3>Cone Beam Parameters [00:08:23]</h3>
+<p>For cone beam reconstruction, you'll need to specify several geometry parameters:<br />
+- Source to detector distance (in microns)<br />
+- Source to isocenter distance (distance between source and center of rotation)<br />
+- Initial angle and angular step<br />
+- Source and detector offsets (relative to the optical axis)<br />
+- Detector angle (normally zero)</p>
+<h2>Importing Parameters from Manufacturer Files [00:11:23]</h2>
+<p>Rather than manually entering all parameters, Dragonfly can import them from manufacturer files for several systems:<br />
+- Nikon systems<br />
+- KA imaging systems<br />
+- Northstar imaging systems</p>
+<p>To import parameters:<br />
+1. Select your system type from the dropdown<br />
+2. Click "Import from file"<br />
+3. Browse to the manufacturer file (e.g., XTECCT format for Nikon)</p>
+<p>The system will populate all geometry fields automatically. If there's a mismatch between the pixel spacing in your imported data and the manufacturer file, Dragonfly will ask if you want to apply the spacing values from the file.</p>
+<h2>Reconstruction Algorithm Options [00:13:51]</h2>
+<h3>Cone Beam Algorithms</h3>
+<p>For cone beam reconstruction, Dragonfly offers:<br />
+- <strong>Feldkamp (FDK) algorithm</strong> - The standard algorithm for cone beam reconstruction<br />
+- <strong>ITER</strong> - An iterative reconstruction approach</p>
+<p>You can choose to compute on GPU (requires CUDA-enabled NVIDIA GPU) or CPU.</p>
+<p>The iterative reconstruction method reconstructs the volume, then forward projects it to compare with the original projections, iteratively improving the reconstruction. Two forward projection models are available:<br />
+- Joseph (CPU-based)<br />
+- CUDA Raycast (GPU-accelerated version)</p>
+<h3>Advanced Parameters [00:15:19]</h3>
+<p>Under advanced parameters, you can set:<br />
+- Filter types (Shep Logan, Han, Hamming) - These correct for the oversampling at lower frequencies<br />
+- Filter cutoff frequency</p>
+<h2>Pre-processing Options [00:16:05]</h2>
+<p>The pre-processing section allows you to:<br />
+- Apply flat field correction using bright reference images<br />
+- Apply dark reference correction<br />
+- Apply median filtering to reduce noise in projections</p>
+<h2>Output Dimensions and Preview [00:17:25]</h2>
+<p>The output dimensions are determined by the geometry of your input data. In the beta release, you cannot change these dimensions.</p>
+<p>To test your parameters before full reconstruction:<br />
+1. Click "Compute Preview" to generate a single reconstructed slice<br />
+2. Adjust parameters as needed<br />
+3. Generate additional previews with different settings<br />
+4. Use "Import Inputs from Preview" to recall settings from a specific preview</p>
+<h2>Performing the Reconstruction [00:20:23]</h2>
+<p>Two options are available for the final reconstruction:</p>
+<ol>
+<li><strong>Reconstruct and Load</strong> - Reconstructs the entire volume and loads it into memory</li>
+<li>
+<p>Requires sufficient RAM to hold the entire reconstruction</p>
+</li>
+<li>
+<p><strong>Reconstruct and Save to Disk</strong> - Reconstructs in slabs and writes directly to disk</p>
+</li>
+<li>Allows reconstruction of larger volumes than available memory</li>
+<li>Prompts for a save location</li>
+</ol>
+<p>Dragonfly automatically handles "slabbing" the data based on available GPU memory, which is a significant advantage over using the free tools directly.</p>
+<h2>Conclusion [00:43:00]</h2>
+<p>The CT reconstruction engine in Dragonfly 2020.1 provides an accessible way to reconstruct CT data from projections. While most commercial CT systems come with their own reconstruction software, Dragonfly's implementation allows for experimentation with different reconstruction parameters and algorithms.</p>
+<p>Future updates will include additional file format support, more advanced reconstruction algorithms, and pre-processing options like beam hardening correction and ring artifact removal. The reconstruction parameters are fully accessible through Python scripting, allowing for customization and extension of the workflow.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=1UjP4Ox79Ew">Dragonfly Daily 36 CT Reconstruction in Dragonfly (2020)</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-23 12:54:39 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/1UjP4Ox79Ew"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

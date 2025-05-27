@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 2022 Workshop Video 1: Basics of Dragonfly using a lego figurine - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July 2022 Workshop Video 1: Basics of Dragonfly using a lego figurine - (English)</h1>
+        <p>This video demonstrates the basic functionality of Dragonfly software using a micro CT scan of a Lego figurine, covering essential tools for data visualization, manipulation, and analysis including importing image stacks, adjusting contrast, rotating objects, and creating animations.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Getting Started with Dragonfly: Basic Navigation and Visualization</h1>
+<h2>Introduction to Dragonfly [00:00:03]</h2>
+<p>This tutorial is based on a workshop held in Grenoble, France. We'll be exploring data from a micro CT scan of a Lego figurine, provided by Tanya Shikora from the Exelon Academy. We'll start with the basics of Dragonfly version 22.1 and learn how to navigate the workspace.</p>
+<h2>Understanding the Dragonfly Workspace [00:00:37]</h2>
+<p>When you first open Dragonfly, you'll see panels on the left and right sides of the interface. These panels can be:<br />
+- Rearranged in any order<br />
+- Opened or closed based on your preference<br />
+- Positioned at the top, bottom, or sides of the window</p>
+<h2>Working with Sessions and Files [00:01:19]</h2>
+<p>Dragonfly works with sessions that can contain:<br />
+- Multiple datasets and images<br />
+- Measurements and regions of interest<br />
+- All your work saved in a single session file</p>
+<p>This makes it easy to share with colleagues or reopen your work later. You can also save individual objects as separate files if needed.</p>
+<h3>Importing Image Files [00:01:12]</h3>
+<p>To load data:<br />
+1. Go to <code>File</code> &gt; <code>Import Image Files</code><br />
+2. This can load data from any imaging modality:<br />
+   - Image stacks<br />
+   - Micro CT scans from commercial vendors (Zeiss, Xradian, etc.)<br />
+   - VGI format and many others</p>
+<h2>Loading and Configuring Image Data [00:02:44]</h2>
+<p>For this tutorial, we'll import a 40-micron image stack of the Lego figurine:</p>
+<ol>
+<li>Select all images in the stack and click <code>Open</code></li>
+<li>Give your dataset a name (optional) - we'll call it "Lego man"</li>
+<li>Set the image spacing (voxel size) - in this case 0.04 mm in all three axes (isotropic)</li>
+</ol>
+<h3>Optional Import Settings [00:03:27]</h3>
+<p>When importing large datasets, you can:<br />
+- Downsample the data by taking every second pixel in X, Y, and Z to reduce file size<br />
+- Crop the dataset during import using the cropping tool<br />
+  - Drag the sliders to define the crop region in X, Y, and Z<br />
+  - Use the preview to ensure you're not cropping important features</p>
+<h2>Basic Visualization and Navigation [00:05:23]</h2>
+<p>After importing, the dataset appears in the workspace as an image channel. You can:<br />
+- Toggle visibility using the eye icon<br />
+- View in 3D by enabling the 3D visualization button<br />
+- Scroll through slices by dragging the slider or using the mouse wheel<br />
+- Adjust contrast by left-clicking and dragging in the 2D view</p>
+<h3>Adjusting Contrast [00:07:02]</h3>
+<p>Use the Windows Leveling tab to adjust contrast:<br />
+- Drag the histogram left/right to adjust brightness<br />
+- Narrow the contrast area for sharper contrast<br />
+- Adjust gamma for fine-tuning</p>
+<h3>Navigation Controls [00:07:56]</h3>
+<p>Basic navigation shortcuts:<br />
+- Left and right mouse buttons + drag to move around the object<br />
+- Mouse wheel to zoom in/out<br />
+- Double-click on any view to maximize it<br />
+- Press <code>Escape</code> to return to default mode from any tool</p>
+<h2>Working with Multiple Views [00:06:25]</h2>
+<p>Switch to quad view to see multiple perspectives:<br />
+1. Click on the quad view button<br />
+2. Enable 3D view<br />
+3. Left-click and drag in the 3D view to rotate the object</p>
+<p>Note that each window has a colored outline when active. Functions only apply to the active window.</p>
+<h3>Using Crosshairs [00:10:56]</h3>
+<p>The crosshairs help you locate features across different views:<br />
+1. Drag the crosshair to a feature of interest<br />
+2. The feature will be centered in all three cross-sectional views<br />
+3. Enable "Show 2D View Planes" to see the slice positions in the 3D view</p>
+<h2>Manipulating the Object [00:12:03]</h2>
+<h3>Flip and Rotate Tools [00:12:06]</h3>
+<p>Use the flip and rotate tools to:<br />
+- Turn the object horizontally or vertically<br />
+- Flip the object to face different directions<br />
+- Quickly get a nice viewing angle without changing the data</p>
+<h3>Translate and Rotate Tools [00:15:49]</h3>
+<p>To reorient your data along specific axes:<br />
+1. Go to the Translate Rotate tools<br />
+2. Use the rotation controls to align the object as desired<br />
+3. This is useful for aligning the object with X, Y, or Z axes</p>
+<p>You can also use these tools to align different objects manually.</p>
+<h2>Advanced Visualization Options [00:24:31]</h2>
+<h3>3D Rendering Settings [00:24:33]</h3>
+<p>For better 3D visualization:<br />
+1. Use the 3D presets for quick rendering options<br />
+2. Adjust quality settings and enable anti-aliasing for better images<br />
+3. Change the background color or gradient using Scene View Properties</p>
+<h3>View Settings [00:25:42]</h3>
+<p>Additional view options:<br />
+- Toggle between perspective and orthographic projection<br />
+- Enable scale bars (only available in orthographic mode for 3D)<br />
+- Move legends and scale bars by dragging them<br />
+- Toggle text annotations on/off</p>
+<h2>Creating Videos and Screenshots [00:28:15]</h2>
+<p>To create a slice video:<br />
+1. Position the view as desired<br />
+2. Go to the Animation panel<br />
+3. Set the start and end slices<br />
+4. Adjust frames per second<br />
+5. Click Record to save the video</p>
+<p>For screenshots:<br />
+1. Set up the desired view<br />
+2. Right-click and select "Export Screenshot of View"<br />
+3. Choose the format and resolution</p>
+<h2>Conclusion</h2>
+<p>This tutorial covered the basic navigation and visualization tools in Dragonfly. You've learned how to:<br />
+- Import and configure image data<br />
+- Navigate in 2D and 3D views<br />
+- Adjust contrast for better visualization<br />
+- Manipulate objects using various tools<br />
+- Create videos and screenshots</p>
+<p>In the next tutorials, we'll explore more advanced features of Dragonfly for image analysis and processing.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=oL3v-vnlPQE">July 2022 Workshop Video 1: Basics of Dragonfly using a lego figurine</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 16:26:22 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/oL3v-vnlPQE"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

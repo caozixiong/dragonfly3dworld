@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July Workshop Video 12: Deep learning tool regression model - Chinese Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July Workshop Video 12: Deep learning tool regression model - (Chinese)</h1>
+        <p>这个视频演示了如何使用深度学习作为回归模型来复制传统图像滤波，特别是训练U-Net模型来作为中值滤波器，用于减少图像数据中的噪声。</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>在Dragonfly中使用深度学习进行图像滤波</h1>
+<h2>介绍 [00:00:03]</h2>
+<p>本教程演示如何使用深度学习工具作为回归学习模型来复制传统图像处理滤波器的效果。具体来说，我们将训练一个U-Net模型来复制中值滤波器对噪声图像数据集的效果。</p>
+<h2>准备数据 [00:00:28]</h2>
+<p>我们将从牛仔布数据集开始，该数据集包含一些我们想要过滤掉的噪声。</p>
+<ol>
+<li>首先，让我们应用传统的中值滤波器来创建我们的训练目标：</li>
+<li>导航到<code>Workflows</code>菜单并选择<code>Image Filtering</code></li>
+<li>在下拉框中，输入"median"以选择中值滤波器</li>
+<li>将核大小设置为5</li>
+<li>将滤波器应用于所有切片</li>
+</ol>
+<p>现在我们有两个图像通道：<br />
+- 原始噪声数据（输入）<br />
+- 中值滤波后的数据（目标输出）</p>
+<h2>创建回归模型 [00:02:05]</h2>
+<p>要创建复制中值滤波器的深度学习模型：</p>
+<ol>
+<li>选择原始数据</li>
+<li>转到<code>Deep Learning</code>工具</li>
+<li>使用以下设置创建新模型：</li>
+<li>模型类型：U-Net</li>
+<li>任务类型：回归（非语义分割）</li>
+<li>输入数量：1</li>
+<li>维度：2.5D</li>
+<li>名称："median filter"</li>
+<li>点击<code>Generate</code>创建模型</li>
+</ol>
+<h2>创建训练用的掩码 [00:02:58]</h2>
+<p>训练过程需要一个掩码来定义训练区域：</p>
+<ol>
+<li>转到<code>Segmentation</code>选项卡</li>
+<li>创建一个名为"mask"的新ROI</li>
+<li>选择一个切片</li>
+<li>使用画笔工具（按住Control键滚动可以使其变大）</li>
+<li>绘制整个切片以创建掩码</li>
+</ol>
+<h2>设置训练 [00:03:34]</h2>
+<p>要训练模型：</p>
+<ol>
+<li>设置训练输入：</li>
+<li>输入：牛仔布输入（原始数据）</li>
+<li>输出：牛仔布中值滤波图像通道</li>
+<li>掩码：我们刚刚创建的掩码</li>
+<li>根据需要调整增强设置</li>
+<li>创建预览框架以监控训练进度：</li>
+<li>转到主上下文</li>
+<li>选择矩形注释来定义预览区域</li>
+<li>将此区域设置为视觉反馈框架</li>
+</ol>
+<h2>训练模型 [00:04:09]</h2>
+<ol>
+<li>点击<code>Train</code>开始训练过程</li>
+<li>模型将学习将输入图像转换为匹配中值滤波输出</li>
+<li>在预览窗口中监控训练进度</li>
+<li>训练可能会快速达到稳定状态并执行早停</li>
+</ol>
+<p>这演示了图像到图像的回归。如果您有特定的滤波器和处理前/后的图像示例，可以使用深度学习模型间接地将该滤波器整合到Dragonfly中。</p>
+<p>您可以使用导出选项保存15秒的训练进程视频用于演示目的。</p>
+<h2>应用训练好的模型 [00:05:52]</h2>
+<p>训练完成后：</p>
+<ol>
+<li>保存模型</li>
+<li>返回原始数据</li>
+<li>选择<code>Filter with AI</code></li>
+<li>选择训练好的"unit median filter"模型</li>
+<li>您可以在单个切片上预览结果或将其应用于所有切片</li>
+</ol>
+<h2>比较结果 [00:06:20]</h2>
+<p>要比较原始、传统滤波和AI滤波结果：</p>
+<ol>
+<li>在感兴趣区域上创建一个标尺注释</li>
+<li>使用强度剖面工具来可视化以下各项之间的差异：</li>
+<li>原始数据</li>
+<li>中值滤波数据</li>
+<li>U-Net中值滤波数据</li>
+</ol>
+<p>AI滤波结果应该与传统中值滤波非常相似，证明回归模型的训练成功。</p>
+<h2>结论 [00:08:22]</h2>
+<p>本教程演示了如何在Dragonfly中使用深度学习进行图像到图像的回归。这种方法允许您复制传统图像滤波器，甚至基于训练示例创建自定义滤波器。该技术可以扩展到其他图像处理任务，只要您有成对的输入和输出示例。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=qB41ufi5IOw">July Workshop Video 12: Deep learning tool regression model</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-21 23:07:58 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/qB41ufi5IOw"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

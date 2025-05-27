@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>CT 重建在 Dragonfly 中的介绍 [00:00:25]</h2>
+<p>欢迎来到这个关于使用 Dragonfly 2020.1 进行 CT 重建的教程。本课程将重点介绍如何使用 Dragonfly 的 CT 重建功能将投影图像转换为 3D 重建。这不是关于 CT 重建数学或 CT 成像物理学的课程，而是使用 Dragonfly 中可用工具的实用指南。</p>
+<h2>理解投影数据 [00:01:05]</h2>
+<p>在使用 CT 系统（无论是实验室微型 CT、中子 CT 还是同步加速器 X 射线 CT）时，您会收集一组需要通过数学方法重建为 3D 体积的投影图像。这些投影本质上是样本的阴影图像或数学投影。</p>
+<p>在示例数据集中，滚动浏览切片会显示样本的旋转，因为它在图像记录过程中在源和探测器之间旋转。这些是原始投影，而非重建图像。</p>
+<p>有两种重要的 CT 几何类型需要理解：<br />
+- <strong>平行束</strong>：光子或粒子以平行射线方式照射样本<br />
+- <strong>锥形束</strong>：射线从一个点源发散，形成锥形束几何</p>
+<p>Dragonfly 2020.1 中的新 CT 重建引擎支持这两种几何类型。</p>
+<h2>访问 CT 重建工作流程 [00:03:29]</h2>
+<p>要在 Dragonfly 中开始 CT 重建：</p>
+<ol>
+<li>将投影数据加载到 Dragonfly 中</li>
+<li>导航到工作流程菜单</li>
+<li>选择"CT 重建（测试版）"</li>
+</ol>
+<p>这将打开 CT 重建对话框，其中包含几个关键部分：<br />
+- 输入图像选择<br />
+- 重建引擎选择<br />
+- 预处理参数<br />
+- 输出尺寸<br />
+- 预览和重建控制</p>
+<h2>选择重建引擎 [00:04:54]</h2>
+<p>Dragonfly 提供两种重建引擎：</p>
+<ol>
+<li><strong>RTK（重建工具包）</strong> - 用于锥形束重建</li>
+<li><strong>TomoPy</strong> - 用于平行束重建，提供两种算法：</li>
+<li>Grid rec（来自阿贡国家实验室）</li>
+<li>ART（代数重建技术）</li>
+</ol>
+<h3>平行束参数</h3>
+<p>使用平行束重建时，您需要指定：<br />
+- 重建算法（grid rec 或 ART）<br />
+- 几何参数（起始角度，最终角度）<br />
+- 旋转中心<br />
+- 对于 ART，您可以设置迭代次数</p>
+<h3>锥形束参数 [00:08:23]</h3>
+<p>对于锥形束重建，您需要指定几个几何参数：<br />
+- 源到探测器距离（以微米为单位）<br />
+- 源到等中心距离（源与旋转中心之间的距离）<br />
+- 初始角度和角度步长<br />
+- 源和探测器偏移（相对于光轴）<br />
+- 探测器角度（通常为零）</p>
+<h2>从制造商文件导入参数 [00:11:23]</h2>
+<p>Dragonfly 可以从多个系统的制造商文件导入参数，而不必手动输入所有参数：<br />
+- Nikon 系统<br />
+- KA 成像系统<br />
+- Northstar 成像系统</p>
+<p>导入参数的步骤：<br />
+1. 从下拉菜单中选择您的系统类型<br />
+2. 点击"从文件导入"<br />
+3. 浏览到制造商文件（例如，Nikon 的 XTECCT 格式）</p>
+<p>系统将自动填充所有几何字段。如果导入数据中的像素间距与制造商文件中的不匹配，Dragonfly 将询问您是否要应用文件中的间距值。</p>
+<h2>重建算法选项 [00:13:51]</h2>
+<h3>锥形束算法</h3>
+<p>对于锥形束重建，Dragonfly 提供：<br />
+- <strong>Feldkamp (FDK) 算法</strong> - 锥形束重建的标准算法<br />
+- <strong>ITER</strong> - 迭代重建方法</p>
+<p>您可以选择在 GPU（需要支持 CUDA 的 NVIDIA GPU）或 CPU 上计算。</p>
+<p>迭代重建方法重建体积，然后前向投影它以与原始投影进行比较，迭代改进重建。有两种前向投影模型可用：<br />
+- Joseph（基于 CPU）<br />
+- CUDA Raycast（GPU 加速版本）</p>
+<h3>高级参数 [00:15:19]</h3>
+<p>在高级参数下，您可以设置：<br />
+- 滤波器类型（Shep Logan、Han、Hamming）- 这些可以校正低频过采样<br />
+- 滤波器截止频率</p>
+<h2>预处理选项 [00:16:05]</h2>
+<p>预处理部分允许您：<br />
+- 使用明亮参考图像应用平场校正<br />
+- 应用暗场参考校正<br />
+- 应用中值滤波以减少投影中的噪声</p>
+<h2>输出尺寸和预览 [00:17:25]</h2>
+<p>输出尺寸由输入数据的几何形状决定。在测试版中，您无法更改这些尺寸。</p>
+<p>在完全重建之前测试参数：<br />
+1. 点击"计算预览"生成单个重建切片<br />
+2. 根据需要调整参数<br />
+3. 使用不同设置生成其他预览<br />
+4. 使用"从预览导入输入"回调特定预览的设置</p>
+<h2>执行重建 [00:20:23]</h2>
+<p>最终重建有两个选项：</p>
+<ol>
+<li><strong>重建并加载</strong> - 重建整个体积并将其加载到内存中</li>
+<li>
+<p>需要足够的 RAM 来保存整个重建</p>
+</li>
+<li>
+<p><strong>重建并保存到磁盘</strong> - 分块重建并直接写入磁盘</p>
+</li>
+<li>允许重建大于可用内存的更大体积</li>
+<li>提示保存位置</li>
+</ol>
+<p>Dragonfly 根据可用的 GPU 内存自动处理数据"分块"，这是相比直接使用免费工具的一个显著优势。</p>
+<h2>结论 [00:43:00]</h2>
+<p>Dragonfly 2020.1 中的 CT 重建引擎提供了一种从投影重建 CT 数据的便捷方式。虽然大多数商业 CT 系统都配有自己的重建软件，但 Dragonfly 的实现允许使用不同的重建参数和算法进行实验。</p>
+<p>未来的更新将包括额外的文件格式支持、更高级的重建算法以及预处理选项，如光束硬化校正和环形伪影去除。重建参数可通过 Python 脚本完全访问，允许自定义和扩展工作流程。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=1UjP4Ox79Ew">Dragonfly Daily 36 CT Reconstruction in Dragonfly (2020)</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-23 12:54:39 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

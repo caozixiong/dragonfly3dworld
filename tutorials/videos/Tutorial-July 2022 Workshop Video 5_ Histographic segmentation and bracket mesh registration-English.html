@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 2022 Workshop Video 5: Histographic segmentation and bracket mesh registration - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July 2022 Workshop Video 5: Histographic segmentation and bracket mesh registration - (English)</h1>
+        <p>This demonstration showcases advanced segmentation and analysis techniques in Dragonfly software, including histographic segmentation for fiber analysis and mesh-to-mesh registration for comparing actual 3D-printed titanium brackets with their nominal CAD designs.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Histographic Segmentation [00:00:08]</h2>
+<p>Histographic segmentation is an advanced segmentation functionality not available in many software packages. This demonstration will use the fiber dataset.</p>
+<p>To access this feature:<br />
+- Navigate to <code>Workflows</code> at the top menu<br />
+- Select <code>Histographic Segmentation</code></p>
+<p>This technique looks at two histograms simultaneously for segmentation, rather than just a single histogram. By default, it uses a Sobel filtered version of the same dataset, though you can also use different landscapes or image channels. You can also use masks to limit what you want to apply this to.</p>
+<p>To use histographic segmentation:<br />
+1. Compute the double histogram for the data<br />
+2. The result shows a histogram on one axis and another on the second axis, creating a two-dimensional representation<br />
+3. You can segment and paint in either the histogram domain or the image domain, and use both interactively</p>
+<h3>Working in Image Domain and Histogram Domain</h3>
+<p>First, add regions of interest that you want to add pixels to. For example, to make fibers yellow:<br />
+- Zoom in and select a location of fiber<br />
+- Notice that everything with the same gray values is highlighted<br />
+- These same gray values are now visible in the co-histogram</p>
+<p>To improve the selection:<br />
+- Click on the paintbrush in the histogram domain<br />
+- Add additional points in the histogram to expand your selection<br />
+- You can select multiple regions of interest</p>
+<p>This powerful tool allows you to:<br />
+- Classify all pixels based on your selections<br />
+- Perform watershed operations in the image domain<br />
+- Expand ROIs up to the watershed boundaries of the selected landscape</p>
+<h2>Registration and CAD Comparison [00:04:36]</h2>
+<p>For this demonstration, we'll use a topology-optimized 3D-printed titanium bracket. This is a CT scan of a bracket that has been additively manufactured. While it's a good quality 3D print, it's not perfect, and we'll see the imperfections when we do a CAD comparison.</p>
+<h3>Importing and Preparing CAD Files</h3>
+<p>Dragonfly can import STL files converted from CAD files. For mesh-to-mesh registration:<br />
+1. Note that you cannot align meshes directly to images or vice versa - you can only align images to images and meshes to meshes<br />
+2. For this case, take the image and make a basic segmentation using a defined range upper<br />
+3. Enable "Fill inner areas" in case there are pores inside<br />
+4. Create a region of interest for the bracket</p>
+<h3>Creating a Mesh from the CT Data</h3>
+<p>To create a mesh from the CT data:<br />
+1. Use the <code>Generate contour mesh</code> function<br />
+2. Choose an appropriate threshold since it's a thresholding operation<br />
+3. Optionally subsample to make processing faster (e.g., linear interpolation every second voxel)</p>
+<p>Once exported to a mesh, you'll see it with a white line around it. This mesh represents the "actual" bracket, while the design is the "nominal" bracket.</p>
+<h3>Aligning Actual to Nominal</h3>
+<p>Typically, you'll want to align the actual bracket to the nominal because the nominal is in the XYZ coordinate system as designed:</p>
+<ol>
+<li>Select the actual bracket</li>
+<li>Go to the main tab and use the translate/rotate tools</li>
+<li>Move the mesh in space to roughly align with the nominal</li>
+<li>Use the X, Y, and Z translation controls to improve alignment</li>
+<li>Manual pre-alignment helps the automatic algorithm significantly</li>
+</ol>
+<p>After manual pre-alignment:<br />
+1. Right-click on the actual bracket<br />
+2. Select <code>Mesh Registration</code><br />
+3. Configure to move the actual bracket while keeping the nominal stationary<br />
+4. Apply the registration</p>
+<h3>Creating a Deviation Map</h3>
+<p>To analyze the differences between actual and nominal:<br />
+1. Right-click on the aligned mesh<br />
+2. Select <code>Make a signed deviation map</code> compared to the nominal<br />
+3. Rename the result appropriately (e.g., "Nominal Actual Comparison")</p>
+<h3>Adjusting the Visualization</h3>
+<p>The measurement inspector allows you to customize the visualization:<br />
+1. Change the range (e.g., from -1 to +1 mm)<br />
+2. Change the lookup table (e.g., temperature scale)<br />
+3. Optionally flip color points horizontally<br />
+4. Adjust ranges to focus on specific deviation amounts<br />
+5. Use "Hide out of range measurements" to focus on specific areas</p>
+<p>In this visualization:<br />
+- Positive deviations appear red (material excess)<br />
+- Negative deviations appear blue (material deficit)</p>
+<h2>Thickness Analysis [00:14:01]</h2>
+<p>You can perform thickness analysis on meshes or regions of interest:</p>
+<ol>
+<li>Create a copy of your mesh or use a region of interest</li>
+<li>Navigate to <code>Segment Tools</code></li>
+<li>Select <code>Export to a thickness mesh</code></li>
+<li>Configure sampling and smoothing options (e.g., smooth twice)</li>
+</ol>
+<p>The result is a color-coded thickness map where:<br />
+- Different colors represent different thicknesses<br />
+- Click on the visualization to see the color legend<br />
+- The thickness values are displayed (e.g., 2.4mm to 6.7mm)</p>
+<h3>Thickness Mapping Methods</h3>
+<p>There are two main methods for thickness mapping:</p>
+<ol>
+<li><strong>Mesh Thickness</strong> (demonstrated):</li>
+<li>Takes every point on the surface</li>
+<li>Fits spheres toward the inside</li>
+<li>
+<p>Reports the radius of the largest sphere that fits before reaching the opposite surface</p>
+</li>
+<li>
+<p><strong>Volume Mapping</strong>:</p>
+</li>
+<li>Fits spheres inside the material</li>
+<li>Reports thickness in 3D</li>
+<li>Useful when you want to visualize only the thickest parts</li>
+<li>Visualizes in the volume rather than on the surface</li>
+</ol>
+<h2>Conclusion</h2>
+<p>Dragonfly offers advanced segmentation and analysis tools for 3D data. Histographic segmentation provides a powerful way to segment based on two histograms simultaneously. The registration capabilities allow for precise alignment of actual parts with their nominal designs, enabling detailed deviation analysis. Thickness analysis provides insights into the structural characteristics of objects, with different methods available depending on your visualization needs.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=ATR0IrpjtbE">July 2022 Workshop Video 5: Histographic segmentation and bracket mesh registration</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 22:24:46 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/ATR0IrpjtbE"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turbine Blade Segmentation Using Dragonfly Deep Learning - a Simple "How-To" Video - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Turbine Blade Segmentation Using Dragonfly Deep Learning - a Simple "How-To" Video - (English)</h1>
+        <p>This tutorial demonstrates how to perform deep learning segmentation on a 3D CT scan of a turbine blade using Dragonfly software, showing the complete workflow from creating training data to generating a 3D mesh that can be exported for quantitative analysis.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Deep Learning Segmentation on a Turbine Blade Using Dragonfly</h1>
+<h2>Introduction [00:00:03]</h2>
+<p>This tutorial demonstrates how to perform deep learning segmentation on a turbine blade using Dragonfly software. When working with 3D CT scans of turbine blades, manual inspection of slices can help identify defects and geometry deviations. However, for quantitative work, segmentation is necessary to compare geometry or export meshes.</p>
+<p>Traditional thresholding methods often fail with turbine blades due to beam hardening and image artifacts - selecting too little material near the top and too much material inside curves. A deep learning approach provides a more effective solution.</p>
+<h2>Loading and Examining the Data [00:00:14]</h2>
+<p>The tutorial uses a 3D CT scan of a turbine blade visible in the top left of the interface. Cross-sections can be manually inspected, but proper segmentation is required for quantitative analysis.</p>
+<h2>Creating Training Data [00:01:41]</h2>
+<p>The deep learning approach requires ground truth slices that have been carefully segmented. These will be used to train the model.</p>
+<ol>
+<li>Navigate to slice 1000</li>
+<li>Create a region of interest called "blade" (blue color)</li>
+<li>Use the smart grid tool (super pixels) which uses a watershed algorithm in 2D</li>
+<li>This fits the curve nicely for this particular data</li>
+<li>Manual methods and smoothing can also be used to refine the segmentation</li>
+</ol>
+<h3>Creating a Mask [00:02:38]</h3>
+<p>First, create a mask to help the deep learning model identify the training area:</p>
+<ol>
+<li>Color in the entire slice as the mask</li>
+<li>Navigate to slice 500</li>
+<li>Use the super pixels tool to highlight the blade</li>
+<li>Create a mask for this slice as well</li>
+<li>Navigate to slice 1500 for symmetry</li>
+<li>Repeat the process of creating a mask and segmenting the blade</li>
+</ol>
+<p>Note: While this demonstration uses only three slices for training, providing more data will improve model performance. For production models, spend more time creating precise edges and training with additional slices.</p>
+<h2>Training the Deep Learning Model [00:04:52]</h2>
+<ol>
+<li>Open the artificial intelligence deep learning tool</li>
+<li>Select "Create a new model"</li>
+<li>Configure the model:</li>
+<li>Two classes: material and background</li>
+<li>2.5D with three slices input</li>
+<li>Name it "turbine blade" with the date</li>
+<li>Set up the training parameters:</li>
+<li>Image channel as input</li>
+<li>Multi ROI as output</li>
+<li>Define the mask</li>
+<li>Increase augmentation as needed</li>
+<li>Enable visual feedback for monitoring</li>
+</ol>
+<p>Once configured, start the training process. The model will improve with each epoch:<br />
+- First epoch: initial results (not very good)<br />
+- Second epoch: noticeable improvement<br />
+- Third epoch: further improvement<br />
+- Continue for several epochs until satisfactory results are achieved</p>
+<h2>Applying the Model [00:07:11]</h2>
+<p>After training completes:</p>
+<ol>
+<li>Take the turbine blade input</li>
+<li>Apply the trained model to all slices</li>
+</ol>
+<p>This process takes longer but is not user-dependent, so it can run overnight in an automated workflow.</p>
+<h2>Examining and Refining Results [00:07:52]</h2>
+<p>The segmentation results appear as a blue-purple color overlay on the 3D render:</p>
+<ol>
+<li>Click on the segmentation output to examine the blade or its complement</li>
+<li>Extract the class as a region of interest</li>
+<li>View the segmentation in 3D by switching off the rendering</li>
+</ol>
+<p>The segmentation looks good overall, but there may be some loose bits near the bottom of the blade that need refinement:</p>
+<ol>
+<li>Refine the region of interest by selecting "Keep the largest"</li>
+<li>This removes all small disconnected bits</li>
+</ol>
+<h2>Creating a Mesh for Export [00:08:54]</h2>
+<p>To finalize the segmentation:</p>
+<ol>
+<li>Generate a contour mesh</li>
+<li>This can be exported as an STL file</li>
+<li>The mesh provides better visualization of the segmentation results</li>
+</ol>
+<p>The final result is a clean, accurate segmentation of the turbine blade that can be used for further analysis or manufacturing.</p>
+<h2>Conclusion [00:09:42]</h2>
+<p>This tutorial demonstrated the complete workflow for deep learning segmentation of a turbine blade in Dragonfly:<br />
+1. Creating training data on select slices<br />
+2. Training a deep learning model<br />
+3. Applying the model to the entire volume<br />
+4. Refining results and exporting as a mesh</p>
+<p>Even with minimal training data (just three slices), the deep learning approach provides excellent results that overcome the limitations of traditional thresholding methods. For production use, more training data and refinement would yield even better results.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=81bDOI8Np_8">Turbine Blade Segmentation Using Dragonfly Deep Learning - a Simple "How-To" Video</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-23 02:52:00 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/81bDOI8Np_8"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

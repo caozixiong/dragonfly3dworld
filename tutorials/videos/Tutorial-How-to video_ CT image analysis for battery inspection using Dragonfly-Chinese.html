@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How-to video: CT image analysis for battery inspection using Dragonfly - Chinese Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>How-to video: CT image analysis for battery inspection using Dragonfly - (Chinese)</h1>
+        <p>本教程演示如何使用分割向导和深度学习来分割电池悬垂区域，展示这种方法如何克服传统阈值方法的局限性，以实现更准确和一致的结果。</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>电池悬垂区域分割介绍 [00:00:03]</h2>
+<p>本教程演示如何使用分割向导（Segmentation Wizard）这一基于深度学习的方法来分割电池悬垂区域。本教程不会实时展示每个步骤，而是解释整个过程并展示已处理数据的结果。</p>
+<h2>理解挑战 [00:00:42]</h2>
+<p>本教程中的感兴趣区域是电池悬垂部分。传统上，工程师会使用直尺进行线性测量来测量这些区域。</p>
+<p>进行线性测量时：<br />
+- 测量不会吸附到体素 - 它们是亚体素测量<br />
+- 多个测量的文本可能会重叠<br />
+- 使用浮动标题功能可以整齐地组织多个线性测量</p>
+<p>虽然线性测量有效，但它们有局限性。理想情况下，我们希望分割出整个悬垂区域。</p>
+<h2>传统阈值法的局限性 [00:02:39]</h2>
+<p>在尝试分割电池悬垂区域时，传统阈值方法有显著的局限性：<br />
+- 调整阈值范围会产生不一致的结果<br />
+- 一些区域被遗漏，而无关区域却被捕获<br />
+- 在多个切片上，分割看起来很混乱<br />
+- 找到最佳阈值范围极其困难</p>
+<p>这正是为什么深度学习为这类分割提供了更好的解决方案。</p>
+<h2>使用分割向导的深度学习方法 [00:03:21]</h2>
+<p>深度学习之所以适用于这种应用，是因为它使用图像识别技术。为了获得更好的结果：<br />
+- 裁剪数据集，只关注感兴趣区域<br />
+- 这有助于模型更容易地收敛到良好的解决方案<br />
+- 最终结果可以清晰地分割出悬垂区域</p>
+<h2>应用训练好的模型 [00:04:15]</h2>
+<p>一旦训练好模型，应用它非常简单：<br />
+1. 选择您的分割模型（在本例中为"battery over"）<br />
+2. 选择要分析的切片<br />
+3. 点击<code>预览</code>将模型应用于该切片</p>
+<p>这种方法的主要优势：<br />
+- 没有人为偏见或手动阈值设置<br />
+- 只需将之前训练好的模型应用于所有切片<br />
+- 同一模型可用于多个类似的电池扫描<br />
+- 结果可用于厚度分析和悬垂分析</p>
+<h2>使用分割向导进行训练 [00:05:30]</h2>
+<p>访问分割向导：<br />
+1. 导航至<code>人工智能</code> &gt; <code>分割向导</code></p>
+<p>训练过程包括：<br />
+- 通过绘制感兴趣区域来创建训练帧<br />
+- 使用智能网格工具进行2D分割<br />
+- 必要时使用绘画工具修复区域<br />
+- 使用单元注意力模型进行训练</p>
+<p>您不需要一次创建所有训练帧：<br />
+1. 从一个帧开始并进行初始训练<br />
+2. 根据需要添加新帧<br />
+3. 使用现有模型对新训练帧进行预分割<br />
+4. 修复边缘或问题区域<br />
+5. 重新训练以增强模型</p>
+<p>完成前，记得用可识别的名称保存模型，以便以后应用。训练模型与将其应用到整个数据集是分开的。</p>
+<h2>结论 [00:08:19]</h2>
+<p>这种深度学习方法用于电池悬垂区域分割比传统方法具有显著优势。通过使用分割向导训练自定义模型，您可以获得一致、准确的结果，而不受基于阈值技术的限制。同一模型可应用于多个类似扫描，使其成为电池分析工作流程的高效解决方案。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=1cdRDstM8cc">How-to video: CT image analysis for battery inspection using Dragonfly</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 15:16:02 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/1cdRDstM8cc"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

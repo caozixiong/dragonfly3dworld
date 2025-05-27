@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>中文翻译</h1>
+<h2>桑迪亚国家实验室的Dragonfly软件介绍 [00:00:25]</h2>
+<p>桑迪亚国家实验室已经使用Dragonfly软件数年。团队首次接触Dragonfly是在2018-2019年左右佛罗里达州盖恩斯维尔举办的Tosca会议工作坊上，参与者在那里通过亚马逊云平台接触了深度学习。当时同时拥有桑迪亚实验室职位和研究生身份的John Corbin认识到Dragonfly的潜力，并将其引入桑迪亚，现在他们正以创新方式使用它。</p>
+<h2>关于桑迪亚国家实验室 [00:02:13]</h2>
+<p>桑迪亚国家实验室是美国的工程实验室，与劳伦斯·利弗莫尔和洛斯阿拉莫斯实验室一起从事武器相关工作。由于工作的敏感性质，所展示的例子都是通用的，尽管同样的技术也应用于更关键的项目中。</p>
+<p>团队是Thunder CT实验室的一部分，该实验室被赋予了独特的角色，客户信任他们进行探索和创新。他们有"失败的许可"，这在行业中很罕见，使他们能够突破界限并尝试新方法。</p>
+<p>他们的主要关注点是检查爆炸性工具——这些设备具有实用目的但在测试时会被消耗。挑战在于将这些物品数字化，以便内部检查，识别缺陷，确定其重要性，并在部署或处置前评估它们是否满足性能标准。</p>
+<h2>为何在高后果工作中选择Dragonfly [00:04:11]</h2>
+<p>团队转向Dragonfly是因为它是有效编写流程脚本和创建可扩展解决方案的唯一方式。规模至关重要，因为他们有时需要每周执行数百次评估。他们做出的每个决定都有改变生命的后果，所以每一步都必须完美。</p>
+<p>通过自动化工作流程，他们可以同时解决多个问题并快速交付结果。他们设置的复杂性使他们能够为流程中的不同"客户"提供服务：<br />
+- 需要快速验证扫描质量的CT技术人员<br />
+- 需要状态更新的订单跟踪人员<br />
+- 需要详细信息的分析师</p>
+<p>自动化使他们能够在每个步骤中提取数据并将正确的信息传递给适当的人员。</p>
+<h2>硬件基础设施 [00:07:18]</h2>
+<p>团队使用PXE引导的Linux集群，便于扩展。关键硬件规格包括：<br />
+- RTX 6000 GPU<br />
+- 每个节点半太字节的RAM<br />
+- 多个x86核心<br />
+- 几个PB的存储空间</p>
+<p>有趣的是，他们集群中的一些原始节点是从桑迪亚一台即将退役的超级计算机借来的。系统位于远程位置，没有连接显示器——所有处理都是无头进行的，使用导入Dragonfly Python环境的Python脚本。</p>
+<h2>Dragonfly工作流程 [00:08:49]</h2>
+<p>团队在检查工作流程中使用Dragonfly进行几个关键过程：</p>
+<ol>
+<li>生成用于快速可视化的媒体</li>
+<li>全局几何尺寸和公差(GD&amp;T)</li>
+<li>比较理想CAD模型与实际构建对象</li>
+</ol>
+<h3>数据组织和快速可视化 [00:10:17]</h3>
+<p>为了组织和快速搜索数据，团队创建了一个网页，每次扫描都用快速可视化表示：<br />
+- Clayhe过滤器（本质上是边缘检测器）以突出显示异常<br />
+- 通过数据不同切片旋转的视频</p>
+<p>这种方法帮助团队在处理大订单时进行协调，并协助调试检测器问题或扫描质量问题等问题。</p>
+<h3>使用递归OTSU进行粗略分割 [00:11:31]</h3>
+<p>团队使用扫描上的递归OTSU分割快速生成不同材料的粗略分割。这种方法提供了一种可重复的方式来标记扫描中的不同材料，即使CT机器校准随时间变化。</p>
+<p>正如John解释的，他们不仅仅是进行局部OTSU，而是执行更复杂的空间分割操作，这些操作是可重复的并提供有意义的信息。这种粗略分割对他们流程的下一步骤很重要。</p>
+<h3>CAD对齐和比较 [00:13:45]</h3>
+<p>一旦有了粗略分割，他们可以将扫描的部分与CAD描述匹配。这个过程包括：</p>
+<ol>
+<li><strong>粗略对齐</strong>：将CAD组件放在大致位置</li>
+<li><strong>精细对齐</strong>：使用在邻域周围生成的合成CT执行体积到体积的匹配</li>
+</ol>
+<p>精细对齐本质上是一个图像配准过程，使他们能够看到实际材料的位置与预期位置的差异。这提供了一个简单的向量，描述了实际构建部件相对于设计部件的偏移。</p>
+<p>例如，他们可以检测到螺丝略微松动，或识别扫描中存在但CAD中缺失的组件（如设计文件中未包含的笔夹）。</p>
+<h3>基于ML的分割和分析 [00:16:45]</h3>
+<p>对齐后，他们可以执行高质量的机器学习分割。得益于Dragonfly的结构，他们可以提取每种材料的DICOM数据并直接在代码中使用，或导出网格用于有限元分析。</p>
+<p>团队还在努力使用Dragonfly跟踪在HPC系统上运行的进程，确保一切在后台顺利运行。</p>
+<h2>结论 [00:17:58]</h2>
+<p>Dragonfly已成为桑迪亚工作流程的不可或缺部分。通过Python访问和控制一切，同时利用Dragonfly的工具套件，对于大规模解决问题至关重要。</p>
+<p>团队使用Dragonfly的方式与大多数用户不同——他们不是在桌面上交互式工作，而是编写遵循算法过程的代码和例程，同时利用Dragonfly的数据结构。他们的全自动解决方案执行分析，然后写入ORS会话文件，这些文件稍后可以在交互式Dragonfly会话中打开以供人工审查。</p>
+<p>这种方法提供了自动化和人类可解释性，使他们能够以易于理解和验证的方式记录所有步骤。他们的几何尺寸和公差方法的灵活性特别令人印象深刻，每个组件都经过局部拟合，以识别个别部件和全局层面的缺陷和位移。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=6goQvhVc3bo">Automation of NDT Inspection by Dragonfly Scripting and HPC Batch Processing</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 07:23:19 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

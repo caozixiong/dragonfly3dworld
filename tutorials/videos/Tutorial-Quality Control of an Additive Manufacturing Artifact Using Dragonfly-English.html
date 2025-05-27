@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Control of an Additive Manufacturing Artifact Using Dragonfly - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Quality Control of an Additive Manufacturing Artifact Using Dragonfly - (English)</h1>
+        <p>This video demonstrates how to perform a wall thickness analysis or thickness mesh analysis in Dragonfly software, showing how to prepare a 3D model of an additive manufactured component and generate a color-coded thickness map that identifies thin and thick regions.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to Wall Thickness Analysis [00:00:02]</h2>
+<p>This tutorial demonstrates how to perform a wall thickness analysis (also called thickness mesh analysis) on a 3D scan. The example uses a benchmark additive manufactured component made of aluminum that contains intentional defects for demonstration purposes.</p>
+<h2>Initial Data Inspection [00:00:26]</h2>
+<p>To properly examine a 3D scan before analysis:</p>
+<ul>
+<li>Scroll through the part with good contrast to identify internal features like channels or trapped powder</li>
+<li>Use the <code>Windows leveling</code> tool for contrast adjustment</li>
+<li>Select the auto contrasting box and drag it to enhance contrast in areas of interest</li>
+<li>Press the <code>Escape</code> key to exit contrast mode</li>
+<li>Zoom in to evaluate specific areas</li>
+</ul>
+<h2>Setting Up Proper Orientation [00:00:56]</h2>
+<p>For better visualization:</p>
+<ul>
+<li>Switch to <code>quad view</code> to see orthogonal perspectives</li>
+<li>If the object was scanned at an angle, use the rotation and translate tools to align it</li>
+<li>Adjust the object within the coordinate system to get square views</li>
+<li>This allows for easier inspection of specific features</li>
+</ul>
+<h2>Rendering Options [00:02:05]</h2>
+<p>The sample part contains specific features like overhangs, walls, hollow cylinders, and solid rods.</p>
+<ul>
+<li>The default grayscale render may not show details clearly</li>
+<li>The aluminum preset provides a nice set of default render parameters</li>
+<li>Adjust shininess as needed for better visualization</li>
+</ul>
+<h2>Creating a Thickness Mesh [00:02:33]</h2>
+<p>To generate a wall thickness analysis:</p>
+<ol>
+<li>View the object in one of the 2D views</li>
+<li>Create a segmentation using <code>define range upper OTSU</code> to identify the material of interest</li>
+<li>Clean up the data by removing disconnected particles:</li>
+<li>Go to <code>refine region of interest</code> → <code>process islands</code></li>
+<li>Select <code>keep by largest</code> to retain only the main connected section</li>
+<li>Simplify the mesh by filling small pores:</li>
+<li>Use the <code>fill inner areas 3D</code> function to reduce mesh complexity</li>
+<li>Export a thickness mesh:</li>
+<li>Navigate to the export section on the left panel</li>
+<li>Select <code>normal</code> resolution without downsampling</li>
+<li>Apply smoothing once for a cleaner surface render</li>
+</ol>
+<h2>How Thickness Calculation Works [00:04:22]</h2>
+<p>The thickness calculation:</p>
+<ul>
+<li>At each surface point, the algorithm calculates the diameter of a sphere that touches both that point and any other surface</li>
+<li>This is equivalent to sphere-based thickness volume mapping but only calculates values at surface locations</li>
+<li>This approach is much faster than full volume mapping, especially for large datasets</li>
+</ul>
+<h2>Visualizing the Thickness Results [00:05:07]</h2>
+<p>To view and customize the thickness visualization:</p>
+<ol>
+<li>Click the eye icon to make the thickness mesh visible</li>
+<li>Switch to 3D view and turn off the volume data display</li>
+<li>Adjust camera and lighting settings as needed</li>
+<li>Select a color map (temperature mapping is recommended) for clear visualization</li>
+<li>The resulting visualization shows wall thickness at each point:</li>
+<li>Blue areas indicate thinner regions (approximately 0.5mm in the example)</li>
+<li>Red areas show thicker regions (up to 12mm in the example)</li>
+</ol>
+<h2>Conclusion</h2>
+<p>The wall thickness analysis provides a clear visual representation of thickness variations across the entire part. This information is valuable for quality control, design verification, and identifying potential weak points in the structure.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=Bl1wl-20VSc">Quality Control of an Additive Manufacturing Artifact Using Dragonfly</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-23 01:19:04 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/Bl1wl-20VSc"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

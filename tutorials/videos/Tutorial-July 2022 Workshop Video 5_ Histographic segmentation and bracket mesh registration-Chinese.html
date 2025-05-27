@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 2022 Workshop Video 5: Histographic segmentation and bracket mesh registration - Chinese Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>July 2022 Workshop Video 5: Histographic segmentation and bracket mesh registration - (Chinese)</h1>
+        <p>这个演示展示了Dragonfly软件中的高级分割和分析技术，包括用于纤维分析的直方图分割和用于比较实际3D打印钛支架与其标称CAD设计的网格到网格配准。</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>直方图分割 [00:00:08]</h2>
+<p>直方图分割是一种高级分割功能，在许多软件包中都不提供。本演示将使用纤维数据集。</p>
+<p>要访问此功能：<br />
+- 导航至顶部菜单的<code>Workflows</code><br />
+- 选择<code>Histographic Segmentation</code></p>
+<p>这种技术同时查看两个直方图进行分割，而不仅仅是单个直方图。默认情况下，它使用同一数据集的Sobel滤波版本，不过您也可以使用不同的景观或图像通道。您还可以使用掩码来限制要应用的范围。</p>
+<p>使用直方图分割：<br />
+1. 计算数据的双直方图<br />
+2. 结果在一个轴上显示一个直方图，在第二个轴上显示另一个直方图，创建二维表示<br />
+3. 您可以在直方图域或图像域中进行分割和绘制，并交互式地使用两者</p>
+<h3>在图像域和直方图域中工作</h3>
+<p>首先，添加您想要添加像素的感兴趣区域。例如，要使纤维变成黄色：<br />
+- 放大并选择纤维的位置<br />
+- 注意具有相同灰度值的所有内容都被突出显示<br />
+- 这些相同的灰度值现在在共同直方图中可见</p>
+<p>要改进选择：<br />
+- 点击直方图域中的画笔<br />
+- 在直方图中添加额外的点以扩展您的选择<br />
+- 您可以选择多个感兴趣区域</p>
+<p>这个强大的工具允许您：<br />
+- 根据您的选择对所有像素进行分类<br />
+- 在图像域中执行分水岭操作<br />
+- 将ROI扩展到所选景观的分水岭边界</p>
+<h2>配准和CAD比较 [00:04:36]</h2>
+<p>对于本演示，我们将使用拓扑优化的3D打印钛支架。这是一个经过增材制造的支架的CT扫描。虽然这是一个质量良好的3D打印，但它并不完美，当我们进行CAD比较时，我们将看到这些不完美之处。</p>
+<h3>导入和准备CAD文件</h3>
+<p>Dragonfly可以导入从CAD文件转换的STL文件。对于网格到网格的配准：<br />
+1. 请注意，您不能直接将网格与图像对齐，反之亦然 - 您只能将图像与图像对齐，将网格与网格对齐<br />
+2. 在这种情况下，获取图像并使用定义的上限范围进行基本分割<br />
+3. 启用"填充内部区域"，以防内部有孔隙<br />
+4. 为支架创建感兴趣区域</p>
+<h3>从CT数据创建网格</h3>
+<p>要从CT数据创建网格：<br />
+1. 使用<code>Generate contour mesh</code>功能<br />
+2. 选择适当的阈值，因为这是一个阈值操作<br />
+3. 可选择子采样以加快处理速度（例如，每隔一个体素进行线性插值）</p>
+<p>导出到网格后，您会看到它周围有一条白线。这个网格代表"实际"支架，而设计是"标称"支架。</p>
+<h3>将实际与标称对齐</h3>
+<p>通常，您会希望将实际支架与标称支架对齐，因为标称支架在设计时位于XYZ坐标系中：</p>
+<ol>
+<li>选择实际支架</li>
+<li>转到主选项卡并使用平移/旋转工具</li>
+<li>在空间中移动网格，使其与标称支架大致对齐</li>
+<li>使用X、Y和Z平移控件改进对齐</li>
+<li>手动预对齐对自动算法有显著帮助</li>
+</ol>
+<p>手动预对齐后：<br />
+1. 右键点击实际支架<br />
+2. 选择<code>Mesh Registration</code><br />
+3. 配置为移动实际支架，同时保持标称支架静止<br />
+4. 应用配准</p>
+<h3>创建偏差图</h3>
+<p>要分析实际与标称之间的差异：<br />
+1. 右键点击对齐的网格<br />
+2. 选择<code>Make a signed deviation map</code>与标称进行比较<br />
+3. 适当重命名结果（例如，"标称实际比较"）</p>
+<h3>调整可视化</h3>
+<p>测量检查器允许您自定义可视化：<br />
+1. 更改范围（例如，从-1到+1 mm）<br />
+2. 更改查找表（例如，温度标度）<br />
+3. 可选择水平翻转颜色点<br />
+4. 调整范围以关注特定偏差量<br />
+5. 使用"隐藏超出范围的测量"以关注特定区域</p>
+<p>在此可视化中：<br />
+- 正偏差显示为红色（材料过多）<br />
+- 负偏差显示为蓝色（材料不足）</p>
+<h2>厚度分析 [00:14:01]</h2>
+<p>您可以对网格或感兴趣区域执行厚度分析：</p>
+<ol>
+<li>创建网格的副本或使用感兴趣区域</li>
+<li>导航至<code>Segment Tools</code></li>
+<li>选择<code>Export to a thickness mesh</code></li>
+<li>配置采样和平滑选项（例如，平滑两次）</li>
+</ol>
+<p>结果是一个颜色编码的厚度图，其中：<br />
+- 不同的颜色代表不同的厚度<br />
+- 点击可视化以查看颜色图例<br />
+- 显示厚度值（例如，2.4mm到6.7mm）</p>
+<h3>厚度映射方法</h3>
+<p>厚度映射有两种主要方法：</p>
+<ol>
+<li><strong>网格厚度</strong>（已演示）：</li>
+<li>取表面上的每个点</li>
+<li>向内部拟合球体</li>
+<li>
+<p>报告在到达对面表面之前能拟合的最大球体的半径</p>
+</li>
+<li>
+<p><strong>体积映射</strong>：</p>
+</li>
+<li>在材料内部拟合球体</li>
+<li>在3D中报告厚度</li>
+<li>当您只想可视化最厚的部分时很有用</li>
+<li>在体积而不是表面上可视化</li>
+</ol>
+<h2>结论</h2>
+<p>Dragonfly提供了用于3D数据的高级分割和分析工具。直方图分割提供了一种强大的方式，可以同时基于两个直方图进行分割。配准功能允许将实际部件与其标称设计精确对齐，从而实现详细的偏差分析。厚度分析提供了对物体结构特性的洞察，根据您的可视化需求，可以使用不同的方法。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=ATR0IrpjtbE">July 2022 Workshop Video 5: Histographic segmentation and bracket mesh registration</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 22:24:46 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/ATR0IrpjtbE"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

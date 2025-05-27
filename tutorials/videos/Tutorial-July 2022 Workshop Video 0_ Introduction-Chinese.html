@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Dragonfly软件介绍</h1>
+<h2>欢迎和背景 [00:00:03]</h2>
+<p>欢迎观看这个录像，这是基于最近在法国格勒诺布尔CNRS举办的Dragonfly研讨会的系列视频中的第一个。我们决定将九小时的研讨会视频精简为更小、更有针对性的视频部分，而不是分享完整的研讨会视频。该系列中的每个视频在YouTube上都会有清晰的描述，使其对新用户和高级用户都有用。</p>
+<p>Dragonfly是一个强大而全面的软件包。虽然这些视频的重点是通过具体示例帮助新用户完成有用的任务，但即使是高级用户也可能会发现有价值的信息。</p>
+<p>要获取更多帮助您学习软件的内容，请关注我们的渠道：<br />
+- Twitter<br />
+- LinkedIn<br />
+- YouTube<br />
+- 网站：theobjects.com</p>
+<p>The Objects是Dragonfly软件背后的公司，大约一年半前被全球科技公司Comet集团收购。</p>
+<h2>关于Dragonfly软件 [00:03:37]</h2>
+<p>Dragonfly是一款图像分析软件包，设计用于：</p>
+<ul>
+<li>显示来自显微镜和断层扫描工具的图像</li>
+<li>2D、3D和4D（时间序列数据）的测量和检查</li>
+<li>图像处理和分割</li>
+<li>用于有限数据分割的深度学习工具</li>
+<li>定量分析</li>
+<li>动画和报告</li>
+<li>数据分析</li>
+</ul>
+<p>该软件<strong>对非商业用途免费</strong>，这对学术界特别有价值。学术许可证不是有限版本，而是与商业许可证相同的完整软件。这种方法源于软件的学术起源和我们对研究的支持承诺。</p>
+<p>对于商业用户，许可证可以是年度或永久性（一次性付款）。我们还提供：</p>
+<ul>
+<li>维护和支持计划（学术优先支持每年$2,500）</li>
+<li>培训（在线或现场）</li>
+<li>图像分析服务</li>
+<li>Viz Server产品，用于远程多用户访问</li>
+</ul>
+<h2>培训概述 [00:07:24]</h2>
+<p>本培训系列将涵盖：</p>
+<ol>
+<li>基础知识：加载数据、工作区方向、工具、2D/3D查看、快捷键</li>
+<li>相关成像：重叠和优化多个图像</li>
+<li>孔隙率分析：分割工具和对象分析</li>
+<li>纤维分析：使用分水岭工具分离接触对象</li>
+<li>测量：对齐和偏差分析</li>
+<li>矢量场：可视化样本方向性</li>
+<li>深度学习工具：</li>
+<li>Noise2Void用于去噪</li>
+<li>使用稀疏数据的机器学习分割</li>
+<li>分割向导</li>
+<li>各种深度学习应用</li>
+</ol>
+<h2>术语 [00:10:12]</h2>
+<p>Dragonfly使用特定术语，如果您来自不同的软件背景，这些术语可能不熟悉：</p>
+<ul>
+<li><strong>图像、ROI（感兴趣区域）和Multi-ROI</strong>：这些是由3D空间中的网格表示的结构化网格</li>
+<li><strong>网格</strong>：3D空间中表示表面的三角形元素，与结构化网格分开</li>
+<li><strong>窗口调平</strong>：用于对比度调整的术语（源自医学成像术语）</li>
+</ul>
+<p>重要的是要理解网格和图像在Dragonfly中是完全分开的。如果您移动或平移图像数据，您可以通过右键单击并选择适当的选项来指示相关网格遵循相同的转换。</p>
+<h2>基本快捷键 [00:12:02]</h2>
+<p>需要了解的基本鼠标快捷键：</p>
+<ul>
+<li><strong>平移/移动</strong>：同时按下鼠标左右键并拖动（在2D和3D窗口中都有效）</li>
+<li><strong>缩放</strong>：按下鼠标滚轮并向前/向后拖动</li>
+<li><strong>对比度调整</strong>：按住Control键并使用鼠标右键拖动</li>
+</ul>
+<h2>结论</h2>
+<p>如果您有特定问题或想看特定演示，我们鼓励您与我们联系。随着软件的发展，我们将继续创建简短的操作视频，以帮助简化您的工作流程并解释新功能。请发送您的数据和特定问题，以便未来的演示。</p>
+<p>欲了解更多信息，请访问我们的YouTube频道和网站，或通过电子邮件直接联系我们。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=qnb-NavCU_w">July 2022 Workshop Video 0: Introduction</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 16:50:42 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

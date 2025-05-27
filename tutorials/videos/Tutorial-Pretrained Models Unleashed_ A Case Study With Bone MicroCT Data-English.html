@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pretrained Models Unleashed: A Case Study With Bone MicroCT Data - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Pretrained Models Unleashed: A Case Study With Bone MicroCT Data - (English)</h1>
+        <p>The session features a presentation by Hubert Taillet on pre-trained deep learning models for bone micro-CT data segmentation, demonstrating how these models outperform untrained models with faster convergence and better accuracy, followed by a panel discussion exploring the benefits of transfer learning in scientific imaging analysis.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Pre-trained Models Unleashed: A Case Study with Bone Micro-CT Data</h1>
+<h2>Introduction [00:01:27]</h2>
+<p>Pre-trained models use transfer learning, which is when you take knowledge from one domain and apply it to another. This is similar to how knowledge can be transferred between individuals, like a monkey showing someone how to use a tool to open a nut. In deep learning, pre-trained models allow us to leverage existing knowledge about specific tasks and transfer that knowledge to new applications.</p>
+<p>Pre-trained models were first released in Dragonfly 2022.2. These models exist in different architectures and aren't initially trained for semantic segmentation. Users can take these "virgin" models and train them on their particular segmentation tasks. The advantages of using pre-trained models include:</p>
+<ul>
+<li>Improved performance</li>
+<li>Faster convergence</li>
+<li>Reduced training time</li>
+</ul>
+<h2>Evaluating Pre-trained Models [00:04:44]</h2>
+<p>The goal of this study was to evaluate the benefits of pre-trained models compared to untrained models. Three models were tested:</p>
+<ol>
+<li>Untrained model - A classic UNET with random initialization</li>
+<li>ORS500K - A model trained on many different scientific data (micro-CT, electron microscopy, etc.)</li>
+<li>Bone500K - A model trained only with grayscale bone images</li>
+</ol>
+<p>The data used for testing included three datasets:<br />
+- Chimpanzee bone sample<br />
+- Human femur proximal<br />
+- Human femur distal</p>
+<p>For each training set, a few slices (approximately 10) of bone samples were used with corresponding bone segmentation. Training was conducted with either one tile, four tiles, or 60 points. Testing was performed on empty slices to evaluate model performance on entire slices.</p>
+<h2>Performance Results [00:06:24]</h2>
+<p>The DICE score (a measure of similarity between the predicted and ground truth segmentations) was used to evaluate performance. Higher DICE scores indicate better performance.</p>
+<p>For all tested datasets, pre-trained models consistently outperformed untrained models by a significant margin. The Bone500K model, which was specifically trained on bone data, generally performed better than the ORS500K model, especially with larger training datasets.</p>
+<p>When examining the validation DICE scores over training epochs, pre-trained models showed drastically faster convergence. Even from the earliest epochs, the pre-trained models achieved much higher performance than untrained models. Additionally, even after extended training (250 epochs), the untrained model never reached the same accuracy as the pre-trained models.</p>
+<h2>Calibration Intensity Scale [00:10:49]</h2>
+<p>An important aspect of using pre-trained models with data from multiple sources is calibrating the intensity scale. The "Calibrate Intensity Scale" tool in Dragonfly allows training deep learning models without normalizing datasets, which would change the images.</p>
+<p>The tool automatically identifies the main regions (like background and bone) and uses these values for calibration in the deep learning model. This approach is particularly valuable when working with datasets from different origins that may have different histogram distributions.</p>
+<p>When calibrating data, the software converts the intensity values to a standardized scale (similar to how Celsius standardized temperature). For example, the bone density might be set to 100 units and the air density to 0 units. This calibration doesn't change the actual data but standardizes how the deep learning model interprets it.</p>
+<h2>Finding Pre-trained Models in Dragonfly [00:15:38]</h2>
+<p>To access pre-trained models in Dragonfly:</p>
+<ol>
+<li>Go to the Deep Learning tool</li>
+<li>Create a new model</li>
+<li>Select "Pre-trained by Dragonfly team"</li>
+<li>Choose from the available models</li>
+</ol>
+<p>There are various pre-trained model architectures available, including UNET with different depths and Sensor3D. These models are ready to be trained on your specific segmentation tasks.</p>
+<h2>The Universal Soldier Project [00:16:41]</h2>
+<p>The Universal Soldier project aims to create a model that can segment bone samples in an unsupervised way across different animals and different voxel sizes. This would allow researchers to focus on the science rather than on the segmentation task.</p>
+<p>The project has a library of different scans from various animals at different resolutions, including:<br />
+- Repository of bone data<br />
+- Body farm animal data (human femur)<br />
+- Pathology collection of bones<br />
+- Maud Abbott Museum collection</p>
+<p>The scans range across a wide voxel size scale, which is important for creating a universal bone segmentation tool. Calibration is crucial for this project to ensure the model works across any dataset containing bone.</p>
+<h2>Preliminary Results of the Universal Soldier [00:18:13]</h2>
+<p>When testing the Universal Soldier model on six different bone samples with varying resolutions, the Bone500K pre-trained model still outperformed both the untrained and ORS500K models. This indicates that the calibration approach and training across different samples yields good results even on data the model has never seen before.</p>
+<h2>Conclusion [00:19:14]</h2>
+<p>Pre-trained models consistently outperform untrained models in bone segmentation tasks. Specific pre-trained models like Bone500K can provide additional benefits for domain-specific applications. Other specialized models could potentially be created for different imaging modalities in the future.</p>
+<p>The main advantages of using pre-trained models include:<br />
+- Better performance with zero extra cost<br />
+- Significantly faster training convergence<br />
+- Improved results even with limited training data</p>
+<p>For the Universal Soldier project, the Bone500K model will likely serve as the foundation. More training data will always lead to better results, so contributions of datasets with segmentation are welcome.</p>
+<p>Pre-trained models represent a significant advancement in deep learning for image segmentation, allowing researchers to achieve better results with less training data and time.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=63li5pUElh4">Pretrained Models Unleashed: A Case Study With Bone MicroCT Data</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 01:29:43 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/63li5pUElh4"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

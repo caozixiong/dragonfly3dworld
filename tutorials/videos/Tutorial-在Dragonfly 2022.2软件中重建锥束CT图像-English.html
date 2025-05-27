@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在Dragonfly 2022.2软件中重建锥束CT图像 - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>在Dragonfly 2022.2软件中重建锥束CT图像 - (English)</h1>
+        <p>This tutorial demonstrates how to use the CT Reboot software in Dragonfly to reconstruct tracking number data, covering the entire workflow from importing CT images, setting collection parameters, selecting reconstruction engines, and handling large datasets through various optimization techniques.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>CT Reboot Software Tutorial: Recreating Tracking Number Data in Dragonfly</h1>
+<h2>Introduction [00:00:03]</h2>
+<p>This tutorial demonstrates how to use the CT Reboot software in Dragonfly to recreate tracking number data. The process involves importing CT images, setting appropriate parameters, and performing reconstruction to generate usable data.</p>
+<h2>Importing CT Images [00:00:25]</h2>
+<ol>
+<li>Import the CT image into the Dragonfly software:</li>
+<li>Select the file and import the image file</li>
+<li>Click <code>Add or Open File folder</code></li>
+<li>
+<p>Select <code>Add</code></p>
+</li>
+<li>
+<p>Select all the tracking number images:</p>
+</li>
+<li>The data typically starts from TIF 001 and continues sequentially</li>
+<li>For this example, we have images from 001 to 2635</li>
+<li>
+<p>Select all files and click <code>Open</code></p>
+</li>
+<li>
+<p>Configure import settings:</p>
+</li>
+<li>Review the image name, sample, time step, and key information</li>
+<li>Check the dimensions (in this example, 1677 × 2000 pixels)</li>
+<li>Confirm the total number of images (2635 in this case)</li>
+<li>Click <code>Finish</code> to import all images as an OS object</li>
+</ol>
+<h2>Verifying Image Orientation [00:04:06]</h2>
+<p>When importing projections, it's critical to ensure proper orientation:</p>
+<ul>
+<li>The XY plane must be your projection or detector plane</li>
+<li>The rotation axis must be along the Y direction</li>
+</ul>
+<p>If your image doesn't follow this rule upon import, you can modify it:<br />
+1. Right-click on the image<br />
+2. Select <code>Modify</code> → <code>Data reversal</code><br />
+3. Choose appropriate options:<br />
+   - Reverse rotation X axis<br />
+   - Reverse rotation Y axis<br />
+   - Reverse rotation Z axis<br />
+   - Or change axis order (e.g., X, Z, Y)</p>
+<h2>Opening CT Reboot Software [00:05:32]</h2>
+<ol>
+<li>Open the CT Reboot software:</li>
+<li>Navigate to <code>Work Process</code> → <code>CT Reboot Test Board</code></li>
+<li>
+<p>Click to launch the software</p>
+</li>
+<li>
+<p>Select the input image projection dataset:</p>
+</li>
+<li>Choose the image you just imported</li>
+</ol>
+<h2>Configuring Collection Parameters [00:05:58]</h2>
+<p>There are two ways to input collection parameters:</p>
+<h3>Method 1: Manual Input</h3>
+<p>Enter parameters directly if you know them:<br />
+- X-ray type (select "Empty" for tracking number)<br />
+- Smallest angle and angle of error<br />
+- Distance from detector to sample (X and Y)<br />
+- X-ray angle of detector<br />
+- Original position angle (X and Y)<br />
+- Rotation angle of detector<br />
+- In-Plan Angle and Out-Plan angle<br />
+- Rotation type (vertical axis or counter-axis)<br />
+- Advanced parameters: energy, current, and exposure time (optional)</p>
+<h3>Method 2: Using Metadata Files</h3>
+<p>If your data is from a CT device manufacturer:<br />
+1. Select the manufacturer from the dropdown (e.g., Nikon, Skyscan, KaImaging)<br />
+2. Click the input button to browse for metadata files:<br />
+   - Nikon: XTEKCT format<br />
+   - Skyscan: LOG format<br />
+   - KaImaging: JSON format<br />
+   - NorthStarImaging: requires two files (RTF technical sheet and geometry report)<br />
+   - Exelon: XML format (supports different equipment types like FF35, MU2000)<br />
+   - GE: PCA format</p>
+<p>This method automatically populates all parameters without manual entry.</p>
+<h2>Selecting Reconstruction Engine [00:10:46]</h2>
+<p>Choose a reconstruction algorithm:<br />
+- Default recommendation: General RTK/FTK (fastest, uses GPU acceleration)<br />
+- Alternative options:<br />
+  - Fold-down algorithm (requires fold-down number and forward projection method)<br />
+  - RTK SART algorithm (Simultaneous Algebraic Reconstruction Technique)</p>
+<p>Advanced settings include filter, frequency, stage, and fill parameters that can be adjusted according to specific needs.</p>
+<h2>Preview Calculation [00:12:38]</h2>
+<p>Before reconstructing the entire dataset:<br />
+1. Click <code>Calculate Preview</code> to reconstruct only the middle slice<br />
+2. This allows you to verify if parameters are correct without waiting for full reconstruction<br />
+3. The preview helps determine if adjustments are needed</p>
+<p>You can save multiple previews to compare different parameter settings:<br />
+- Each preview can be named (e.g., "Preview 1", "Preview 2")<br />
+- Use <code>From Preview Download Input</code> to reload parameters from a saved preview</p>
+<h2>Full Reconstruction [00:15:04]</h2>
+<p>Two options for full reconstruction:</p>
+<h3>Option 1: Reconstruct and Upload to Current Project</h3>
+<p>This loads the reconstruction directly into Dragonfly, but may not work for large datasets due to memory limitations.</p>
+<p>If your dataset is too large:<br />
+1. Reduce the dataset size:<br />
+   - Use <code>Image</code> → <code>Edit and Convert</code> → <code>Cut</code><br />
+   - Cut along Y to keep a smaller portion (ensure symmetrical collection)<br />
+   - Apply changes to create a new object or modify the current one</p>
+<h3>Option 2: Save Reconstruction to Hard Drive</h3>
+<p>For very large projections:<br />
+1. Choose <code>Save Reconstruction to Hard Drive</code><br />
+2. Select a temporary folder location<br />
+3. The software will:<br />
+   - Divide the projection into smaller pieces<br />
+   - Reconstruct each piece sequentially<br />
+   - Save results as TIFF files to the specified location<br />
+4. After completion, import the reconstructed images:<br />
+   - File → Import Image File<br />
+   - Select all reconstructed TIFF files<br />
+   - Open and configure import settings</p>
+<h2>Viewing Reconstruction Results [00:22:57]</h2>
+<ol>
+<li>Use the corner views to examine different planes of the reconstruction</li>
+<li>Adjust the window level to improve visualization</li>
+<li>Switch to 3D view to see the complete reconstruction</li>
+</ol>
+<p>The final result should show a complete, high-quality reconstruction of your tracking number data.</p>
+<h2>Conclusion [00:24:11]</h2>
+<p>This tutorial covered the basic workflow for using CT Reboot software in Dragonfly to reconstruct tracking number data. The process involves importing CT images, configuring appropriate parameters, performing preview calculations, and completing full reconstruction. For large datasets, the software provides options to manage memory limitations through dataset reduction or sequential piece-by-piece reconstruction.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=lZAmC4QeDLI">在Dragonfly 2022.2软件中重建锥束CT图像</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 12:32:22 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/lZAmC4QeDLI"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

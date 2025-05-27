@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New features: image quality metrics - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>New features: image quality metrics - (English)</h1>
+        <p>This video demonstrates three new features in Dragonfly version 2022.2: the edge contrast visualization tool for better viewing of internal structures, the equivalent spherical diameter calculation for faster analysis of pores or features, and image quality metrics for quantifying differences between original and processed image slices.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>New Features in Dragonfly Version 2022.2</h1>
+<h2>Introduction [00:00:02]</h2>
+<p>This tutorial demonstrates three new features in Dragonfly version 2022.2 using a concrete sample that has been micro CT scanned. The sample has been analyzed in previous tutorials to segment and analyze pore spaces.</p>
+<h2>1. Edge Contrast Visualization [00:00:38]</h2>
+<p>The first new feature enhances 3D visualization capabilities:</p>
+<ol>
+<li>Click on an object in the 3D window</li>
+<li>In the 3D settings, locate the new edge contrast tick box and slider</li>
+<li>Activate the tick box and adjust the slider to the left</li>
+</ol>
+<p>This provides a transparency method that still shows edges of the object on the opposite side and internal features with edges. This visualization technique is particularly effective for:</p>
+<ul>
+<li>Viewing internal structures</li>
+<li>Maintaining visibility of edges while using transparency</li>
+<li>Visualizing porosity with color coding</li>
+</ul>
+<p>When the image channel is activated, the pore information color coding legend may not be shown. Click on the porosity multi-ROI to see that the color coding is according to sphericity.</p>
+<h2>2. Equivalent Spherical Diameter Calculation [00:02:17]</h2>
+<p>A powerful new calculation feature has been added:</p>
+<ol>
+<li>Right-click on the multi-ROI</li>
+<li>Go to scalar generator</li>
+<li>Under basic measurements, right under volume, find the new "equivalent spherical diameter" option</li>
+</ol>
+<p>This calculation determines the diameter of a perfect sphere with the same volume as your pore or feature. The benefits include:</p>
+<ul>
+<li>Very fast calculation compared to more complex measurements</li>
+<li>Useful for regular quick analysis</li>
+<li>Efficient when analyzing thousands of features</li>
+</ul>
+<p>For complex analyses with more than 10,000 features, calculating maximum Feret diameter or other complex measurements can be time-consuming. Using equivalent spherical diameter minimizes processing time while providing valuable data.</p>
+<h2>3. Image Quality Metrics [00:03:11]</h2>
+<p>The third new feature allows quantitative comparison of image quality between datasets:</p>
+<h3>Preparing Image Slices for Comparison</h3>
+<ol>
+<li>Right-click on the image and select "Show marked slices indicator"</li>
+<li>Click on a specific slice to mark it</li>
+<li>Right-click on the image and select "New image from marked slices"</li>
+<li>Repeat the process for the second dataset using the same slice number</li>
+</ol>
+<h3>Comparing Image Quality</h3>
+<ol>
+<li>Right-click on either of the single slice images</li>
+<li>Select "Open image quality metrics"</li>
+<li>Select both single slice images for comparison</li>
+<li>Calculate different image quality metrics</li>
+</ol>
+<p>The metrics include:<br />
+- Sharpness value (significantly lower in blurred/denoised images)<br />
+- Shannon entropy<br />
+- Regular signal-to-noise ratio<br />
+- Q factor calculation</p>
+<p>In the example shown, the original data had a sharpness value of 782, while the denoised version had only 137, clearly demonstrating the difference in image quality.</p>
+<h2>Conclusion [00:06:08]</h2>
+<p>These three new features in Dragonfly 2022.2 enhance visualization capabilities, provide efficient calculations for large datasets, and enable quantitative image quality comparison. Each feature addresses specific needs in the analysis workflow, making the software more versatile and powerful for micro CT analysis.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=7ivecHk7Yq8">New features: image quality metrics</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 14:26:06 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/7ivecHk7Yq8"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

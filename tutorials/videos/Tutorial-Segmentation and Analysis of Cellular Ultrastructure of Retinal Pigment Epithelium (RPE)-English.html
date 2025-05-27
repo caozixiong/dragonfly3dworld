@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segmentation and Analysis of Cellular Ultrastructure of Retinal Pigment Epithelium (RPE) - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Segmentation and Analysis of Cellular Ultrastructure of Retinal Pigment Epithelium (RPE) - (English)</h1>
+        <p>Max Lindell, a research scientist at the Medical University of Vienna, presents his work using deep learning in Dragonfly to segment and analyze the cellular ultrastructure of retinal pigment epithelium cells, revealing previously undescribed features including nuclear pore complexes arranged in parallel rows.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to Retinal Pigment Epithelium Research [00:00:59]</h2>
+<p>Max Lindell is a research scientist at the Medical University of Vienna who began using Dragonfly in 2020 and now uses it routinely. His research focuses on the segmentation and analysis of cellular ultrastructure of retinal pigment epithelium (RPE).</p>
+<p>The retina is a thin layer of cells inside the eye where light passes through and hits the lens at the back of the eye. The research focuses specifically on the RPE cell layer, which supports the rods and cones of the retina by nourishing them and maintaining their health.</p>
+<p>These RPE cells have processes or microvilli that extend into the space around the photoreceptors, wrapping around and attaching to them. In the visual cycle, the RPE cells play a crucial role by:</p>
+<ul>
+<li>Grabbing shed disks of photoreceptors</li>
+<li>Recycling waste through their body</li>
+<li>Pumping nutrients back into the system</li>
+</ul>
+<p>This recycling function is vital for maintaining proper visual function and health of the photoreceptors. The RPE cells are highly compartmentalized and polarized, with specific areas containing distinct organelles and components.</p>
+<h2>Research Goals and Methodology [00:04:24]</h2>
+<p>The primary goal of this study was to provide a detailed description of a single RPE cell and its inner workings. The data was acquired through serial block-face scanning electron microscopy (SEM). The process works by:</p>
+<ol>
+<li>Embedding a small sample of retina in a block of resin</li>
+<li>Taking an SEM image of the surface</li>
+<li>Using a diamond knife to shear off a very thin layer of the sample</li>
+<li>Taking another SEM image</li>
+<li>Repeating the process to create a stack of images</li>
+</ol>
+<p>When stacked together in Dragonfly, these images create a three-dimensional volume. Unlike standardized samples, biological specimens have a high propensity for artifacts, blurs, and variations.</p>
+<p>The research team used deep learning models in Dragonfly to segment the organelles within the RPE cells. The process involved:</p>
+<ol>
+<li>Taking the original EM data volume in Dragonfly</li>
+<li>Creating annotated ground truth</li>
+<li>Training a model with approximately 12 classes</li>
+<li>Adding additional data as needed to improve the model</li>
+<li>Iterating until satisfactory results were achieved</li>
+</ol>
+<h2>Deep Learning Tips for Segmentation [00:05:34]</h2>
+<p>Based on experience with the project, here are several practical tips for using deep learning in Dragonfly:</p>
+<ul>
+<li>Use multiple classes for segmentation rather than simple foreground/background approaches</li>
+<li>Adding "decoy" classes can help the model offload less relevant data, improving overall performance</li>
+<li>Create a mask for training to focus the model's attention on specific regions of interest, especially for small structures like nuclear pore complexes</li>
+<li>Add more ground truth data to improve model performance, especially with convolutional neural networks</li>
+<li>Use data augmentation strategically:</li>
+<li>Simple flips and rotations can provide good initial results</li>
+<li>More complex augmentations may slow down training epochs</li>
+<li>Test your model on small volumes to visualize results in 3D before processing the entire dataset</li>
+<li>Create clean, accurate ground truth data to avoid propagating errors through the network</li>
+</ul>
+<p>The training process should be dynamic and iterative:<br />
+1. Train the model<br />
+2. Check results<br />
+3. Correct with more ground truth or different augmentation<br />
+4. Repeat until satisfied</p>
+<h2>Manual Cell Reconstruction [00:11:41]</h2>
+<p>Before having access to Dragonfly, the team performed a manual reconstruction of a single RPE cell by tracking the origin of each process to the cell body and their tips, including branching points. This manual work took approximately:</p>
+<ul>
+<li>200 person-hours</li>
+<li>1.5 years of work</li>
+</ul>
+<p>The result was a skeletonized 3D model of the apical processes and the backbone of the cell. With Dragonfly, the team was able to:</p>
+<ol>
+<li>Create a three-dimensional mesh from the manual data</li>
+<li>Combine it with the segmentation of the whole volume</li>
+<li>Crop out the single cell to show its organelles and contents</li>
+</ol>
+<p>The manual separation was necessary because the apical processes of different cells are all intertwined, making automatic separation challenging. The analysis revealed:</p>
+<ul>
+<li>Over 800 apical processes were manually traced</li>
+<li>Some processes branched up to 15-16 times</li>
+<li>The processes extend into the subretinal space around the photoreceptors</li>
+</ul>
+<h2>Cellular Ultrastructure Analysis [00:14:25]</h2>
+<p>The apical processes of RPE cells sprout into the subretinal space around the photoreceptors, creating gaps where the photoreceptors connect with the RPE cells. This intimate connection is crucial because:</p>
+<ul>
+<li>If this connection is disrupted, waste from photoreceptors can build up</li>
+<li>Accumulated waste can lead to various pathologies</li>
+</ul>
+<p>The processes in the actual samples appear more convoluted than in schematic drawings due to "compaction," an artifact from fixation where the photoreceptors and apical processes sink down and fold together.</p>
+<p>The subretinal space is filled with what's called the interphotoreceptor matrix. Using deep learning models, the team analyzed the distribution of this space and found that:</p>
+<ul>
+<li>Almost half of the subretinal space is composed of this interphotoreceptor matrix</li>
+<li>This area is a specific target for gene therapy and eye injections</li>
+<li>Injecting too much liquid or material can disrupt the connection between photoreceptors and RPE cells</li>
+</ul>
+<h2>Nuclear Pore Complex Discovery [00:19:14]</h2>
+<p>One of the most significant discoveries came from examining the nucleus of the RPE cell. The team was able to visualize nuclear pores in the EM volume and developed a model to correctly label them.</p>
+<p>When the model segmented the nuclear pores overnight, it revealed something unexpected:</p>
+<ul>
+<li>The nuclear pore complexes were aligned in nice orderly, parallel rows</li>
+<li>This pattern had not been previously described in literature</li>
+<li>Prior research only reported that these pores cluster in regions</li>
+</ul>
+<p>To confirm this wasn't an artifact of the AI, the team applied the same model to a second sample (from a 52-year-old fovea), which showed the same pattern. Interestingly, some nuclei did not display this ordered arrangement, raising questions about:</p>
+<ul>
+<li>Why this ordering occurs</li>
+<li>Whether it only happens in RPE cells</li>
+<li>If it's specific to humans or occurs in other organisms</li>
+</ul>
+<p>The same model was also effective at segmenting all nuclei in the sample with minimal training (approximately 20 frames).</p>
+<h2>Organelle Segmentation and Visualization [00:21:48]</h2>
+<h3>Golgi Apparatus</h3>
+<p>The Golgi apparatus, often referred to as the "post office of the cell," packages proteins into vesicles and sends them to their correct destinations. The deep learning model was able to segment this structure, which is located in the perinuclear region.</p>
+<p>The 3D visualization revealed that:<br />
+- The Golgi apparatus has a twisted structure rather than the planar arrangement often depicted in textbooks<br />
+- This structure potentially allows proteins to enter from any direction and still be routed to the correct destination</p>
+<h3>Endoplasmic Reticulum (ER)</h3>
+<p>The ER connects all structures inside the cell. Analysis showed that:<br />
+- It fills almost 20% of the cell body volume<br />
+- It's crucial for connecting and transferring materials within the cell</p>
+<h3>Actin Filaments</h3>
+<p>A different model was trained to segment actin filaments, revealing:<br />
+- The actin belt acts like a band around a bouquet of flowers<br />
+- It clearly shows where the apical processes sprout from the cell</p>
+<h3>Basal Infoldings</h3>
+<p>The same model that segmented apical processes was also able to segment basal infoldings, which are:<br />
+- Mini versions of the apical processes<br />
+- Located above the circulation and blood supply<br />
+- Important for maintaining cell health</p>
+<p>The model revealed a "shag carpet" view of the basal surface, even though it wasn't initially trained specifically on basal infoldings.</p>
+<h2>Conclusion [00:26:37]</h2>
+<p>The research team was able to accomplish comprehensive segmentation and analysis of RPE cell ultrastructure with limited resources:<br />
+- One computer<br />
+- One or two people working on the deep learning aspects</p>
+<p>The deep learning capabilities of Dragonfly reduced the workload by more than half compared to manual methods. The analysis confirmed that:<br />
+- Over 800 processes extend into the subretinal space<br />
+- These processes form intimate connections with photoreceptors<br />
+- The cell has a highly organized internal structure</p>
+<p>The project not only achieved its initial goals but also led to unexpected discoveries like the ordered arrangement of nuclear pore complexes, demonstrating the power of combining detailed imaging with advanced deep learning techniques.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=jUh1Jocg8tI">Segmentation and Analysis of Cellular Ultrastructure of Retinal Pigment Epithelium (RPE)</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 06:49:18 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/jUh1Jocg8tI"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

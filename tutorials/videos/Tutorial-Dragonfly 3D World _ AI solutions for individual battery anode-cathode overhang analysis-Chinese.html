@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragonfly 3D World | AI solutions for individual battery anode-cathode overhang analysis - Chinese Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Dragonfly 3D World | AI solutions for individual battery anode-cathode overhang analysis - (Chinese)</h1>
+        <p>这个视频演示了如何在Dragonfly软件中分析电池单元，展示了手动测量技术、圆柱形电池单元检测，以及使用深度学习模型进行自动化分析，以识别和测量关键特征，如阳极悬垂部分。</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Dragonfly软件中的电池单元分析</h1>
+<h2>介绍 [00:00:05]</h2>
+<p>本教程演示如何使用Dragonfly软件执行电池单元分析。您将学习如何：</p>
+<ul>
+<li>轻松进行手动测量</li>
+<li>对圆柱形电池单元进行典型检查</li>
+<li>使用深度学习自动化工具</li>
+<li>训练您自己的电池分析模型</li>
+</ul>
+<h2>理解数据 [00:02:45]</h2>
+<p>数据显示了一个圆柱形电池单元，其中阳极和阴极相邻卷绕在一起，外围是金属外壳。横截面视图提供了进行测量的最佳视角。</p>
+<p>在2D横截面视图中，我们可以看到：<br />
+- 阴极材料<br />
+- 阳极材料<br />
+- 它们之间的隔离材料</p>
+<p>扫描来自Comet Exelon FF35系统上的一次相当快速的扫描。这个演示案例展示了电池单元的扫描和分析如何可以完全自动化。</p>
+<h2>手动检查缺陷 [00:04:36]</h2>
+<p>检查电池单元时，您需要寻找：<br />
+- 不应该存在的杂质<br />
+- 超出规格的区域<br />
+- 破损部件或缺陷</p>
+<p>为了更好地可视化缺陷，调整对比度：<br />
+1. 点击数据视图<br />
+2. 使用窗口水平选项更改图像对比度</p>
+<h3>使用圆柱形横截面视图</h3>
+<p>圆柱形横截面视图允许您从不同角度检查电池：</p>
+<ol>
+<li>旋转物体以获取不同角度的横截面</li>
+<li>当您发现有趣的特征时，将十字准线放在该点</li>
+<li>在其他视图中检查该特征以确认缺陷</li>
+</ol>
+<h3>添加注释 [00:06:02]</h3>
+<p>为了标记缺陷以供日后参考：</p>
+<ol>
+<li>选择<code>Annotate</code>选项</li>
+<li>选择<code>Points</code></li>
+<li>按住Control键并在窗口中点击以创建一个点</li>
+<li>注释将显示缺陷的X、Y、Z位置</li>
+</ol>
+<p>要在注释之间导航：<br />
+1. 在列表中右键点击一个注释<br />
+2. 选择<code>Center View</code>以在所有视图中聚焦于该点</p>
+<p>您可以将注释导出为CSV文件：<br />
+1. 选择所有注释（点击第一个，然后Shift+点击最后一个）<br />
+2. 右键点击并选择<code>Export to file</code><br />
+3. 保存为CSV文件</p>
+<h2>手动测量 [00:09:52]</h2>
+<p>要手动测量悬垂高度：</p>
+<ol>
+<li>从注释面板使用<code>Ruler</code>工具</li>
+<li>点击放置测量的起点和终点</li>
+<li>通过选择和移动端点来调整测量</li>
+<li>使用<code>Nearest Interpolation</code>模式查看实际像素以进行更精确的测量</li>
+<li>使用<code>Floating Caption</code>选项更清晰地定位测量标签</li>
+</ol>
+<p>要保存您的测量：<br />
+1. 右键点击图像并导出截图<br />
+2. 选择所有标尺并右键点击以将数据导出到CSV文件</p>
+<h2>使用深度学习进行自动化分析 [00:13:02]</h2>
+<p>在分析多个电池单元时，手动测量可能很耗时。深度学习模型可以通过自动分割感兴趣区域来加速这一过程。</p>
+<h3>使用预训练模型 [00:14:40]</h3>
+<ol>
+<li>在分割面板中，选择<code>Segment with AI</code></li>
+<li>选择您的训练模型</li>
+<li>使用<code>Preview</code>选项仅分割当前切片</li>
+<li>结果将显示不同的类别（例如，阴极、背景、阳极悬垂）</li>
+<li>右键点击结果并将感兴趣的类别导出为ROI</li>
+</ol>
+<p>要分析分割：<br />
+1. 右键点击导出的ROI并选择<code>Compute Measurements</code><br />
+2. 选择适当的测量（例如，用于悬垂的2D主轴长度）<br />
+3. 使用颜色映射查看结果以可视化测量差异</p>
+<h2>训练您自己的深度学习模型 [00:17:10]</h2>
+<p>Dragonfly中的分割向导允许您在不成为AI专家的情况下训练模型。</p>
+<h3>设置训练会话 [00:19:19]</h3>
+<ol>
+<li>点击<code>AI Segmentation Wizard</code>并选择<code>New</code></li>
+<li>选择是从预训练模型开始还是从头开始</li>
+<li>通过点击加号按钮添加第一帧</li>
+<li>定义您的类别（例如，背景和阳极）</li>
+</ol>
+<h3>创建训练数据 [00:20:14]</h3>
+<p>对于每个类别：<br />
+1. 选择适当的刷子工具（例如，2D刷子或局部Otsu刷子）<br />
+2. 在您的帧中绘制每个类别的示例<br />
+3. 从样本的不同区域添加更多帧<br />
+4. 将一帧设置为监控帧，以在训练期间跟踪进度</p>
+<h3>训练模型 [00:21:45]</h3>
+<ol>
+<li>点击<code>Start Training</code></li>
+<li>选择模型类型或使用预训练模型作为起点</li>
+<li>监控训练进度</li>
+<li>训练可能需要20分钟到几个小时，取决于您的数据和计算机</li>
+</ol>
+<h3>保存您的模型 [00:36:37]</h3>
+<p>当训练完成时：<br />
+1. 转到模型选项卡并点击保存按钮将其发布到您的系统<br />
+2. 或退出并选择使用自定义名称发布模型</p>
+<h2>结论 [00:37:09]</h2>
+<p>Dragonfly软件为电池单元分析提供了强大的工具，从手动检查和测量到自动化深度学习方法。虽然手动方法提供精确度和控制，但一旦正确训练，深度学习模型可以显著加快您的工作流程。这些技术的组合允许对电池单元进行全面分析，用于研究和质量控制目的。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=kogBTx9WddI">Dragonfly 3D World | AI solutions for individual battery anode-cathode overhang analysis</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 00:16:05 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/kogBTx9WddI"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use of Pseudo-DXA Images for Osteoporotic Fracture Prevention - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Use of Pseudo-DXA Images for Osteoporotic Fracture Prevention - (English)</h1>
+        <p>The presentation discusses the development of neural networks to segment bone CT scans for osteoporotic fracture prevention, demonstrating how advanced image analysis can separate cortical from trabecular bone to create pseudo-DXA images that provide more detailed structural information than standard DEXA scans.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to Osteoporotic Fracture Prevention Research [00:00:02]</h2>
+<p>This presentation covers the use of pseudo DXA images for osteoporotic fracture prevention, conducted by a large team at the University of Michigan's orthopedic research laboratory in collaboration with Ohio State University and University of Colorado.</p>
+<p>The research addresses the critical problem of fragility fractures, which affect one in three women and one in five men during their lifetime. These fractures are devastating both medically and economically:<br />
+- Direct cost from an initial fracture: approximately $22,000 (2021 Medicare data)<br />
+- 30% of people with hip fractures die within 12 months<br />
+- High risk of subsequent fractures, with direct costs of $5.25 billion over three years in the U.S. alone</p>
+<p>The research team believes many of these fractures are potentially preventable with better diagnostic methods.</p>
+<h2>Current Diagnostic Limitations [00:02:56]</h2>
+<p>Currently, osteoporosis diagnosis relies on DEXA scans, which provide bone mineral density (BMD) measurements. The main limitations include:</p>
+<ul>
+<li>Diagnosis is based on a small rectangular measurement area</li>
+<li>Osteoporosis is diagnosed when BMD is 2.5 standard deviations lower than a healthy population</li>
+<li>This diagnostic approach misses approximately half of people who will eventually fracture</li>
+<li>Treatment typically begins only after significant bone loss has occurred</li>
+</ul>
+<p>BMD is simply a ratio of bone mineral content to area, providing limited structural information. The research team wanted to better understand the underlying structures that create the BMD value to better predict fracture risk and enable earlier prevention.</p>
+<h2>Improving Bone Structure Analysis [00:04:47]</h2>
+<p>The team used nano-computed tomography to scan bones that had also been scanned with DEXA. This approach revealed significantly more detailed structural information about the same bone.</p>
+<p>To create pseudo-DEXA images:<br />
+- The team analyzed the femoral neck region (the area in the rectangular DEXA box)<br />
+- They placed a ray through each position, counting the number of bone voxels through each pixel<br />
+- This created an image showing all bone spatially<br />
+- The goal was to separate cortical bone from trabecular bone, as these bone types age differently and have different strength properties</p>
+<h2>Bone Segmentation Challenges [00:06:20]</h2>
+<p>The first challenge was basic bone segmentation, separating bone from air and soft tissue:</p>
+<ul>
+<li>The team tried over 20 different segmentation methods, including ATU, but none worked well enough</li>
+<li>They created a neural network with ground truth images developed by three bone researchers</li>
+<li>If two out of three researchers agreed a structure was bone, it was labeled as bone in the ground truth</li>
+<li>The resulting network achieved a dice coefficient of 0.967 compared to ground truth</li>
+<li>A quality check process was implemented where humans reviewed and corrected any errors</li>
+</ul>
+<h2>Cortical Bone Segmentation [00:07:40]</h2>
+<p>The bigger challenge was cortical bone segmentation:</p>
+<ul>
+<li>Manual segmentation of the 556 slices per femoral neck was not feasible due to time constraints</li>
+<li>Segmentation can be subjective, especially with aging bone that develops porosity</li>
+<li>The team followed the approach of Bell et al. from the UK for defining cortical boundaries</li>
+<li>They created a neural network for cortical segmentation</li>
+<li>Consistency in training was critical for success</li>
+</ul>
+<p>After initial inconsistent results, the team established strict rules for cortical bone definition:<br />
+- Drew rays from the outside of the bone toward the geometric centroid<br />
+- Included thick cortical bone with all pores<br />
+- Considered bone to be cortical if it remained thick past large pores and wasn't trabecular-like<br />
+- The final network achieved a dice coefficient of 0.98 compared to ground truth</p>
+<h2>Analysis Tools and Workflow [00:11:34]</h2>
+<p>The team developed custom analysis tools within Dragonfly:</p>
+<ul>
+<li>Two custom Python plugins and a macro utilizing Bone Wizard</li>
+<li>Tools for analyzing global bone properties, individual slice properties, and creating pseudo-DEXA images</li>
+<li>Batch processing macros to increase throughput by preparing samples and running neural networks overnight</li>
+</ul>
+<p>The workflow included:<br />
+1. Bone preparation<br />
+2. Running the bone-to-background network and quality checking<br />
+3. Running the cortical network<br />
+4. Creating ROIs based on the cortical network<br />
+5. Running the three analysis plugins</p>
+<h2>Refining the Networks [00:13:26]</h2>
+<p>To improve the networks further, the team:</p>
+<ul>
+<li>Identified consistent errors in both networks</li>
+<li>Added corrected slices and good performance slices back into the training set</li>
+<li>Created four extra networks for both bone-background and cortical-trabecular segmentation</li>
+<li>Tested different approaches including new weightings, larger patch sizes, and batch sizes</li>
+<li>Used data augmentation by rotating and flipping images to expand the training set</li>
+</ul>
+<p>The updated networks showed quality improvements, particularly in picking up thin bone structures that were previously missed. Importantly, the team verified that the updated networks did not significantly change the data outputs, with very high correlations between original and updated measurements.</p>
+<h2>Expanding Applications [00:16:31]</h2>
+<p>The networks trained on femoral necks were successfully applied to:</p>
+<ul>
+<li>Whole proximal femur scans</li>
+<li>Distal radii (with collaborators at OSU)</li>
+<li>Mouse bones (using a similar approach)</li>
+</ul>
+<p>The team plans to make all three networks available on the Infinite Toolbox for wider use in the bone research community.</p>
+<h2>Conclusion [00:17:27]</h2>
+<p>This research demonstrates how advanced segmentation techniques can extract more detailed structural information from bone scans, potentially enabling better prediction of fracture risk and earlier preventative interventions. The key contributions include:</p>
+<ul>
+<li>Development of highly accurate neural networks for bone and cortical segmentation</li>
+<li>Creation of pseudo-DEXA images that provide spatial information about bone structure</li>
+<li>Workflow optimization for high-throughput analysis</li>
+<li>Generalizability of the approach to different bone types</li>
+</ul>
+<p>The success of this approach relied on strict segmentation rules, consistency in training, and iterative refinement of the neural networks.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=3JHrEohfpjo">Use of Pseudo-DXA Images for Osteoporotic Fracture Prevention</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 05:55:20 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/3JHrEohfpjo"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>工业CT检测与Dragonfly软件介绍 [00:00:02]</h1>
+<p>本教程将帮助您从CT扫描中获取更多信息，重点关注工业检测。虽然面向新用户，但教程会快速讲解基础知识，因此请随时暂停并复习。</p>
+<h2>Dragonfly入门 [00:00:40]</h2>
+<p>首次打开Dragonfly时，您将看到主界面。让我们从导入图像文件开始：</p>
+<ol>
+<li>要加载图像堆栈，请选择文件夹中的所有图像</li>
+<li>点击"添加切片图像"并导入</li>
+<li>点击"下一步"并输入体素大小（在本例中为0.2毫米）</li>
+<li>请注意，小数点或逗号遵循您系统的惯例</li>
+</ol>
+<p>加载后，数据将以切片图像形式打开。要查看四视图，请转到<code>布局</code>菜单并选择四视图选项。这样您就可以看到3D渲染，可以使用快捷键轻松调整。</p>
+<h2>基本导航和可视化 [00:01:47]</h2>
+<p>要快速实现零件的3D可视化：</p>
+<ol>
+<li>选择预设，如<code>铸铝</code>，以获得良好的初始视图</li>
+<li>双击视图，轻松评估表面</li>
+<li>使用以下方式导航：</li>
+<li>缩放：按住滚轮并前后拖动</li>
+<li>平移：按住左右鼠标按钮同时拖动</li>
+<li>旋转：通过点击窗口激活它，然后使用平移/旋转工具转动物体</li>
+</ol>
+<p>要正交对齐视图，请使用旋转工具，然后按<code>Escape</code>退出该模式。</p>
+<p>为了更好的可视化：<br />
+1. 在3D视图中右键单击并添加<code>2D视图平面</code>功能，以查看当前位置<br />
+2. 通过点击背景按钮并选择<code>纯白色</code>来更改背景，以获得更清晰的视图</p>
+<h2>缺陷的定性检查 [00:03:35]</h2>
+<p>在工业检测中，您需要定性评估裂缝和孔隙：</p>
+<ol>
+<li>使用顶部的<code>窗口调平工具</code>更改对比度</li>
+<li>选择不透明度渐变选项</li>
+<li>将左侧栏向右拖动并调整，以获得良好的孔隙对比度</li>
+</ol>
+<p>这样可以清晰地查看最大的孔隙。对于本例中的铸件，您将看到内部的收缩孔隙，这是CT扫描的主要应用之一。</p>
+<p>要评估多个切片的孔隙率：<br />
+1. 选择<code>最小值视图模式</code><br />
+2. 这会整合多个切片，显示每个位置的最低值像素<br />
+3. 这种"厚板模式"有助于确定孔隙是否沿特定方向对齐</p>
+<h2>定量孔隙分析 [00:05:34]</h2>
+<p>要定量评估孔隙率：</p>
+<ol>
+<li>转到<code>分割工具</code></li>
+<li>使用<code>定义范围</code>进行分割</li>
+<li>您可以使用自动下限OTSU阈值处理</li>
+<li>或设置手动阈值（在本例中，42,000效果良好）</li>
+<li>这将创建一个包含所有灰度值低于阈值的体素的感兴趣区域(ROI)</li>
+<li>要移除外部区域，右键单击并选择<code>优化感兴趣区域</code></li>
+<li>选择<code>处理岛屿</code>（连接区域）</li>
+<li>移除最大的连接区域（即外部空间）</li>
+<li>取消勾选<code>定义范围</code>，只查看ROI（孔隙）</li>
+<li>如果需要，更改颜色（黄色使其更容易看到）</li>
+</ol>
+<p>这突出显示了感兴趣区域中最大的孔隙。由于部分体积效应，可能会遗漏较小的孔隙，这就是为什么定量分析通常集中在最大孔隙上。</p>
+<h2>孔隙的3D可视化 [00:07:20]</h2>
+<p>要在3D中可视化孔隙：</p>
+<ol>
+<li>将对比度更改为具有不透明度的平面方法</li>
+<li>激活3D视图以查看孔隙</li>
+<li>增加高亮度使ROI更亮</li>
+<li>右键单击并创建多ROI进行评估</li>
+</ol>
+<p>这个多感兴趣区域是我们用于定量分析的。要在3D中可视化：</p>
+<ol>
+<li>取消勾选感兴趣区域</li>
+<li>勾选3D视图</li>
+<li>选择测量以根据以下内容对孔隙进行分类：</li>
+<li>体积（最大的显示为黄色）</li>
+<li>平均费雷特直径（最长直径）</li>
+</ol>
+<p>所有这些数据都可以导出到Excel或其他格式进行进一步处理。</p>
+<h2>壁厚分析 [00:09:58]</h2>
+<p>要评估壁厚：</p>
+<ol>
+<li>创建新的感兴趣区域</li>
+<li>定义包含所有材料的范围（使用上限OTSU）</li>
+<li>添加到新的ROI</li>
+<li>填充任何孔隙区域，确保ROI覆盖整个零件</li>
+<li>导出到厚度网格</li>
+<li>执行平滑处理以简化处理时间和可视化</li>
+</ol>
+<p>壁厚评估对于识别墙壁需要高于特定最小值的区域非常重要。分析完成后：</p>
+<ol>
+<li>勾选视图按钮，在3D中查看厚度分布</li>
+<li>点击按钮并移动样本以突出显示厚度网格值</li>
+<li>观察厚度范围（在本例中，最高接近70毫米）</li>
+</ol>
+<p>这种厚度可视化有助于识别在原始数据中可能不明显的薄区域。</p>
+<h2>结论 [00:13:33]</h2>
+<p>本教程演示了如何使用Dragonfly进行工业CT检测，涵盖了基本导航、可视化技术、孔隙分析和壁厚评估。这些工具有助于从CT数据中提取有价值的信息，以评估零件质量并识别潜在问题。</p>
+<p>Dragonfly不仅是CT数据的强大工具，也适用于其他成像模式，包括SEM图像和FIB-SEM图像。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=7-IOCGgo_vk">Computed Tomography for Industrial Inspection and Quality Control Powered by Dragonfly Software</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-23 03:14:38 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

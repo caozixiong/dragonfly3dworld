@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>中文翻译</h1>
+<h2>壁厚分析介绍 [00:00:02]</h2>
+<p>本教程演示如何对3D扫描进行壁厚分析（也称为厚度网格分析）。示例使用了一个基准添加制造的铝制组件，其中包含有意设计的缺陷，用于演示目的。</p>
+<h2>初始数据检查 [00:00:26]</h2>
+<p>在分析前正确检查3D扫描：</p>
+<ul>
+<li>以良好的对比度滚动浏览零件，以识别内部特征，如通道或trapped粉末</li>
+<li>使用<code>Windows leveling</code>工具进行对比度调整</li>
+<li>选择自动对比度框并拖动它，以增强感兴趣区域的对比度</li>
+<li>按<code>Escape</code>键退出对比度模式</li>
+<li>放大以评估特定区域</li>
+</ul>
+<h2>设置正确的方向 [00:00:56]</h2>
+<p>为了更好的可视化：</p>
+<ul>
+<li>切换到<code>quad view</code>以查看正交视角</li>
+<li>如果物体是以一定角度扫描的，使用旋转和平移工具来对齐它</li>
+<li>在坐标系统内调整物体以获得方形视图</li>
+<li>这样可以更容易地检查特定特征</li>
+</ul>
+<h2>渲染选项 [00:02:05]</h2>
+<p>样本零件包含特定特征，如悬垂、壁、空心圆柱体和实心杆。</p>
+<ul>
+<li>默认的灰度渲染可能无法清晰显示细节</li>
+<li>铝预设提供了一组很好的默认渲染参数</li>
+<li>根据需要调整光泽度以获得更好的可视化效果</li>
+</ul>
+<h2>创建厚度网格 [00:02:33]</h2>
+<p>要生成壁厚分析：</p>
+<ol>
+<li>在其中一个2D视图中查看物体</li>
+<li>使用<code>define range upper OTSU</code>创建分割，以识别感兴趣的材料</li>
+<li>通过移除断开的颗粒来清理数据：</li>
+<li>转到<code>refine region of interest</code> → <code>process islands</code></li>
+<li>选择<code>keep by largest</code>以仅保留主要连接部分</li>
+<li>通过填充小孔简化网格：</li>
+<li>使用<code>fill inner areas 3D</code>功能来减少网格复杂性</li>
+<li>导出厚度网格：</li>
+<li>导航到左侧面板的导出部分</li>
+<li>选择不降采样的<code>normal</code>分辨率</li>
+<li>应用一次平滑以获得更干净的表面渲染</li>
+</ol>
+<h2>厚度计算的工作原理 [00:04:22]</h2>
+<p>厚度计算：</p>
+<ul>
+<li>在每个表面点，算法计算一个球体的直径，该球体同时接触该点和任何其他表面</li>
+<li>这相当于基于球体的厚度体积映射，但仅在表面位置计算值</li>
+<li>这种方法比完整的体积映射快得多，特别是对于大型数据集</li>
+</ul>
+<h2>可视化厚度结果 [00:05:07]</h2>
+<p>要查看和自定义厚度可视化：</p>
+<ol>
+<li>点击眼睛图标使厚度网格可见</li>
+<li>切换到3D视图并关闭体积数据显示</li>
+<li>根据需要调整相机和照明设置</li>
+<li>选择颜色映射（推荐温度映射）以清晰可视化</li>
+<li>结果可视化显示每个点的壁厚：</li>
+<li>蓝色区域表示较薄区域（在示例中约为0.5mm）</li>
+<li>红色区域显示较厚区域（在示例中最高达12mm）</li>
+</ol>
+<h2>结论</h2>
+<p>壁厚分析提供了整个零件厚度变化的清晰视觉表示。这些信息对于质量控制、设计验证和识别结构中潜在的薄弱点非常有价值。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=Bl1wl-20VSc">Quality Control of an Additive Manufacturing Artifact Using Dragonfly</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-23 01:19:04 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

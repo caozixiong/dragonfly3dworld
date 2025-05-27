@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>使用Dragonfly分析孔隙率</h1>
+<h2>介绍 [00:00:03]</h2>
+<p>本教程演示如何使用Dragonfly软件分析孔隙率。工作流程包括对带有孔隙的金属立方体的微CT数据进行分割，计算孔隙率的体积分数，以及分析孔隙尺寸分布。最终结果将是一个三维彩色编码可视化，显示最大孔隙的位置。</p>
+<h2>设置分割 [00:00:47]</h2>
+<p>要在Dragonfly中分析孔隙率，我们首先需要创建一个区分材料和孔隙的分割：</p>
+<ol>
+<li>导航到<code>Segment</code>标签页并使用OTSU阈值方法</li>
+<li>选择<code>Upper OTSU</code>阈值处理来定义较高密度像素为材料</li>
+<li>将分割添加到新的感兴趣区域</li>
+<li>记得取消勾选<code>Preview</code>选项</li>
+</ol>
+<p>完成这些步骤后，您将获得一个蓝色的感兴趣区域，其中不包括孔隙空间。</p>
+<h2>创建参考立方体体积 [00:01:22]</h2>
+<p>为了计算体积分数，我们需要创建一个包括孔隙空间的参考立方体：</p>
+<ol>
+<li>使用以下方法之一填充孔隙空间：</li>
+<li>使用<code>Opening</code>或<code>Closing</code>功能关闭小孔隙</li>
+<li>
+<p>应用<code>Full Inner Areas 3D</code>工具关闭所有未与表面连接的孔隙</p>
+</li>
+<li>
+<p>清理参考立方体：</p>
+</li>
+<li>使用<code>Refine Region of Interest</code>移除立方体外部的松散部分</li>
+<li>选择<code>Process Islands</code>和<code>Keep by Largest</code>仅保留主要立方体</li>
+</ol>
+<h2>分割孔隙 [00:01:59]</h2>
+<p>现在我们需要分割确切构成孔隙的部分：</p>
+<ol>
+<li>使用<code>Lower OTSU</code>选择较低灰度值</li>
+<li>您可以通过拖动滑块或手动输入值来调整阈值</li>
+<li>OTSU方法是自动化的，确保当其他人分析相同数据时能获得可重现的结果</li>
+<li>将此感兴趣区域命名为"All Pores"</li>
+<li>使用<code>Refine Region of Interest</code>移除外部区域</li>
+<li>选择<code>Process Islands</code>和<code>Remove by Largest</code>以消除最大的连接部分</li>
+</ol>
+<h2>计算孔隙率百分比 [00:03:45]</h2>
+<p>在分割了参考立方体和孔隙后：</p>
+<ol>
+<li>在2D视图中点击立方体</li>
+<li>计算与"All Pores"分割相比的体积百分比</li>
+<li>结果显示孔隙率的体积百分比（在此例中为2.6%）</li>
+</ol>
+<h2>准备详细孔隙分析 [00:04:16]</h2>
+<p>对于更详细的单个孔隙分析：</p>
+<ol>
+<li>复制您的"All Pores"感兴趣区域</li>
+<li>移除可能扭曲分析的小孔隙：</li>
+<li>使用<code>Refine Region of Interest</code> &gt; <code>Process Islands</code> &gt; <code>Remove by Voxel Count</code></li>
+<li>最佳做法是使用至少2×2×2体素（8个体素）来确定一个孔隙</li>
+<li>对于3×3×3的孔隙，使用27作为最小体素计数</li>
+<li>出于演示目的，我们使用100来仅选择最大的孔隙</li>
+</ol>
+<h2>创建多ROI用于单个孔隙分析 [00:06:24]</h2>
+<p>要将每个孔隙作为单独实体进行分析：</p>
+<ol>
+<li>右键点击过滤后的孔隙感兴趣区域</li>
+<li>选择<code>Connected Components</code>并创建新的多ROI</li>
+<li>这将为每个孔隙空间分配不同颜色，并为单独分析做准备</li>
+</ol>
+<h2>创建3D可视化 [00:07:16]</h2>
+<p>要在3D中可视化孔隙：</p>
+<ol>
+<li>关闭体积数据/图像通道</li>
+<li>创建参考立方体的网格：</li>
+<li>选择参考立方体并创建样本网格</li>
+<li>使用3×3×3下采样以节省处理时间</li>
+<li>
+<p>降低不透明度以创建透明立方体</p>
+</li>
+<li>
+<p>点击3D按钮以可视化透明立方体内的所有选定孔隙空间</p>
+</li>
+</ol>
+<h2>孔隙的统计分析 [00:08:36]</h2>
+<p>要对孔隙进行统计分析：</p>
+<ol>
+<li>右键点击多ROI并选择<code>Scalar Analysis</code></li>
+<li>转到<code>Basic Measurements</code></li>
+<li>选择要计算的测量值：</li>
+<li>体积</li>
+<li>最大Ferret直径（孔隙的最长轴）</li>
+<li>
+<p>球形度</p>
+</li>
+<li>
+<p>等待计算完成</p>
+</li>
+<li>完成后关闭计算器</li>
+</ol>
+<h2>可视化分析结果 [00:11:24]</h2>
+<p>要通过颜色编码可视化分析结果：</p>
+<ol>
+<li>选择要可视化的测量值（体积、直径或球形度）</li>
+<li>左键点击颜色按钮更改颜色方案（例如，温度刻度）</li>
+<li>调整可视化范围：</li>
+<li>右键点击并选择<code>Measurement Inspector</code></li>
+<li>更改测量范围（例如，0到0.5）</li>
+<li>选择是隐藏还是显示范围外的值</li>
+</ol>
+<h2>导出分析数据 [00:14:30]</h2>
+<p>要导出分析结果以进行进一步处理：</p>
+<ol>
+<li>使用右下角的按钮将电子表格数据保存为CSV文件</li>
+<li>您还可以创建已分析组件的直方图：</li>
+<li>点击直方图按钮</li>
+<li>根据需要调整bin计数</li>
+<li>将直方图数据导出为CSV</li>
+</ol>
+<h2>结论</h2>
+<p>这个工作流程演示了在Dragonfly中进行孔隙率分析的完整过程，从初始分割到详细的统计分析和可视化。该方法提供了关于孔隙率百分比、孔隙大小和分布的定量数据，这些数据可以导出以进行进一步分析。通过遵循这些步骤，您可以对类似材料执行自己的孔隙率分析。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=fvau8hr5UPU">Porosity Quantification for Additive Manufacturing How-to Using Dragonfly</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-23 00:33:29 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

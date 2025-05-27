@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computed Tomography for Industrial Inspection and Quality Control Powered by Dragonfly Software - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Computed Tomography for Industrial Inspection and Quality Control Powered by Dragonfly Software - (English)</h1>
+        <p>This video provides a tutorial on using Dragonfly software for industrial CT scan analysis, demonstrating how to visualize, segment, and quantitatively analyze casting porosity and wall thickness in 3D.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to Industrial CT Inspection with Dragonfly [00:00:02]</h2>
+<p>This tutorial will help you unlock more information from your CT scans, focusing on industrial inspection. While aimed at new users, the tutorial moves quickly through the basics, so feel free to pause and review as needed.</p>
+<h2>Getting Started with Dragonfly [00:00:40]</h2>
+<p>When you first open Dragonfly, you'll see the main interface. Let's start by importing image files:</p>
+<ol>
+<li>To load an image stack, select all images in the folder</li>
+<li>Click "Add a slice image" and import</li>
+<li>Click "Next" and enter the voxel size (in this example, 0.2 millimeters)</li>
+<li>Note that the decimal point or comma follows your system's convention</li>
+</ol>
+<p>After loading, the data opens as a slice image. To see the quad view, go to the <code>Layout</code> menu and select the quad view option. This allows you to see the 3D render, which can be easily adjusted using the shortcuts.</p>
+<h2>Basic Navigation and Visualization [00:01:47]</h2>
+<p>For a quick 3D visualization of your part:</p>
+<ol>
+<li>Choose a preset such as <code>Cast Aluminum</code> for a nice initial view</li>
+<li>Double-click the view to evaluate the surface easily</li>
+<li>Navigate using:</li>
+<li>Zoom: Hold the scroll wheel and drag back and forth</li>
+<li>Pan: Keep both left and right mouse buttons pressed while dragging</li>
+<li>Rotate: Use the translate/rotate tools by clicking on a window to activate it, then turn the object</li>
+</ol>
+<p>To align views orthogonally, use the rotation tools and press <code>Escape</code> to exit that mode.</p>
+<p>For better visualization:<br />
+1. Right-click in the 3D view and add a <code>2D View Plane</code> function to see your current position<br />
+2. Change the background by clicking the background button and selecting <code>Uniform White</code> for clearer viewing</p>
+<h2>Qualitative Inspection for Defects [00:03:35]</h2>
+<p>In industrial inspection, you'll want to evaluate cracks and pores qualitatively:</p>
+<ol>
+<li>Change the contrast using the <code>Windows Leveling Tool</code> at the top</li>
+<li>Choose the opacity gradient option</li>
+<li>Drag the left bar to the right and adjust to get good contrast for viewing pores</li>
+</ol>
+<p>This gives you a nice view of the largest pores. For castings like this example, you'll see shrinkage porosity inside, which is one of the main applications of CT scanning.</p>
+<p>For evaluating porosity across multiple slices:<br />
+1. Choose the <code>Minimum View Mode</code> <br />
+2. This integrates over multiple slices, showing the lowest value pixel at each location<br />
+3. This "thick slab mode" helps identify if pores align along certain orientations</p>
+<h2>Quantitative Porosity Analysis [00:05:34]</h2>
+<p>To evaluate porosity quantitatively:</p>
+<ol>
+<li>Go to the <code>Segment Tool</code></li>
+<li>Use <code>Define Range</code> for segmentation</li>
+<li>You can use automated lower OTSU thresholding</li>
+<li>Or set a manual threshold (in this example, 42,000 works well)</li>
+<li>This creates a region of interest (ROI) containing all voxels with gray values below the threshold</li>
+<li>To remove the outside area, right-click and select <code>Refine the Region of Interest</code></li>
+<li>Choose <code>Process Islands</code> (connected regions)</li>
+<li>Remove the largest connected region (which is the outside space)</li>
+<li>Untick <code>Define Range</code> to see only the ROI (the porosity)</li>
+<li>Change the color if desired (yellow makes it easier to see)</li>
+</ol>
+<p>This highlights the largest pores in your region of interest. Smaller pores may be missed due to partial volume effects, which is why quantitative analysis typically focuses on the largest pores.</p>
+<h2>3D Visualization of Porosity [00:07:20]</h2>
+<p>To visualize the porosity in 3D:</p>
+<ol>
+<li>Change the contrasting to a flat approach with opacity</li>
+<li>Activate the 3D view to see the pores</li>
+<li>Increase the highlight to make the ROI brighter</li>
+<li>Right-click and create a multi-ROI for evaluation</li>
+</ol>
+<p>This multi-region of interest is what we use for quantitative analysis. To visualize in 3D:</p>
+<ol>
+<li>Untick the region of interest</li>
+<li>Tick the 3D view</li>
+<li>Select measurements to classify pores according to:</li>
+<li>Volume (the largest one appears yellow)</li>
+<li>Mean Ferret diameter (the longest diameter)</li>
+</ol>
+<p>All this data can be exported to Excel or other formats for further processing.</p>
+<h2>Wall Thickness Analysis [00:09:58]</h2>
+<p>To evaluate wall thickness:</p>
+<ol>
+<li>Create a new region of interest</li>
+<li>Define a range that includes all material (use upper OTSU)</li>
+<li>Add to a new ROI</li>
+<li>Fill in any pore areas to ensure the ROI covers the entire part</li>
+<li>Export to a thickness mesh</li>
+<li>Perform smoothing to simplify processing time and visualization</li>
+</ol>
+<p>The wall thickness evaluation is important for identifying areas where walls need to be above a certain minimum value. After the analysis completes:</p>
+<ol>
+<li>Tick the view button to see the thickness distribution in 3D</li>
+<li>Click on the button and move the sample to highlight thickness mesh values</li>
+<li>Observe the thickness range (in this example, up to almost 70 millimeters)</li>
+</ol>
+<p>This thickness visualization helps identify thin regions that might not be obvious in the original data.</p>
+<h2>Conclusion [00:13:33]</h2>
+<p>This tutorial has demonstrated how to use Dragonfly for industrial CT inspection, covering basic navigation, visualization techniques, porosity analysis, and wall thickness evaluation. These tools help extract valuable information from CT data to assess part quality and identify potential issues.</p>
+<p>Dragonfly is a powerful tool not only for CT data but also for other imaging modalities, including SEM images and FIB-SEM images.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=7-IOCGgo_vk">Computed Tomography for Industrial Inspection and Quality Control Powered by Dragonfly Software</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-23 03:14:38 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/7-IOCGgo_vk"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

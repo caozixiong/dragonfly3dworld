@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preprocessing Filters in CT Reconstruction in Dragonfly 2022.2 - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Preprocessing Filters in CT Reconstruction in Dragonfly 2022.2 - (English)</h1>
+        <p>This tutorial demonstrates how to use preprocessing filters to improve CT reconstruction image quality, including flat-field correction, Wavelet-Fourier and Titarenko strap removal methods, median filtering, and beam hardening correction to address common issues like ring artifacts and cupping effects.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to Preprocessing Filters for CT Reconstruction [00:00:02]</h2>
+<p>Welcome to the last video of our CT reconstruction tutorial video series. In this video, we'll explore how to use preprocessing filters to improve reconstructed image quality through three different examples.</p>
+<h2>Example 1: Removing Ring Artifacts [00:00:23]</h2>
+<p>Let's start with a familiar dataset - the fiber reinforced ceramic composites dataset used in previous videos. This is a parallel beam dataset.</p>
+<p>With our acquisition parameters and reconstruction engine already selected, let's first see how the image looks without any preprocessing filters.</p>
+<p>When zooming in and adjusting the window leveling, you can see a series of concentric circles in the image. Some circles appear dark while others are very bright. These are ring artifacts.</p>
+<h3>Understanding Ring Artifacts</h3>
+<p>Ring artifacts are caused by variations in the pixel-to-pixel sensitivities of the detector. Not only do these variations exist initially, but the response of detector pixels may also change during acquisition.</p>
+<p>Looking at our projection in the Cinegram domain, we can see many vertical stripes. These vertical stripes indicate problematic pixels or pixels with poor response in the detector.</p>
+<h3>Flat-Field Correction</h3>
+<p>The first preprocessing filter we'll try is flat-field correction. This filter performs a linear calibration according to:<br />
+- A flat image (acquired when no object is present and full X-ray current is used)<br />
+- A dark reference (acquired when the current is zero)</p>
+<p>Using these two references, a linear calibration is applied to remove bad pixels. However, this method requires that you have flat-field and dark images acquired during your projection acquisition.</p>
+<p>For our example, we have:<br />
+- 30 flat images acquired during the acquisition process<br />
+- 10 dark images</p>
+<p>After applying flat-field correction and comparing with the uncorrected image, we can see the ring artifacts are greatly reduced. Some artifacts remain, but the most prominent concentric circles are gone.</p>
+<h3>Wavelet-Fourier Stripe Removal</h3>
+<p>The second option for ring artifact removal is the Wavelet-Fourier Stripe Removal filter from TomoPy. This preprocessing filter removes horizontal or vertical stripes traversing the entire image from the sinogram, without requiring any reference images during acquisition.</p>
+<p>It has three parameters:<br />
+- Level: Number of discrete wavelet transform levels<br />
+- Sigma: Damping parameter in Fourier space<br />
+- Wavelet: Type of wavelet filter (DB5 typically shows the best results)</p>
+<p>The selection of appropriate parameters depends on your stripe width. For narrow stripe artifacts, small values of level and sigma work well. For broad or distorted stripe artifacts, higher values may be needed.</p>
+<p>Using a level of 2 and sigma of 2, we can see the ring artifacts are successfully removed, even working a bit better than the flat-field correction.</p>
+<h3>Titarenko's Ring Removal</h3>
+<p>The third option is Titarenko's Ring Removal, also from TomoPy. It serves the same purpose as Wavelet-Fourier Stripe Removal but uses a different method.</p>
+<p>It has two parameters:<br />
+- Number of blocks<br />
+- Alpha (damping vector)</p>
+<p>Using number of blocks = 2 and alpha = 1.5, we can see this filter also effectively removes the ring artifacts.</p>
+<h3>Median Filter</h3>
+<p>Another useful filter is the median filter, which is typically used to reduce noise in the data. However, be careful as it may also cause loss of feature details.</p>
+<p>Parameters include:<br />
+- Kernel size<br />
+- Kernel shape (square, cross, etc.)</p>
+<p>When applying a median filter with kernel size 3 and square shape, most of the background noise is removed. With a larger kernel size (e.g., 7), even small ring artifacts are eliminated, but the image becomes very blurry, making it difficult to see the fibers clearly.</p>
+<h2>Example 2: Battery Dataset with Multiple Corrections [00:16:17]</h2>
+<p>The second dataset is a battery dataset acquired in a North Star Imaging micro-CT system. Looking at the initial reconstruction, the background is not uniform, indicating the need for correction.</p>
+<h3>Multi-point Piecewise Flat-Field Correction</h3>
+<p>This correction is similar to flat-field correction but uses multiple reference points. Instead of just two images (flat and dark), it obtains multiple reference images by changing the current with a constant step.</p>
+<p>For our dataset, we have a "GAN stack" of reference images ranging from very bright (equivalent to flat image) to very dark (equivalent to dark reference), with multiple steps in between.</p>
+<h3>Defective Pixel Correction</h3>
+<p>This filter requires a file that identifies bad pixels in your projection. For North Star Imaging systems, there's a parser that can interpret the defective pixel file format.</p>
+<p>When this preprocessing is applied, it estimates the intensity value of defective pixels by averaging neighboring information.</p>
+<p>If you don't have such a file, you can create one by:<br />
+1. Identifying bad pixels (typically very low intensity)<br />
+2. Creating an ROI with those pixels<br />
+3. Using that ROI as your defective pixel map</p>
+<p>After applying both multi-point piecewise flat-field correction and defective pixel correction, the ring artifacts are completely removed, resulting in much better image quality.</p>
+<h2>Example 3: Beam Hardening Correction [00:26:04]</h2>
+<p>For the last example, we'll demonstrate beam hardening correction using the engine part dataset from our previous video.</p>
+<h3>Polynomial Correction</h3>
+<p>We'll use a polynomial correction from RTK toolkit. Instead of using the original projection data, this method:<br />
+1. Applies a polynomial transformation to the projection data<br />
+2. Uses the transformed projection for reconstruction</p>
+<p>The polynomial has five coefficients (powers 0 to 4):<br />
+- Coefficient for projection^0<br />
+- Coefficient for projection^1 (the projection itself)<br />
+- Coefficient for projection^2<br />
+- Coefficient for projection^3<br />
+- Coefficient for projection^4</p>
+<p>These coefficients are multiplied by the corresponding power of the projection and summed to create the new projection.</p>
+<p>Comparing the uncorrected and corrected images, we can see:<br />
+- Bright regions and streaks are greatly reduced<br />
+- Shadows and artifacts are minimized<br />
+- The cupping effect (where the center of a uniform object appears darker) is eliminated</p>
+<h2>Additional Filters [00:31:24]</h2>
+<h3>Phase Retrieval Filter</h3>
+<p>This filter from TomoPy performs a single-step phase retrieval from phase contrast measurements. It's mostly used for biosamples and requires three parameters:<br />
+- Detector pixel size<br />
+- Propagation distance (distance between object and detector)<br />
+- Beam energy</p>
+<h3>Log Filter</h3>
+<p>Found in the advanced options, this filter is typically enabled by default. It inverts the intensity scale because projections usually have:<br />
+- Brighter background<br />
+- Darker features</p>
+<p>If your dataset is already converted (dark background, bright features), you should uncheck this option.</p>
+<h2>Conclusion</h2>
+<p>These preprocessing filters can significantly improve the quality of your CT reconstructions by removing various artifacts and noise. The choice of filter depends on your specific dataset and the types of artifacts present. Experiment with different filters and parameters to achieve the best results for your data.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=mNz36_Z6QtA">Preprocessing Filters in CT Reconstruction in Dragonfly 2022.2</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 13:15:49 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/mNz36_Z6QtA"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

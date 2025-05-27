@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Porosity Analysis in Archaeological Ceramics to Reconstruct Production Methods and Performance - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>3D Porosity Analysis in Archaeological Ceramics to Reconstruct Production Methods and Performance - (English)</h1>
+        <p>This presentation explores how 3D analysis of pore systems in archaeological ceramics can reveal ancient production methods and performance characteristics. Using micro-CT imaging and Dragonfly software, researchers can examine porosity patterns to determine firing temperatures, raw material selection, and functional properties of ceramic vessels.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>3D Analysis of Pore Systems in Archaeological Ceramics</h1>
+<h2>Introduction [00:01:20]</h2>
+<p>For archaeological ceramics, it's not possible to directly observe the potters making their pots, using them, or trading for them. What researchers have to work with is the archaeological context, which means the site and the locations within the site where the pieces were found - generally where objects were discarded after breaking or no longer being of use.</p>
+<p>Ethnographic research studying modern potters who still work with traditional methods, raw materials, tools, and firing techniques, along with laboratory studies with controlled experiments, provide ways of developing hypotheses about ancient ceramic production.</p>
+<p>Ceramic technologies and styles serve as important markers for:<br />
+- Constructing dating sequences<br />
+- Mapping networks of local, regional, and long-distance trade<br />
+- Understanding local styles and technological developments<br />
+- Identifying cultural choices and practices</p>
+<p>While much effort has gone into developing analytical methods for studying ceramic materials, very little consideration has been given to pore systems and what they can tell us about ceramic production and use. Yet, the structure of a pore system is strongly related to raw material selection, processing and fabrication methods, and firing regimes.</p>
+<h2>Why Micro-CT and 3D Image Analysis? [00:03:55]</h2>
+<p>Micro-CT coupled with 3D image analysis is an ideal strategy for characterizing pore systems because:</p>
+<ul>
+<li>It can identify isolated pores, which are important indicators of firing techniques, temperatures, and use properties</li>
+<li>Unlike mercury pore symmetry, it doesn't require working with toxic materials</li>
+<li>2D methods such as thin section photography aren't representative enough of the 3D material</li>
+<li>Pores often extend in 3D in ways that aren't visible in 2D images</li>
+</ul>
+<p>Archaeological ceramics typically survive as small broken pieces (sherds) from vessels. Dragonfly is used to study pore systems in micro-CT images of samples taken from these sherds.</p>
+<h2>Methodology [00:05:24]</h2>
+<p>The analysis workflow includes:</p>
+<ul>
+<li>Using the Dragonfly segmentation wizard, which makes the segmentation process straightforward</li>
+<li>Training the model on approximately three slices to get good results</li>
+<li>Using the image calibration tool to reuse models for similar images, which is a significant time saver despite variation in archaeological ceramics</li>
+<li>Using a 5×5 millimeter field of view with 10 microns spatial resolution</li>
+<li>Performing 2-5 replicates per sherd to account for material variation</li>
+</ul>
+<h2>Analyzing Firing Temperatures [00:07:10]</h2>
+<p>Traditional ceramics are fired at temperatures ranging from about 600°C up to 1400°C:</p>
+<h3>Low-Fired Ceramics</h3>
+<ul>
+<li>Made with relatively impure, iron-rich clays</li>
+<li>Coarsely ground and coarsely sieved materials</li>
+<li>Additives are coarsely ground (straw, rice chaff, crushed shells, rocks, or sherds)</li>
+<li>Fired using wood as fuel, either on open ground or in simple kilns</li>
+<li>Products are unglazed, may have simple colored clay slip or decorative elements</li>
+</ul>
+<h3>High-Fired Ceramics</h3>
+<ul>
+<li>May use clays like white kaolin that vitrify more easily</li>
+<li>Materials are finely ground, levigated, and sieved</li>
+<li>Additives are finely ground</li>
+<li>Fired at high temperatures, sometimes for long periods</li>
+<li>Use more complex kiln structures fueled by coal or wood</li>
+<li>Products often have glassy glazes and high-temperature mineral alterations</li>
+</ul>
+<h3>Pore System Variables Related to Firing Temperature</h3>
+<p>Several pore characteristics correlate with firing temperature:</p>
+<ol>
+<li><strong>Total Volume Percentage Porosity</strong>:</li>
+<li>High porosity (31%) for vessels fired at 900°C</li>
+<li>
+<p>Low porosity (2%) for vessels fired at 1350°C</p>
+</li>
+<li>
+<p><strong>Surface-Accessible vs. Interior Pores</strong>:</p>
+</li>
+<li>Ratio of 20.3 for lowest firing temperature</li>
+<li>Ratio of 0.3 for highest firing temperature</li>
+<li>Lower-fired ceramics have more pores reaching the surface</li>
+<li>
+<p>Higher-fired ceramics have fewer pores overall with more isolated interior pores</p>
+</li>
+<li>
+<p><strong>Pore Shape</strong>:</p>
+</li>
+<li>Higher-fired ceramics have more spherical and globular pores</li>
+<li>
+<p>Lower-fired ceramics have more elongated pores</p>
+</li>
+<li>
+<p><strong>Connectivity</strong>:</p>
+</li>
+<li>Low-fired ceramics have higher connectivity values</li>
+<li>Can be quantified in Dragonfly by viewing segmented pore systems as graph models</li>
+<li>
+<p>Higher connectivity in low-fired ceramics due to intra-granular pores in contact with each other</p>
+</li>
+<li>
+<p><strong>Tortuosity</strong>:</p>
+</li>
+<li>Measures how much connection pathways deviate from a straight line</li>
+<li>Very high-fired ceramics tend to have significantly lower tortuosity values</li>
+</ol>
+<h2>Calculating Thermal Conductivity [00:14:57]</h2>
+<p>The PUMA software available within Dragonfly can be used to measure effective thermal conductivity of ceramic materials:</p>
+<ul>
+<li>Starting with estimated thermal conductivity of individual components (quartz, feldspars, clays, air in pores)</li>
+<li>Using the segmented image where percentages, connectivity, size, shape, and locations of phases are known</li>
+<li>Simulating temperature fields in X, Y, and Z directions</li>
+<li>Calculating steady-state temperature at every point</li>
+<li>Outputting thermal conductivity in watts per meter Kelvin in each direction</li>
+</ul>
+<h3>Advantages of 3D Image Analysis for Thermal Conductivity</h3>
+<p>Traditional thermal conductivity measurements require laboratory-prepared specimens (large, thin, flat disks), which precludes using real archaeological sherds. 3D image analysis allows testing of actual archaeological samples.</p>
+<h3>Results and Functional Implications</h3>
+<p>The data shows strong correlation between thermal conductivity and volume percent porosity:<br />
+- Earthenware sherds with 31% porosity: 0.329 W/mK<br />
+- Xing white porcelains with 2% porosity: 0.548 W/mK</p>
+<p>These properties have functional implications:<br />
+- Teawares with higher thermal conductivity readily pick up heat from hot liquids and distribute it evenly<br />
+- Cooking pots with lower thermal conductivity are good for slow cooking, as they're slower to pick up heat but retain it longer due to insulating pores</p>
+<h2>Conclusion [00:19:19]</h2>
+<p>The PUMA software within Dragonfly opens new possibilities for using 3D image analysis to better understand the performance characteristics of archaeological ceramics. By analyzing pore systems, researchers can:</p>
+<ul>
+<li>Determine probable firing temperatures for ancient ceramics</li>
+<li>Understand functional properties of different vessel types</li>
+<li>Identify production methods</li>
+<li>Measure permeability and other parameters that impact functional use properties</li>
+</ul>
+<p>This approach provides valuable insights into ancient ceramic technologies that were previously difficult to obtain through traditional analytical methods.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=GjY4phlGGhs">3D Porosity Analysis in Archaeological Ceramics to Reconstruct Production Methods and Performance</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 03:51:47 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/GjY4phlGGhs"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

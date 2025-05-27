@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>在 Dragonfly 2022.2 中创建体积网格</h1>
+<h2>介绍 [00:00:03]</h2>
+<p>本教程演示如何在 Dragonfly 2022.2 版本中创建体积网格，这是最新版本中的新功能之一。演示使用了一个已经通过分水岭分割进行分割的小核桃数据集。</p>
+<h2>数据概述 [00:00:30]</h2>
+<p>对于不熟悉 Dragonfly 的人来说，界面显示了数据的四视图。数据集是一个核桃扫描，下面有一个底座。分水岭分割是必要的，因为核桃壳和底座在它们的接触面处相互接触，使其成为一个具有挑战性的分割任务。</p>
+<p>虽然手动分割可以通过创建具有不同类别（如"核桃"和"其他所有内容"）的多重感兴趣区域（multi-ROI）并逐片绘制来实现，但本教程重点关注体积网格创建而非分割技术。</p>
+<h2>体积网格的目的 [00:01:40]</h2>
+<p>体积或3D四面体网格可用于模拟目的。例如，您可能希望将核桃模型导出到有限元建模代码中，以模拟破裂核桃需要多大的力。</p>
+<h2>创建体积网格 [00:02:01]</h2>
+<h3>先决条件</h3>
+<p>要在 Dragonfly 中创建体积网格，您需要：<br />
+- 具有两个或更多类别的多重感兴趣区域（本演示使用"核桃"和"其他所有内容"）</p>
+<h3>生成网格的步骤</h3>
+<ol>
+<li>通过按 Control 按钮并用鼠标左键单击来激活体积，从而突出显示区域</li>
+<li>激活多重感兴趣区域中的两个类别</li>
+<li>右键单击并选择<code>创建3D四面体网格</code></li>
+</ol>
+<h3>优化处理时间 [00:02:40]</h3>
+<p>创建四面体网格需要大量的CPU处理。为了使计算更快，特别是在开始时：</p>
+<ol>
+<li>通过下采样创建更小的体素数据集</li>
+<li>您可以对图像数据或仅对感兴趣区域（multi-ROI）进行下采样</li>
+<li>右键单击多重感兴趣区域</li>
+<li>转到<code>修改</code> → <code>变换</code> → <code>采样</code></li>
+<li>设置下采样因子（在本演示中，使用因子10来进行非常短的计算）</li>
+</ol>
+<h3>生成网格 [00:03:38]</h3>
+<ol>
+<li>右键单击下采样版本</li>
+<li>选择<code>3D四面体网格生成器</code></li>
+<li>使用默认设置或根据需要调整</li>
+<li>点击<code>生成网格</code></li>
+</ol>
+<p>使用下采样数据，该过程仅需几秒钟。</p>
+<h2>查看网格 [00:04:14]</h2>
+<p>生成后，项目面板中会出现一个新对象：</p>
+<ol>
+<li>点击3D四面体网格</li>
+<li>启用<code>标量信息</code>复选框以在网格上创建颜色</li>
+<li>这将显示多重感兴趣区域的不同区域，网格元素相互拼合</li>
+</ol>
+<h2>为单个区域创建网格 [00:04:47]</h2>
+<p>如果您只想为一个区域（例如，只是核桃，而不是周围的所有内容）创建网格：</p>
+<ol>
+<li>在多重感兴趣区域中只点击核桃</li>
+<li>右键单击并选择<code>3D四面体网格生成器</code></li>
+<li>点击<code>生成网格</code></li>
+</ol>
+<p>这将创建一个完整的体积网格，不仅表示表面（如STL表面网格），而且是适合模拟的完整体积网格。</p>
+<h2>导出网格 [00:05:29]</h2>
+<p>要保存网格文件：</p>
+<ol>
+<li>右键单击四面体网格</li>
+<li>选择<code>将四面体网格导出到文件</code></li>
+<li>选择格式：</li>
+<li>Netgen网格（来自NGSolve）是默认格式</li>
+<li>也可以使用其他格式直接导出</li>
+</ol>
+<p>根据需要，网格可以轻松转换为其他格式。</p>
+<h2>结论</h2>
+<p>本教程演示了如何在Dragonfly 2022.2中创建和导出体积网格。生成的四面体网格可用于外部应用程序中的各种模拟目的。该过程包括创建多重感兴趣区域、为提高效率进行下采样、生成网格以及以所需格式导出。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=b4Nxw9uXP3g">Dragonfly 2022.2 Feature : Volume meshing of a walnut</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 14:35:04 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

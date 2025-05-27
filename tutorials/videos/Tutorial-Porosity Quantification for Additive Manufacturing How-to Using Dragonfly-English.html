@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porosity Quantification for Additive Manufacturing How-to Using Dragonfly - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Porosity Quantification for Additive Manufacturing How-to Using Dragonfly - (English)</h1>
+        <p>This video demonstrates how to analyze porosity in metal samples using Dragonfly software, covering segmentation techniques to identify pores, calculate volume fractions, analyze pore size distributions, and create color-coded 3D visualizations of porosity data.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Analyzing Porosity Using Dragonfly</h1>
+<h2>Introduction [00:00:03]</h2>
+<p>This tutorial demonstrates how to analyze porosity using Dragonfly software. The workflow covers segmenting micro CT data of a metal cube with pores, calculating the volume fraction of porosity, and analyzing pore size distribution. The end result will be a 3D color-coded visualization showing where the largest pores are located.</p>
+<h2>Setting Up the Segmentation [00:00:47]</h2>
+<p>To analyze porosity in Dragonfly, we first need to create a segmentation that distinguishes between material and porosity:</p>
+<ol>
+<li>Navigate to the <code>Segment</code> tab and use the OTSU thresholding method</li>
+<li>Select <code>Upper OTSU</code> thresholding to define the higher density pixels as material</li>
+<li>Add the segmentation to a new region of interest</li>
+<li>Remember to untick the <code>Preview</code> option</li>
+</ol>
+<p>After completing these steps, you'll have a bluish color region of interest that excludes the pore spaces.</p>
+<h2>Creating a Reference Cube Volume [00:01:22]</h2>
+<p>To calculate the volume fraction, we need to create a reference cube that includes the pore spaces:</p>
+<ol>
+<li>Fill in the pore spaces using one of these methods:</li>
+<li>Use the <code>Opening</code> or <code>Closing</code> function to close small pores</li>
+<li>
+<p>Apply the <code>Full Inner Areas 3D</code> tool to close all pores not connected to the surface</p>
+</li>
+<li>
+<p>Clean up the reference cube:</p>
+</li>
+<li>Remove loose bits outside the cube using <code>Refine Region of Interest</code></li>
+<li>Select <code>Process Islands</code> and <code>Keep by Largest</code> to retain only the main cube</li>
+</ol>
+<h2>Segmenting the Pores [00:01:59]</h2>
+<p>Now we need to segment what exactly constitutes the pores:</p>
+<ol>
+<li>Use <code>Lower OTSU</code> to select the lower gray values</li>
+<li>You can adjust the thresholding by dragging the sliders or entering values manually</li>
+<li>The OTSU method is automated, ensuring reproducible results when others analyze the same data</li>
+<li>Name this region of interest "All Pores"</li>
+<li>Remove the exterior area using <code>Refine Region of Interest</code></li>
+<li>Select <code>Process Islands</code> and <code>Remove by Largest</code> to eliminate the largest connected part</li>
+</ol>
+<h2>Calculating Porosity Percentage [00:03:45]</h2>
+<p>With both the reference cube and pores segmented:</p>
+<ol>
+<li>Click on the cube in 2D view</li>
+<li>Calculate the volumetric percentage compared to the "All Pores" segmentation</li>
+<li>The result shows the percentage of volume that is porosity (2.6% in this example)</li>
+</ol>
+<h2>Preparing for Detailed Pore Analysis [00:04:16]</h2>
+<p>For more detailed analysis of individual pores:</p>
+<ol>
+<li>Make a copy of your "All Pores" region of interest</li>
+<li>Remove small pores that might skew the analysis:</li>
+<li>Use <code>Refine Region of Interest</code> &gt; <code>Process Islands</code> &gt; <code>Remove by Voxel Count</code></li>
+<li>Best practice is to use a minimum of 2×2×2 voxels (8 voxels) to positively identify a pore</li>
+<li>For 3×3×3 pores, use 27 as the minimum voxel count</li>
+<li>For demonstration purposes, we're using 100 to select only the biggest pores</li>
+</ol>
+<h2>Creating a Multi-ROI for Individual Pore Analysis [00:06:24]</h2>
+<p>To analyze each pore as a separate entity:</p>
+<ol>
+<li>Right-click on the filtered pores region of interest</li>
+<li>Select <code>Connected Components</code> and create a new multi-ROI</li>
+<li>This assigns different colors to each pore space and prepares them for individual analysis</li>
+</ol>
+<h2>Creating a 3D Visualization [00:07:16]</h2>
+<p>To visualize the pores in 3D:</p>
+<ol>
+<li>Turn off the volume data/image channel</li>
+<li>Create a mesh of the reference cube:</li>
+<li>Select the reference cube and create a sample mesh</li>
+<li>Use a 3×3×3 downsampling to save processing time</li>
+<li>
+<p>Reduce the opacity to create a transparent cube</p>
+</li>
+<li>
+<p>Click the 3D button to visualize all selected pore spaces within the transparent cube</p>
+</li>
+</ol>
+<h2>Statistical Analysis of Pores [00:08:36]</h2>
+<p>To analyze the pores statistically:</p>
+<ol>
+<li>Right-click on the multi-ROI and select <code>Scalar Analysis</code></li>
+<li>Go to <code>Basic Measurements</code></li>
+<li>Select measurements to calculate:</li>
+<li>Volume</li>
+<li>Maximum Ferret Diameter (longest axis of a pore)</li>
+<li>
+<p>Sphericity</p>
+</li>
+<li>
+<p>Wait for the calculations to complete</p>
+</li>
+<li>Close the calculator when finished</li>
+</ol>
+<h2>Visualizing Analysis Results [00:11:24]</h2>
+<p>To visualize the analysis results with color coding:</p>
+<ol>
+<li>Select which measurement to visualize (Volume, Diameter, or Sphericity)</li>
+<li>Left-click on the color button to change the color scheme (e.g., Temperature scale)</li>
+<li>Adjust the visualization range:</li>
+<li>Right-click and select <code>Measurement Inspector</code></li>
+<li>Change the measurement range (e.g., 0 to 0.5)</li>
+<li>Choose whether to hide or show values outside the range</li>
+</ol>
+<h2>Exporting Analysis Data [00:14:30]</h2>
+<p>To export your analysis for further processing:</p>
+<ol>
+<li>Use the button at the bottom right to save the spreadsheet data to a CSV file</li>
+<li>You can also create histograms of the analyzed components:</li>
+<li>Click the histogram button</li>
+<li>Adjust bin count as needed</li>
+<li>Export histogram data to CSV</li>
+</ol>
+<h2>Conclusion</h2>
+<p>This workflow demonstrates the complete process of porosity analysis in Dragonfly, from initial segmentation to detailed statistical analysis and visualization. The method provides quantitative data on porosity percentage, pore sizes, and distribution, which can be exported for further analysis. By following these steps, you can perform your own porosity analysis on similar materials.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=fvau8hr5UPU">Porosity Quantification for Additive Manufacturing How-to Using Dragonfly</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-23 00:33:28 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/fvau8hr5UPU"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>纤维数据集分析简介 [00:00:03]</h2>
+<p>在本教程中，我们将加载一个纤维数据集来演示各种分割和形状工具，特别关注分水岭分割——这是一种用于分离接触物体（如纤维）的强大技术。该数据集包含看起来像是某种基质材料中的玻璃纤维。</p>
+<p>让我们首先导入并查看数据集，以了解我们正在处理的内容。</p>
+<h2>初步数据探索 [00:01:10]</h2>
+<p>导入纤维数据集后，我们可以在3D中查看它，以更好地理解我们正在观察的内容：</p>
+<ol>
+<li>导入纤维数据集</li>
+<li>使用合适的预设在3D中查看数据</li>
+<li>注意纤维的不同方向</li>
+</ol>
+<p>纤维具有不同的方向，我们稍后会分析这一点。现在，我们将专注于分割。</p>
+<h2>基本分割工具 [00:01:57]</h2>
+<p>让我们从一些基本的分割工具开始，将纤维与背景隔离。</p>
+<h3>使用探针工具</h3>
+<p>探针工具允许我们检查像素值：<br />
+- 外部像素的值为1<br />
+- 基质像素的值约为25,000<br />
+- 纤维像素的值约为37,000</p>
+<p>这是一个16位数据集，范围高达65,535。</p>
+<h3>阈值分割</h3>
+<p>要分割纤维：<br />
+1. 使用<code>Define Range</code>工具<br />
+2. 可以手动设置阈值（例如，35,000）<br />
+3. 或使用上OTSU阈值选项<br />
+4. 添加到新的感兴趣区域<br />
+5. 使用分割功能将纤维与背景分开</p>
+<p>这给我们提供了基本的分割，但纤维仍然相互接触。</p>
+<h2>高级分割工具 [00:04:02]</h2>
+<h3>开运算功能</h3>
+<p>要移除外部像素而不影响主要结构：<br />
+1. 应用开运算功能（腐蚀和膨胀的组合）<br />
+2. 这会移除小的外部元素，同时保留主要纤维结构</p>
+<h3>调整可视化</h3>
+<p>您可以：<br />
+- 在不同视图之间切换<br />
+- 调整亮度以获得更好的可见性<br />
+- 更改感兴趣区域的不透明度</p>
+<h3>分割单个纤维 [00:05:07]</h3>
+<p>如果您想分割并跟踪单个纤维：</p>
+<h4>2D笔刷工具</h4>
+<ol>
+<li>创建一个新的空感兴趣区域（例如，"单个纤维"）</li>
+<li>选择一个醒目的颜色使其突出</li>
+<li>使用2D笔刷工具绘制纤维</li>
+<li>使用Ctrl + 左鼠标按钮移除已绘制的材料</li>
+<li>使用Shift + 滚动浏览切片</li>
+<li>用鼠标滚轮调整笔刷大小</li>
+</ol>
+<h4>使用绘画定义范围</h4>
+<p>为了更快速地绘画：<br />
+1. 使用<code>Define Range</code>工具选择纤维<br />
+2. 使用启用范围选择的绘画工具<br />
+3. 这将绘画限制在仅定义的范围内</p>
+<h4>局部OTSU笔刷 [00:07:27]</h4>
+<p>这是一个非常有用的工具：<br />
+1. 选择上OTSU笔刷<br />
+2. 在包含纤维和背景的区域上绘画<br />
+3. 笔刷自动选择较高的强度值<br />
+4. 笔刷区域必须包含您想要分离的两种材料</p>
+<h4>点击工具 [00:09:04]</h4>
+<p>要选择所有连接的体素：<br />
+1. 选择感兴趣区域<br />
+2. 在纤维上使用点击工具<br />
+3. 它选择与该点连接的所有体素<br />
+4. 这显示了哪些纤维相互接触</p>
+<h2>形状工具和圆柱展开 [00:12:55]</h2>
+<p>形状可用于各种目的，包括裁剪数据和选择特定区域：</p>
+<h3>创建和对齐圆柱体</h3>
+<ol>
+<li>创建一个圆柱体形状</li>
+<li>将其与感兴趣的纤维对齐</li>
+<li>调整圆柱体以跟随纤维的路径</li>
+</ol>
+<h3>展开圆柱体</h3>
+<ol>
+<li>转到主选项卡，在场景视图属性下</li>
+<li>启用非平面视图</li>
+<li>这会像展平的汤罐包装一样展开圆柱特征</li>
+<li>同样的技术也可应用于球体和其他形状</li>
+</ol>
+<h3>截图 [00:16:09]</h3>
+<p>要捕获您的工作：<br />
+1. 右键单击并选择"导出视图截图"<br />
+2. 根据需要调整大小（例如，4000像素）<br />
+3. 对于多个截图，使用多截图面板<br />
+4. 在工作时拖放图像<br />
+5. 全部导出到带有顺序编号的文件夹</p>
+<h2>分水岭分割 [00:18:06]</h2>
+<p>分水岭分割对于分离接触的纤维至关重要。它使用种子点工作，就像水从地形低点填充，直到边界相遇。</p>
+<h3>创建种子点 [00:19:35]</h3>
+<ol>
+<li>复制阈值处理后的纤维</li>
+<li>反转副本</li>
+<li>创建距离图（右键点击 → 创建映射 → 距离图）</li>
+<li>这会创建一个显示每个点到纤维边缘距离的图</li>
+<li>每个纤维的中心将具有最高值</li>
+</ol>
+<h3>准备地形</h3>
+<ol>
+<li>反转距离图（修改 → 变换 → 反转）</li>
+<li>这会创建一个地形，其中每个纤维的中心是最低点</li>
+<li>调整对比度以看到纤维中间较暗的部分</li>
+</ol>
+<h3>创建多ROI种子 [00:22:55]</h3>
+<ol>
+<li>使用种子点创建新的多ROI</li>
+<li>使用26连通性确保种子不连接</li>
+<li>每个种子将有单独的颜色/类别</li>
+</ol>
+<h3>应用分水岭变换 [00:23:24]</h3>
+<ol>
+<li>右键单击并选择"分水岭变换"</li>
+<li>使用反转的距离图作为地形</li>
+<li>使用原始纤维阈值作为掩码</li>
+<li>这将接触的纤维分离成单独的对象</li>
+</ol>
+<h2>纤维分析 [00:26:47]</h2>
+<p>一旦纤维被分离，您可以分析它们：</p>
+<h3>基本测量</h3>
+<ol>
+<li>右键单击并选择"标量生成器"</li>
+<li>选择基本测量如体积、phi和theta（角度）</li>
+<li>按体积排序以找到最大的纤维</li>
+</ol>
+<h3>方向分析 [00:27:54]</h3>
+<ol>
+<li>分析phi角（沿Z轴）和theta角（围绕Z轴）</li>
+<li>更改颜色查找表（例如，温度色图）</li>
+<li>垂直纤维显示为蓝色</li>
+<li>水平纤维显示为红色</li>
+<li>中间方向显示为绿色</li>
+<li>使用直方图分析纤维方向分布</li>
+<li>将结果导出为CSV以进行进一步分析</li>
+</ol>
+<h2>结论</h2>
+<p>在本教程中，我们介绍了各种用于纤维分析的分割技术，从基本阈值处理到高级分水岭分割。我们还探索了用于展开圆柱结构的形状工具，并对分离的纤维进行了方向分析。这些技术对于纤维增强材料和类似结构的定量分析非常有价值。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=kSRWO5r5QXU">July 2022 Workshop Video 4: Fiber segmentation and analysis</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-22 17:57:43 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>

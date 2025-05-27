@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在Dragonfly 2022.2软件中 CT重建的预处理 - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>在Dragonfly 2022.2软件中 CT重建的预处理 - (English)</h1>
+        <p>This tutorial demonstrates various image pre-processing techniques for CT reconstruction, showing how to improve reconstruction quality by applying methods such as flat field correction, wavelet-based ring artifact removal, median filtering, and beam hardening correction through practical examples of different sample types.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>CT Reconstruction Plugin Tutorial: Image Pre-Treatment Methods</h1>
+<h2>Introduction [00:00:04]</h2>
+<p>Welcome to the fourth and final video in our CT Reconstruction Plugin tutorial series. This tutorial will introduce methods for pre-treating images to improve reconstruction quality through three practical examples.</p>
+<h2>Example 1: Parallel Beam Projection Data [00:00:38]</h2>
+<p>Our first example uses parallel beam projection data from a micro-enhanced ceramic material that we've worked with in previous tutorials.</p>
+<h3>Examining the Projection Data</h3>
+<p>Before applying any pre-processing, let's observe the projection data to identify defects:</p>
+<ol>
+<li>Select all collection parameters and the reconstruction engine</li>
+<li>Find the rotation center bias</li>
+<li>Examine the projection without any processing</li>
+</ol>
+<p>When viewing the unprocessed projection, we can see serious rotation bias - a series of concentric circles where some are darker and some are brighter. This rotation bias occurs because:</p>
+<ul>
+<li>The X-ray response of the detector has low sensitivity</li>
+<li>Different detectors have varying sensitivity levels</li>
+<li>Some detectors may be broken</li>
+<li>The X-ray response of each detector may change over time during projection collection</li>
+</ul>
+<h3>Light Field Correction [00:02:42]</h3>
+<p>The most classic way to eliminate rotation bias is using light field correction. This requires two inputs:</p>
+<ul>
+<li><strong>Light field image</strong>: Captured when no object is present, just the X-ray beam hitting the detector</li>
+<li><strong>Dark field image</strong>: Captured when the current is zero (no X-ray), showing only detector noise</li>
+</ul>
+<p>These images allow us to make a linear correction of the data in our current projection, eliminating the sensitivity differences of each detector pixel.</p>
+<p><strong>Important note</strong>: Light field and dark field images must be obtained at the same time as your projection data. If you didn't collect these images, this correction cannot be applied.</p>
+<p>For our example:<br />
+- The light field consists of 30 images<br />
+- The dark field consists of 10 images<br />
+- Both should be in the original TIF image format before importing into DragonFlight software</p>
+<p>After applying light field correction and comparing with the uncorrected image, we can see that the previous obvious shadow rings are mostly eliminated, though some traces remain.</p>
+<h3>Wavelet-Fourier Method [00:07:04]</h3>
+<p>If you don't have light field and dark field images, you can use the wavelet-Fourier method to eliminate ring artifacts. This method uses:</p>
+<ul>
+<li><strong>Level</strong>: Refers to the level of the wavelet</li>
+<li><strong>Sigma</strong>: Represents the sum of numbers in Fourier space</li>
+<li><strong>Wavelet name</strong>: DB5 is typically the best option</li>
+</ul>
+<p>The choice of level and sigma parameters depends on your data. If your ring artifacts are narrow, use smaller values. If they're wider or have curves, use larger values.</p>
+<p>For our example, we'll use:<br />
+- Level: 2<br />
+- Sigma: 2<br />
+- Wavelet name: DB5</p>
+<p>After applying the wavelet correction and comparing with the uncorrected image, we can see this method is very effective - most ring artifacts have been removed with only slight traces remaining. This method may even be more effective than the light field correction in some cases.</p>
+<h3>Titarenko Method [00:11:25]</h3>
+<p>The third method is the Titarenko method, which also doesn't require light and dark field images. It has two parameters:</p>
+<ul>
+<li><strong>Number of blocks</strong></li>
+<li><strong>Alpha</strong> (sum of factors)</li>
+</ul>
+<p>For our example, we'll try a block number of 2. After applying this correction, most ring artifacts are eliminated effectively.</p>
+<h3>Median Filter [00:13:04]</h3>
+<p>For remaining noise or artifacts after applying the previous corrections, we can use a median filter. This filter:</p>
+<ul>
+<li>Takes a median value within a specified kernel</li>
+<li>Can reduce noise significantly</li>
+<li>May also make desired features less distinct (blurring effect)</li>
+</ul>
+<p>Parameters include:<br />
+- <strong>Kernel size</strong>: Size of the filter window<br />
+- <strong>Kernel shape</strong>: Square, round, or cross (square is commonly used)</p>
+<p>When applying a median filter with size 7 after light field correction, we can see the image becomes much smoother, but also significantly blurrier. This trade-off between noise reduction and feature preservation must be considered.</p>
+<h2>Example 2: Battery Data from North Star Imaging System [00:16:14]</h2>
+<p>For our second example, we'll use battery data obtained on the North Star Imaging System (thanks to Pratt &amp; Whitney for sharing this data).</p>
+<h3>Multi-Point Bright Field Correction [00:17:53]</h3>
+<p>This data requires a multi-point bright field correction. Unlike standard light/dark field correction with just two images, this method uses multiple points between the bright and dark fields:</p>
+<ul>
+<li>By changing the X-ray current in fixed steps, multiple images are captured</li>
+<li>This creates a "Gain Stack" - a series of images from brightest to darkest</li>
+<li>In our example, there are 7 images in the Gain Stack</li>
+</ul>
+<p>This multi-point correction makes the calibration more accurate than a simple two-point correction.</p>
+<h3>Bad Pixel Correction [00:19:49]</h3>
+<p>The North Star Imaging system also provides a defective pixel file that contains the X and Y coordinates of bad pixels in the image. Using this file, we can:</p>
+<ul>
+<li>Identify which points are defects in the image</li>
+<li>Replace defective pixel values with the average of surrounding pixels</li>
+</ul>
+<p>In our battery data, there's an obvious defect - a line of dark pixels that never change regardless of other adjustments.</p>
+<p>If your equipment manufacturer doesn't provide this function, you can manually identify bad pixels by:<br />
+1. Locating points in your projection that are always dark regardless of projection changes<br />
+2. Creating a ROI around these points<br />
+3. Using this ROI as your defective pixel map</p>
+<p>After applying both multi-point bright field correction and bad pixel correction, we can see significant improvement in the image quality:<br />
+- Ring artifacts are eliminated<br />
+- The image is clearer<br />
+- Background bands are removed</p>
+<h2>Example 3: Beam Hardening Correction [00:23:50]</h2>
+<p>For our third example, we'll demonstrate beam hardening correction using a complex engine part structure.</p>
+<h3>Beam Hardening Effects</h3>
+<p>Without correction, the image shows two main defects:<br />
+1. Cupping effect - lower intensity in the middle area compared to the edges<br />
+2. Ring-shaped shadows caused by beam hardening</p>
+<h3>Water Pre-Correction Method [00:24:52]</h3>
+<p>This correction uses the water pre-correction method from RTK, which performs a multi-dimensional linear fusion for our projection. The method:</p>
+<ul>
+<li>Uses five coefficients (0-4) representing different powers of the projection</li>
+<li>Combines these to replace the original projection data</li>
+<li>Creates a more uniform intensity across the image</li>
+</ul>
+<p>After applying the correction:<br />
+- Many band shadows are eliminated<br />
+- Brightness is more uniform across the image<br />
+- The cupping effect is significantly reduced</p>
+<p>We can verify this improvement by comparing intensity profiles before and after correction. The uncorrected profile shows a significant dip in the middle (cupping effect), while the corrected profile shows a much more uniform intensity across the entire area.</p>
+<h2>Additional Pre-Treatment Methods [00:28:58]</h2>
+<h3>Phase-Contrast Retrieval</h3>
+<p>This method uses code from TomoPi to perform phase retrieval and is commonly applied to biological materials. It requires three parameters:<br />
+- Detector pixel size<br />
+- Propagation distance (distance from object to detector)<br />
+- X-ray energy</p>
+<h3>Log Filter [00:30:22]</h3>
+<p>The Log filter is typically enabled by default because projection data usually has higher brightness in the background and is darker in the middle. The Log filter adjusts this to match our expectation that areas with less material should appear brighter.</p>
+<p>If your projection data has already been processed with a Log filter, you'll need to uncheck this option in the advanced processing settings to avoid double-processing.</p>
+<h2>Conclusion [00:31:40]</h2>
+<p>This tutorial has covered various image pre-treatment methods to improve CT reconstruction quality:</p>
+<ol>
+<li>Light field correction for detector sensitivity variations</li>
+<li>Wavelet-Fourier method for ring artifact removal</li>
+<li>Titarenko method as an alternative ring correction</li>
+<li>Median filtering for noise reduction</li>
+<li>Multi-point bright field correction for more accurate calibration</li>
+<li>Bad pixel correction for detector defects</li>
+<li>Beam hardening correction for cupping artifacts</li>
+<li>Phase-contrast retrieval for specialized applications</li>
+<li>Log filtering for proper intensity representation</li>
+</ol>
+<p>By applying these pre-treatment methods appropriately, you can significantly enhance the quality of your CT reconstructions, leading to more accurate analysis and visualization of your data.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=2kpCy4nwjk8">在Dragonfly 2022.2软件中 CT重建的预处理</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 10:54:49 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/2kpCy4nwjk8"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultrastructural Insights into Cytoskeletal Filament Arrangement in Neuronal Growth Cones - English Tutorial</title>
+    <link rel="stylesheet" href="/dragonfly3dworld/design.css">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>Ultrastructural Insights into Cytoskeletal Filament Arrangement in Neuronal Growth Cones - (English)</h1>
+        <p>This presentation explores how deep learning techniques are being applied to analyze cryo-electron tomography data of neuronal growth cones, enabling the efficient segmentation and identification of different cytoskeletal filaments and proteins that would be impossible to process manually due to the data's complexity and noise.</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h2>Introduction to Cryo-Electron Tomography in Neuron Development [00:00:03]</h2>
+<p>This presentation explores the application of cryo-electron tomography and deep learning to study neuronal growth cones. The research focuses on analyzing the cytoskeletal filament arrangements in developing neurons, particularly examining how different actin structures contribute to neuronal guidance and development.</p>
+<h2>Understanding Neuronal Growth Cones [00:01:28]</h2>
+<p>Growth cones are highly specialized structures at the tips of developing neurons that serve as the guidance machinery. These dynamic structures are responsible for:</p>
+<ul>
+<li>Sensing extracellular chemical cues</li>
+<li>Responding to tactile stimuli</li>
+<li>Guiding the neuron to its synaptic target</li>
+</ul>
+<p>Growth cones have distinct regions:<br />
+- An outer region containing filipodia (bundled actin) and lamellipodia (branched actin)<br />
+- A transition zone with mixed actin and microtubules<br />
+- A central zone containing organelles, microtubules, and translational machinery</p>
+<p>These structures are extremely dynamic, with filipodia extending and collapsing rapidly as they encounter extracellular cues. Growth cones can quickly change direction in response to their environment, making them fascinating subjects for study.</p>
+<h2>Cryo-Electron Tomography Methods [00:03:50]</h2>
+<p>Cryo-electron tomography (cryo-ET) is particularly well-suited for studying growth cones because:</p>
+<ul>
+<li>Growth cones are approximately 100nm thick at their thickest point</li>
+<li>Cryo-ET requires samples thinner than 300nm</li>
+</ul>
+<p>The principle of cryo-ET involves:<br />
+1. Embedding samples in vitreous ice (water frozen so quickly it cannot form crystals)<br />
+2. Tilting the sample between approximately +60° and -60° degrees<br />
+3. Collecting 2D projection images at different angles<br />
+4. Back-projecting these images to create a 3D volume</p>
+<p>Unlike CT scanners that can rotate 360° around a sample, in cryo-ET both the electron gun and detector remain stationary while the sample tilts. This creates a "missing wedge" of data, which presents challenges for reconstruction and analysis.</p>
+<p>The imaging scale is extremely precise:<br />
+- Each electron grid is approximately 3mm in diameter<br />
+- A typical grid contains around 150 cells<br />
+- Each tomogram captures a very small region of a single cell</p>
+<h2>Discovery of Different Actin Filament Types [00:05:26]</h2>
+<p>Through cryo-ET imaging, the research team identified two distinct types of actin filaments in neuronal growth cones:</p>
+<ol>
+<li>Normal actin filaments with the expected helical pitch of 36 nanometers</li>
+<li>A different type of filament with a much shorter helical pitch, more twisted and broader in appearance</li>
+</ol>
+<p>Through sub-tomogram averaging and extensive analysis, the team determined that the second type was actin decorated with cofilin, an actin-binding protein. This was surprising because:</p>
+<ul>
+<li>Cofilin is canonically known as an actin-severing protein</li>
+<li>The team observed it fully decorating stable filaments</li>
+<li>This phenomenon is commonly described in Alzheimer's disease pathology but not in normal developing neurons</li>
+</ul>
+<h2>Cofilin and Fasen Distribution Analysis [00:07:25]</h2>
+<p>Further investigation using fluorescent labeling revealed:</p>
+<ul>
+<li>Fasen (an actin bundling protein) and cofilin bind mutually exclusively along filipodia</li>
+<li>There's a clear transition zone between cofilin-decorated actin and Fasen-decorated actin</li>
+<li>The location of this transition zone affects filipodia movement:</li>
+<li>When behind the lamellipodial veil, the base of the filament moves more</li>
+<li>When in front of the veil, the tip of the filipodia moves more</li>
+</ul>
+<p>The team's hypothesis is that cofilin binding creates "tunable hinge points" that provide flexibility to the filaments, facilitating their searching behavior as growth cones look for synaptic targets.</p>
+<h2>Deep Learning for Tomogram Segmentation [00:09:31]</h2>
+<p>The challenge of manually segmenting the dense actin mesh in hundreds of tomograms led to exploring deep learning approaches. Initial attempts faced difficulties due to:</p>
+<ul>
+<li>Extremely noisy data inherent to cryo-electron tomography</li>
+<li>Imaging artifacts from the missing wedge of data</li>
+<li>Anisotropy in signal and structures</li>
+</ul>
+<p>Hand segmentation proved impractical for meaningful analysis of the extensive dataset, and initial deep learning attempts with limited training data were unsuccessful.</p>
+<h2>Simulating Data for Better Training [00:11:54]</h2>
+<p>To overcome training limitations, the team developed a MATLAB-based simulation program to create synthetic cryo-tomographic data:</p>
+<ol>
+<li>Starting with protein model structures (high-resolution)</li>
+<li>Generating density maps</li>
+<li>Simulating realistic cryo-tomogram features including:</li>
+<li>Electron dose</li>
+<li>Radiation damage</li>
+<li>Detector characteristics</li>
+<li>Missing wedge artifacts</li>
+</ol>
+<p>This approach allowed the generation of fake data with perfect ground truth for training. The simulation produces:<br />
+- Realistic-looking tomograms<br />
+- An atlas with different intensities for each protein type<br />
+- One-click ground truth generation for training</p>
+<h2>Hybrid Training Strategy and Results [00:14:24]</h2>
+<p>The team discovered that while training exclusively on simulated data worked well for distinguishing cofilin-actin from regular actin, it was less effective for segmenting whole cellular tomograms with multiple protein types.</p>
+<p>A hybrid approach proved most effective:<br />
+- Combining a small amount of real data with large amounts of simulated data<br />
+- This resulted in a network that could segment whole cellular tomograms in about 20 minutes<br />
+- The model proved robust across hundreds of growth cone tomograms</p>
+<p>The trained model enables:<br />
+- Rapid segmentation of densely packed tomograms containing microtubules, ribosomes, and actin filaments<br />
+- Quantification of protein distribution and associations at high resolution<br />
+- Analysis across whole cells with multiple tomograms</p>
+<h2>New Biological Insights and Cross-Species Application [00:16:33]</h2>
+<p>The deep learning approach has already revealed new biological insights:</p>
+<ol>
+<li>
+<p>TRIC protein (a chaperone for tubulin and actin monomers) appears clustered together regularly, suggesting potential self-association or interaction with other proteins</p>
+</li>
+<li>
+<p>Identification of tubulin rings in the data:</p>
+</li>
+<li>These may be breakdown products or pools of monomers for building more filaments</li>
+<li>
+<p>The network can now quickly identify these structures across all datasets</p>
+</li>
+<li>
+<p>Cross-species applicability:</p>
+</li>
+<li>The network trained on rat hippocampal neurons works effectively on mouse neurons and human RP1 cells</li>
+<li>This demonstrates robust inferability across species</li>
+</ol>
+<h2>Conclusion [00:19:26]</h2>
+<p>The combination of cryo-electron tomography and deep learning has enabled unprecedented analysis of neuronal growth cone structures. By overcoming the challenges of noisy data and manual segmentation, the team has created tools that allow for rapid, accurate identification of cellular components across large datasets.</p>
+<p>This approach not only accelerates research but also reveals new insights into neuronal development that would be impossible to discover through manual analysis alone. The cross-species applicability of the trained models suggests broad utility for the neuroscience research community.</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=v1B7Fa6FYjs">Ultrastructural Insights into Cytoskeletal Filament Arrangement in Neuronal Growth Cones</a></li>
+<li>Language: English</li>
+<li>Processed on: 2025-04-22 09:10:51 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            <div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/v1B7Fa6FYjs"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: Dragonfly</p>
+        <a href="https://x.com/ai_dragonfly" target="_blank">Twitter/X</a>
+        <p>&copy; 2025 copyright</p>
+    </footer>
+
+    <script src="/dragonfly3dworld/interactive.js"></script>
+</body>
+</html>

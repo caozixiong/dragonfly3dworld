@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_path }}">
+    <link href="https://cdn.jsdelivr.net/npm/HarmonyOS_Sans_SC@1.0.3/HarmonyOS_Sans_SC.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 高宽比 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Mode</button>
+
+    <div class="container">
+        <h1>{{ header }}</h1>
+        <p>{{ intro_text }}</p>
+
+        <div class="card">
+            <h2>Tutorial Content</h2>
+            <h1>Dragonfly 2020.1中的工作流程、向导和报告</h1>
+<h2>介绍 [00:00:00]</h2>
+<p>欢迎来到Dragonfly Daily。这是第35课，重点介绍Dragonfly 2020.1中的工作流程、向导和报告。本教程将演示如何使用Dragonfly的报告引擎，以及如何通过向导基础设施启用工作流程。</p>
+<h2>报告引擎 [00:01:04]</h2>
+<p>Dragonfly开发了一个报告引擎，使您能够以标准化和用户友好的方式轻松捕获分析信息。报告引擎允许：</p>
+<ul>
+<li>可定制的报告模板</li>
+<li>捕获标量值（例如，骨骼分析中的小梁厚度）</li>
+<li>包含测量表格</li>
+<li>添加直方图、图表和截图</li>
+<li>根据分析需求灵活组织部分</li>
+</ul>
+<p>报告系统设计为适应不同的分析场景。例如，在进行骨骼分析时，您可能在一份报告中包含各向异性部分，但在另一份报告中仅包含小梁厚度和间距。</p>
+<h3>XML数据结构</h3>
+<p>报告引擎使用的XML数据结构是：<br />
+- 灵活且可扩展的<br />
+- 能够编码所有报告数据<br />
+- 可通过编程访问</p>
+<p>工作流程是：<br />
+1. Dragonfly扩展和插件生成包含报告数据的XML数据结构<br />
+2. 使用XSL（可扩展样式表语言）转换将XML数据转换为PDF</p>
+<p>这种方法提供了几个优势：<br />
+- 您可以随时间生成多份报告并将其存储为XML<br />
+- 通过修改样式表可以更改报告格式，而无需重新生成数据<br />
+- XML数据可以重新用于其他用途（数据库、HTML网站等）</p>
+<h3>报告生成器工具</h3>
+<p>在Dragonfly 2020.1中，您可以在实用工具菜单下找到报告生成器。这个简单的工具允许您：<br />
+- 指定XML文件<br />
+- 指定XSLT转换<br />
+- 输入有关报告的关键信息<br />
+- 设置输出文件名<br />
+- 生成报告</p>
+<h2>骨骼分析向导示例 [00:07:08]</h2>
+<p>让我们使用骨骼分析向导演示报告系统：</p>
+<h3>步骤1：分割骨骼图像 [00:08:47]</h3>
+<ol>
+<li>通过右键单击骨骼样本并选择"骨骼分析向导"来打开骨骼分析向导</li>
+<li>使用Define Range Upper O2创建初始分割</li>
+<li>将分割添加到选定的骨骼ROI</li>
+<li>通过指定最大孔洞大小（例如，150微米）填充骨骼表面的任何间隙</li>
+<li>点击"填充"处理分割</li>
+</ol>
+<p>向导执行几项操作，包括：<br />
+- 距离图操作<br />
+- 闭合操作<br />
+- 孔洞填充操作</p>
+<h3>步骤2：分割皮质骨和小梁骨 [00:11:49]</h3>
+<ol>
+<li>选择分割方法（Bowie或Kohler）</li>
+<li>设置小梁厚度参数（例如，55微米）</li>
+<li>点击"分割"将骨骼分为皮质和小梁区域</li>
+</ol>
+<p>分割遵循已发表的算法，使用数学形态学操作来确定哪些像素应标记为皮质骨，哪些应标记为小梁骨。</p>
+<h3>步骤3：全局测量 [00:15:57]</h3>
+<ol>
+<li>选择要计算的测量（例如，小梁厚度，BVTV）</li>
+<li>点击"计算测量"</li>
+<li>在表格中查看结果</li>
+</ol>
+<h3>步骤4：计算标量和矢量场 [00:17:17]</h3>
+<p>此步骤允许您计算其他测量，如各向异性和映射测量。</p>
+<h3>步骤5：生成报告 [00:17:31]</h3>
+<ol>
+<li>输入项目信息：</li>
+<li>项目标题（例如，"药物X研究"）</li>
+<li>样本标识符（例如，"对照骨33"）</li>
+<li>
+<p>分析描述</p>
+</li>
+<li>
+<p>添加要包含在报告中的截图：</p>
+</li>
+<li>将视图拖到多重截图面板</li>
+<li>
+<p>为每个截图添加元数据和标题</p>
+</li>
+<li>
+<p>点击"生成"创建报告</p>
+</li>
+</ol>
+<h2>报告输出 [00:19:59]</h2>
+<p>生成的PDF报告包括：<br />
+- 带有项目信息的徽标和标题<br />
+- 标题、项目名称、作业ID、日期和作者身份<br />
+- 表格格式的全局测量<br />
+- 带有标题和描述的截图</p>
+<p>通过修改XSLT转换，报告格式是可定制的。底层XML文件包含所有数据和对截图的引用，使其易于被其他程序访问或用于聚合多个报告的数据。</p>
+<h2>扩展报告框架 [00:22:37]</h2>
+<p>当前实现允许Dragonfly生成XML文件并将其转码为PDF。用户可以：<br />
+- 编写自己的代码来处理XML文件<br />
+- 创建自定义报告插件<br />
+- 聚合多个报告的数据<br />
+- 将报告转换为其他格式，如HTML</p>
+<p>目前，报告引擎内置支持骨骼分析和插件分析，但该框架可以通过自定义扩展扩展到其他应用程序。</p>
+<h2>结论</h2>
+<p>Dragonfly报告引擎提供了一个灵活的框架，用于捕获和呈现分析结果。结合引导用户完成工作流程的向导，它创建了一个强大的系统，用于标准化分析程序和记录结果。基于XML的方法确保报告可以轻松定制，数据可以重新用于各种需求。</p>
+        </div>
+
+        <div class="card">
+            <h2>Source of Information</h2>
+            <ul>
+<li>Original YouTube video: <a href="https://www.youtube.com/watch?v=LXzewzFHq4A">Dragonfly Daily 35 Workflows, Wizards, and Reports in Dragonfly (2020)</a></li>
+<li>Language: Chinese</li>
+<li>Processed on: 2025-04-23 13:43:02 Eastern Daylight Time</li>
+<li>Processing Tool: Custom Python Script</li>
+</ul>
+            
+            <!-- YouTube Video Embed (if available) -->
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Author: {{ footer.author }}</p>
+        <a href="{{ footer.social_link }}" target="_blank">{{ footer.social_text }}</a>
+        <p>&copy; {{ footer.copyright_year }} {{ footer.copyright_text }}</p>
+    </footer>
+
+    <script src="{{ js_path }}"></script>
+</body>
+</html>
