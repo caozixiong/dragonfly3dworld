@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index of Dragonfly Video Tutorials</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --hover-color: #e9ecef;
+            --border-color: #dee2e6;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+        
+        .search-container {
+            margin-bottom: 20px;
+        }
+        
+        #search-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        
+        .pages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .page-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .page-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: var(--hover-color);
+        }
+        
+        .page-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .page-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: block;
+            width: 100%;
+        }
+        
+        .page-link:hover {
+            text-decoration: underline;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .last-updated {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .alpha-index {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 8px;
+        }
+        
+        .alpha-index a {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .alpha-index a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .alpha-letter {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+            scroll-margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Index of Dragonfly Video Tutorials</h1>
+        
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="搜索页面..." autocomplete="off">
+        </div>
+        
+        <div id="pages-container" class="pages-list">
+            <!-- 页面列表将由Python脚本动态生成 -->
+            <div class="alpha-index"><a href="#letter-A">A</a><a href="#letter-C">C</a><a href="#letter-D">D</a><a href="#letter-H">H</a><a href="#letter-I">I</a><a href="#letter-J">J</a><a href="#letter-M">M</a><a href="#letter-N">N</a><a href="#letter-O">O</a><a href="#letter-P">P</a><a href="#letter-Q">Q</a><a href="#letter-S">S</a><a href="#letter-T">T</a><a href="#letter-U">U</a><a href="#letter-V">V</a><a href="#letter-W">W</a><a href="#letter-在">在</a><a href="#letter-#">#</a></div><div id="letter-A" class="letter-group"><div class="alpha-letter" id="letter-A">A</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-A Natural History Perspective_ Micro-CT Scanning at the University of Michigan Museum of Zoology-English.html" class="page-link">A Natural History Perspective: Micro-CT Scanning at the University of Michigan Museum of Zoology - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Additive Manufacturing Powder Characterization Using Dragonfly-Chinese.html" class="page-link">Additive Manufacturing Powder Characterization Using Dragonfly - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Additive Manufacturing Powder Characterization Using Dragonfly-English.html" class="page-link">Additive Manufacturing Powder Characterization Using Dragonfly - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Automation of NDT Inspection by Dragonfly Scripting and HPC Batch Processing-English.html" class="page-link">Automation of NDT Inspection by Dragonfly Scripting and HPC Batch Processing - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-C" class="letter-group"><div class="alpha-letter" id="letter-C">C</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-CAD Deviation of Additive Manufacturing Bracket Using Dragonfly-English.html" class="page-link">CAD Deviation of Additive Manufacturing Bracket Using Dragonfly - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Computed Tomography for Industrial Inspection and Quality Control Powered by Dragonfly Software-English.html" class="page-link">Computed Tomography for Industrial Inspection and Quality Control Powered by Dragonfly Software - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Cone Beam CT Reconstruction in Dragonfly 2022.2-English.html" class="page-link">Cone Beam CT Reconstruction in Dragonfly 2022.2 - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Crack Identification and Segmentation for NDT Using Dragonfly How-To Video-Chinese.html" class="page-link">Crack Identification and Segmentation for NDT Using Dragonfly How-To Video - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Crack Identification and Segmentation for NDT Using Dragonfly How-To Video-English.html" class="page-link">Crack Identification and Segmentation for NDT Using Dragonfly How-To Video - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Creating a volume-of-interest using Active Contour tool-Chinese.html" class="page-link">Creating a volume-of-interest using Active Contour tool - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Creating a volume-of-interest using Active Contour tool-English.html" class="page-link">Creating a volume-of-interest using Active Contour tool - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-D" class="letter-group"><div class="alpha-letter" id="letter-D">D</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Decoding the Fossil Record_ The Benefits of AI in the Segmentation of Fossils-English.html" class="page-link">Decoding the Fossil Record: The Benefits of AI in the Segmentation of Fossils - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Dragonfly 2022.2 Feature _ Volume meshing of a walnut-English.html" class="page-link">Dragonfly 2022.2 Feature : Volume meshing of a walnut - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Dragonfly 3D World _ AI solutions for individual battery anode-cathode overhang analysis-Chinese.html" class="page-link">Dragonfly 3D World | AI solutions for individual battery anode-cathode overhang analysis - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Dragonfly 3D World _ AI solutions for individual battery anode-cathode overhang analysis-English.html" class="page-link">Dragonfly 3D World | AI solutions for individual battery anode-cathode overhang analysis - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Dragonfly Daily 35 Workflows, Wizards, and Reports in Dragonfly (2020)-English.html" class="page-link">Dragonfly Daily 35 Workflows, Wizards, and Reports in Dragonfly (2020) - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Dragonfly Daily 36 CT Reconstruction in Dragonfly (2020)-English.html" class="page-link">Dragonfly Daily 36 CT Reconstruction in Dragonfly (2020) - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Dragonfly Daily 37 Distance Mapping in Dragonfly (2020)-Chinese.html" class="page-link">Dragonfly Daily 37 Distance Mapping in Dragonfly (2020) - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Dragonfly Daily 37 Distance Mapping in Dragonfly (2020)-English.html" class="page-link">Dragonfly Daily 37 Distance Mapping in Dragonfly (2020) - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Dragonfly Daily 38 Watershed Transform in Dragonfly (2020)-Chinese.html" class="page-link">Dragonfly Daily 38 Watershed Transform in Dragonfly (2020) - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Dragonfly Daily 38 Watershed Transform in Dragonfly (2020)-English.html" class="page-link">Dragonfly Daily 38 Watershed Transform in Dragonfly (2020) - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Dragonfly Daily 39 Cylinder Coordinate Transform in Dragonfly (2020)-English.html" class="page-link">Dragonfly Daily 39 Cylinder Coordinate Transform in Dragonfly (2020) - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-H" class="letter-group"><div class="alpha-letter" id="letter-H">H</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-How to use a pretrained deep learning model for additive manufacturing porosity-Chinese.html" class="page-link">How to use a pretrained deep learning model for additive manufacturing porosity - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-How to use a pretrained deep learning model for additive manufacturing porosity-English.html" class="page-link">How to use a pretrained deep learning model for additive manufacturing porosity - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-How-to video_ CT based porosity analysis of concrete using Dragonfly-English.html" class="page-link">How-to video: CT based porosity analysis of concrete using Dragonfly - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-How-to video_ CT image analysis for battery inspection using Dragonfly-Chinese.html" class="page-link">How-to video: CT image analysis for battery inspection using Dragonfly - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-How-to video_ CT image analysis for battery inspection using Dragonfly-English.html" class="page-link">How-to video: CT image analysis for battery inspection using Dragonfly - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-I" class="letter-group"><div class="alpha-letter" id="letter-I">I</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Image Import in Dragonfly-English.html" class="page-link">Image Import in Dragonfly - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-In Vivo and Specimen Imaging at the Center for Molecular and Genomic Imaging-English.html" class="page-link">In Vivo and Specimen Imaging at the Center for Molecular and Genomic Imaging - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-J" class="letter-group"><div class="alpha-letter" id="letter-J">J</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 0_ Introduction-English.html" class="page-link">July 2022 Workshop Video 0: Introduction - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 10_ Segmentation Wizard Part 2-English.html" class="page-link">July 2022 Workshop Video 10: Segmentation Wizard Part 2 - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 11_ Deep learning tool-Chinese.html" class="page-link">July 2022 Workshop Video 11: Deep learning tool - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 11_ Deep learning tool-English.html" class="page-link">July 2022 Workshop Video 11: Deep learning tool - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 13_ Video maker using chameleon head-Chinese.html" class="page-link">July 2022 Workshop Video 13: Video maker using chameleon head - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 13_ Video maker using chameleon head-English.html" class="page-link">July 2022 Workshop Video 13: Video maker using chameleon head - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 1_ Basics of Dragonfly using a lego figurine-English.html" class="page-link">July 2022 Workshop Video 1: Basics of Dragonfly using a lego figurine - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 2_ correlative imaging of a mite-Chinese.html" class="page-link">July 2022 Workshop Video 2: correlative imaging of a mite - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 2_ correlative imaging of a mite-English.html" class="page-link">July 2022 Workshop Video 2: correlative imaging of a mite - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 3_ Porosity of a cube of additively manufactured metal-English.html" class="page-link">July 2022 Workshop Video 3: Porosity of a cube of additively manufactured metal - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 4_ Fiber segmentation and analysis-English.html" class="page-link">July 2022 Workshop Video 4: Fiber segmentation and analysis - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 5_ Histographic segmentation and bracket mesh registration-Chinese.html" class="page-link">July 2022 Workshop Video 5: Histographic segmentation and bracket mesh registration - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 5_ Histographic segmentation and bracket mesh registration-English.html" class="page-link">July 2022 Workshop Video 5: Histographic segmentation and bracket mesh registration - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 6_ vector fields, graphs and Porous Microstructure Analysis (PuMA)-English.html" class="page-link">July 2022 Workshop Video 6: vector fields, graphs and Porous Microstructure Analysis (PuMA) - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 7_ Deep learning de-noising using Noise2Void-English.html" class="page-link">July 2022 Workshop Video 7: Deep learning de-noising using Noise2Void - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 8_ Machine learning segmentation of a 3-horned chameleon-Chinese.html" class="page-link">July 2022 Workshop Video 8: Machine learning segmentation of a 3-horned chameleon - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 8_ Machine learning segmentation of a 3-horned chameleon-English.html" class="page-link">July 2022 Workshop Video 8: Machine learning segmentation of a 3-horned chameleon - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 9_ Segmentation Wizard part 1-Chinese.html" class="page-link">July 2022 Workshop Video 9: Segmentation Wizard part 1 - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 9_ Segmentation Wizard part 1-English.html" class="page-link">July 2022 Workshop Video 9: Segmentation Wizard part 1 - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July Workshop Video 12_ Deep learning tool regression model-Chinese.html" class="page-link">July Workshop Video 12: Deep learning tool regression model - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July Workshop Video 12_ Deep learning tool regression model-English.html" class="page-link">July Workshop Video 12: Deep learning tool regression model - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-M" class="letter-group"><div class="alpha-letter" id="letter-M">M</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Mapping Trabecular Bone Anisotropy in 3D_ A Tool to Decipher Loading History of Bones using MicroCT-English.html" class="page-link">Mapping Trabecular Bone Anisotropy in 3D: A Tool to Decipher Loading History of Bones using MicroCT - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-N" class="letter-group"><div class="alpha-letter" id="letter-N">N</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-New features_ image quality metrics-Chinese.html" class="page-link">New features: image quality metrics - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-New features_ image quality metrics-English.html" class="page-link">New features: image quality metrics - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-New features_ Intensity calibration _ bone mineral density calibration-Chinese.html" class="page-link">New features: Intensity calibration / bone mineral density calibration - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-New features_ Intensity calibration _ bone mineral density calibration-English.html" class="page-link">New features: Intensity calibration / bone mineral density calibration - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Non-Planar View for Dewarping tutorial-Chinese.html" class="page-link">Non-Planar View for Dewarping tutorial - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Non-Planar View for Dewarping tutorial-English.html" class="page-link">Non-Planar View for Dewarping tutorial - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-O" class="letter-group"><div class="alpha-letter" id="letter-O">O</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-ORS launches Dragonfly VizServer for simple and productive remote-access scientific visualization-English.html" class="page-link">ORS launches Dragonfly VizServer for simple and productive remote-access scientific visualization - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-P" class="letter-group"><div class="alpha-letter" id="letter-P">P</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Parallel Beam CT Reconstruction in Dragonfly 2022.2-English.html" class="page-link">Parallel Beam CT Reconstruction in Dragonfly 2022.2 - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Porosity Quantification for Additive Manufacturing How-to Using Dragonfly-English.html" class="page-link">Porosity Quantification for Additive Manufacturing How-to Using Dragonfly - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Preprocessing Filters in CT Reconstruction in Dragonfly 2022.2-English.html" class="page-link">Preprocessing Filters in CT Reconstruction in Dragonfly 2022.2 - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Pretrained Models Unleashed_ A Case Study With Bone MicroCT Data-English.html" class="page-link">Pretrained Models Unleashed: A Case Study With Bone MicroCT Data - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-Q" class="letter-group"><div class="alpha-letter" id="letter-Q">Q</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Quality Control of an Additive Manufacturing Artifact Using Dragonfly-English.html" class="page-link">Quality Control of an Additive Manufacturing Artifact Using Dragonfly - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-S" class="letter-group"><div class="alpha-letter" id="letter-S">S</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Segmentation and Analysis of Cellular Ultrastructure of Retinal Pigment Epithelium (RPE)-English.html" class="page-link">Segmentation and Analysis of Cellular Ultrastructure of Retinal Pigment Epithelium (RPE) - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Spatial Quantification of Microstructural Degradation in Lithium-Ion Batteries By Operando X-Ray CT-English.html" class="page-link">Spatial Quantification of Microstructural Degradation in Lithium-Ion Batteries By Operando X-Ray CT - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-T" class="letter-group"><div class="alpha-letter" id="letter-T">T</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Three-Dimensional Visualization of Bone Tissue Vascular and Cellular Spaces-Chinese.html" class="page-link">Three-Dimensional Visualization of Bone Tissue Vascular and Cellular Spaces - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Three-Dimensional Visualization of Bone Tissue Vascular and Cellular Spaces-English.html" class="page-link">Three-Dimensional Visualization of Bone Tissue Vascular and Cellular Spaces - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Turbine Blade Segmentation Using Dragonfly Deep Learning - a Simple _How-To_ Video-English.html" class="page-link">Turbine Blade Segmentation Using Dragonfly Deep Learning - a Simple "How-To" Video - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-U" class="letter-group"><div class="alpha-letter" id="letter-U">U</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Ultrastructural Insights into Cytoskeletal Filament Arrangement in Neuronal Growth Cones-English.html" class="page-link">Ultrastructural Insights into Cytoskeletal Filament Arrangement in Neuronal Growth Cones - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Use of Pseudo-DXA Images for Osteoporotic Fracture Prevention-English.html" class="page-link">Use of Pseudo-DXA Images for Osteoporotic Fracture Prevention - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Using the Segmentation Wizard tool to train a Deep Learning model for your image segmentation tasks-Chinese.html" class="page-link">Using the Segmentation Wizard tool to train a Deep Learning model for your image segmentation tasks. - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Using the Segmentation Wizard tool to train a Deep Learning model for your image segmentation tasks-English.html" class="page-link">Using the Segmentation Wizard tool to train a Deep Learning model for your image segmentation tasks. - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-V" class="letter-group"><div class="alpha-letter" id="letter-V">V</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-View a 3D micro-CT image of a mouse and hide_remove the bed-Chinese.html" class="page-link">View a 3D micro-CT image of a mouse and hide/remove the bed - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-View a 3D micro-CT image of a mouse and hide_remove the bed-English.html" class="page-link">View a 3D micro-CT image of a mouse and hide/remove the bed - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Volume Rendering with ORS Dragonfly imaging software-Chinese.html" class="page-link">Volume Rendering with ORS Dragonfly imaging software - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Volume Rendering with ORS Dragonfly imaging software-English.html" class="page-link">Volume Rendering with ORS Dragonfly imaging software - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-W" class="letter-group"><div class="alpha-letter" id="letter-W">W</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Whats New in Dragonfly 2021.3 webinar-English.html" class="page-link">What's New in Dragonfly 2021.3 webinar - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-在" class="letter-group"><div class="alpha-letter" id="letter-在">在</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-在Dragonfly 2022.2软件中 CT重建的几何校正-English.html" class="page-link">在Dragonfly 2022.2软件中 CT重建的几何校正 - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-在Dragonfly 2022.2软件中 CT重建的预处理-English.html" class="page-link">在Dragonfly 2022.2软件中 CT重建的预处理 - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-在Dragonfly 2022.2软件中重建平行束CT图像-English.html" class="page-link">在Dragonfly 2022.2软件中重建平行束CT图像 - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-在Dragonfly 2022.2软件中重建锥束CT图像-Chinese.html" class="page-link">在Dragonfly 2022.2软件中重建锥束CT图像 - Chinese Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-在Dragonfly 2022.2软件中重建锥束CT图像-English.html" class="page-link">在Dragonfly 2022.2软件中重建锥束CT图像 - English Tutorial</a>
+                        </div>
+                    </div></div><div id="letter-#" class="letter-group"><div class="alpha-letter" id="letter-#">#</div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-3D Porosity Analysis in Archaeological Ceramics to Reconstruct Production Methods and Performance-English.html" class="page-link">3D Porosity Analysis in Archaeological Ceramics to Reconstruct Production Methods and Performance - English Tutorial</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-3D Porosity Analysis in Archaeological Ceramics to Reconstruct Production Methods and Performance-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-A Natural History Perspective_ Micro-CT Scanning at the University of Michigan Museum of Zoology-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Automation of NDT Inspection by Dragonfly Scripting and HPC Batch Processing-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-CAD Deviation of Additive Manufacturing Bracket Using Dragonfly-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Computed Tomography for Industrial Inspection and Quality Control Powered by Dragonfly Software-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Cone Beam CT Reconstruction in Dragonfly 2022.2-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Decoding the Fossil Record_ The Benefits of AI in the Segmentation of Fossils-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Dragonfly 2022.2 Feature _ Volume meshing of a walnut-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Dragonfly Daily 35 Workflows, Wizards, and Reports in Dragonfly (2020)-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Dragonfly Daily 36 CT Reconstruction in Dragonfly (2020)-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Dragonfly Daily 39 Cylinder Coordinate Transform in Dragonfly (2020)-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-How-to video_ CT based porosity analysis of concrete using Dragonfly-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Image Import in Dragonfly-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-In Vivo and Specimen Imaging at the Center for Molecular and Genomic Imaging-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 0_ Introduction-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 10_ Segmentation Wizard Part 2-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 1_ Basics of Dragonfly using a lego figurine-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 3_ Porosity of a cube of additively manufactured metal-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 4_ Fiber segmentation and analysis-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 6_ vector fields, graphs and Porous Microstructure Analysis (PuMA)-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-July 2022 Workshop Video 7_ Deep learning de-noising using Noise2Void-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Mapping Trabecular Bone Anisotropy in 3D_ A Tool to Decipher Loading History of Bones using MicroCT-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-ORS launches Dragonfly VizServer for simple and productive remote-access scientific visualization-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Parallel Beam CT Reconstruction in Dragonfly 2022.2-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Porosity Quantification for Additive Manufacturing How-to Using Dragonfly-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Preprocessing Filters in CT Reconstruction in Dragonfly 2022.2-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Pretrained Models Unleashed_ A Case Study With Bone MicroCT Data-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Quality Control of an Additive Manufacturing Artifact Using Dragonfly-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Segmentation and Analysis of Cellular Ultrastructure of Retinal Pigment Epithelium (RPE)-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Spatial Quantification of Microstructural Degradation in Lithium-Ion Batteries By Operando X-Ray CT-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Turbine Blade Segmentation Using Dragonfly Deep Learning - a Simple _How-To_ Video-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Ultrastructural Insights into Cytoskeletal Filament Arrangement in Neuronal Growth Cones-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Use of Pseudo-DXA Images for Osteoporotic Fracture Prevention-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-Whats New in Dragonfly 2021.3 webinar-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-在Dragonfly 2022.2软件中 CT重建的几何校正-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-在Dragonfly 2022.2软件中 CT重建的预处理-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-title">
+                            <a href="Tutorial-在Dragonfly 2022.2软件中重建平行束CT图像-Chinese.html" class="page-link">{{ title }}</a>
+                        </div>
+                    </div></div>
+        </div>
+        
+        <div class="last-updated">
+            最后更新时间: 2025年05月27日 07:37:03
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search-input');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                let visibleCount = 0;
+                
+                // 隐藏所有字母分组标题
+                document.querySelectorAll('.alpha-letter').forEach(letter => {
+                    letter.style.display = 'none';
+                });
+                
+                // 过滤卡片
+                document.querySelectorAll('.page-card').forEach(card => {
+                    const title = card.querySelector('.page-title').textContent.toLowerCase();
+                    if (title.includes(searchTerm)) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                        
+                        // 如果有可见卡片，显示其所属的字母分组
+                        const letterGroup = card.closest('.letter-group');
+                        if (letterGroup) {
+                            const letterHeader = letterGroup.querySelector('.alpha-letter');
+                            if (letterHeader) {
+                                letterHeader.style.display = 'block';
+                            }
+                        }
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // 显示"无结果"消息
+                let noResultsElement = document.querySelector('.no-results');
+                if (visibleCount === 0 && searchTerm !== '') {
+                    if (!noResultsElement) {
+                        const message = document.createElement('div');
+                        message.className = 'no-results';
+                        message.textContent = '没有匹配的结果';
+                        document.getElementById('pages-container').appendChild(message);
+                    }
+                } else if (noResultsElement) {
+                    noResultsElement.remove();
+                }
+                
+                // 隐藏/显示字母索引
+                const alphaIndex = document.querySelector('.alpha-index');
+                if (alphaIndex) {
+                    alphaIndex.style.display = searchTerm ? 'none' : 'flex';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
