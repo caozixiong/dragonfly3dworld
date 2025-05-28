@@ -142,6 +142,13 @@
             ul li a {
                 font-size: 1em;
             }
+            #languageToggleButtons {
+                display: flex;
+                flex-direction: column;
+            }
+            .lang-toggle-btn {
+                margin-bottom: 5px; /* Add space between buttons when stacked */
+            }
         }
          /* Dark mode toggle (optional, but good for consistency if used elsewhere) */
         .dark-mode-toggle {
@@ -179,6 +186,62 @@
             opacity: 1;
         }
 
+        /* Styles for the search box */
+        #tutorialSearch {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px; /* Adjusted margin */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensures padding doesn't affect overall width */
+            font-size: 1em;
+        }
+        @media (prefers-color-scheme: dark) {
+            #tutorialSearch {
+                background-color: #333;
+                color: #eee;
+                border-color: #555;
+            }
+        }
+
+        /* Styles for Language Toggle Buttons */
+        #languageToggleButtons {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .lang-toggle-btn {
+            margin: 0 5px;
+            padding: 8px 12px;
+            border: 1px solid var(--accent-color); /* Use accent color for border */
+            background-color: transparent; /* Default transparent background */
+            color: var(--accent-color); /* Default text color matches accent */
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .lang-toggle-btn:hover {
+            background-color: rgba(0, 123, 255, 0.1); /* Light accent color for hover */
+        }
+        .lang-toggle-btn.active {
+            background-color: var(--accent-color);
+            color: #fff; /* White text for active button */
+            font-weight: bold;
+        }
+        @media (prefers-color-scheme: dark) {
+            .lang-toggle-btn {
+                border-color: var(--link-color);
+                color: var(--link-color);
+            }
+            .lang-toggle-btn:hover {
+                 background-color: rgba(144, 202, 249, 0.15); /* Light link color for hover in dark mode */
+            }
+            .lang-toggle-btn.active {
+                 background-color: var(--link-color);
+                 color: var(--bg-color); /* Background color text for active in dark mode */
+            }
+        }
+
+
     </style>
 </head>
 <body>
@@ -192,8 +255,17 @@
         <div class="home-link-container">
             <a href="../index.html" class="home-link">&larr; Back to Home</a>
         </div>
+        
+        <input type="text" id="tutorialSearch" placeholder="Search tutorials..." title="Type in a name to search">
+
+        <div id="languageToggleButtons">
+            <button id="showEnglishBtn" class="btn lang-toggle-btn">Show English Only</button>
+            <button id="showChineseBtn" class="btn lang-toggle-btn">Show Chinese Only</button>
+            <button id="showAllBtn" class="btn lang-toggle-btn active">Show All</button>
+        </div>
+        
         <h2>Available Tutorials</h2>
-        <ul>
+        <ul id="tutorialListUL">
             <li><a href="videos/Tutorial-3D Porosity Analysis in Archaeological Ceramics to Reconstruct Production Methods and Performance-Chinese.html">3D Porosity Analysis in Archaeological Ceramics to Reconstruct Production Methods and Performance (Chinese)</a></li>
             <li><a href="videos/Tutorial-3D Porosity Analysis in Archaeological Ceramics to Reconstruct Production Methods and Performance-English.html">3D Porosity Analysis in Archaeological Ceramics to Reconstruct Production Methods and Performance (English)</a></li>
             <li><a href="videos/Tutorial-A Natural History Perspective_ Micro-CT Scanning at the University of Michigan Museum of Zoology-Chinese.html">A Natural History Perspective_ Micro-CT Scanning at the University of Michigan Museum of Zoology (Chinese)</a></li>
@@ -319,7 +391,7 @@
         <p>&copy; 2024 Dragonfly Resource Center. All rights reserved.</p>
     </footer>
     <script>
-        // Optional: Dark/light mode toggle script (if you want to include it directly)
+        // Global theme functions
         function toggleDarkMode() {
             const currentScheme = document.documentElement.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             const newScheme = currentScheme === 'dark' ? 'light' : 'dark';
@@ -334,8 +406,9 @@
                 document.documentElement.removeAttribute('data-theme');
             }
         }
-
+        
         document.addEventListener('DOMContentLoaded', () => {
+            // Theme initialization
             const savedScheme = localStorage.getItem('color-scheme');
             if (savedScheme) {
                 setTheme(savedScheme);
@@ -343,11 +416,110 @@
                 const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 setTheme(systemPrefersDark ? 'dark' : 'light');
             }
-            // Add toggle button if it exists in the DOM (optional, if not part of header)
-            const toggleButton = document.querySelector('.dark-mode-toggle .btn');
-            if (toggleButton) {
-                toggleButton.addEventListener('click', toggleDarkMode);
+            
+            const themeToggleButton = document.querySelector('.dark-mode-toggle .btn');
+            if (themeToggleButton) {
+                 themeToggleButton.addEventListener('click', toggleDarkMode);
             }
+
+            // Combined Search and Language Filter functionality
+            const searchInput = document.getElementById('tutorialSearch');
+            const tutorialListUL = document.getElementById('tutorialListUL');
+            
+            const showEnglishBtn = document.getElementById('showEnglishBtn');
+            const showChineseBtn = document.getElementById('showChineseBtn');
+            const showAllBtn = document.getElementById('showAllBtn');
+            
+            let currentLanguageFilter = 'all'; // Default: 'english', 'chinese', 'all'
+            let allTutorials = []; // To be populated once tutorialListUL is confirmed
+
+            if (tutorialListUL) {
+                 allTutorials = Array.from(tutorialListUL.getElementsByTagName('li'));
+            } else {
+                console.error("Tutorial list #tutorialListUL not found.");
+                return; // Stop if the main list isn't found
+            }
+
+            function updateActiveButton(activeBtn) {
+                document.querySelectorAll('.lang-toggle-btn').forEach(btn => btn.classList.remove('active'));
+                if (activeBtn) { // Ensure activeBtn is not null
+                    activeBtn.classList.add('active');
+                }
+            }
+
+            function applyFilters() {
+                const searchTerm = searchInput ? searchInput.value.toLowerCase() : ""; // Handle if searchInput is null
+                
+                for (let i = 0; i < allTutorials.length; i++) {
+                    const tutorial = allTutorials[i];
+                    const link = tutorial.getElementsByTagName('a')[0];
+                    if (!link) continue; // Skip if no link found
+
+                    const title = link.textContent.toLowerCase();
+                    let matchesLanguage = false;
+
+                    if (currentLanguageFilter === 'all') {
+                        matchesLanguage = true;
+                    } else if (currentLanguageFilter === 'english') {
+                        matchesLanguage = title.includes('(english)');
+                    } else if (currentLanguageFilter === 'chinese') {
+                        matchesLanguage = title.includes('(chinese)');
+                    }
+                    
+                    const matchesSearch = searchTerm === "" || title.includes(searchTerm); // Show all if search is empty
+
+                    if (matchesLanguage && matchesSearch) {
+                        tutorial.style.display = '';
+                    } else {
+                        tutorial.style.display = 'none';
+                    }
+                }
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener('input', applyFilters);
+            } else {
+                 console.error("Search input #tutorialSearch not found.");
+            }
+
+            if (showEnglishBtn) {
+                showEnglishBtn.addEventListener('click', function() {
+                    currentLanguageFilter = 'english';
+                    updateActiveButton(this);
+                    applyFilters();
+                });
+            } else {
+                 console.error("Button #showEnglishBtn not found.");
+            }
+
+            if (showChineseBtn) {
+                showChineseBtn.addEventListener('click', function() {
+                    currentLanguageFilter = 'chinese';
+                    updateActiveButton(this);
+                    applyFilters();
+                });
+            } else {
+                 console.error("Button #showChineseBtn not found.");
+            }
+            
+            if (showAllBtn) {
+                showAllBtn.addEventListener('click', function() {
+                    currentLanguageFilter = 'all';
+                    updateActiveButton(this);
+                    applyFilters();
+                });
+            } else {
+                 console.error("Button #showAllBtn not found.");
+            }
+            
+            // Initial setup
+            if (showAllBtn) { // Check if showAllBtn exists before trying to use it
+                updateActiveButton(showAllBtn); // Set initial active button
+            } else if (document.querySelector('.lang-toggle-btn.active')) { // Fallback if showAllBtn is missing
+                updateActiveButton(document.querySelector('.lang-toggle-btn.active'));
+            }
+
+            applyFilters(); // Apply filters on page load
         });
     </script>
 </body>
