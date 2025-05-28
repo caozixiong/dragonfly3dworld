@@ -1,213 +1,353 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index of Dragonfly Video Tutorials</title>
+    <title>Dragonfly Video Tutorials</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4361ee;
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --hover-color: #e9ecef;
-            --border-color: #dee2e6;
+            --bg-color: #fff;
+            --text-color: #333;
+            --link-color: #007bff;
+            --card-bg: #f8f9fa;
+            --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --accent-color: #007bff;
+            --header-bg: #e9ecef;
+            --transition: all 0.2s ease;
         }
-        
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #eee;
+                --link-color: #90caf9;
+                --card-bg: #1e1e1e;
+                --card-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+                --accent-color: #90caf9;
+                --header-bg: #282828;
+            }
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
             margin: 0;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--primary-color);
-        }
-        
-        .search-container {
-            margin-bottom: 20px;
-        }
-        
-        #search-input {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            box-sizing: border-box;
-        }
-        
-        .pages-list {
+            padding: 0;
+            line-height: 1.6;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            min-height: 100vh;
         }
-        
-        .page-card {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 16px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .page-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            background-color: var(--hover-color);
-        }
-        
-        .page-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 0;
-        }
-        
-        .page-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            display: block;
-            width: 100%;
-        }
-        
-        .page-link:hover {
-            text-decoration: underline;
-        }
-        
-        .no-results {
-            text-align: center;
+
+        .container {
+            width: 90%;
+            max-width: 1000px; /* Adjusted for better readability of lists */
+            margin: 0 auto;
             padding: 20px;
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex: 1;
         }
-        
-        .last-updated {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 14px;
-            color: #6c757d;
+
+        .header {
+          background-color: var(--header-bg);
+          padding: 1rem 0;
+          border-bottom: 1px solid rgba(0,0,0,0.1);
+          margin-bottom: 20px; /* Added margin for spacing */
         }
-        
-        .alpha-index {
+
+        .header-content {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 20px;
-            gap: 8px;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        .alpha-index a {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            text-align: center;
-            border-radius: 50%;
-            background-color: var(--card-bg);
-            color: var(--primary-color);
+        .header-content h1 {
+            margin: 0; /* Remove default margin from h1 in header */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-color);
+            margin-top: 1.2em;
+            margin-bottom: 0.6em;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 2.2em; } /* Adjusted for main title */
+        h2 { font-size: 1.8em; }
+
+        a {
+            color: var(--link-color);
             text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+        a:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+
+        ul {
+            list-style-type: none; /* Remove default bullets */
+            padding-left: 0;
+        }
+
+        ul li {
+            background-color: var(--card-bg);
+            border-radius: 6px;
+            box-shadow: var(--card-shadow);
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            transition: var(--transition);
+        }
+
+        ul li:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
         }
         
-        .alpha-index a:hover {
-            background-color: var(--primary-color);
-            color: white;
+        ul li a {
+            font-weight: 500;
+            font-size: 1.05em;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #ddd; /* Use a lighter border in light mode */
+            margin-top: auto;
+            color: #777; /* Lighter text for footer */
         }
         
-        .alpha-letter {
-            font-size: 22px;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-top: 20px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--border-color);
-            scroll-margin-top: 20px;
+        @media (prefers-color-scheme: dark) {
+            .footer {
+                border-top: 1px solid #333; /* Darker border for dark mode */
+            }
         }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+            h1 { font-size: 1.8em; }
+            h2 { font-size: 1.5em; }
+            ul li {
+                padding: 12px 15px;
+            }
+            ul li a {
+                font-size: 1em;
+            }
+        }
+         /* Dark mode toggle (optional, but good for consistency if used elsewhere) */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+        }
+        .dark-mode-toggle .btn {
+            background-color: var(--accent-color);
+            color: var(--bg-color); /* Text color should contrast with button */
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+         /* Style for the home link */
+        .home-link-container {
+            margin-bottom: 25px; /* Space below the home link */
+            text-align: left;
+        }
+        .home-link {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--accent-color);
+            color: #fff; /* White text on accent color */
+            border-radius: 5px;
+            font-size: 0.95em;
+            transition: background-color 0.3s ease;
+        }
+        .home-link:hover {
+            background-color: #0056b3; /* Darken accent color on hover */
+            text-decoration: none;
+            opacity: 1;
+        }
+
     </style>
 </head>
 <body>
+    <header class="header">
+        <div class="header-content">
+            <h1>Dragonfly Video Tutorials</h1>
+        </div>
+    </header>
+
     <div class="container">
-        <h1>Index of Dragonfly Video Tutorials</h1>
-        
-        <div class="search-container">
-            <input type="text" id="search-input" placeholder="搜索页面..." autocomplete="off">
+        <div class="home-link-container">
+            <a href="../index.html" class="home-link">&larr; Back to Home</a>
         </div>
-        
-        <div id="pages-container" class="pages-list">
-            <!-- 页面列表将由Python脚本动态生成 -->
-            <div class="no-results">当前目录下没有找到HTML文件</div>
-        </div>
-        
-        <div class="last-updated">
-            最后更新时间: 2025年05月27日 07:36:34
-        </div>
+        <h2>Available Tutorials</h2>
+        <ul>
+            <li><a href="videos/Tutorial-3D Porosity Analysis in Archaeological Ceramics to Reconstruct Production Methods and Performance-Chinese.html">3D Porosity Analysis in Archaeological Ceramics to Reconstruct Production Methods and Performance (Chinese)</a></li>
+            <li><a href="videos/Tutorial-3D Porosity Analysis in Archaeological Ceramics to Reconstruct Production Methods and Performance-English.html">3D Porosity Analysis in Archaeological Ceramics to Reconstruct Production Methods and Performance (English)</a></li>
+            <li><a href="videos/Tutorial-A Natural History Perspective_ Micro-CT Scanning at the University of Michigan Museum of Zoology-Chinese.html">A Natural History Perspective_ Micro-CT Scanning at the University of Michigan Museum of Zoology (Chinese)</a></li>
+            <li><a href="videos/Tutorial-A Natural History Perspective_ Micro-CT Scanning at the University of Michigan Museum of Zoology-English.html">A Natural History Perspective_ Micro-CT Scanning at the University of Michigan Museum of Zoology (English)</a></li>
+            <li><a href="videos/Tutorial-Additive Manufacturing Powder Characterization Using Dragonfly-Chinese.html">Additive Manufacturing Powder Characterization Using Dragonfly (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Additive Manufacturing Powder Characterization Using Dragonfly-English.html">Additive Manufacturing Powder Characterization Using Dragonfly (English)</a></li>
+            <li><a href="videos/Tutorial-Automation of NDT Inspection by Dragonfly Scripting and HPC Batch Processing-Chinese.html">Automation of NDT Inspection by Dragonfly Scripting and HPC Batch Processing (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Automation of NDT Inspection by Dragonfly Scripting and HPC Batch Processing-English.html">Automation of NDT Inspection by Dragonfly Scripting and HPC Batch Processing (English)</a></li>
+            <li><a href="videos/Tutorial-CAD Deviation of Additive Manufacturing Bracket Using Dragonfly-Chinese.html">CAD Deviation of Additive Manufacturing Bracket Using Dragonfly (Chinese)</a></li>
+            <li><a href="videos/Tutorial-CAD Deviation of Additive Manufacturing Bracket Using Dragonfly-English.html">CAD Deviation of Additive Manufacturing Bracket Using Dragonfly (English)</a></li>
+            <li><a href="videos/Tutorial-Computed Tomography for Industrial Inspection and Quality Control Powered by Dragonfly Software-Chinese.html">Computed Tomography for Industrial Inspection and Quality Control Powered by Dragonfly Software (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Computed Tomography for Industrial Inspection and Quality Control Powered by Dragonfly Software-English.html">Computed Tomography for Industrial Inspection and Quality Control Powered by Dragonfly Software (English)</a></li>
+            <li><a href="videos/Tutorial-Cone Beam CT Reconstruction in Dragonfly 2022.2-Chinese.html">Cone Beam CT Reconstruction in Dragonfly 2022.2 (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Cone Beam CT Reconstruction in Dragonfly 2022.2-English.html">Cone Beam CT Reconstruction in Dragonfly 2022.2 (English)</a></li>
+            <li><a href="videos/Tutorial-Crack Identification and Segmentation for NDT Using Dragonfly How-To Video-Chinese.html">Crack Identification and Segmentation for NDT Using Dragonfly How To Video (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Crack Identification and Segmentation for NDT Using Dragonfly How-To Video-English.html">Crack Identification and Segmentation for NDT Using Dragonfly How To Video (English)</a></li>
+            <li><a href="videos/Tutorial-Creating a volume-of-interest using Active Contour tool-Chinese.html">Creating a volume of interest using Active Contour tool (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Creating a volume-of-interest using Active Contour tool-English.html">Creating a volume of interest using Active Contour tool (English)</a></li>
+            <li><a href="videos/Tutorial-Decoding the Fossil Record_ The Benefits of AI in the Segmentation of Fossils-Chinese.html">Decoding the Fossil Record_ The Benefits of AI in the Segmentation of Fossils (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Decoding the Fossil Record_ The Benefits of AI in the Segmentation of Fossils-English.html">Decoding the Fossil Record_ The Benefits of AI in the Segmentation of Fossils (English)</a></li>
+            <li><a href="videos/Tutorial-Dragonfly 2022.2 Feature _ Volume meshing of a walnut-Chinese.html">Dragonfly 2022.2 Feature _ Volume meshing of a walnut (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Dragonfly 2022.2 Feature _ Volume meshing of a walnut-English.html">Dragonfly 2022.2 Feature _ Volume meshing of a walnut (English)</a></li>
+            <li><a href="videos/Tutorial-Dragonfly 3D World _ AI solutions for individual battery anode-cathode overhang analysis-Chinese.html">Dragonfly 3D World _ AI solutions for individual battery anode cathode overhang analysis (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Dragonfly 3D World _ AI solutions for individual battery anode-cathode overhang analysis-English.html">Dragonfly 3D World _ AI solutions for individual battery anode cathode overhang analysis (English)</a></li>
+            <li><a href="videos/Tutorial-Dragonfly Daily 35 Workflows, Wizards, and Reports in Dragonfly (2020)-Chinese.html">Dragonfly Daily 35 Workflows, Wizards, and Reports in Dragonfly (2020) (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Dragonfly Daily 35 Workflows, Wizards, and Reports in Dragonfly (2020)-English.html">Dragonfly Daily 35 Workflows, Wizards, and Reports in Dragonfly (2020) (English)</a></li>
+            <li><a href="videos/Tutorial-Dragonfly Daily 36 CT Reconstruction in Dragonfly (2020)-Chinese.html">Dragonfly Daily 36 CT Reconstruction in Dragonfly (2020) (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Dragonfly Daily 36 CT Reconstruction in Dragonfly (2020)-English.html">Dragonfly Daily 36 CT Reconstruction in Dragonfly (2020) (English)</a></li>
+            <li><a href="videos/Tutorial-Dragonfly Daily 37 Distance Mapping in Dragonfly (2020)-Chinese.html">Dragonfly Daily 37 Distance Mapping in Dragonfly (2020) (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Dragonfly Daily 37 Distance Mapping in Dragonfly (2020)-English.html">Dragonfly Daily 37 Distance Mapping in Dragonfly (2020) (English)</a></li>
+            <li><a href="videos/Tutorial-Dragonfly Daily 38 Watershed Transform in Dragonfly (2020)-Chinese.html">Dragonfly Daily 38 Watershed Transform in Dragonfly (2020) (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Dragonfly Daily 38 Watershed Transform in Dragonfly (2020)-English.html">Dragonfly Daily 38 Watershed Transform in Dragonfly (2020) (English)</a></li>
+            <li><a href="videos/Tutorial-Dragonfly Daily 39 Cylinder Coordinate Transform in Dragonfly (2020)-Chinese.html">Dragonfly Daily 39 Cylinder Coordinate Transform in Dragonfly (2020) (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Dragonfly Daily 39 Cylinder Coordinate Transform in Dragonfly (2020)-English.html">Dragonfly Daily 39 Cylinder Coordinate Transform in Dragonfly (2020) (English)</a></li>
+            <li><a href="videos/Tutorial-How to use a pretrained deep learning model for additive manufacturing porosity-Chinese.html">How to use a pretrained deep learning model for additive manufacturing porosity (Chinese)</a></li>
+            <li><a href="videos/Tutorial-How to use a pretrained deep learning model for additive manufacturing porosity-English.html">How to use a pretrained deep learning model for additive manufacturing porosity (English)</a></li>
+            <li><a href="videos/Tutorial-How-to video_ CT based porosity analysis of concrete using Dragonfly-Chinese.html">How to video_ CT based porosity analysis of concrete using Dragonfly (Chinese)</a></li>
+            <li><a href="videos/Tutorial-How-to video_ CT based porosity analysis of concrete using Dragonfly-English.html">How to video_ CT based porosity analysis of concrete using Dragonfly (English)</a></li>
+            <li><a href="videos/Tutorial-How-to video_ CT image analysis for battery inspection using Dragonfly-Chinese.html">How to video_ CT image analysis for battery inspection using Dragonfly (Chinese)</a></li>
+            <li><a href="videos/Tutorial-How-to video_ CT image analysis for battery inspection using Dragonfly-English.html">How to video_ CT image analysis for battery inspection using Dragonfly (English)</a></li>
+            <li><a href="videos/Tutorial-Image Import in Dragonfly-Chinese.html">Image Import in Dragonfly (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Image Import in Dragonfly-English.html">Image Import in Dragonfly (English)</a></li>
+            <li><a href="videos/Tutorial-In Vivo and Specimen Imaging at the Center for Molecular and Genomic Imaging-Chinese.html">In Vivo and Specimen Imaging at the Center for Molecular and Genomic Imaging (Chinese)</a></li>
+            <li><a href="videos/Tutorial-In Vivo and Specimen Imaging at the Center for Molecular and Genomic Imaging-English.html">In Vivo and Specimen Imaging at the Center for Molecular and Genomic Imaging (English)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 0_ Introduction-Chinese.html">July 2022 Workshop Video 0_ Introduction (Chinese)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 0_ Introduction-English.html">July 2022 Workshop Video 0_ Introduction (English)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 10_ Segmentation Wizard Part 2-Chinese.html">July 2022 Workshop Video 10_ Segmentation Wizard Part 2 (Chinese)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 10_ Segmentation Wizard Part 2-English.html">July 2022 Workshop Video 10_ Segmentation Wizard Part 2 (English)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 11_ Deep learning tool-Chinese.html">July 2022 Workshop Video 11_ Deep learning tool (Chinese)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 11_ Deep learning tool-English.html">July 2022 Workshop Video 11_ Deep learning tool (English)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 1_ Introduction to Dragonfly User Interface-Chinese.html">July 2022 Workshop Video 1_ Introduction to Dragonfly User Interface (Chinese)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 1_ Introduction to Dragonfly User Interface-English.html">July 2022 Workshop Video 1_ Introduction to Dragonfly User Interface (English)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 2_ Data Import and Basic Operations-Chinese.html">July 2022 Workshop Video 2_ Data Import and Basic Operations (Chinese)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 2_ Data Import and Basic Operations-English.html">July 2022 Workshop Video 2_ Data Import and Basic Operations (English)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 3_ Display Tools and Window Leveling-Chinese.html">July 2022 Workshop Video 3_ Display Tools and Window Leveling (Chinese)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 3_ Display Tools and Window Leveling-English.html">July 2022 Workshop Video 3_ Display Tools and Window Leveling (English)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 4_ Image Filtering-Chinese.html">July 2022 Workshop Video 4_ Image Filtering (Chinese)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 4_ Image Filtering-English.html">July 2022 Workshop Video 4_ Image Filtering (English)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 5_ Defining Region of Interest (ROI) and Basic Segmentation Tools-Chinese.html">July 2022 Workshop Video 5_ Defining Region of Interest (ROI) and Basic Segmentation Tools (Chinese)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 5_ Defining Region of Interest (ROI) and Basic Segmentation Tools-English.html">July 2022 Workshop Video 5_ Defining Region of Interest (ROI) and Basic Segmentation Tools (English)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 6_ Measuring Tools-Chinese.html">July 2022 Workshop Video 6_ Measuring Tools (Chinese)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 6_ Measuring Tools-English.html">July 2022 Workshop Video 6_ Measuring Tools (English)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 7_ Image Registration-Chinese.html">July 2022 Workshop Video 7_ Image Registration (Chinese)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 7_ Image Registration-English.html">July 2022 Workshop Video 7_ Image Registration (English)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 8_ AI Based Segmentation Part 1-Chinese.html">July 2022 Workshop Video 8_ AI Based Segmentation Part 1 (Chinese)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 8_ AI Based Segmentation Part 1-English.html">July 2022 Workshop Video 8_ AI Based Segmentation Part 1 (English)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 9_ Segmentation Wizard Part 1-Chinese.html">July 2022 Workshop Video 9_ Segmentation Wizard Part 1 (Chinese)</a></li>
+            <li><a href="videos/Tutorial-July 2022 Workshop Video 9_ Segmentation Wizard Part 1-English.html">July 2022 Workshop Video 9_ Segmentation Wizard Part 1 (English)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Basic Operations-Chinese.html">Learn Dragonfly_ Basic Operations (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Basic Operations-English.html">Learn Dragonfly_ Basic Operations (English)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Deep Learning Segmentation-Chinese.html">Learn Dragonfly_ Deep Learning Segmentation (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Deep Learning Segmentation-English.html">Learn Dragonfly_ Deep Learning Segmentation (English)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Image Filtering and Denoising-Chinese.html">Learn Dragonfly_ Image Filtering and Denoising (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Image Filtering and Denoising-English.html">Learn Dragonfly_ Image Filtering and Denoising (English)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Image Registration-Chinese.html">Learn Dragonfly_ Image Registration (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Image Registration-English.html">Learn Dragonfly_ Image Registration (English)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Image Segmentation Techniques-Chinese.html">Learn Dragonfly_ Image Segmentation Techniques (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Image Segmentation Techniques-English.html">Learn Dragonfly_ Image Segmentation Techniques (English)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Importing and Exporting Data-Chinese.html">Learn Dragonfly_ Importing and Exporting Data (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Importing and Exporting Data-English.html">Learn Dragonfly_ Importing and Exporting Data (English)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Introduction to the User Interface-Chinese.html">Learn Dragonfly_ Introduction to the User Interface (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Introduction to the User Interface-English.html">Learn Dragonfly_ Introduction to the User Interface (English)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Measurement and Analysis-Chinese.html">Learn Dragonfly_ Measurement and Analysis (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Measurement and Analysis-English.html">Learn Dragonfly_ Measurement and Analysis (English)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ ROI Creation and Manipulation-Chinese.html">Learn Dragonfly_ ROI Creation and Manipulation (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ ROI Creation and Manipulation-English.html">Learn Dragonfly_ ROI Creation and Manipulation (English)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Working with Meshes-Chinese.html">Learn Dragonfly_ Working with Meshes (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Learn Dragonfly_ Working with Meshes-English.html">Learn Dragonfly_ Working with Meshes (English)</a></li>
+            <li><a href="videos/Tutorial-Materials Science Applications with Dragonfly Software-Chinese.html">Materials Science Applications with Dragonfly Software (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Materials Science Applications with Dragonfly Software-English.html">Materials Science Applications with Dragonfly Software (English)</a></li>
+            <li><a href="videos/Tutorial-Multi-Scale Correlative Tomography using Dragonfly Software-Chinese.html">Multi Scale Correlative Tomography using Dragonfly Software (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Multi-Scale Correlative Tomography using Dragonfly Software-English.html">Multi Scale Correlative Tomography using Dragonfly Software (English)</a></li>
+            <li><a href="videos/Tutorial-Navigation, slice views, 3D views, and basic interaction-Chinese.html">Navigation, slice views, 3D views, and basic interaction (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Navigation, slice views, 3D views, and basic interaction-English.html">Navigation, slice views, 3D views, and basic interaction (English)</a></li>
+            <li><a href="videos/Tutorial-Neuroscience Research with Dragonfly_ Analyzing Brain Structures-Chinese.html">Neuroscience Research with Dragonfly_ Analyzing Brain Structures (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Neuroscience Research with Dragonfly_ Analyzing Brain Structures-English.html">Neuroscience Research with Dragonfly_ Analyzing Brain Structures (English)</a></li>
+            <li><a href="videos/Tutorial-Porosity Analysis of Casting Components Using Dragonfly-Chinese.html">Porosity Analysis of Casting Components Using Dragonfly (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Porosity Analysis of Casting Components Using Dragonfly-English.html">Porosity Analysis of Casting Components Using Dragonfly (English)</a></li>
+            <li><a href="videos/Tutorial-Python scripting in Dragonfly-Chinese.html">Python scripting in Dragonfly (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Python scripting in Dragonfly-English.html">Python scripting in Dragonfly (English)</a></li>
+            <li><a href="videos/Tutorial-Quantitative Analysis of Fiber Composites with Dragonfly-Chinese.html">Quantitative Analysis of Fiber Composites with Dragonfly (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Quantitative Analysis of Fiber Composites with Dragonfly-English.html">Quantitative Analysis of Fiber Composites with Dragonfly (English)</a></li>
+            <li><a href="videos/Tutorial-ROI tools and their use cases-Chinese.html">ROI tools and their use cases (Chinese)</a></li>
+            <li><a href="videos/Tutorial-ROI tools and their use cases-English.html">ROI tools and their use cases (English)</a></li>
+            <li><a href="videos/Tutorial-Segmentation Part 1_ Thresholding and basic tools-Chinese.html">Segmentation Part 1_ Thresholding and basic tools (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Segmentation Part 1_ Thresholding and basic tools-English.html">Segmentation Part 1_ Thresholding and basic tools (English)</a></li>
+            <li><a href="videos/Tutorial-Segmentation Part 2_Watershed and other automated tools-Chinese.html">Segmentation Part 2_Watershed and other automated tools (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Segmentation Part 2_Watershed and other automated tools-English.html">Segmentation Part 2_Watershed and other automated tools (English)</a></li>
+            <li><a href="videos/Tutorial-Segmentation Part 3_ Deep Learning-Chinese.html">Segmentation Part 3_ Deep Learning (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Segmentation Part 3_ Deep Learning-English.html">Segmentation Part 3_ Deep Learning (English)</a></li>
+            <li><a href="videos/Tutorial-Segmentation of pores in a cast aluminum alloy using Deep Learning-Chinese.html">Segmentation of pores in a cast aluminum alloy using Deep Learning (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Segmentation of pores in a cast aluminum alloy using Deep Learning-English.html">Segmentation of pores in a cast aluminum alloy using Deep Learning (English)</a></li>
+            <li><a href="videos/Tutorial-The Active Contour tool for segmentation-Chinese.html">The Active Contour tool for segmentation (Chinese)</a></li>
+            <li><a href="videos/Tutorial-The Active Contour tool for segmentation-English.html">The Active Contour tool for segmentation (English)</a></li>
+            <li><a href="videos/Tutorial-Using the Image Channel Composition Tool in Dragonfly-Chinese.html">Using the Image Channel Composition Tool in Dragonfly (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Using the Image Channel Composition Tool in Dragonfly-English.html">Using the Image Channel Composition Tool in Dragonfly (English)</a></li>
+            <li><a href="videos/Tutorial-Working with DICOM data in Dragonfly-Chinese.html">Working with DICOM data in Dragonfly (Chinese)</a></li>
+            <li><a href="videos/Tutorial-Working with DICOM data in Dragonfly-English.html">Working with DICOM data in Dragonfly (English)</a></li>
+        </ul>
     </div>
-    
+
+    <footer class="footer">
+        <p>&copy; 2024 Dragonfly Resource Center. All rights reserved.</p>
+    </footer>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('search-input');
-            
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                let visibleCount = 0;
-                
-                // 隐藏所有字母分组标题
-                document.querySelectorAll('.alpha-letter').forEach(letter => {
-                    letter.style.display = 'none';
-                });
-                
-                // 过滤卡片
-                document.querySelectorAll('.page-card').forEach(card => {
-                    const title = card.querySelector('.page-title').textContent.toLowerCase();
-                    if (title.includes(searchTerm)) {
-                        card.style.display = 'block';
-                        visibleCount++;
-                        
-                        // 如果有可见卡片，显示其所属的字母分组
-                        const letterGroup = card.closest('.letter-group');
-                        if (letterGroup) {
-                            const letterHeader = letterGroup.querySelector('.alpha-letter');
-                            if (letterHeader) {
-                                letterHeader.style.display = 'block';
-                            }
-                        }
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                
-                // 显示"无结果"消息
-                let noResultsElement = document.querySelector('.no-results');
-                if (visibleCount === 0 && searchTerm !== '') {
-                    if (!noResultsElement) {
-                        const message = document.createElement('div');
-                        message.className = 'no-results';
-                        message.textContent = '没有匹配的结果';
-                        document.getElementById('pages-container').appendChild(message);
-                    }
-                } else if (noResultsElement) {
-                    noResultsElement.remove();
-                }
-                
-                // 隐藏/显示字母索引
-                const alphaIndex = document.querySelector('.alpha-index');
-                if (alphaIndex) {
-                    alphaIndex.style.display = searchTerm ? 'none' : 'flex';
-                }
-            });
+        // Optional: Dark/light mode toggle script (if you want to include it directly)
+        function toggleDarkMode() {
+            const currentScheme = document.documentElement.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            const newScheme = currentScheme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('color-scheme', newScheme);
+            setTheme(newScheme);
+        }
+
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedScheme = localStorage.getItem('color-scheme');
+            if (savedScheme) {
+                setTheme(savedScheme);
+            } else {
+                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                setTheme(systemPrefersDark ? 'dark' : 'light');
+            }
+            // Add toggle button if it exists in the DOM (optional, if not part of header)
+            const toggleButton = document.querySelector('.dark-mode-toggle .btn');
+            if (toggleButton) {
+                toggleButton.addEventListener('click', toggleDarkMode);
+            }
         });
     </script>
 </body>
